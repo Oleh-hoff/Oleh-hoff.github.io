@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f9f9f7">
+<meta name="robots" content="noindex, nofollow">
+<title>Amazon CRM</title>
+
+<script>
+  (function () {
+    try {
+      var mode = localStorage.getItem('dashboard.theme') || 'system';
+      var dark = mode === 'dark'
+        || (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      document.querySelector('meta[name="theme-color"]')
+        ?.setAttribute('content', dark ? '#0d0d0d' : '#f9f9f7');
+    } catch (e) { /* останется светлая тема */ }
+  })();
+</script>
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/dashboard.css">
+<link rel="stylesheet" href="assets/css/crm.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M8 21V13M16 21V9M24 21V16' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>">
+</head>
+
+<body>
+<div class="crm" id="crm">
+
+  <a class="skip-link" href="#view" data-i18n="nav.skipToContent">Перейти к содержимому</a>
+
+  <!-- ============================ МЕНЮ СЛЕВА ============================ -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar__brand">
+      <span class="sidebar__logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M5 18V10M12 18V5M19 18V13" stroke="currentColor"
+                stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="sidebar__title" data-i18n="crm.name">Amazon CRM</span>
+    </div>
+
+    <nav class="sidebar__nav" data-i18n-attr="aria-label:crm.workspace">
+
+      <div class="sidebar__section" data-i18n="nav.section.analytics">Аналитика</div>
+
+      <a class="nav-item" href="#/sales-analysis" data-route="sales-analysis">
+        <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 19V5M4 19h16M8 16v-4M13 16V8M18 16v-6" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-item__label" data-i18n="nav.salesAnalysis">Анализ продаж</span>
+      </a>
+
+      <a class="nav-item nav-item--pending" href="#/products" data-route="products">
+        <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20 7.5 12 3 4 7.5v9L12 21l8-4.5v-9Z" stroke="currentColor" stroke-width="1.8"
+                stroke-linejoin="round"/>
+          <path d="m4 7.5 8 4.5 8-4.5M12 12v9" stroke="currentColor" stroke-width="1.8"
+                stroke-linejoin="round"/>
+        </svg>
+        <span class="nav-item__label" data-i18n="nav.products">Товары</span>
+        <span class="nav-item__badge">soon</span>
+      </a>
+
+      <a class="nav-item nav-item--pending" href="#/customers" data-route="customers">
+        <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="9" cy="8" r="3.2" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M3.5 19a5.5 5.5 0 0 1 11 0M16 11a3 3 0 1 0 0-6M17.5 19a5 5 0 0 0-3-4.6"
+                stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-item__label" data-i18n="nav.customers">Покупатели</span>
+        <span class="nav-item__badge">soon</span>
+      </a>
+
+      <div class="sidebar__section" data-i18n="nav.section.operations">Операции</div>
+
+      <a class="nav-item nav-item--pending" href="#/orders" data-route="orders">
+        <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 4h12l1.5 15.5a1.5 1.5 0 0 1-1.5 1.5H6a1.5 1.5 0 0 1-1.5-1.5L6 4Z"
+                stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M9 8a3 3 0 0 0 6 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-item__label" data-i18n="nav.orders">Заказы</span>
+        <span class="nav-item__badge">soon</span>
+      </a>
+
+      <a class="nav-item nav-item--pending" href="#/inventory" data-route="inventory">
+        <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 9.5 12 5l9 4.5v9L12 23l-9-4.5v-9Z" stroke="currentColor" stroke-width="1.8"
+                stroke-linejoin="round" transform="translate(0,-2)"/>
+          <path d="M7 9v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-item__label" data-i18n="nav.inventory">Остатки</span>
+        <span class="nav-item__badge">soon</span>
+      </a>
+
+      <a class="nav-item nav-item--pending" href="#/promotions" data-route="promotions">
+        <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8.5 15.5 15.5 8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="9" cy="9" r="1.6" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="15" cy="15" r="1.6" stroke="currentColor" stroke-width="1.6"/>
+          <rect x="3.5" y="3.5" width="17" height="17" rx="3" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        <span class="nav-item__label" data-i18n="nav.promotions">Акции и купоны</span>
+        <span class="nav-item__badge">soon</span>
+      </a>
+
+      <div class="sidebar__section" data-i18n="nav.section.settings">Настройки</div>
+
+      <a class="nav-item nav-item--pending" href="#/sources" data-route="sources">
+        <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <ellipse cx="12" cy="6" rx="7" ry="3" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"
+                stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        <span class="nav-item__label" data-i18n="nav.sources">Источники данных</span>
+        <span class="nav-item__badge">soon</span>
+      </a>
+
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="sidebar__controls" style="display:flex; flex-direction:column; gap:var(--sp-2);">
+        <div class="segmented" role="radiogroup" data-i18n-attr="aria-label:lang.select" id="lang-controls">
+          <button type="button" class="segmented__item" role="radio" data-lang="ru" aria-checked="false">РУС</button>
+          <button type="button" class="segmented__item" role="radio" data-lang="en" aria-checked="false">ENG</button>
+          <button type="button" class="segmented__item" role="radio" data-lang="uk" aria-checked="false">УКР</button>
+        </div>
+        <div class="segmented" role="radiogroup" data-i18n-attr="aria-label:theme.toggle" id="theme-controls">
+          <button type="button" class="segmented__item" role="radio" data-theme-mode="light"
+                  data-i18n="theme.light" aria-checked="false">Светлая</button>
+          <button type="button" class="segmented__item" role="radio" data-theme-mode="dark"
+                  data-i18n="theme.dark" aria-checked="false">Тёмная</button>
+          <button type="button" class="segmented__item" role="radio" data-theme-mode="system"
+                  data-i18n="theme.system" aria-checked="false">Как в системе</button>
+        </div>
+      </div>
+
+      <div class="sidebar__user">
+        <span class="sidebar__avatar" id="user-initial" aria-hidden="true"></span>
+        <span id="user-name"></span>
+      </div>
+
+      <button type="button" class="btn btn--ghost" id="logout" data-i18n="nav.logout">Выйти</button>
+    </div>
+  </aside>
+
+  <!-- ========================= РАБОЧАЯ ОБЛАСТЬ ========================= -->
+  <main class="workspace">
+
+    <header class="workspace__header">
+      <button type="button" class="btn btn--icon sidebar__toggle" id="menu-toggle"
+              data-i18n-attr="aria-label:nav.expand">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="workspace__titles">
+        <h1 class="workspace__title" id="page-title"></h1>
+        <p class="workspace__lead" id="page-lead"></p>
+      </div>
+
+      <div id="page-controls" style="display:flex; gap:var(--sp-3); flex-wrap:wrap; align-items:center;"></div>
+    </header>
+
+    <div class="workspace__body" id="view"></div>
+  </main>
+
+</div>
+
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

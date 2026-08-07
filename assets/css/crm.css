@@ -1,0 +1,311 @@
+/* ==========================================================================
+   Оболочка CRM: меню слева, рабочая область справа
+   ========================================================================== */
+
+.crm {
+  display: grid;
+  grid-template-columns: var(--sidebar-width, 260px) 1fr;
+  min-height: 100dvh;
+  transition: grid-template-columns var(--transition);
+}
+.crm[data-collapsed="true"] { --sidebar-width: 68px; }
+
+/* --------------------------------------------------------------- Сайдбар */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-3);
+  background: var(--surface-1);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2);
+  margin-bottom: var(--sp-3);
+  min-height: 44px;
+}
+
+.sidebar__logo {
+  width: 32px; height: 32px;
+  flex: none;
+  display: grid; place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--ink-on-accent);
+}
+.sidebar__logo svg { width: 18px; height: 18px; }
+
+.sidebar__title {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.sidebar__section {
+  padding: var(--sp-4) var(--sp-2) var(--sp-1);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.sidebar__nav { display: flex; flex-direction: column; gap: 2px; }
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  min-height: 40px;
+  border-radius: var(--radius-sm);
+  color: var(--ink-2);
+  text-decoration: none;
+  font-size: var(--fs-base);
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition);
+}
+.nav-item:hover { background: var(--surface-2); color: var(--ink-1); }
+
+/* Активный пункт держится не только цветом: слева стоит полоса-указатель */
+.nav-item[aria-current="page"] {
+  background: var(--surface-2);
+  color: var(--ink-1);
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.nav-item__icon { width: 18px; height: 18px; flex: none; }
+.nav-item__label { overflow: hidden; text-overflow: ellipsis; }
+
+/* Пункт, который ещё не наполнен — видно, что он задел на будущее */
+.nav-item--pending { opacity: 0.55; }
+.nav-item__badge {
+  margin-left: auto;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-sunken);
+  color: var(--ink-3);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.sidebar__footer {
+  margin-top: auto;
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.sidebar__user {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.sidebar__avatar {
+  width: 28px; height: 28px;
+  flex: none;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--surface-sunken);
+  color: var(--ink-1);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* В свёрнутом виде остаются только иконки */
+.crm[data-collapsed="true"] .sidebar__title,
+.crm[data-collapsed="true"] .sidebar__section,
+.crm[data-collapsed="true"] .nav-item__label,
+.crm[data-collapsed="true"] .nav-item__badge,
+.crm[data-collapsed="true"] .sidebar__user span,
+.crm[data-collapsed="true"] .sidebar__controls { display: none; }
+.crm[data-collapsed="true"] .sidebar__section {
+  display: block;
+  height: 1px;
+  padding: var(--sp-3) 0 0;
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------- Рабочая область */
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;                 /* иначе широкая таблица распирает грид */
+  background: var(--plane);
+}
+
+.workspace__header {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  padding: var(--sp-4) var(--sp-5);
+  background: color-mix(in srgb, var(--plane) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.workspace__titles { margin-right: auto; min-width: 0; }
+.workspace__title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.workspace__lead {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  margin-top: 2px;
+}
+
+.workspace__body {
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+/* ------------------------------------------------------------- Состояния */
+
+.state {
+  padding: var(--sp-7) var(--sp-5);
+  text-align: center;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+.state code {
+  display: inline-block;
+  margin-top: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: var(--fs-xs);
+  color: var(--ink-1);
+  user-select: all;
+}
+
+/* Полоса «выгрузка ещё идёт» — статус, поэтому с иконкой и текстом,
+   а не одним лишь цветом */
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--status-warning) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--status-warning) 40%, transparent);
+  font-size: var(--fs-sm);
+  color: var(--ink-1);
+}
+.banner svg { width: 16px; height: 16px; flex: none; color: var(--status-warning); }
+
+/* ------------------------------------------------ Таблица расходных статей */
+
+.breakdown { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+
+.breakdown th,
+.breakdown td {
+  padding: var(--sp-3);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.breakdown th {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.breakdown td.num,
+.breakdown th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.breakdown tbody tr:hover { background: var(--surface-2); }
+
+.breakdown__group td {
+  font-weight: 600;
+  background: var(--surface-2);
+}
+
+/* Строка исходного типа Amazon внутри статьи */
+.breakdown__detail td:first-child { padding-left: var(--sp-6); color: var(--ink-2); }
+.breakdown__detail td { border-bottom-style: dashed; }
+
+.breakdown__total td {
+  font-weight: 600;
+  border-top: 2px solid var(--border-strong);
+  border-bottom: 0;
+}
+
+.amount--negative { color: var(--delta-down); }
+.amount--positive { color: var(--delta-up); }
+
+/* Мини-полоса доли рядом с числом: длина повторяет процент, поэтому
+   сравнение идёт глазом, а не чтением цифр */
+.share-bar {
+  display: inline-block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--accent);
+  vertical-align: middle;
+  margin-right: var(--sp-2);
+  min-width: 2px;
+}
+
+/* --------------------------------------------------------------- Мобильно */
+
+.sidebar__toggle { display: none; }
+
+@media (max-width: 900px) {
+  .crm { grid-template-columns: 1fr; }
+
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 260px;
+    z-index: 40;
+    transform: translateX(-100%);
+    transition: transform var(--transition);
+    box-shadow: var(--shadow-pop);
+  }
+  .crm[data-mobile-open="true"] .sidebar { transform: translateX(0); }
+
+  .sidebar__toggle { display: inline-flex; }
+
+  .crm[data-mobile-open="true"]::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .workspace__body { padding: var(--sp-4); }
+  .workspace__header { padding: var(--sp-3) var(--sp-4); }
+}

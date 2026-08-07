@@ -1,0 +1,119 @@
+# ============================================================================
+# Обновление продаж и расходов Amazon каждые 4 часа
+#
+# Забирает новые финансовые проводки через SP-API и обновляет
+# data/finance.json, из которого читает дашборд «Анализ продаж».
+#
+# ПЕРЕД ПЕРВЫМ ЗАПУСКОМ
+#  1. Секреты репозитория (Settings → Secrets and variables → Actions):
+#       SPAPI_CLIENT_ID
+#       SPAPI_CLIENT_SECRET
+#       SPAPI_REFRESH_TOKEN
+#     Значения не видны ни в логах, ни в интерфейсе после сохранения:
+#     GitHub вырезает их из вывода, даже если скрипт их случайно напечатает.
+#  2. История собирается заходами: Actions → Run workflow → resume.
+#     Один заход берёт пять окон (~час) и коммитит результат.
+#     Крон дальше только добирает новое — это минуты.
+#
+# ВНИМАНИЕ: репозиторий публичный. data/finance.json открыт по прямой
+# ссылке любому — форма входа на странице этот файл не защищает.
+# Секреты репозитория при этом закрыты: их нет ни в коде, ни в логах,
+# и они недоступны рабочим процессам из форков.
+# ============================================================================
+
+name: Amazon · синхронизация продаж
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'     # каждые 4 часа, UTC
+
+  workflow_dispatch:           # и кнопкой, когда нужно прямо сейчас
+    inputs:
+      mode:
+        description: 'Режим выгрузки'
+        type: choice
+        default: incremental
+        options:
+          - incremental        # добрать новое — минуты
+          - resume             # продолжить прерванную выгрузку с места обрыва
+          - full               # заново с начала года — часы
+
+permissions:
+  contents: write
+
+# Два запуска одновременно писали бы в один файл и конфликтовали при коммите
+concurrency:
+  group: amazon-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 100       # один заход резюме — около часа
+
+    steps:
+      - name: Забрать репозиторий
+        uses: actions/checkout@v4
+
+      - name: Настроить Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Собрать данные Amazon
+        env:
+          SPAPI_CLIENT_ID: ${{ secrets.SPAPI_CLIENT_ID }}
+          SPAPI_CLIENT_SECRET: ${{ secrets.SPAPI_CLIENT_SECRET }}
+          SPAPI_REFRESH_TOKEN: ${{ secrets.SPAPI_REFRESH_TOKEN }}
+          # Не секреты, а конфигурация: аккаунт европейский
+          SPAPI_REGION: eu
+          SPAPI_ENV: production
+        run: |
+          # По расписанию режим не передаётся — тогда добор нового
+          case "${{ inputs.mode || 'incremental' }}" in
+            full)
+              python3 scripts/collect_amazon.py --from "$(date -u +%Y)-01-01" ;;
+            resume)
+              # Не больше пяти окон за запуск — около часа работы.
+              # Многочасовой прогон вытесняется очередным запуском по
+              # расписанию, а коммит происходит только после выхода из
+              # скрипта, поэтому снятый прогон терял всё. Год добирается
+              # за несколько коротких заходов, каждый со своим коммитом.
+              python3 scripts/collect_amazon.py --resume --max-chunks 5 ;;
+            *)
+              python3 scripts/collect_amazon.py --incremental ;;
+          esac
+
+      - name: Закоммитить, если данные изменились
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- data/; then
+            echo "Новых проводок нет — коммит не нужен."
+            exit 0
+          fi
+
+          # Сводка в лог запуска: видно, что изменилось, без открытия файла
+          python3 - <<'PY'
+          import json, pathlib
+          data = json.loads(pathlib.Path("data/finance.json").read_text())
+          rows = data["rows"]
+          revenue = sum(r["amount"] for r in rows if r["category"].startswith("revenue")
+                        and r["category"] != "revenue_tax")
+          fees = sum(r["amount"] for r in rows if r["category"].startswith("fee"))
+          print(f"::notice::Проводок {len(rows)}, период {data['periodStart']}—{data['periodEnd']}, "
+                f"выручка {revenue:.0f}, комиссии {fees:.0f} (сумма всех валют)")
+          PY
+
+          git add data/
+          git commit -m "Amazon: синхронизация $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
+
+      - name: Сообщить о провале выгрузки
+        if: failure()
+        run: |
+          echo "::error::Синхронизация Amazon не прошла. Частые причины:"
+          echo "::error::· истёк refresh_token — перевыпустить в Seller Central;"
+          echo "::error::· отозвана авторизация приложения;"
+          echo "::error::· Amazon вернул 429 дольше, чем длились ретраи."

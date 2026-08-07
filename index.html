@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f9f9f7">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Вход в дашборд аналитики Amazon">
+<title>Вход · Amazon Дашборд</title>
+
+<!-- Тема проставляется до первой отрисовки: иначе в тёмной теме на долю
+     секунды мелькает светлый фон. Этот скрипт обязан быть блокирующим
+     и стоять раньше стилей. -->
+<script>
+  (function () {
+    try {
+      var mode = localStorage.getItem('dashboard.theme') || 'system';
+      var dark = mode === 'dark'
+        || (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      document.querySelector('meta[name="theme-color"]')
+        ?.setAttribute('content', dark ? '#0d0d0d' : '#f9f9f7');
+    } catch (e) { /* приватный режим — останется светлая тема */ }
+  })();
+</script>
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/auth.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M8 21V13M16 21V9M24 21V16' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>">
+</head>
+
+<body class="auth">
+
+  <div class="auth__toolbar">
+    <!-- Язык до входа, а не после: форму нужно читать на своём языке -->
+    <div class="segmented" role="radiogroup" data-i18n-attr="aria-label:lang.select">
+      <button type="button" class="segmented__item" role="radio" data-lang="ru" aria-checked="false">РУС</button>
+      <button type="button" class="segmented__item" role="radio" data-lang="en" aria-checked="false">ENG</button>
+      <button type="button" class="segmented__item" role="radio" data-lang="uk" aria-checked="false">УКР</button>
+    </div>
+
+    <div class="segmented" role="radiogroup" data-i18n-attr="aria-label:theme.toggle" id="theme-controls">
+      <button type="button" class="segmented__item" role="radio" data-theme-mode="light"
+              data-i18n="theme.light" aria-checked="false">Светлая</button>
+      <button type="button" class="segmented__item" role="radio" data-theme-mode="dark"
+              data-i18n="theme.dark" aria-checked="false">Тёмная</button>
+      <button type="button" class="segmented__item" role="radio" data-theme-mode="system"
+              data-i18n="theme.system" aria-checked="false">Как в системе</button>
+    </div>
+  </div>
+
+  <main class="auth__main">
+    <div class="card auth__card">
+
+      <div class="auth__brand">
+        <span class="auth__logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M5 18V10M12 18V5M19 18V13" stroke="currentColor"
+                  stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <div>
+          <h1 class="auth__title" data-i18n="auth.title">Вход в дашборд</h1>
+          <p class="auth__subtitle" data-i18n="auth.subtitle">
+            Введите логин и пароль, чтобы открыть аналитику
+          </p>
+        </div>
+      </div>
+
+      <form class="auth__form" id="login-form" novalidate autocomplete="on">
+
+        <div class="field">
+          <label class="field__label" for="login" data-i18n="auth.login">Логин</label>
+          <input class="input" id="login" name="username" type="text"
+                 autocomplete="username" required autocapitalize="none" spellcheck="false"
+                 data-i18n-attr="placeholder:auth.loginPlaceholder">
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="password" data-i18n="auth.password">Пароль</label>
+          <div class="input-group">
+            <input class="input" id="password" name="current-password" type="password"
+                   autocomplete="current-password" required
+                   data-i18n-attr="placeholder:auth.passwordPlaceholder">
+            <button type="button" class="input-group__action" id="toggle-password"
+                    data-i18n-attr="aria-label:auth.showPassword, title:auth.showPassword">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"
+                      stroke="currentColor" stroke-width="1.7"/>
+                <circle cx="12" cy="12" r="2.6" stroke="currentColor" stroke-width="1.7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ловушка для ботов: человек её не видит и не заполняет -->
+        <div class="auth__trap" aria-hidden="true">
+          <label for="company">Company</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <label class="auth__remember">
+          <input type="checkbox" id="remember">
+          <span data-i18n="auth.remember">Запомнить меня на 7 дней</span>
+        </label>
+
+        <!-- role="alert" — скринридер озвучит ошибку сразу, без перевода фокуса -->
+        <div class="alert alert--error" id="login-error" role="alert" hidden>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 7.5v5.5M12 16.2v.6" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span id="login-error-text"></span>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--block" id="submit"
+                data-i18n="auth.submit">Войти</button>
+      </form>
+
+      <div class="auth__note">
+        <div class="alert alert--note">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 11v5.5M12 7.4v.6" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span data-i18n="auth.securityNote"></span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script type="module" src="assets/js/login.js"></script>
+</body>
+</html>

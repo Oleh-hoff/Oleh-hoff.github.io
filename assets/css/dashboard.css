@@ -1,0 +1,400 @@
+/* ==========================================================================
+   Дашборд: каркас, плитки статистики, панели графиков, таблицы
+   ========================================================================== */
+
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Шапка ------------------------------------------------------------- */
+
+.app__header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  padding: var(--sp-3) var(--sp-5);
+  background: color-mix(in srgb, var(--plane) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.app__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-right: auto;
+}
+
+.app__logo {
+  width: 32px; height: 32px;
+  flex: none;
+  display: grid; place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--ink-on-accent);
+}
+.app__logo svg { width: 18px; height: 18px; }
+
+.app__name { font-size: var(--fs-md); font-weight: 600; letter-spacing: -0.01em; }
+.app__tagline { font-size: var(--fs-xs); color: var(--ink-3); }
+
+.app__user {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+.app__user strong { color: var(--ink-1); font-weight: 600; }
+
+/* --- Основная область --------------------------------------------------- */
+
+.app__main {
+  flex: 1;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+/* --- Фильтры -----------------------------------------------------------
+   Одна строка над всем, что они охватывают. Никаких фильтров внутри
+   карточек: иначе числа на соседних графиках перестают сходиться. */
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+.filters__group {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.filters__label {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.filters__status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+.filters__dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--status-good);
+  flex: none;
+}
+
+/* --- Плитки статистики -------------------------------------------------- */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--sp-4);
+}
+
+.stat {
+  padding: var(--sp-4) var(--sp-5) var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.stat__label {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+/* Пропорциональные цифры: tabular-nums растягивает крупное число */
+.stat__value {
+  font-size: var(--fs-stat);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.stat__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: var(--fs-sm);
+  color: var(--ink-3);
+}
+
+/* Направление несёт не только цвет, но и стрелка со словами рядом */
+.stat__delta-value { font-weight: 600; }
+.stat__delta--up   .stat__delta-value { color: var(--delta-up); }
+.stat__delta--down .stat__delta-value { color: var(--delta-down); }
+.stat__delta svg { width: 12px; height: 12px; }
+
+.stat__spark { height: 36px; margin-top: var(--sp-1); }
+
+/* --- Панели графиков ---------------------------------------------------- */
+
+.panels {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--sp-4);
+}
+
+.panel { grid-column: span 12; padding: var(--sp-5); }
+
+@media (min-width: 1000px) {
+  .panel--half { grid-column: span 6; }
+}
+
+.panel__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-4);
+}
+
+.panel__titles { margin-right: auto; }
+
+.panel__title {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.panel__subtitle {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  margin-top: 2px;
+}
+
+/* Легенда обязательна от двух серий — идентичность серии не должна
+   держаться на одном лишь цвете */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+.legend__item { display: inline-flex; align-items: center; gap: var(--sp-2); }
+
+.legend__key { flex: none; border-radius: 2px; }
+.legend__key--line { width: 14px; height: 2px; border-radius: 1px; }
+.legend__key--rect { width: 10px; height: 10px; }
+
+/* --- Область графика ---------------------------------------------------- */
+
+.chart { position: relative; width: 100%; }
+
+.chart-grid   { stroke: var(--grid); stroke-width: 1; shape-rendering: crispEdges; }
+.chart-crosshair { stroke: var(--axis); stroke-width: 1; pointer-events: none; }
+
+.chart-line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Кольцо цвета поверхности вокруг точки: она остаётся читаемой там,
+   где пересекает линию или другую точку */
+.chart-marker {
+  stroke: var(--surface-1);
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.chart-tick {
+  fill: var(--ink-3);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-catlabel { fill: var(--ink-2); font-size: 13px; }
+
+.chart-value,
+.chart-endlabel {
+  fill: var(--ink-1);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.chart-endlabel { fill: var(--ink-2); font-size: 12px; }
+
+.chart-surface { cursor: crosshair; }
+.chart-hit { cursor: pointer; }
+.chart-bar { transition: opacity var(--transition); }
+.chart-hit:hover + .chart-bar { opacity: 0.85; }
+
+.chart-sparkline {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.chart-spark-dot { fill: var(--accent); }
+
+/* Пока данные перезагружаются, держим предыдущую отрисовку приглушённой:
+   скелет на её месте дал бы скачок раскладки */
+.is-loading .chart,
+.is-loading .stat__value { opacity: 0.45; transition: opacity var(--transition); }
+
+/* --- Подсказка ---------------------------------------------------------- */
+
+.chart-tooltip {
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 10;
+  min-width: 150px;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--surface-1);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-pop);
+  pointer-events: none;
+  will-change: transform;
+}
+.chart-tooltip[hidden] { display: none; }
+
+.chart-tooltip__title {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  margin-bottom: var(--sp-1);
+}
+
+.chart-tooltip__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 2px 0;
+}
+
+/* Ключ серии — короткий штрих её цвета, не залитый квадрат */
+.chart-tooltip__key {
+  width: 12px; height: 2px;
+  border-radius: 1px;
+  flex: none;
+}
+
+.chart-tooltip__name {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  margin-right: auto;
+}
+
+/* Значение — сильный элемент: серия читателю уже известна, ему нужно число */
+.chart-tooltip__value {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--ink-1);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Таблица-двойник ---------------------------------------------------
+   У каждого графика есть табличная версия: она и делает значения
+   доступными без наведения, и компенсирует те тональности палитры,
+   что не дотягивают до 3:1 на светлой поверхности. */
+
+.table-wrap {
+  overflow-x: auto;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--sp-2) var(--sp-3);
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-1);
+  color: var(--ink-2);
+  font-weight: 500;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.data-table td.num,
+.data-table th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.data-table tbody tr:hover { background: var(--surface-2); }
+.data-table tfoot td {
+  font-weight: 600;
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 0;
+}
+
+/* Точка цвета серии рядом с названием — идентичность не держится на
+   цвете самого текста */
+.table-key {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  margin-right: var(--sp-2);
+  vertical-align: baseline;
+}
+
+/* --- Подвал ------------------------------------------------------------- */
+
+.app__footer {
+  padding: var(--sp-5);
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  display: flex;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 640px) {
+  .app__header { padding: var(--sp-3); }
+  .app__main { padding: var(--sp-3); gap: var(--sp-4); }
+  .panel { padding: var(--sp-4); }
+  .app__tagline { display: none; }
+}
+
+/* Пустое состояние: без него график молча рисует ничего и выглядит сломанным */
+.chart-empty {
+  padding: var(--sp-7) var(--sp-4);
+  text-align: center;
+  color: var(--ink-3);
+  font-size: var(--fs-sm);
+}

@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Страница входа
+   ========================================================================== */
+
+.auth {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  padding: var(--sp-4);
+  gap: var(--sp-5);
+}
+
+/* Переключатели языка и темы — до входа, а не после: человек должен
+   читать форму на своём языке, а не разбираться в чужом */
+.auth__toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.auth__main {
+  display: grid;
+  place-items: center;
+  padding-bottom: var(--sp-7);
+}
+
+.auth__card {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.auth__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.auth__logo {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: var(--ink-on-accent);
+}
+.auth__logo svg { width: 22px; height: 22px; }
+
+.auth__title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.auth__subtitle {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  margin-top: var(--sp-1);
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.auth__remember {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.auth__remember input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.auth__note {
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+}
+
+.auth__footer {
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+}
+
+/* Поле, скрытое от людей и видимое ботам: заполнено — значит это бот.
+   Дешёвая отсечка автоматических отправок формы. */
+.auth__trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}

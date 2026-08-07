@@ -1,0 +1,261 @@
+/* ==========================================================================
+   База: сброс, типографика и общие компоненты интерфейса
+   Используется и страницей входа, и дашбордом.
+   ========================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+  color: var(--ink-1);
+  background: var(--plane);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, p, figure { margin: 0; }
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+/* Видимый фокус только с клавиатуры — мышь его не показывает */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Скрытое, но доступное скринридеру --------------------------------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Ссылка «сразу к содержимому» — первый Tab на странице */
+.skip-link {
+  position: absolute;
+  top: var(--sp-2);
+  left: var(--sp-2);
+  z-index: 100;
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--surface-1);
+  color: var(--ink-1);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform var(--transition);
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* ==========================================================================
+   Кнопки
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-4);
+  min-height: 40px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-1);
+  font-size: var(--fs-base);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition), border-color var(--transition),
+              color var(--transition);
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--ink-on-accent);
+  font-weight: 600;
+}
+.btn--primary:hover:not(:disabled) { background: var(--accent-hover); }
+
+.btn--ghost { border-color: var(--border); color: var(--ink-2); }
+.btn--ghost:hover:not(:disabled) {
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+  color: var(--ink-1);
+}
+
+.btn--block { width: 100%; }
+
+/* Кнопка-иконка: 40×40, чтобы попадать пальцем */
+.btn--icon {
+  width: 40px;
+  padding: 0;
+  border-color: var(--border);
+  color: var(--ink-2);
+}
+.btn--icon:hover { background: var(--surface-2); color: var(--ink-1); }
+.btn--icon svg { width: 18px; height: 18px; }
+
+/* ==========================================================================
+   Поля ввода
+   ========================================================================== */
+
+.field { display: flex; flex-direction: column; gap: var(--sp-2); }
+
+.field__label {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--sp-3);
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--ink-1);
+  transition: border-color var(--transition), background var(--transition);
+}
+.input::placeholder { color: var(--ink-3); }
+.input:hover { border-color: var(--border-strong); }
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.input[aria-invalid="true"] { border-color: var(--status-critical); }
+
+/* Поле пароля с кнопкой показа */
+.input-group { position: relative; display: flex; }
+.input-group .input { padding-right: 44px; }
+.input-group__action {
+  position: absolute;
+  right: 2px; top: 50%;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
+  display: grid; place-items: center;
+  border: 0; border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+.input-group__action:hover { color: var(--ink-1); background: var(--surface-2); }
+.input-group__action svg { width: 18px; height: 18px; }
+
+.select {
+  min-height: 40px;
+  padding: 0 var(--sp-6) 0 var(--sp-3);
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--ink-1);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23898781' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--sp-2) center;
+  background-size: 16px;
+}
+.select:hover { border-color: var(--border-strong); }
+
+/* ==========================================================================
+   Сегментированный переключатель (язык, тема, пресеты периода)
+   ========================================================================== */
+
+.segmented {
+  display: inline-flex;
+  padding: 2px;
+  gap: 2px;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.segmented__item {
+  padding: 0 var(--sp-3);
+  min-height: 32px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.segmented__item:hover { color: var(--ink-1); }
+.segmented__item[aria-pressed="true"],
+.segmented__item[aria-checked="true"] {
+  background: var(--surface-1);
+  color: var(--ink-1);
+  font-weight: 600;
+  box-shadow: var(--shadow-card);
+}
+
+/* ==========================================================================
+   Карточка
+   ========================================================================== */
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ==========================================================================
+   Сообщения
+   ========================================================================== */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+}
+.alert svg { width: 16px; height: 16px; flex: none; margin-top: 2px; }
+
+.alert--error {
+  background: color-mix(in srgb, var(--status-critical) 10%, transparent);
+  color: var(--ink-1);
+  border: 1px solid color-mix(in srgb, var(--status-critical) 35%, transparent);
+}
+.alert--error svg { color: var(--status-critical); }
+
+.alert--note {
+  background: var(--surface-2);
+  color: var(--ink-2);
+  border: 1px solid var(--border);
+}
+.alert--note svg { color: var(--ink-3); }
