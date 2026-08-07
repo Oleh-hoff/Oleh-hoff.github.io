@@ -1,0 +1,150 @@
+{
+ "version": 1,
+ "entries": [
+  {
+   "id": "31045406352-amazon-spapi-2026-08-05T20:43:11Z",
+   "source": "amazon-spapi",
+   "status": "ok",
+   "mode": "incremental",
+   "startedAt": "2026-08-05T20:43:11Z",
+   "finishedAt": "2026-08-05T20:48:41Z",
+   "durationSec": 330,
+   "message": "Синхронизация прошла успешно, данные обновлены.",
+   "stats": {},
+   "error": null,
+   "runId": "31045406352",
+   "runUrl": "https://github.com/Oleh-hoff/less1/actions/runs/31045406352",
+   "trigger": "schedule"
+  },
+  {
+   "id": "31092565578-amazon-spapi-2026-08-06T10:16:04Z",
+   "source": "amazon-spapi",
+   "status": "ok",
+   "mode": "incremental",
+   "startedAt": "2026-08-06T10:16:04Z",
+   "finishedAt": "2026-08-06T10:24:20Z",
+   "durationSec": 496,
+   "message": "Синхронизация прошла успешно, данные обновлены.",
+   "stats": {},
+   "error": null,
+   "runId": "31092565578",
+   "runUrl": "https://github.com/Oleh-hoff/less1/actions/runs/31092565578",
+   "trigger": "schedule"
+  },
+  {
+   "id": "31109863383-amazon-spapi-2026-08-06T14:14:54Z",
+   "source": "amazon-spapi",
+   "status": "error",
+   "mode": "resume",
+   "startedAt": "2026-08-06T14:14:54Z",
+   "finishedAt": "2026-08-06T16:13:38Z",
+   "durationSec": 7124,
+   "message": "Запуск не довёл выгрузку до конца.",
+   "stats": {},
+   "error": {
+    "type": "workflow-cancelled",
+    "detail": "Запуск вытеснен следующим по расписанию; собранное не сохранено."
+   },
+   "runId": "31109863383",
+   "runUrl": "https://github.com/Oleh-hoff/less1/actions/runs/31109863383",
+   "trigger": "workflow_dispatch"
+  },
+  {
+   "id": "31125518925-amazon-spapi-2026-08-06T18:15:09Z",
+   "source": "amazon-spapi",
+   "status": "error",
+   "mode": "incremental",
+   "startedAt": "2026-08-06T18:15:09Z",
+   "finishedAt": "2026-08-06T18:30:12Z",
+   "durationSec": 903,
+   "message": "Запуск не довёл выгрузку до конца.",
+   "stats": {},
+   "error": {
+    "type": "workflow-failure",
+    "detail": "Шаг сбора завершился с ненулевым кодом возврата."
+   },
+   "runId": "31125518925",
+   "runUrl": "https://github.com/Oleh-hoff/less1/actions/runs/31125518925",
+   "trigger": "schedule"
+  },
+  {
+   "id": "31147841564-amazon-spapi-2026-08-07T04:34:30Z",
+   "source": "amazon-spapi",
+   "status": "ok",
+   "mode": "incremental",
+   "startedAt": "2026-08-07T04:34:30Z",
+   "finishedAt": "2026-08-07T04:45:26Z",
+   "durationSec": 656,
+   "message": "Синхронизация прошла успешно, данные обновлены.",
+   "stats": {},
+   "error": null,
+   "runId": "31147841564",
+   "runUrl": "https://github.com/Oleh-hoff/less1/actions/runs/31147841564",
+   "trigger": "schedule"
+  },
+  {
+   "id": "31172932395-amazon-spapi-2026-08-07T11:09:19Z",
+   "source": "amazon-spapi",
+   "status": "ok",
+   "mode": "incremental",
+   "startedAt": "2026-08-07T11:09:19Z",
+   "finishedAt": "2026-08-07T11:15:54Z",
+   "durationSec": 395,
+   "message": "Синхронизация прошла успешно, данные обновлены.",
+   "stats": {},
+   "error": null,
+   "runId": "31172932395",
+   "runUrl": "https://github.com/Oleh-hoff/less1/actions/runs/31172932395",
+   "trigger": "schedule"
+  },
+  {
+   "id": "31181930281-amazon-spapi-2026-08-07T13:17:15Z",
+   "source": "amazon-spapi",
+   "status": "ok",
+   "mode": "resume",
+   "startedAt": "2026-08-07T13:17:15Z",
+   "finishedAt": "2026-08-07T13:19:56Z",
+   "durationSec": 161,
+   "message": "Синхронизация прошла успешно, данные обновлены.",
+   "stats": {},
+   "error": null,
+   "runId": "31181930281",
+   "runUrl": "https://github.com/Oleh-hoff/less1/actions/runs/31181930281",
+   "trigger": "workflow_dispatch"
+  },
+  {
+   "id": "31183379987-amazon-spapi-2026-08-07T13:35:46Z",
+   "source": "amazon-spapi",
+   "status": "error",
+   "mode": "resume",
+   "startedAt": "2026-08-07T13:35:46Z",
+   "finishedAt": "2026-08-07T13:37:04Z",
+   "durationSec": 78,
+   "message": "Запуск не довёл выгрузку до конца.",
+   "stats": {},
+   "error": {
+    "type": "workflow-cancelled",
+    "detail": "Запуск вытеснен следующим по расписанию; собранное не сохранено."
+   },
+   "runId": "31183379987",
+   "runUrl": "https://github.com/Oleh-hoff/less1/actions/runs/31183379987",
+   "trigger": "workflow_dispatch"
+  },
+  {
+   "id": "31183505794-amazon-spapi-2026-08-07T13:37:19Z",
+   "source": "amazon-spapi",
+   "status": "partial",
+   "mode": "resume",
+   "startedAt": "2026-08-07T13:37:19Z",
+   "finishedAt": "2026-08-07T13:37:24Z",
+   "durationSec": 5,
+   "message": "Выгрузка выполнена частично.",
+   "stats": {},
+   "error": null,
+   "runId": "31183505794",
+   "runUrl": "https://github.com/Oleh-hoff/less1/actions/runs/31183505794",
+   "trigger": "workflow_dispatch"
+  }
+ ],
+ "updatedAt": "2026-08-07T14:20:53Z"
+}

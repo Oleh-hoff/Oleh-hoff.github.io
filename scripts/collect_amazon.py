@@ -39,6 +39,7 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
+import sync_log  # noqa: E402
 from spapi.client import SPAPIClient, SPAPIError  # noqa: E402
 from spapi.config import Config  # noqa: E402
 
@@ -362,6 +363,9 @@ def load_state() -> dict:
 
 
 def main() -> int:
+    # Время старта нужно журналу: длительность запуска — первый признак того,
+    # что Amazon начал отвечать медленно или упираться в лимиты.
+    started_at = sync_log.now_iso()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--from", dest="start", help="начальная дата YYYY-MM-DD")
     parser.add_argument("--incremental", action="store_true",
@@ -415,8 +419,27 @@ def main() -> int:
           + (f", не больше {args.max_chunks} окон" if args.max_chunks else ""))
     print("=" * 70)
 
-    client = SPAPIClient(Config.from_env())
+    mode_key = ("incremental" if args.incremental
+                else "resume" if args.resume else "full")
+
+    try:
+        client = SPAPIClient(Config.from_env())
+    except (RuntimeError, ValueError) as e:
+        sync_log.append(
+            source="amazon-spapi", status=sync_log.STATUS_ERROR,
+            started_at=started_at, mode=mode_key,
+            message="Не удалось прочитать настройки подключения к Amazon.",
+            error={"type": type(e).__name__, "detail": str(e)})
+        print(f"ОСТАНОВКА: {e}")
+        return 1
+
     if client.config.sandbox:
+        sync_log.append(
+            source="amazon-spapi", status=sync_log.STATUS_ERROR,
+            started_at=started_at, mode=mode_key,
+            message="Подключение настроено на песочницу — реальных данных там нет.",
+            error={"type": "sandbox-mode",
+                   "detail": "Переменная окружения SPAPI_ENV не равна production."})
         print("ОСТАНОВКА: конфигурация в режиме sandbox, реальных данных там нет.")
         print("Задайте SPAPI_ENV=production.")
         return 1
@@ -477,12 +500,20 @@ def main() -> int:
             STATE_PATH.write_text(json.dumps(saved, ensure_ascii=False, indent=1),
                                   encoding="utf-8")
 
+    interrupted: SPAPIError | None = None
     try:
         collector.run(start, end, chunk_days=args.chunk_days,
                       checkpoint=write_snapshot, max_chunks=args.max_chunks)
     except SPAPIError as e:
+        interrupted = e
         print(f"\nВыгрузка прервана: {e}")
         if not collector.postings:
+            sync_log.append(
+                source="amazon-spapi", status=sync_log.STATUS_ERROR,
+                started_at=started_at, mode=mode_key,
+                message="Amazon не отдал ни одной проводки — данные не обновлены.",
+                error={"type": "SPAPIError", "http": e.status,
+                       "path": e.path, "detail": str(e)})
             return 1
         print("Сохраняю то, что успели собрать.")
 
@@ -539,6 +570,43 @@ def main() -> int:
     for category in CATEGORY_ORDER:
         if category in totals:
             print(f"   {category:22} {totals[category]:14.2f}")
+
+    # Запись в журнал. «Успешно» ставим только когда данные действительно
+    # получены целиком: заход, оборвавшийся по лимиту окон или по ошибке
+    # Amazon, — это «частично», и в интерфейсе он не должен выглядеть
+    # зелёной галочкой.
+    days = len({row["date"] for row in rows})
+    stats = {
+        "pages": collector.pages,
+        "events": collector.events,
+        "rows": len(rows),
+        "days": days,
+        "periodStart": min((r["date"] for r in rows), default=None),
+        "periodEnd": max((r["date"] for r in rows), default=None),
+        "historyComplete": collector.reached_end,
+        "unknownTypes": sorted(collector.unknown_types),
+    }
+
+    if interrupted is not None:
+        status = sync_log.STATUS_PARTIAL
+        message = "Amazon прервал выгрузку — сохранено то, что успели получить."
+        error = {"type": "SPAPIError", "http": interrupted.status,
+                 "path": interrupted.path, "detail": str(interrupted)}
+    elif not collector.reached_end:
+        status = sync_log.STATUS_PARTIAL
+        message = (f"Заход дошёл до {stats['periodEnd']} и остановился по лимиту окон. "
+                   "История добирается следующим запуском в режиме resume.")
+        error = None
+    else:
+        status = sync_log.STATUS_OK
+        message = (f"Получено {len(rows)} проводок за {days} дн. "
+                   f"({stats['periodStart']} — {stats['periodEnd']}).")
+        error = None
+
+    entry = sync_log.append(
+        source="amazon-spapi", status=status, started_at=started_at,
+        mode=mode_key, stats=stats, error=error, message=message)
+    print(f"\nВ журнал записано: {entry['status']} — {entry['message']}")
 
     return 0
 

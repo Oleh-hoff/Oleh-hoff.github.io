@@ -1,0 +1,301 @@
+/* ==========================================================================
+   Колокольчик, модальное окно синхронизаций и страница логов
+   ========================================================================== */
+
+/* --------------------------------------------------------------- Колокольчик */
+
+.bell { position: relative; flex: none; }
+
+.bell__badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  /* Кольцо цветом подложки: точка остаётся видимой на любом фоне шапки */
+  box-shadow: 0 0 0 2px var(--plane);
+}
+.bell__badge[hidden] { display: none; }
+.bell__badge--error   { background: var(--status-critical); }
+.bell__badge--partial { background: var(--status-warning); }
+
+/* ------------------------------------------------------------ Значки статуса
+   Статус несут форма и подпись рядом, а не только цвет: два кружка одного
+   размера неразличимы при дальтонизме. */
+
+.status-icon { width: 16px; height: 16px; flex: none; }
+.status-icon circle { fill: currentColor; opacity: 0.16; }
+.status-icon path { stroke: currentColor; }
+
+.status-icon--ok      { color: var(--status-good); }
+.status-icon--partial { color: var(--status-warning); }
+.status-icon--error   { color: var(--status-critical); }
+
+/* ------------------------------------------------------------ Модальное окно */
+
+.sync-modal {
+  width: min(520px, calc(100vw - 2 * var(--sp-4)));
+  max-height: min(640px, calc(100vh - 2 * var(--sp-5)));
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--surface-1);
+  color: var(--ink-1);
+  box-shadow: var(--shadow-pop);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.sync-modal::backdrop { background: rgba(0, 0, 0, 0.45); }
+.sync-modal:not([open]) { display: none; }
+
+.sync-modal__header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  border-bottom: 1px solid var(--border);
+}
+.sync-modal__title {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  margin-right: auto;
+}
+
+.sync-modal__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+.sync-modal__alarm { color: var(--status-critical); font-weight: 600; }
+
+.sync-list {
+  margin: 0;
+  padding: var(--sp-2) 0;
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.sync-list__divider {
+  padding: var(--sp-3) var(--sp-4) var(--sp-1);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.sync-empty {
+  padding: var(--sp-6) var(--sp-4);
+  text-align: center;
+  color: var(--ink-3);
+  font-size: var(--fs-sm);
+}
+
+.sync-modal__footer {
+  padding: var(--sp-3) var(--sp-4);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.sync-modal__more {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+}
+.sync-modal__more:hover { text-decoration: underline; }
+
+/* ------------------------------------------------------------- Строка записи */
+
+.sync-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+}
+.sync-row + .sync-row { border-top: 1px solid var(--border); }
+
+/* Текущее состояние интеграции — выделено подложкой, а не цветом текста */
+.sync-row--current { background: var(--surface-2); }
+
+.sync-row__body { min-width: 0; flex: 1; }
+
+.sync-row__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+.sync-row__source { font-weight: 600; font-size: var(--fs-base); }
+.sync-row__status { font-size: var(--fs-xs); color: var(--ink-3); }
+
+.sync-row__time {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+
+.sync-row__message {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  margin-top: var(--sp-2);
+  line-height: 1.45;
+}
+
+/* Причина сбоя — человеческой формулировкой, с отбивкой слева */
+.sync-row__reason {
+  font-size: var(--fs-sm);
+  color: var(--ink-1);
+  margin-top: var(--sp-2);
+  padding-left: var(--sp-3);
+  border-left: 2px solid var(--status-critical);
+  line-height: 1.45;
+}
+
+.sync-row__next {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  margin-top: var(--sp-2);
+}
+
+/* ========================================================== Страница логов */
+
+.logs {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--plane);
+}
+
+.logs__header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-1);
+}
+.logs__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--ink-2);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+}
+.logs__back:hover { color: var(--ink-1); }
+.logs__back svg { width: 16px; height: 16px; }
+
+.logs__titles { margin-right: auto; }
+.logs__title { font-size: var(--fs-lg); font-weight: 600; letter-spacing: -0.015em; }
+.logs__lead { font-size: var(--fs-sm); color: var(--ink-2); margin-top: 2px; }
+
+.logs__body {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.logs__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--sp-3);
+}
+
+.logs__filters {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+/* Одна запись журнала: раскрывается по клику до технических подробностей */
+.log-entry {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-1);
+  overflow: hidden;
+}
+.log-entry + .log-entry { margin-top: var(--sp-2); }
+
+.log-entry__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.log-entry__summary::-webkit-details-marker { display: none; }
+.log-entry__summary:hover { background: var(--surface-2); }
+
+.log-entry__when {
+  font-variant-numeric: tabular-nums;
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.log-entry__source { font-weight: 600; font-size: var(--fs-sm); }
+.log-entry__msg {
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  margin-right: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.log-entry__chevron { width: 16px; height: 16px; color: var(--ink-3); flex: none; }
+.log-entry[open] .log-entry__chevron { transform: rotate(90deg); }
+
+.log-entry__details {
+  padding: var(--sp-4);
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--sp-3) var(--sp-5);
+}
+
+.log-field__label {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-3);
+}
+.log-field__value {
+  font-size: var(--fs-sm);
+  color: var(--ink-1);
+  margin-top: 2px;
+  word-break: break-word;
+}
+.log-field--wide { grid-column: 1 / -1; }
+
+.log-field__value code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.92em;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+@media (max-width: 640px) {
+  .logs__body { padding: var(--sp-4); }
+  .log-entry__msg { display: none; }
+}

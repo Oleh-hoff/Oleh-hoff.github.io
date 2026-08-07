@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f9f9f7">
+<meta name="robots" content="noindex, nofollow">
+<title>Логи соединений</title>
+
+<!-- Проверка сессии до отрисовки, как и на дашборде -->
+<script>
+  (function () {
+    try {
+      var key = 'dashboard.session';
+      var raw = sessionStorage.getItem(key) || localStorage.getItem(key);
+      var ok = false;
+      if (raw) {
+        var data = JSON.parse(raw);
+        ok = Boolean(data && data.login && data.exp > Date.now());
+      }
+      if (!ok) location.replace('index.html');
+    } catch (e) {
+      location.replace('index.html');
+    }
+  })();
+</script>
+
+<script>
+  (function () {
+    try {
+      var mode = localStorage.getItem('dashboard.theme') || 'system';
+      var dark = mode === 'dark'
+        || (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      document.querySelector('meta[name="theme-color"]')
+        ?.setAttribute('content', dark ? '#0d0d0d' : '#f9f9f7');
+    } catch (e) { /* останется светлая тема */ }
+  })();
+</script>
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/dashboard.css">
+<link rel="stylesheet" href="assets/css/notifications.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M8 21V13M16 21V9M24 21V16' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>">
+</head>
+
+<body>
+<div class="logs">
+
+  <header class="logs__header">
+    <a class="logs__back" href="app.html">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span data-i18n="logs.back">Назад к дашборду</span>
+    </a>
+
+    <div class="logs__titles">
+      <h1 class="logs__title" data-i18n="logs.title">Логи соединений</h1>
+      <p class="logs__lead" data-i18n="logs.lead">
+        Полная история обновлений по всем интеграциям дашборда
+      </p>
+    </div>
+
+    <div class="segmented" role="radiogroup" data-i18n-attr="aria-label:lang.select" id="lang-controls">
+      <button type="button" class="segmented__item" role="radio" data-lang="ru" aria-checked="false">РУС</button>
+      <button type="button" class="segmented__item" role="radio" data-lang="en" aria-checked="false">ENG</button>
+      <button type="button" class="segmented__item" role="radio" data-lang="uk" aria-checked="false">УКР</button>
+    </div>
+
+    <div class="segmented" role="radiogroup" data-i18n-attr="aria-label:theme.toggle" id="theme-controls">
+      <button type="button" class="segmented__item" role="radio" data-theme-mode="light"
+              data-i18n="theme.light" aria-checked="false">Светлая</button>
+      <button type="button" class="segmented__item" role="radio" data-theme-mode="dark"
+              data-i18n="theme.dark" aria-checked="false">Тёмная</button>
+      <button type="button" class="segmented__item" role="radio" data-theme-mode="system"
+              data-i18n="theme.system" aria-checked="false">Как в системе</button>
+    </div>
+  </header>
+
+  <main class="logs__body">
+    <section class="logs__stats" id="log-stats"></section>
+
+    <div class="logs__filters">
+      <div class="segmented" role="radiogroup" id="log-filters">
+        <button type="button" class="segmented__item" role="radio" data-filter="all"
+                data-i18n="logs.filterAll" aria-checked="true">Все</button>
+        <button type="button" class="segmented__item" role="radio" data-filter="issues"
+                data-i18n="logs.filterIssues" aria-checked="false">Только сбои</button>
+      </div>
+      <select class="select" id="log-source" aria-label="источник"></select>
+    </div>
+
+    <div id="log-list"></div>
+  </main>
+
+</div>
+
+<script type="module" src="assets/js/logs-page.js"></script>
+</body>
+</html>

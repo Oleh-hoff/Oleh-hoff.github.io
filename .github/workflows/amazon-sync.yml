@@ -61,6 +61,7 @@ jobs:
           python-version: '3.12'
 
       - name: Собрать данные Amazon
+        id: collect
         env:
           SPAPI_CLIENT_ID: ${{ secrets.SPAPI_CLIENT_ID }}
           SPAPI_CLIENT_SECRET: ${{ secrets.SPAPI_CLIENT_SECRET }}
@@ -84,7 +85,20 @@ jobs:
               python3 scripts/collect_amazon.py --incremental ;;
           esac
 
-      - name: Закоммитить, если данные изменились
+      - name: Записать в журнал, если сборщик не успел
+        if: always()
+        run: |
+          # Сборщик пишет запись сам. Сюда доходим, когда он упал жёстко,
+          # был снят по таймауту или отменён — тогда без этой записи сбой
+          # нигде не отразится, и в интерфейсе он будет выглядеть как
+          # «данные почему-то старые».
+          python3 scripts/sync_log.py \
+            --source amazon-spapi \
+            --status "${{ steps.collect.outcome }}" \
+            --mode "${{ inputs.mode || 'incremental' }}"
+
+      - name: Закоммитить данные и журнал
+        if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

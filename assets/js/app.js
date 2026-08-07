@@ -11,6 +11,7 @@ import { applyTranslations, bindLangControls, onLangChange, t } from './i18n.js'
 import { initTheme, bindThemeControls } from './theme.js';
 import { requireAuth, signOut, getSession } from './auth.js';
 import { resetFormatters } from './format.js';
+import { mountNotifications } from './notifications.js';
 import { salesAnalysis } from './views/sales-analysis.js';
 
 /* --- Доступ ------------------------------------------------------------- */
@@ -122,3 +123,16 @@ onLangChange(() => {
 
 if (!location.hash) location.replace(`#/${DEFAULT_ROUTE}`);
 navigate();
+
+/* --- Колокольчик --------------------------------------------------------
+   Состояние синхронизаций общее для всех разделов, поэтому живёт в шапке
+   оболочки, а не внутри дашборда. */
+
+const bell = await mountNotifications(document.getElementById('bell-slot'));
+
+// Значок должен переехать вместе с языком, иначе подсказка останется старой
+onLangChange(() => bell.refresh());
+
+// Данные обновляются кроном раз в 4 часа; проверяем журнал раз в 5 минут,
+// чтобы вкладка, открытая надолго, не показывала вчерашнее состояние.
+setInterval(() => bell.refresh(), 5 * 60 * 1000);
