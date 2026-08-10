@@ -456,7 +456,31 @@
    "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/31357770371",
    "trigger": "schedule",
    "durationSec": 515
+  },
+  {
+   "id": "31383898247-amazon-spapi-2026-08-10T11:31:47Z",
+   "source": "amazon-spapi",
+   "status": "ok",
+   "mode": "incremental",
+   "startedAt": "2026-08-10T11:31:47Z",
+   "finishedAt": "2026-08-10T11:36:35Z",
+   "message": "Получено 3273 проводок за 39 дн. (2026-01-01 — 2026-08-10).",
+   "stats": {
+    "pages": 45,
+    "events": 4485,
+    "rows": 3273,
+    "days": 39,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-08-10",
+    "historyComplete": true,
+    "unknownTypes": []
+   },
+   "error": null,
+   "runId": "31383898247",
+   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/31383898247",
+   "trigger": "schedule",
+   "durationSec": 288
   }
  ],
- "updatedAt": "2026-08-10T05:19:31Z"
+ "updatedAt": "2026-08-10T11:36:35Z"
 }
