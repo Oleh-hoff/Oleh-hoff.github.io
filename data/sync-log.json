@@ -600,7 +600,83 @@
    "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/31483082557",
    "trigger": "schedule",
    "durationSec": 309
+  },
+  {
+   "id": "local-amazon-account-2026-08-11T12:34:07Z",
+   "source": "amazon-account",
+   "status": "partial",
+   "mode": "account-health",
+   "startedAt": "2026-08-11T12:34:07Z",
+   "finishedAt": "2026-08-11T12:35:03Z",
+   "message": "Проверок выполнено 5, не удалось 2.",
+   "stats": {
+    "checks": 5,
+    "warnings": 0,
+    "unavailable": 6
+   },
+   "error": null,
+   "runId": null,
+   "runUrl": null,
+   "trigger": "local",
+   "durationSec": 56
+  },
+  {
+   "id": "local-amazon-account-2026-08-11T12:41:49Z",
+   "source": "amazon-account",
+   "status": "partial",
+   "mode": "account-health",
+   "startedAt": "2026-08-11T12:41:49Z",
+   "finishedAt": "2026-08-11T12:42:44Z",
+   "message": "Проверок выполнено 5, не удалось 1.",
+   "stats": {
+    "checks": 5,
+    "warnings": 0,
+    "unavailable": 6
+   },
+   "error": null,
+   "runId": null,
+   "runUrl": null,
+   "trigger": "local",
+   "durationSec": 55
+  },
+  {
+   "id": "local-amazon-account-2026-08-11T12:51:04Z",
+   "source": "amazon-account",
+   "status": "ok",
+   "mode": "account-health",
+   "startedAt": "2026-08-11T12:51:04Z",
+   "finishedAt": "2026-08-11T12:51:05Z",
+   "message": "Проверок выполнено 1, с замечаниями 0.",
+   "stats": {
+    "checks": 1,
+    "warnings": 0,
+    "unavailable": 0
+   },
+   "error": null,
+   "runId": null,
+   "runUrl": null,
+   "trigger": "local",
+   "durationSec": 1
+  },
+  {
+   "id": "local-amazon-account-2026-08-11T13:10:36Z",
+   "source": "amazon-account",
+   "status": "ok",
+   "mode": "account-health",
+   "startedAt": "2026-08-11T13:10:36Z",
+   "finishedAt": "2026-08-11T13:11:31Z",
+   "message": "Проверок выполнено 5, с замечаниями 0.",
+   "stats": {
+    "checks": 5,
+    "warnings": 0,
+    "unavailable": 6
+   },
+   "error": null,
+   "runId": null,
+   "runUrl": null,
+   "trigger": "local",
+   "durationSec": 55
   }
  ],
- "updatedAt": "2026-08-11T10:43:26Z"
+ "updatedAt": "2026-08-11T13:11:31Z"
 }

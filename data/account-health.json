@@ -1,0 +1,287 @@
+{
+ "generatedAt": "2026-08-11T13:11:31Z",
+ "marketplace": "A1PA6795UKMFR9",
+ "checks": [
+  {
+   "id": "actions",
+   "item": "п.1",
+   "checkedAt": "2026-08-11T13:10:36Z",
+   "status": "unavailable",
+   "count": 0,
+   "items": [],
+   "message": "Виджет Actions на главной Seller Central не выведен в API — он собирает сигналы из других разделов.",
+   "extra": {
+    "workaround": "Его содержимое воспроизводится проверками 2, 3, 4 и 10."
+   }
+  },
+  {
+   "id": "stranded",
+   "item": "п.2",
+   "checkedAt": "2026-08-11T13:11:03Z",
+   "status": "ok",
+   "count": 0,
+   "items": [],
+   "message": "Зависших запасов нет."
+  },
+  {
+   "id": "listingStatus",
+   "item": "п.3",
+   "checkedAt": "2026-08-11T13:11:04Z",
+   "status": "ok",
+   "count": 0,
+   "items": [],
+   "extra": {
+    "total": 58,
+    "inactive": 35,
+    "firstRun": false
+   },
+   "message": "Ни один активный товар не сменил статус."
+  },
+  {
+   "id": "accountHealth",
+   "item": "п.4",
+   "checkedAt": "2026-08-11T13:11:04Z",
+   "status": "ok",
+   "count": 0,
+   "items": [
+    {
+     "name": "lateShipmentRate",
+     "value": 0,
+     "target": 0.04,
+     "condition": "LESS_THAN",
+     "status": "GOOD"
+    },
+    {
+     "name": "invoiceDefectRate (INVOICEDEFECT)",
+     "value": null,
+     "target": null,
+     "condition": null,
+     "status": "GOOD"
+    },
+    {
+     "name": "invoiceDefectRate (MISSINGINVOICE)",
+     "value": null,
+     "target": null,
+     "condition": null,
+     "status": "NONE"
+    },
+    {
+     "name": "invoiceDefectRate (LATEINVOICE)",
+     "value": null,
+     "target": null,
+     "condition": null,
+     "status": "NONE"
+    },
+    {
+     "name": "orderDefectRate (AFN)",
+     "value": 2.074000331840053e-05,
+     "target": 0.01,
+     "condition": "LESS_THAN",
+     "status": "GOOD"
+    },
+    {
+     "name": "orderDefectRate (MFN)",
+     "value": 0,
+     "target": 0.01,
+     "condition": "LESS_THAN",
+     "status": "GOOD"
+    },
+    {
+     "name": "onTimeDeliveryRate",
+     "value": 0,
+     "target": 0.97,
+     "condition": "GREATER_THAN",
+     "status": "GOOD"
+    },
+    {
+     "name": "unitOnTimeDeliveryRate",
+     "value": 0,
+     "target": 0.9,
+     "condition": "GREATER_THAN",
+     "status": "GOOD"
+    },
+    {
+     "name": "validTrackingRate",
+     "value": 0,
+     "target": 0.95,
+     "condition": "GREATER_THAN",
+     "status": "GOOD"
+    },
+    {
+     "name": "preFulfillmentCancellationRate",
+     "value": 0,
+     "target": 0.025,
+     "condition": "LESS_THAN",
+     "status": "GOOD"
+    },
+    {
+     "name": "listingPolicyViolations",
+     "value": 0,
+     "target": 0,
+     "condition": "EQUALS",
+     "status": "GOOD"
+    },
+    {
+     "name": "productAuthenticityCustomerComplaints",
+     "value": 0,
+     "target": 0,
+     "condition": "EQUALS",
+     "status": "GOOD"
+    },
+    {
+     "name": "productConditionCustomerComplaints",
+     "value": 0,
+     "target": 0,
+     "condition": "EQUALS",
+     "status": "GOOD"
+    },
+    {
+     "name": "productSafetyCustomerComplaints",
+     "value": 0,
+     "target": 0,
+     "condition": "EQUALS",
+     "status": "GOOD"
+    },
+    {
+     "name": "receivedIntellectualPropertyComplaints",
+     "value": 0,
+     "target": 0,
+     "condition": "EQUALS",
+     "status": "GOOD"
+    },
+    {
+     "name": "restrictedProductPolicyViolations",
+     "value": 0,
+     "target": 0,
+     "condition": "EQUALS",
+     "status": "GOOD"
+    },
+    {
+     "name": "suspectedIntellectualPropertyViolations",
+     "value": 0,
+     "target": 0,
+     "condition": "EQUALS",
+     "status": "GOOD"
+    },
+    {
+     "name": "foodAndProductSafetyIssues",
+     "value": 0,
+     "target": 0,
+     "condition": "EQUALS",
+     "status": "GOOD"
+    },
+    {
+     "name": "customerProductReviewsPolicyViolations",
+     "value": 0,
+     "target": 0,
+     "condition": "EQUALS",
+     "status": "GOOD"
+    },
+    {
+     "name": "otherPolicyViolations",
+     "value": 0,
+     "target": 0,
+     "condition": "EQUALS",
+     "status": "GOOD"
+    },
+    {
+     "name": "documentRequests",
+     "value": 0,
+     "target": 0,
+     "condition": "EQUALS",
+     "status": "GOOD"
+    }
+   ],
+   "extra": {
+    "ahrScore": 1000.0,
+    "ahrStatus": "GREAT",
+    "accountStatus": "NORMAL",
+    "warnings": [],
+    "problemMetrics": []
+   },
+   "message": "Все 21 показателей в норме, рейтинг 1000.0 (GREAT)."
+  },
+  {
+   "id": "feedback",
+   "item": "п.5",
+   "checkedAt": "2026-08-11T13:11:30Z",
+   "status": "ok",
+   "count": 0,
+   "items": [],
+   "extra": {
+    "negative": 0,
+    "days": 30
+   },
+   "message": "Новых отзывов за 30 дней нет."
+  },
+  {
+   "id": "performanceNotifications",
+   "item": "п.6",
+   "checkedAt": "2026-08-11T13:11:30Z",
+   "status": "unavailable",
+   "count": 0,
+   "items": [],
+   "message": "История Performance Notifications через API не читается.",
+   "extra": {
+    "workaround": "Notifications API работает только на отправку новых событий и требует приёмника в AWS; прошлые уведомления получить нельзя."
+   }
+  },
+  {
+   "id": "pricingHealth",
+   "item": "п.7",
+   "checkedAt": "2026-08-11T13:11:30Z",
+   "status": "unavailable",
+   "count": 0,
+   "items": [],
+   "message": "Виджет Pricing Health в API не выведен.",
+   "extra": {
+    "workaround": "Доступен Product Pricing API — конкурентную цену можно сравнивать с нашей самостоятельно, это отдельная работа."
+   }
+  },
+  {
+   "id": "messages",
+   "item": "п.8",
+   "checkedAt": "2026-08-11T13:11:30Z",
+   "status": "unavailable",
+   "count": 0,
+   "items": [],
+   "message": "Входящие сообщения через API не читаются.",
+   "extra": {
+    "workaround": "Messaging API умеет только отправлять письма покупателю по заказу."
+   }
+  },
+  {
+   "id": "customerReviews",
+   "item": "п.9",
+   "checkedAt": "2026-08-11T13:11:30Z",
+   "status": "unavailable",
+   "count": 0,
+   "items": [],
+   "message": "Отзывы о товарах Amazon через API не отдаёт.",
+   "extra": {
+    "workaround": "Публичного доступа к Customer Reviews нет ни в одной версии SP-API."
+   }
+  },
+  {
+   "id": "fbaPerformance",
+   "item": "п.10",
+   "checkedAt": "2026-08-11T13:11:31Z",
+   "status": "ok",
+   "count": 0,
+   "items": [],
+   "message": "Проблем с запасами FBA нет."
+  },
+  {
+   "id": "cases",
+   "item": "п.11",
+   "checkedAt": "2026-08-11T13:11:31Z",
+   "status": "unavailable",
+   "count": 0,
+   "items": [],
+   "message": "Обращения в поддержку через API недоступны.",
+   "extra": {
+    "workaround": "Публичного API для кейсов Seller Central не существует."
+   }
+  }
+ ]
+}

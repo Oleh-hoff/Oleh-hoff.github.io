@@ -85,6 +85,18 @@ jobs:
               python3 scripts/collect_amazon.py --incremental ;;
           esac
 
+      - name: Проверить состояние аккаунта
+        # Отдельный шаг: даже если сбор проводок упал, проверки аккаунта
+        # выполнить стоит — они отвечают на другой вопрос.
+        if: always()
+        env:
+          SPAPI_CLIENT_ID: ${{ secrets.SPAPI_CLIENT_ID }}
+          SPAPI_CLIENT_SECRET: ${{ secrets.SPAPI_CLIENT_SECRET }}
+          SPAPI_REFRESH_TOKEN: ${{ secrets.SPAPI_REFRESH_TOKEN }}
+          SPAPI_REGION: eu
+          SPAPI_ENV: production
+        run: python3 scripts/collect_account_health.py
+
       - name: Записать в журнал, если сборщик не успел
         if: always()
         run: |
