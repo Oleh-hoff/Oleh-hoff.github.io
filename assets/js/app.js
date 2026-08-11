@@ -12,7 +12,6 @@ import { initTheme, bindThemeControls } from './theme.js';
 import { requireAuth, signOut, getSession } from './auth.js';
 import { resetFormatters } from './format.js';
 import { mountNotifications } from './notifications.js';
-import { salesAnalysis } from './views/sales-analysis.js';
 
 /* --- Доступ ------------------------------------------------------------- */
 
@@ -38,7 +37,6 @@ function placeholder(titleKey) {
 }
 
 const ROUTES = {
-  'sales-analysis': salesAnalysis,
   products: placeholder('nav.products'),
   customers: placeholder('nav.customers'),
   orders: placeholder('nav.orders'),
@@ -47,7 +45,9 @@ const ROUTES = {
   sources: placeholder('nav.sources'),
 };
 
-const DEFAULT_ROUTE = 'sales-analysis';
+// Раздел «Анализ продаж» удалён по запросу; до появления первого
+// наполненного раздела оболочка открывается на «Товарах».
+const DEFAULT_ROUTE = 'products';
 
 /* --- Каркас ------------------------------------------------------------- */
 
