@@ -114,16 +114,73 @@
 }
 
 .stat {
-  padding: var(--sp-4) var(--sp-5) var(--sp-3);
+  padding: var(--sp-5);
   display: flex;
   flex-direction: column;
-  gap: var(--sp-2);
+  gap: var(--sp-3);
+  border-radius: var(--radius-lg);
 }
 
+/* Инвертированная плитка для главного показателя — их способ задать
+   иерархию без увеличения кегля и без цветных заливок */
+.stat--dark {
+  background: var(--ink-1);
+  border-color: transparent;
+  color: var(--surface-1);
+}
+.stat--dark .stat__label { color: color-mix(in srgb, var(--surface-1) 62%, transparent); }
+.stat--dark .stat__value { color: var(--surface-1); }
+
+/* Дельта и доля — плашка с подкладкой, а не цветной текст: значение
+   остаётся чернильным, цвет живёт на маленьком элементе рядом */
+.stat__badge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 3px var(--sp-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.stat__badge--up {
+  background: color-mix(in srgb, var(--status-good) 14%, transparent);
+  color: var(--delta-up);
+}
+.stat__badge--down {
+  background: color-mix(in srgb, var(--status-critical) 14%, transparent);
+  color: var(--delta-down);
+}
+.stat__badge--muted { background: var(--surface-2); color: var(--ink-2); }
+.stat--dark .stat__badge--muted {
+  background: color-mix(in srgb, var(--surface-1) 16%, transparent);
+  color: var(--surface-1);
+}
+
+/* Полоса заполнения внутри тёмной плитки: доля расходов читается формой,
+   а не только процентом */
+.stat__meter {
+  height: 5px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--surface-1) 20%, transparent);
+  overflow: hidden;
+}
+.stat__meter span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--surface-1);
+}
+
+/* Подпись набрана капителью с разрядкой — приём 21st.dev: заголовок
+   плитки уходит на второй план и не спорит с числом за внимание */
 .stat__label {
-  font-size: var(--fs-sm);
-  color: var(--ink-2);
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
 
 /* Пропорциональные цифры: tabular-nums растягивает крупное число */

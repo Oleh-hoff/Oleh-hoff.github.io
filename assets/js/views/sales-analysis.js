@@ -173,13 +173,30 @@ export const salesAnalysis = {
 
       const summary = computeSummary(rows);
 
-      /* --- плитки --- */
+      /* --- плитки ---
+         Значение везде чернильное, а направление несёт плашка рядом: так
+         крупное число не спорит с цветом за внимание. Доля расходов вынесена
+         в инвертированную плитку с полосой — это главный показатель
+         юнит-экономики, и он должен читаться первым. */
       kpiGrid.replaceChildren(
         statTile(t('kpi.grossRevenue'), money(summary.revenue)),
-        statTile(t('kpi.totalFees'), money(Math.abs(summary.expenses)), 'negative'),
-        statTile(t('kpi.netPayout'), money(summary.net), summary.net >= 0 ? 'positive' : 'negative'),
-        statTile(t('kpi.feeShare'), formatPercent(summary.feeShare),
-          null, `${formatPercent(summary.netShare)} ${t('series.net').toLowerCase()}`),
+
+        statTile(t('kpi.totalFees'), money(Math.abs(summary.expenses)), {
+          badge: `−${formatPercent(summary.feeShare)}`,
+          tone: 'down',
+        }),
+
+        statTile(t('kpi.netPayout'), money(summary.net), {
+          badge: `${summary.net >= 0 ? '+' : '−'}${formatPercent(Math.abs(summary.netShare))}`,
+          tone: summary.net >= 0 ? 'up' : 'down',
+        }),
+
+        statTile(t('kpi.feeShare'), formatPercent(summary.feeShare), {
+          dark: true,
+          meter: Math.min(100, Math.max(0, summary.feeShare)),
+          badge: `${formatPercent(summary.netShare)} ${t('series.net').toLowerCase()}`,
+          tone: 'muted',
+        }),
       );
 
       /* --- динамика: накопительно, две серии --- */
@@ -378,14 +395,28 @@ function icon(path, warning = false) {
   return svg;
 }
 
-function statTile(label, value, tone = null, caption = null) {
-  const card = el('article', { class: 'card stat' });
+/**
+ * Плитка показателя.
+ * @param {{badge?: string, tone?: 'up'|'down'|'muted', dark?: boolean,
+ *          meter?: number}} options
+ */
+function statTile(label, value, options = {}) {
+  const { badge, tone = 'muted', dark = false, meter = null } = options;
+
+  const card = el('article', { class: `card stat${dark ? ' stat--dark' : ''}` });
   card.appendChild(el('div', { class: 'stat__label', text: label }));
-  const valueNode = el('div', { class: 'stat__value', text: value });
-  if (tone) valueNode.classList.add(`amount--${tone}`);
-  card.appendChild(valueNode);
-  if (caption) {
-    card.appendChild(el('div', { class: 'stat__delta' }, [el('span', { text: caption })]));
+  card.appendChild(el('div', { class: 'stat__value', text: value }));
+
+  if (meter !== null) {
+    const track = el('div', { class: 'stat__meter' });
+    const fill = el('span');
+    fill.style.width = `${meter.toFixed(1)}%`;
+    track.appendChild(fill);
+    card.appendChild(track);
+  }
+
+  if (badge) {
+    card.appendChild(el('span', { class: `stat__badge stat__badge--${tone}`, text: badge }));
   }
   return card;
 }
