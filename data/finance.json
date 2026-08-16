@@ -1,6 +1,6 @@
 {
  "source": "spapi-finances",
- "generatedAt": "2026-08-16T03:15:54Z",
+ "generatedAt": "2026-08-16T05:05:30Z",
  "complete": true,
  "periodStart": "2026-01-01",
  "periodEnd": "2026-08-16",
@@ -27459,7 +27459,7 @@
    "currency": "EUR",
    "category": "adjustment",
    "type": "COMPENSATED_CLAWBACK",
-   "amount": -11.92
+   "amount": -9.68
   },
   {
    "date": "2026-08-13",
@@ -27475,7 +27475,71 @@
    "currency": "GBP",
    "category": "fee_ads",
    "type": "Charge",
-   "amount": -1004.98
+   "amount": -503.02
+  },
+  {
+   "date": "2026-08-13",
+   "marketplace": "?",
+   "currency": "EUR",
+   "category": "fee_promo",
+   "type": "CouponParticipationFee",
+   "amount": -2.38
+  },
+  {
+   "date": "2026-08-13",
+   "marketplace": "?",
+   "currency": "EUR",
+   "category": "fee_promo",
+   "type": "CouponPerformanceFee",
+   "amount": -0.1
+  },
+  {
+   "date": "2026-08-13",
+   "marketplace": "?",
+   "currency": "EUR",
+   "category": "fee_promo",
+   "type": "DealParticipationFee",
+   "amount": -75.57
+  },
+  {
+   "date": "2026-08-13",
+   "marketplace": "?",
+   "currency": "EUR",
+   "category": "fee_promo",
+   "type": "DealPerformanceFee",
+   "amount": -84.33
+  },
+  {
+   "date": "2026-08-13",
+   "marketplace": "?",
+   "currency": "EUR",
+   "category": "fee_storage",
+   "type": "FBADisposalFee",
+   "amount": -110.78
+  },
+  {
+   "date": "2026-08-13",
+   "marketplace": "?",
+   "currency": "GBP",
+   "category": "fee_storage",
+   "type": "FBADisposalFee",
+   "amount": -14.37
+  },
+  {
+   "date": "2026-08-13",
+   "marketplace": "?",
+   "currency": "EUR",
+   "category": "fee_inbound",
+   "type": "FBAInboundTransportationFee",
+   "amount": -190.64
+  },
+  {
+   "date": "2026-08-13",
+   "marketplace": "?",
+   "currency": "EUR",
+   "category": "fee_inbound",
+   "type": "FBAInboundTransportationProgramFee",
+   "amount": -13.54
   },
   {
    "date": "2026-08-13",
@@ -27491,7 +27555,7 @@
    "currency": "EUR",
    "category": "reimbursement",
    "type": "REVERSAL_REIMBURSEMENT",
-   "amount": 80.56
+   "amount": 65.98
   },
   {
    "date": "2026-08-13",
@@ -27563,7 +27627,7 @@
    "currency": "EUR",
    "category": "fee_referral",
    "type": "Commission",
-   "amount": -2334.12
+   "amount": -2244.39
   },
   {
    "date": "2026-08-13",
@@ -27571,7 +27635,7 @@
    "currency": "EUR",
    "category": "fee_fba",
    "type": "FBAPerUnitFulfillmentFee",
-   "amount": -2917.65
+   "amount": -2808.45
   },
   {
    "date": "2026-08-13",
@@ -27579,7 +27643,7 @@
    "currency": "EUR",
    "category": "revenue",
    "type": "Principal",
-   "amount": 13565.47
+   "amount": 13058.86
   },
   {
    "date": "2026-08-13",
@@ -27587,7 +27651,7 @@
    "currency": "EUR",
    "category": "fee_other",
    "type": "Promotion",
-   "amount": -445.8
+   "amount": -427.83
   },
   {
    "date": "2026-08-13",
@@ -27595,7 +27659,7 @@
    "currency": "EUR",
    "category": "revenue_shipping",
    "type": "ShippingCharge",
-   "amount": 272.9
+   "amount": 263.06
   },
   {
    "date": "2026-08-13",
@@ -27603,7 +27667,7 @@
    "currency": "EUR",
    "category": "fee_fba",
    "type": "ShippingChargeback",
-   "amount": -129.4
+   "amount": -125.59
   },
   {
    "date": "2026-08-13",
@@ -27611,7 +27675,7 @@
    "currency": "EUR",
    "category": "revenue_tax",
    "type": "ShippingTax",
-   "amount": 52.62
+   "amount": 50.73
   },
   {
    "date": "2026-08-13",
@@ -27619,7 +27683,7 @@
    "currency": "EUR",
    "category": "revenue_tax",
    "type": "Tax",
-   "amount": 2548.79
+   "amount": 2451.6
   },
   {
    "date": "2026-08-13",
@@ -27627,7 +27691,7 @@
    "currency": "EUR",
    "category": "fee_referral",
    "type": "Commission",
-   "amount": -465.09
+   "amount": -446.1
   },
   {
    "date": "2026-08-13",
@@ -27635,7 +27699,7 @@
    "currency": "EUR",
    "category": "fee_other",
    "type": "DigitalServicesFee",
-   "amount": -13.8
+   "amount": -13.24
   },
   {
    "date": "2026-08-13",
@@ -27643,7 +27707,7 @@
    "currency": "EUR",
    "category": "fee_fba",
    "type": "FBAPerUnitFulfillmentFee",
-   "amount": -867.27
+   "amount": -840.65
   },
   {
    "date": "2026-08-13",
@@ -27651,7 +27715,7 @@
    "currency": "EUR",
    "category": "revenue",
    "type": "Principal",
-   "amount": 2764.64
+   "amount": 2666.34
   },
   {
    "date": "2026-08-13",
@@ -27667,7 +27731,7 @@
    "currency": "EUR",
    "category": "revenue_shipping",
    "type": "ShippingCharge",
-   "amount": 65.1
+   "amount": 61.81
   },
   {
    "date": "2026-08-13",
@@ -27675,7 +27739,7 @@
    "currency": "EUR",
    "category": "fee_fba",
    "type": "ShippingChargeback",
-   "amount": -40.1
+   "amount": -36.17
   },
   {
    "date": "2026-08-13",
@@ -27683,7 +27747,7 @@
    "currency": "EUR",
    "category": "revenue_tax",
    "type": "ShippingTax",
-   "amount": 13.16
+   "amount": 12.46
   },
   {
    "date": "2026-08-13",
@@ -27691,7 +27755,7 @@
    "currency": "EUR",
    "category": "revenue_tax",
    "type": "Tax",
-   "amount": 577.1
+   "amount": 556.47
   },
   {
    "date": "2026-08-13",
@@ -27699,7 +27763,7 @@
    "currency": "EUR",
    "category": "fee_referral",
    "type": "Commission",
-   "amount": -849.79
+   "amount": -817.8
   },
   {
    "date": "2026-08-13",
@@ -27707,7 +27771,7 @@
    "currency": "EUR",
    "category": "fee_other",
    "type": "DigitalServicesFee",
-   "amount": -69.83
+   "amount": -67.13
   },
   {
    "date": "2026-08-13",
@@ -27723,7 +27787,7 @@
    "currency": "EUR",
    "category": "fee_fba",
    "type": "FBAPerUnitFulfillmentFee",
-   "amount": -1432.49
+   "amount": -1378.28
   },
   {
    "date": "2026-08-13",
@@ -27731,7 +27795,7 @@
    "currency": "EUR",
    "category": "revenue",
    "type": "Principal",
-   "amount": 4567.88
+   "amount": 4401.44
   },
   {
    "date": "2026-08-13",
@@ -27739,7 +27803,7 @@
    "currency": "EUR",
    "category": "fee_other",
    "type": "Promotion",
-   "amount": -146.76
+   "amount": -143.43
   },
   {
    "date": "2026-08-13",
@@ -27747,7 +27811,7 @@
    "currency": "EUR",
    "category": "revenue_shipping",
    "type": "ShippingCharge",
-   "amount": 116.48
+   "amount": 112.04
   },
   {
    "date": "2026-08-13",
@@ -27755,7 +27819,7 @@
    "currency": "EUR",
    "category": "fee_fba",
    "type": "ShippingChargeback",
-   "amount": -74.59
+   "amount": -70.7
   },
   {
    "date": "2026-08-13",
@@ -27763,7 +27827,7 @@
    "currency": "EUR",
    "category": "revenue_tax",
    "type": "ShippingTax",
-   "amount": 21.95
+   "amount": 21.07
   },
   {
    "date": "2026-08-13",
@@ -27771,7 +27835,7 @@
    "currency": "EUR",
    "category": "revenue_tax",
    "type": "Tax",
-   "amount": 902.4
+   "amount": 869.1
   },
   {
    "date": "2026-08-13",
@@ -27779,7 +27843,7 @@
    "currency": "GBP",
    "category": "fee_referral",
    "type": "Commission",
-   "amount": -710.05
+   "amount": -696.23
   },
   {
    "date": "2026-08-13",
@@ -27787,7 +27851,7 @@
    "currency": "GBP",
    "category": "fee_other",
    "type": "DigitalServicesFee",
-   "amount": -30.53
+   "amount": -29.87
   },
   {
    "date": "2026-08-13",
@@ -27803,7 +27867,7 @@
    "currency": "GBP",
    "category": "fee_fba",
    "type": "FBAPerUnitFulfillmentFee",
-   "amount": -695.79
+   "amount": -679.03
   },
   {
    "date": "2026-08-13",
@@ -27811,7 +27875,7 @@
    "currency": "GBP",
    "category": "revenue",
    "type": "Principal",
-   "amount": 3735.63
+   "amount": 3654.87
   },
   {
    "date": "2026-08-13",
@@ -27819,7 +27883,7 @@
    "currency": "GBP",
    "category": "fee_other",
    "type": "Promotion",
-   "amount": -74.01
+   "amount": -73.02
   },
   {
    "date": "2026-08-13",
@@ -27827,7 +27891,7 @@
    "currency": "GBP",
    "category": "revenue_shipping",
    "type": "ShippingCharge",
-   "amount": 73.79
+   "amount": 72.97
   },
   {
    "date": "2026-08-13",
@@ -27843,7 +27907,7 @@
    "currency": "GBP",
    "category": "revenue_tax",
    "type": "ShippingTax",
-   "amount": 14.69
+   "amount": 14.52
   },
   {
    "date": "2026-08-13",
@@ -27851,7 +27915,7 @@
    "currency": "GBP",
    "category": "revenue_tax",
    "type": "Tax",
-   "amount": 747.72
+   "amount": 731.56
   },
   {
    "date": "2026-08-13",
@@ -27859,7 +27923,7 @@
    "currency": "EUR",
    "category": "fee_referral",
    "type": "Commission",
-   "amount": -80.35
+   "amount": -76.07
   },
   {
    "date": "2026-08-13",
@@ -27867,7 +27931,7 @@
    "currency": "EUR",
    "category": "fee_fba",
    "type": "FBAPerUnitFulfillmentFee",
-   "amount": -96.51
+   "amount": -92.18
   },
   {
    "date": "2026-08-13",
@@ -27875,7 +27939,7 @@
    "currency": "EUR",
    "category": "revenue",
    "type": "Principal",
-   "amount": 395.72
+   "amount": 376.22
   },
   {
    "date": "2026-08-13",
@@ -27915,7 +27979,7 @@
    "currency": "EUR",
    "category": "revenue_tax",
    "type": "Tax",
-   "amount": 91.07
+   "amount": 86.58
   },
   {
    "date": "2026-08-13",
@@ -27923,7 +27987,7 @@
    "currency": "EUR",
    "category": "fee_referral",
    "type": "Commission",
-   "amount": -424.47
+   "amount": -409.49
   },
   {
    "date": "2026-08-13",
@@ -27931,7 +27995,7 @@
    "currency": "EUR",
    "category": "fee_other",
    "type": "DigitalServicesFee",
-   "amount": -12.66
+   "amount": -12.2
   },
   {
    "date": "2026-08-13",
@@ -27939,7 +28003,7 @@
    "currency": "EUR",
    "category": "fee_fba",
    "type": "FBAPerUnitFulfillmentFee",
-   "amount": -883.61
+   "amount": -855.79
   },
   {
    "date": "2026-08-13",
@@ -27947,7 +28011,7 @@
    "currency": "EUR",
    "category": "revenue",
    "type": "Principal",
-   "amount": 2430.93
+   "amount": 2349.03
   },
   {
    "date": "2026-08-13",
@@ -27955,7 +28019,7 @@
    "currency": "EUR",
    "category": "fee_other",
    "type": "Promotion",
-   "amount": -35.64
+   "amount": -35.19
   },
   {
    "date": "2026-08-13",
@@ -27987,7 +28051,7 @@
    "currency": "EUR",
    "category": "revenue_tax",
    "type": "Tax",
-   "amount": 518.15
+   "amount": 501.74
   },
   {
    "date": "2026-08-13",
@@ -27995,7 +28059,7 @@
    "currency": "EUR",
    "category": "fee_referral",
    "type": "Commission",
-   "amount": -77.98
+   "amount": -77.08
   },
   {
    "date": "2026-08-13",
@@ -28003,7 +28067,7 @@
    "currency": "EUR",
    "category": "fee_fba",
    "type": "FBAPerUnitFulfillmentFee",
-   "amount": -116.38
+   "amount": -113.91
   },
   {
    "date": "2026-08-13",
@@ -28011,7 +28075,7 @@
    "currency": "EUR",
    "category": "revenue",
    "type": "Principal",
-   "amount": 445.6
+   "amount": 437.76
   },
   {
    "date": "2026-08-13",
@@ -28019,7 +28083,7 @@
    "currency": "EUR",
    "category": "fee_other",
    "type": "Promotion",
-   "amount": -20.5
+   "amount": -19.51
   },
   {
    "date": "2026-08-13",
@@ -28027,7 +28091,7 @@
    "currency": "EUR",
    "category": "revenue_shipping",
    "type": "ShippingCharge",
-   "amount": 21.79
+   "amount": 20.97
   },
   {
    "date": "2026-08-13",
@@ -28043,7 +28107,7 @@
    "currency": "EUR",
    "category": "revenue_tax",
    "type": "ShippingTax",
-   "amount": 4.61
+   "amount": 4.44
   },
   {
    "date": "2026-08-13",
@@ -28051,7 +28115,7 @@
    "currency": "EUR",
    "category": "revenue_tax",
    "type": "Tax",
-   "amount": 93.54
+   "amount": 91.89
   },
   {
    "date": "2026-08-13",
@@ -28115,7 +28179,7 @@
    "currency": "SEK",
    "category": "fee_referral",
    "type": "Commission",
-   "amount": -524.39
+   "amount": -505.35
   },
   {
    "date": "2026-08-13",
@@ -28123,7 +28187,7 @@
    "currency": "SEK",
    "category": "fee_fba",
    "type": "FBAPerUnitFulfillmentFee",
-   "amount": -385.99
+   "amount": -349.08
   },
   {
    "date": "2026-08-13",
@@ -28131,7 +28195,7 @@
    "currency": "SEK",
    "category": "revenue",
    "type": "Principal",
-   "amount": 2766.02
+   "amount": 2606.04
   },
   {
    "date": "2026-08-13",
@@ -28171,7 +28235,7 @@
    "currency": "SEK",
    "category": "revenue_tax",
    "type": "Tax",
-   "amount": 635.54
+   "amount": 595.54
   },
   {
    "date": "2026-08-14",
