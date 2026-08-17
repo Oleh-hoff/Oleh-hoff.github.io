@@ -1966,7 +1966,50 @@
    "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/31971698738",
    "trigger": "schedule",
    "durationSec": 82
+  },
+  {
+   "id": "31990596323-amazon-spapi-2026-08-17T03:15:54Z",
+   "source": "amazon-spapi",
+   "status": "ok",
+   "mode": "incremental",
+   "startedAt": "2026-08-17T03:15:54Z",
+   "finishedAt": "2026-08-17T03:21:16Z",
+   "message": "Получено 3810 проводок за 46 дн. (2026-01-01 — 2026-08-17).",
+   "stats": {
+    "pages": 53,
+    "events": 5287,
+    "rows": 3810,
+    "days": 46,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-08-17",
+    "historyComplete": true,
+    "unknownTypes": []
+   },
+   "error": null,
+   "runId": "31990596323",
+   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/31990596323",
+   "trigger": "schedule",
+   "durationSec": 322
+  },
+  {
+   "id": "31990596323-amazon-account-2026-08-17T03:21:17Z",
+   "source": "amazon-account",
+   "status": "ok",
+   "mode": "account-health",
+   "startedAt": "2026-08-17T03:21:17Z",
+   "finishedAt": "2026-08-17T03:22:31Z",
+   "message": "Проверок выполнено 5, с замечаниями 1.",
+   "stats": {
+    "checks": 5,
+    "warnings": 1,
+    "unavailable": 6
+   },
+   "error": null,
+   "runId": "31990596323",
+   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/31990596323",
+   "trigger": "schedule",
+   "durationSec": 74
   }
  ],
- "updatedAt": "2026-08-16T20:56:04Z"
+ "updatedAt": "2026-08-17T03:22:31Z"
 }
