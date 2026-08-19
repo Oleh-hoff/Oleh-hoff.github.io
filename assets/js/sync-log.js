@@ -12,8 +12,42 @@ const LOG_URL = 'data/sync-log.json';
 /** Известные источники. Незнакомый покажем как есть — лучше, чем скрыть. */
 export const SOURCES = {
   'amazon-spapi': { nameKey: 'log.source.amazon', schedule: 'log.schedule.4h' },
+  'amazon-account': { nameKey: 'log.source.account', schedule: 'log.schedule.4h' },
+  'amazon-weekly-sales': { nameKey: 'log.source.weeklySales', schedule: 'log.schedule.4h' },
+  'amazon-fx': { nameKey: 'log.source.fx', schedule: 'log.schedule.4h' },
   'google-sheets': { nameKey: 'log.source.sheets', schedule: 'log.schedule.manual' },
 };
+
+/**
+ * Что именно приехало за этот запуск — одной строкой.
+ *
+ * Без неё запись отвечает только «получилось / не получилось», а вопрос
+ * «какие данные обновились» остаётся без ответа. Поля у источников разные,
+ * поэтому перечисляем те, что есть, а не выдумываем общий набор.
+ */
+export function describeStats(entry, t) {
+  const stats = entry?.stats || {};
+  const parts = [];
+
+  const add = (key, value) => {
+    if (Number.isFinite(value)) parts.push(t(key, { n: value }));
+  };
+
+  add('log.stat.weeks', stats.weeks);
+  add('log.stat.units', stats.units);
+  add('log.stat.asins', stats.asins);
+  add('log.stat.marketplaces', stats.marketplaces);
+  add('log.stat.rows', stats.rows);
+  add('log.stat.pages', stats.pages);
+  add('log.stat.events', stats.events);
+  add('log.stat.days', stats.days);
+  add('log.stat.checks', stats.checks);
+  add('log.stat.warnings', stats.warnings);
+  add('log.stat.unavailable', stats.unavailable);
+  add('log.stat.rates', stats.rates);
+
+  return parts.join(' · ');
+}
 
 export const STATUS = {
   ok: { icon: 'check', toneKey: 'log.status.ok' },
@@ -99,5 +133,10 @@ export function explainError(error, t) {
   if (type === 'workflow-cancelled') return t('log.reason.cancelled');
   if (type === 'workflow-failure') return t('log.reason.crashed');
   if (type === 'RuntimeError' || type === 'ValueError') return t('log.reason.config');
+
+  // Незнакомая ошибка не должна оставлять запись без причины: лучше показать
+  // техническую формулировку, чем промолчать и оставить «просто не вышло».
+  if (error.detail) return String(error.detail).slice(0, 300);
+  if (type) return t('log.reason.unknown', { type });
   return null;
 }

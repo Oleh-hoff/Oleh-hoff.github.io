@@ -13,10 +13,13 @@ import { t } from './i18n.js';
 import { formatDateTime } from './format.js';
 import {
   loadSyncLog, latestBySource, overallStatus, last24h, nextRunAfter,
-  explainError, SOURCES,
+  explainError, describeStats, SOURCES,
 } from './sync-log.js';
 
 const SVG = 'http://www.w3.org/2000/svg';
+
+/** Сколько последних запусков показывать в окне. */
+const RECENT_COUNT = 10;
 
 /* --------------------------------------------------------------------------
    Значки состояния
@@ -91,6 +94,13 @@ function entryRow(entry) {
 
   if (entry.message) {
     body.appendChild(el('p', { class: 'sync-row__message', text: entry.message }));
+  }
+
+  // Что именно обновилось: без этого запись отвечает только «получилось»,
+  // а какие данные приехали — приходится смотреть в самом разделе
+  const stats = describeStats(entry, t);
+  if (stats) {
+    body.appendChild(el('p', { class: 'sync-row__stats', text: stats }));
   }
 
   // Причина сбоя — человеческой формулировкой, а не кодом ошибки
@@ -186,9 +196,13 @@ function renderDialog(dialog, state) {
     list.appendChild(row);
   }
 
-  const rest = state.entries.slice(0, 8);
+  // Десять последних запусков — и удачных, и провалившихся: вопрос «что
+  // вообще происходило с данными» без неудачных попыток не отвечается.
+  const rest = state.entries.slice(0, RECENT_COUNT);
   if (rest.length) {
-    list.appendChild(el('li', { class: 'sync-list__divider', text: t('log.recent') }));
+    list.appendChild(el('li', {
+      class: 'sync-list__divider', text: t('log.recentN', { n: rest.length }),
+    }));
     rest.forEach((entry) => list.appendChild(entryRow(entry)));
   }
 }
