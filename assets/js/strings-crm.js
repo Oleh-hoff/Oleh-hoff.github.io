@@ -29,6 +29,67 @@ extendDict({
     'page.soon.title': 'Раздел в работе',
     'page.soon.lead': 'Этот раздел заложен в структуре и будет наполнен следующим шагом.',
 
+    /* --- Вики ------------------------------------------------------------ */
+    'nav.wiki': 'Вики',
+    'page.wiki.title': 'Вики',
+    'page.wiki.lead': 'База знаний по проекту: решения, подвохи Amazon, порядок проверки. Статьи лежат в репозитории обычными файлами markdown.',
+
+    'wiki.loading': 'Загружаю статьи…',
+    'wiki.noData': 'Указателя статей нет. Ожидается файл: ',
+    'wiki.nothing': 'Ничего не найдено',
+    'wiki.search': 'Поиск по статьям',
+    'wiki.allTags': 'Все',
+    'wiki.contents': 'Содержание',
+    'wiki.updated': 'Обновлено {date}',
+    'wiki.noTranslation': 'Перевода на текущий язык пока нет — статья показана на русском.',
+    'wiki.missingFile': 'Статья указана в индексе, но файла нет: {file}',
+
+    /* --- Продажи по неделям --------------------------------------------- */
+    'nav.weeklySales': 'Продажи по неделям',
+    'page.weeklySales.title': 'Продажи по неделям',
+    'page.weeklySales.lead': 'Три месяца продаж по площадкам и товарам. Штуки складываются по всем площадкам, деньги — отдельно по каждой валюте.',
+
+    'sales.loading': 'Загружаю продажи…',
+    'sales.noData': 'Выгрузки продаж ещё нет. Соберите её: ',
+    'sales.empty': 'За выбранный срез продаж нет',
+
+    'sales.marketplace': 'Площадка',
+    'sales.allMarkets': 'Все площадки',
+    'sales.product': 'Товар',
+    'sales.currency': 'Валюта',
+    'sales.metric.units': 'Штуки',
+    'sales.metric.money': 'Деньги',
+    'sales.otherMarkets': 'Остальные ({count})',
+
+    'sales.filter.search': 'Название или ASIN',
+    'sales.filter.all': 'Все товары',
+    'sales.filter.selected': 'Выбрано: {count}',
+    'sales.filter.variants': 'Вариаций: {count}',
+    'sales.filter.nothing': 'Ничего не найдено',
+
+    'sales.kpi.units': 'Продано штук',
+    'sales.kpi.revenue': 'Выручка',
+    'sales.kpi.overWeeks': 'за {count} полных недель',
+    'sales.kpi.perWeek': 'В среднем за неделю',
+    'sales.kpi.best': 'Лучшая неделя',
+    'sales.kpi.running': 'Текущая неделя',
+    'sales.kpi.runningNote': 'ещё не кончилась, на графике её нет',
+    'sales.kpi.revenueIn': 'Выручка, {currency}',
+
+    'sales.chart.weeks': 'По неделям',
+    'sales.chart.weeksAll': 'Столбец — неделя, цвет — площадка',
+    'sales.chart.weeksOne': 'Только {market}',
+    'sales.chart.products': 'Что продаётся',
+    'sales.chart.productsHint': 'Вариации сведены в один товар',
+
+    'sales.col.week': 'Неделя',
+    'sales.col.total': 'Итого',
+    'sales.showTable': 'Показать таблицей',
+
+    'sales.note.generated': 'Выгрузка от {at}.',
+    'sales.note.unpriced': 'Штук без цены: {units} — это продажи вне Amazon, отчёт отдаёт их без цены и валюты. В штуки они вошли, в деньги нет.',
+    'sales.note.currencies': 'Деньги не пересчитываются между валютами: курса в данных Amazon нет.',
+
 
 
 
@@ -57,6 +118,67 @@ extendDict({
     'page.soon.title': 'Section in progress',
     'page.soon.lead': 'This section is wired into the structure and will be filled in next.',
 
+    /* --- Wiki ------------------------------------------------------------- */
+    'nav.wiki': 'Wiki',
+    'page.wiki.title': 'Wiki',
+    'page.wiki.lead': 'Project knowledge base: decisions, Amazon gotchas, verification steps. Articles live in the repository as plain markdown files.',
+
+    'wiki.loading': 'Loading articles…',
+    'wiki.noData': 'No article index found. Expected file: ',
+    'wiki.nothing': 'Nothing found',
+    'wiki.search': 'Search articles',
+    'wiki.allTags': 'All',
+    'wiki.contents': 'Contents',
+    'wiki.updated': 'Updated {date}',
+    'wiki.noTranslation': 'No translation into the current language yet — showing the Russian original.',
+    'wiki.missingFile': 'The article is listed in the index but the file is missing: {file}',
+
+    /* --- Weekly sales ---------------------------------------------------- */
+    'nav.weeklySales': 'Weekly sales',
+    'page.weeklySales.title': 'Weekly sales',
+    'page.weeklySales.lead': 'Three months of sales by marketplace and product. Units add up across all marketplaces; money is kept per currency.',
+
+    'sales.loading': 'Loading sales…',
+    'sales.noData': 'No sales export yet. Build one: ',
+    'sales.empty': 'No sales in this slice',
+
+    'sales.marketplace': 'Marketplace',
+    'sales.allMarkets': 'All marketplaces',
+    'sales.product': 'Product',
+    'sales.currency': 'Currency',
+    'sales.metric.units': 'Units',
+    'sales.metric.money': 'Money',
+    'sales.otherMarkets': 'Others ({count})',
+
+    'sales.filter.search': 'Name or ASIN',
+    'sales.filter.all': 'All products',
+    'sales.filter.selected': 'Selected: {count}',
+    'sales.filter.variants': 'Variations: {count}',
+    'sales.filter.nothing': 'Nothing found',
+
+    'sales.kpi.units': 'Units sold',
+    'sales.kpi.revenue': 'Revenue',
+    'sales.kpi.overWeeks': 'over {count} full weeks',
+    'sales.kpi.perWeek': 'Weekly average',
+    'sales.kpi.best': 'Best week',
+    'sales.kpi.running': 'Current week',
+    'sales.kpi.runningNote': 'still running, not on the chart',
+    'sales.kpi.revenueIn': 'Revenue, {currency}',
+
+    'sales.chart.weeks': 'By week',
+    'sales.chart.weeksAll': 'One column per week, colour is the marketplace',
+    'sales.chart.weeksOne': '{market} only',
+    'sales.chart.products': 'What sells',
+    'sales.chart.productsHint': 'Variations rolled up into one product',
+
+    'sales.col.week': 'Week',
+    'sales.col.total': 'Total',
+    'sales.showTable': 'Show as table',
+
+    'sales.note.generated': 'Export from {at}.',
+    'sales.note.unpriced': 'Units without a price: {units} — these are off-Amazon sales; the report returns them with no price or currency. Counted in units, not in money.',
+    'sales.note.currencies': 'Money is not converted between currencies: Amazon data carries no exchange rate.',
+
 
 
 
@@ -84,6 +206,67 @@ extendDict({
 
     'page.soon.title': 'Розділ у роботі',
     'page.soon.lead': 'Цей розділ закладено у структурі й буде наповнено наступним кроком.',
+
+    /* --- Вікі -------------------------------------------------------------- */
+    'nav.wiki': 'Вікі',
+    'page.wiki.title': 'Вікі',
+    'page.wiki.lead': 'База знань по проєкту: рішення, пастки Amazon, порядок перевірки. Статті лежать у репозиторії звичайними файлами markdown.',
+
+    'wiki.loading': 'Завантажую статті…',
+    'wiki.noData': 'Покажчика статей немає. Очікується файл: ',
+    'wiki.nothing': 'Нічого не знайдено',
+    'wiki.search': 'Пошук по статтях',
+    'wiki.allTags': 'Усі',
+    'wiki.contents': 'Зміст',
+    'wiki.updated': 'Оновлено {date}',
+    'wiki.noTranslation': 'Перекладу поточною мовою поки немає — статтю показано російською.',
+    'wiki.missingFile': 'Статтю вказано в покажчику, але файлу немає: {file}',
+
+    /* --- Продажі по тижнях ------------------------------------------------ */
+    'nav.weeklySales': 'Продажі по тижнях',
+    'page.weeklySales.title': 'Продажі по тижнях',
+    'page.weeklySales.lead': 'Три місяці продажів по площадках і товарах. Штуки додаються по всіх площадках, гроші — окремо по кожній валюті.',
+
+    'sales.loading': 'Завантажую продажі…',
+    'sales.noData': 'Вивантаження продажів ще немає. Зберіть його: ',
+    'sales.empty': 'За обраним зрізом продажів немає',
+
+    'sales.marketplace': 'Площадка',
+    'sales.allMarkets': 'Усі площадки',
+    'sales.product': 'Товар',
+    'sales.currency': 'Валюта',
+    'sales.metric.units': 'Штуки',
+    'sales.metric.money': 'Гроші',
+    'sales.otherMarkets': 'Решта ({count})',
+
+    'sales.filter.search': 'Назва або ASIN',
+    'sales.filter.all': 'Усі товари',
+    'sales.filter.selected': 'Обрано: {count}',
+    'sales.filter.variants': 'Варіацій: {count}',
+    'sales.filter.nothing': 'Нічого не знайдено',
+
+    'sales.kpi.units': 'Продано штук',
+    'sales.kpi.revenue': 'Виторг',
+    'sales.kpi.overWeeks': 'за {count} повних тижнів',
+    'sales.kpi.perWeek': 'У середньому за тиждень',
+    'sales.kpi.best': 'Найкращий тиждень',
+    'sales.kpi.running': 'Поточний тиждень',
+    'sales.kpi.runningNote': 'ще не скінчився, на графіку його немає',
+    'sales.kpi.revenueIn': 'Виторг, {currency}',
+
+    'sales.chart.weeks': 'По тижнях',
+    'sales.chart.weeksAll': 'Стовпець — тиждень, колір — площадка',
+    'sales.chart.weeksOne': 'Лише {market}',
+    'sales.chart.products': 'Що продається',
+    'sales.chart.productsHint': 'Варіації зведені в один товар',
+
+    'sales.col.week': 'Тиждень',
+    'sales.col.total': 'Разом',
+    'sales.showTable': 'Показати таблицею',
+
+    'sales.note.generated': 'Вивантаження від {at}.',
+    'sales.note.unpriced': 'Штук без ціни: {units} — це продажі поза Amazon, звіт віддає їх без ціни й валюти. У штуки вони ввійшли, у гроші ні.',
+    'sales.note.currencies': 'Гроші не перераховуються між валютами: курсу в даних Amazon немає.',
 
 
 

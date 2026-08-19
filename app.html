@@ -24,6 +24,8 @@
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/dashboard.css">
 <link rel="stylesheet" href="assets/css/crm.css">
+<link rel="stylesheet" href="assets/css/sales.css">
+<link rel="stylesheet" href="assets/css/wiki.css">
 <link rel="stylesheet" href="assets/css/notifications.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M8 21V13M16 21V9M24 21V16' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>">
 </head>
@@ -60,6 +62,17 @@
         <span class="nav-item__label" data-i18n="nav.accountCheck">Проверка аккаунта</span>
       </a>
 
+
+      <a class="nav-item" href="#/weekly-sales" data-route="weekly-sales">
+        <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 19V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M4 19h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <rect x="7" y="12" width="3" height="5" rx="1" stroke="currentColor" stroke-width="1.8"/>
+          <rect x="12.5" y="8" width="3" height="9" rx="1" stroke="currentColor" stroke-width="1.8"/>
+          <rect x="18" y="10" width="3" height="7" rx="1" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        <span class="nav-item__label" data-i18n="nav.weeklySales">Продажи по неделям</span>
+      </a>
 
       <a class="nav-item nav-item--pending" href="#/products" data-route="products">
         <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -113,6 +126,16 @@
         </svg>
         <span class="nav-item__label" data-i18n="nav.promotions">Акции и купоны</span>
         <span class="nav-item__badge">soon</span>
+      </a>
+
+      <a class="nav-item" href="#/wiki" data-route="wiki">
+        <svg class="nav-item__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v13a1.6 1.6 0 0 0-1.6-1.5H4V5.5Z"
+                stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v13a1.6 1.6 0 0 1 1.6-1.5H20V5.5Z"
+                stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+        <span class="nav-item__label" data-i18n="nav.wiki">Вики</span>
       </a>
 
       <div class="sidebar__section" data-i18n="nav.section.settings">Настройки</div>
