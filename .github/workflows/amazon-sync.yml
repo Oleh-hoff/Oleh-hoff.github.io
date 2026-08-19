@@ -97,6 +97,20 @@ jobs:
           SPAPI_ENV: production
         run: python3 scripts/collect_account_health.py
 
+      - name: Собрать недельные продажи
+        # Отдельный шаг с if: always() — падение проводок не должно отменять
+        # продажи, это разные вопросы и разные источники. Отчёт по заказам
+        # отдаёт максимум 30 дней за запрос, поэтому квартал берётся четырьмя
+        # отчётами внутри скрипта; это минуты, а не часы.
+        if: always()
+        env:
+          SPAPI_CLIENT_ID: ${{ secrets.SPAPI_CLIENT_ID }}
+          SPAPI_CLIENT_SECRET: ${{ secrets.SPAPI_CLIENT_SECRET }}
+          SPAPI_REFRESH_TOKEN: ${{ secrets.SPAPI_REFRESH_TOKEN }}
+          SPAPI_REGION: eu
+          SPAPI_ENV: production
+        run: python3 scripts/collect_weekly_sales.py
+
       - name: Записать в журнал, если сборщик не успел
         if: always()
         run: |

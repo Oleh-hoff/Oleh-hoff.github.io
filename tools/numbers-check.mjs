@@ -1,0 +1,112 @@
+/* ==========================================================================
+   Сверка чисел раздела «Продажи по неделям».
+
+   Монтаж проверяет, что раздел не падает; эта проверка — что он показывает
+   правильное. Каждое число из интерфейса пересчитывается независимо по тому
+   же data/weekly-sales.json: итоги, срез по площадке, деньги в одной валюте,
+   фильтр по семье вариаций и совпадение таблицы-двойника с плиткой.
+
+   Запускать после любой правки сборщика или срезов во вью.
+
+     npm i jsdom && node tools/numbers-check.mjs
+   ========================================================================== */
+import { readFileSync, existsSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
+const require = createRequire(import.meta.url);
+const { JSDOM } = require('jsdom');
+const ROOT = new URL('..', import.meta.url).pathname;
+
+const dom = new JSDOM('<!doctype html><body><div id="v"></div><div id="c"></div></body>',
+  { url: 'https://x.invalid/app.html#/weekly-sales', pretendToBeVisual: true });
+const { window } = dom;
+Object.defineProperty(window.HTMLElement.prototype, 'clientWidth', { configurable: true, get: () => 900 });
+window.HTMLCanvasElement.prototype.getContext = () => ({ font: '', measureText: (t) => ({ width: String(t).length * 7 }) });
+window.ResizeObserver = class { observe() {} unobserve() {} disconnect() {} };
+window.matchMedia = () => ({ matches: false, addEventListener() {}, removeEventListener() {} });
+window.fetch = async (url) => {
+  const path = ROOT + String(url).replace(/^.*\/(?=data\/)/, '').replace(/^\//, '');
+  if (!existsSync(path)) return { ok: false, status: 404 };
+  const body = readFileSync(path, 'utf8');
+  return { ok: true, status: 200, json: async () => JSON.parse(body), text: async () => body };
+};
+for (const k of ['window','document','navigator','location','localStorage','sessionStorage',
+  'HTMLElement','Node','Element','SVGElement','ResizeObserver','matchMedia','fetch','getComputedStyle'])
+  Object.defineProperty(globalThis, k, { configurable: true, writable: true, value: window[k] });
+
+await import(pathToFileURL(ROOT + 'assets/js/strings-crm.js').href);
+const { setLang } = await import(pathToFileURL(ROOT + 'assets/js/i18n.js').href);
+setLang('ru');
+const { weeklySales } = await import(pathToFileURL(ROOT + 'assets/js/views/weekly-sales.js').href);
+
+const data = JSON.parse(readFileSync(ROOT + 'data/weekly-sales.json', 'utf8'));
+const view = window.document.getElementById('v');
+const controls = window.document.getElementById('c');
+await weeklySales.mount(view, controls);
+
+const digits = (s) => Number(String(s).replace(/[^\d,.-]/g, '').replace(/[  ]/g, '').replace(',', '.'));
+const tiles = () => [...view.querySelectorAll('.stat')].map((t) => ({
+  label: t.querySelector('.stat__label').textContent,
+  value: t.querySelector('.stat__value').textContent,
+}));
+
+const partialIdx = data.weeks.findIndex((w) => w.partial);
+const sum = (f) => data.rows.filter(f).reduce((a, r) => a + r.u, 0);
+const money = (f) => data.rows.filter(f).reduce((a, r) => a + r.r, 0);
+const full = (r) => r.w !== partialIdx;
+
+let bad = 0;
+const check = (name, got, want, tol = 1) => {
+  const ok = Math.abs(got - want) <= tol;
+  if (!ok) bad++;
+  console.log(`${ok ? '  ok ' : 'ПЛОХО'} ${name}: интерфейс ${got} / расчёт ${want}`);
+};
+
+/* 1. Все площадки, штуки */
+let t = tiles();
+check('всего штук (полные недели)', digits(t[0].value), sum(full));
+check('среднее за неделю', digits(t[1].value), Math.round(sum(full) / (data.weeks.length - 1)), 1);
+check('текущая неделя', digits(t.find((x) => /Текущая/.test(x.label)).value), sum((r) => r.w === partialIdx));
+
+const eurCodes = Object.entries(data.marketplaces).filter(([, m]) => m.currency === 'EUR').map(([c]) => c);
+const eurTile = t.find((x) => /EUR/.test(x.label));
+check('выручка EUR', digits(eurTile.value), Math.round(money((r) => eurCodes.includes(r.m))), 2);
+
+/* 2. Одна площадка */
+const select = controls.querySelector('select');
+select.value = 'DE';
+select.dispatchEvent(new window.Event('change'));
+t = tiles();
+check('штук по DE', digits(t[0].value), sum((r) => full(r) && r.m === 'DE'));
+
+/* 3. Деньги по одной площадке */
+const metric = [...controls.querySelectorAll('.segmented__item')];
+metric[1].dispatchEvent(new window.Event('click'));
+t = tiles();
+check('выручка DE, EUR', digits(t[0].value), Math.round(money((r) => full(r) && r.m === 'DE')), 2);
+
+/* 4. Фильтр по семье вариаций */
+metric[0].dispatchEvent(new window.Event('click'));
+select.value = 'all';
+select.dispatchEvent(new window.Event('change'));
+const famId = Object.keys(data.families)[0];
+const famAsins = data.families[famId].asins;
+const boxes = [...controls.querySelectorAll('.picker__row--family input')];
+// Первая семья в списке отсортирована по продажам, поэтому ищем её по метке
+const labels = [...controls.querySelectorAll('.picker__row--family .picker__name')].map((n) => n.textContent);
+const idx = labels.indexOf(data.families[famId].label);
+if (idx >= 0) {
+  boxes[idx].checked = true;
+  boxes[idx].dispatchEvent(new window.Event('change'));
+  t = tiles();
+  check(`штук по семье ${famId} (${famAsins.length} вар.)`,
+        digits(t[0].value), sum((r) => full(r) && famAsins.includes(r.a)));
+} else { console.log('ПЛОХО семья не найдена в списке фильтра'); bad++; }
+
+/* 5. Итог таблицы-двойника должен совпасть с плиткой */
+const foot = view.querySelector('tfoot tr td:last-child');
+if (foot) check('итог таблицы = плитка', digits(foot.textContent), digits(tiles()[0].value));
+else { console.log('ПЛОХО таблицы-двойника нет'); bad++; }
+
+console.log(bad ? `\nРАСХОЖДЕНИЙ: ${bad}` : '\nЧисла сходятся.');
+process.exit(bad ? 1 : 0);
