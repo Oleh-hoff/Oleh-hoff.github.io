@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="assets/css/sales.css">
 <link rel="stylesheet" href="assets/css/wiki.css">
 <link rel="stylesheet" href="assets/css/notifications.css">
+<link rel="stylesheet" href="assets/css/settings.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%232a78d6'/><path d='M8 21V13M16 21V9M24 21V16' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>">
 </head>
 
@@ -153,22 +154,6 @@
     </nav>
 
     <div class="sidebar__footer">
-      <div class="sidebar__controls" style="display:flex; flex-direction:column; gap:var(--sp-2);">
-        <div class="segmented" role="radiogroup" data-i18n-attr="aria-label:lang.select" id="lang-controls">
-          <button type="button" class="segmented__item" role="radio" data-lang="ru" aria-checked="false">РУС</button>
-          <button type="button" class="segmented__item" role="radio" data-lang="en" aria-checked="false">ENG</button>
-          <button type="button" class="segmented__item" role="radio" data-lang="uk" aria-checked="false">УКР</button>
-        </div>
-        <div class="segmented" role="radiogroup" data-i18n-attr="aria-label:theme.toggle" id="theme-controls">
-          <button type="button" class="segmented__item" role="radio" data-theme-mode="light"
-                  data-i18n="theme.light" aria-checked="false">Светлая</button>
-          <button type="button" class="segmented__item" role="radio" data-theme-mode="dark"
-                  data-i18n="theme.dark" aria-checked="false">Тёмная</button>
-          <button type="button" class="segmented__item" role="radio" data-theme-mode="system"
-                  data-i18n="theme.system" aria-checked="false">Как в системе</button>
-        </div>
-      </div>
-
       <div class="sidebar__user">
         <span class="sidebar__avatar" id="user-initial" aria-hidden="true"></span>
         <span id="user-name"></span>
@@ -197,8 +182,11 @@
 
       <div id="page-controls" style="display:flex; gap:var(--sp-3); flex-wrap:wrap; align-items:center;"></div>
 
-      <!-- Колокольчик: состояние синхронизаций по всем интеграциям -->
-      <div id="bell-slot" style="display:flex; align-items:center;"></div>
+      <!-- Правый верхний угол: журнал синхронизаций и настройки -->
+      <div class="toolbar">
+        <div id="bell-slot" style="display:flex; align-items:center;"></div>
+        <div id="settings-slot" style="display:flex; align-items:center;"></div>
+      </div>
     </header>
 
     <div class="workspace__body" id="view"></div>

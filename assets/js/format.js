@@ -8,6 +8,7 @@
    ========================================================================== */
 
 import { getLocale } from './i18n.js';
+import { getTimeZone } from './timezone.js';
 
 const cache = new Map();
 
@@ -18,9 +19,25 @@ function nf(options) {
 }
 
 function df(options) {
-  const key = 'd' + getLocale() + JSON.stringify(options);
+  // Пояс входит в ключ: иначе после смены настройки в кеше останется
+  // форматтер прежнего пояса и время замрёт на старом значении
+  const key = 'd' + getLocale() + (options.timeZone || '') + JSON.stringify(options);
   if (!cache.has(key)) cache.set(key, new Intl.DateTimeFormat(getLocale(), options));
   return cache.get(key);
+}
+
+/**
+ * Календарная дата или момент времени.
+ *
+ * `2026-05-18` — это дата в календаре, а не момент: она разбирается как
+ * полночь UTC, и в поясе западнее Гринвича сдвинулась бы на сутки назад.
+ * Такие значения форматируются в UTC независимо от настройки пояса, иначе
+ * неделя «с 18 августа» стала бы «с 17 августа» у половины пользователей.
+ */
+const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/;
+
+function zoneFor(value) {
+  return DATE_ONLY.test(String(value)) ? 'UTC' : getTimeZone();
 }
 
 /** Сбрасывается при смене языка — иначе форматтеры останутся от старой локали. */
@@ -82,18 +99,31 @@ export function formatPercent(value, digits = 1) {
 
 /** Короткая подпись оси: «5 авг» / «Aug 5» / «5 серп» */
 export function formatDayShort(date) {
-  return df({ day: 'numeric', month: 'short' }).format(toDate(date));
+  return df({ day: 'numeric', month: 'short', timeZone: zoneFor(date) }).format(toDate(date));
 }
 
 /** Полная дата для подсказки и таблицы. */
 export function formatDayFull(date) {
-  return df({ day: 'numeric', month: 'long', year: 'numeric' }).format(toDate(date));
+  return df({
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: zoneFor(date),
+  }).format(toDate(date));
 }
 
+/** Момент времени — показывается в выбранном поясе. */
 export function formatDateTime(date) {
   return df({
     day: 'numeric', month: 'short', year: 'numeric',
     hour: '2-digit', minute: '2-digit',
+    timeZone: zoneFor(date),
+  }).format(toDate(date));
+}
+
+/** Момент времени с названием пояса — там, где важно, в каком он показан. */
+export function formatDateTimeZoned(date) {
+  return df({
+    day: 'numeric', month: 'short', year: 'numeric',
+    hour: '2-digit', minute: '2-digit',
+    timeZone: zoneFor(date), timeZoneName: 'short',
   }).format(toDate(date));
 }
 

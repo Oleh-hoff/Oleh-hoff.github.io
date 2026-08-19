@@ -2,13 +2,13 @@
    Сборка страницы входа
    ========================================================================== */
 
-import { applyTranslations, bindLangControls, onLangChange, t } from './i18n.js';
-import { initTheme, bindThemeControls } from './theme.js';
+import { applyTranslations, onLangChange, t } from './i18n.js';
+import { initTheme } from './theme.js';
+import { mountSettings } from './settings.js';
 import { signIn, redirectIfAuthed, isCryptoAvailable, lockoutRemaining } from './auth.js';
 
 initTheme();
-bindThemeControls(document.getElementById('theme-controls'));
-bindLangControls(document.querySelector('.auth__toolbar'));
+mountSettings(document.getElementById('settings-slot'));
 applyTranslations();
 
 // Живая сессия — внутрь, минуя форму

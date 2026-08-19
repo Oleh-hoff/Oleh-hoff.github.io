@@ -1,0 +1,80 @@
+/* ==========================================================================
+   Окно настроек: язык, часовой пояс, тема.
+
+   Размеры и подложка повторяют окно журнала синхронизаций — два модальных
+   окна в одном интерфейсе должны вести себя одинаково.
+   ========================================================================== */
+
+.settings-modal {
+  width: min(440px, calc(100vw - 2 * var(--sp-4)));
+  max-height: min(640px, calc(100vh - 2 * var(--sp-5)));
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--surface-1);
+  color: var(--ink-1);
+  box-shadow: var(--shadow-pop);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-modal::backdrop { background: rgba(0, 0, 0, 0.45); }
+.settings-modal:not([open]) { display: none; }
+
+.settings-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-modal__title {
+  margin: 0;
+  font-size: var(--fs-lg, 19px);
+}
+
+.settings-modal__body {
+  padding: var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  overflow-y: auto;
+}
+
+.settings__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+/* Подпись капителью с разрядкой — как на плитках показателей */
+.settings__label {
+  font-size: var(--fs-xs, 11px);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* Переключатель растягивается на всю ширину окна: три равные доли читаются
+   как выбор из трёх, а не как кнопки разной важности */
+.settings__group .segmented { display: flex; }
+.settings__group .segmented__item { flex: 1; text-align: center; }
+
+.settings__select { width: 100%; }
+
+.settings__hint {
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--ink-3);
+}
+
+/* Кнопки в правом верхнем углу рабочей области */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}

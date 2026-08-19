@@ -7,8 +7,10 @@
    ========================================================================== */
 
 import './strings-crm.js';           // регистрирует словари CRM до первого t()
-import { applyTranslations, bindLangControls, onLangChange, t } from './i18n.js';
-import { initTheme, bindThemeControls } from './theme.js';
+import { applyTranslations, onLangChange, t } from './i18n.js';
+import { initTheme } from './theme.js';
+import { mountSettings } from './settings.js';
+import { onZoneChange } from './timezone.js';
 import { requireAuth, signOut, getSession } from './auth.js';
 import { resetFormatters } from './format.js';
 import { mountNotifications } from './notifications.js';
@@ -56,8 +58,7 @@ const DEFAULT_ROUTE = 'account-check';
 /* --- Каркас ------------------------------------------------------------- */
 
 initTheme();
-bindThemeControls(document.getElementById('theme-controls'));
-bindLangControls(document.getElementById('lang-controls'));
+mountSettings(document.getElementById('settings-slot'));
 applyTranslations();
 
 const crm = document.getElementById('crm');
@@ -122,6 +123,13 @@ window.addEventListener('hashchange', navigate);
 onLangChange(() => {
   resetFormatters();
   applyTranslations();
+  navigate();
+});
+
+/* Смена пояса меняет каждую отметку времени на экране. Форматтеры кешируются
+   по поясу, поэтому без сброса на экране осталось бы время прежнего пояса. */
+onZoneChange(() => {
+  resetFormatters();
   navigate();
 });
 

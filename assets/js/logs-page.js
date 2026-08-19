@@ -8,18 +8,19 @@
    ========================================================================== */
 
 import './strings-crm.js';
-import { applyTranslations, bindLangControls, onLangChange, t } from './i18n.js';
-import { initTheme, bindThemeControls } from './theme.js';
+import { applyTranslations, onLangChange, t } from './i18n.js';
+import { initTheme } from './theme.js';
+import { mountSettings } from './settings.js';
+import { onZoneChange } from './timezone.js';
 import { requireAuth } from './auth.js';
 import { formatDateTime, formatNumber, resetFormatters } from './format.js';
-import { loadSyncLog, explainError, SOURCES } from './sync-log.js';
+import { loadSyncLog, explainError, describeStats, SOURCES } from './sync-log.js';
 import { statusIcon } from './notifications.js';
 
 if (!requireAuth('index.html')) throw new Error('redirecting');
 
 initTheme();
-bindThemeControls(document.getElementById('theme-controls'));
-bindLangControls(document.getElementById('lang-controls'));
+mountSettings(document.getElementById('settings-slot'));
 applyTranslations();
 
 const listBox = document.getElementById('log-list');
@@ -108,6 +109,10 @@ function entryNode(entry) {
   if (reason) body.appendChild(field('logs.fieldError', reason, true));
   else if (entry.message) body.appendChild(field('logs.fieldSource', entry.message, true));
 
+  // Отчёты и данные, которые приехали за этот запуск
+  const dataLine = describeStats(entry, t);
+  if (dataLine) body.appendChild(field('logs.fieldData', dataLine, true));
+
   [
     field('logs.fieldStarted', entry.startedAt ? formatDateTime(entry.startedAt) : null),
     field('logs.fieldFinished', entry.finishedAt ? formatDateTime(entry.finishedAt) : null),
@@ -117,6 +122,14 @@ function entryNode(entry) {
     field('logs.fieldRows', Number.isFinite(stats.rows) ? formatNumber(stats.rows) : null),
     field('logs.fieldDays', Number.isFinite(stats.days) ? formatNumber(stats.days) : null),
     field('logs.fieldPages', Number.isFinite(stats.pages) ? formatNumber(stats.pages) : null),
+    field('logs.fieldWeeks', Number.isFinite(stats.weeks) ? formatNumber(stats.weeks) : null),
+    field('logs.fieldUnits', Number.isFinite(stats.units) ? formatNumber(stats.units) : null),
+    field('logs.fieldAsins', Number.isFinite(stats.asins) ? formatNumber(stats.asins) : null),
+    field('logs.fieldMarkets',
+      Number.isFinite(stats.marketplaces) ? formatNumber(stats.marketplaces) : null),
+    field('logs.fieldChecks', Number.isFinite(stats.checks) ? formatNumber(stats.checks) : null),
+    field('logs.fieldWarnings',
+      Number.isFinite(stats.warnings) ? formatNumber(stats.warnings) : null),
     field('logs.fieldPeriod',
       stats.periodStart ? `${stats.periodStart} — ${stats.periodEnd}` : null),
   ].forEach((node) => { if (node) body.appendChild(node); });
@@ -235,6 +248,11 @@ onLangChange(() => {
   resetFormatters();
   applyTranslations();
   fillSourceSelect();
+  render();
+});
+
+onZoneChange(() => {
+  resetFormatters();
   render();
 });
 

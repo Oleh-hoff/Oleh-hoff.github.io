@@ -29,6 +29,48 @@ extendDict({
     'page.soon.title': 'Раздел в работе',
     'page.soon.lead': 'Этот раздел заложен в структуре и будет наполнен следующим шагом.',
 
+    /* --- Настройки -------------------------------------------------------- */
+    'settings.title': 'Настройки',
+    'settings.close': 'Закрыть настройки',
+    'settings.language': 'Язык',
+    'settings.timezone': 'Часовой пояс',
+    'settings.theme': 'Тема',
+    'settings.tzSystem': 'Как в системе ({zone})',
+    'settings.tzNow': '{offset}, сейчас {time}',
+
+    /* --- Журнал: новые источники и подробности ---------------------------- */
+    'log.source.account': 'Проверка аккаунта',
+    'log.source.weeklySales': 'Продажи по неделям',
+    'log.source.fx': 'Курсы валют (ЕЦБ)',
+    'log.recentN': 'Последние {n} запусков',
+    'log.reason.unknown': 'Неизвестная ошибка: {type}',
+    'log.stat.weeks': 'недель: {n}',
+    'log.stat.units': 'штук: {n}',
+    'log.stat.asins': 'товаров: {n}',
+    'log.stat.marketplaces': 'площадок: {n}',
+    'log.stat.rows': 'строк: {n}',
+    'log.stat.pages': 'страниц: {n}',
+    'log.stat.events': 'событий: {n}',
+    'log.stat.days': 'дней: {n}',
+    'log.stat.checks': 'проверок: {n}',
+    'log.stat.warnings': 'замечаний: {n}',
+    'log.stat.unavailable': 'недоступно: {n}',
+    'log.stat.rates': 'курсов: {n}',
+
+    'logs.fieldData': 'Что обновилось',
+    'logs.fieldWeeks': 'Недель',
+    'logs.fieldUnits': 'Штук',
+    'logs.fieldAsins': 'Товаров',
+    'logs.fieldMarkets': 'Площадок',
+    'logs.fieldChecks': 'Проверок',
+    'logs.fieldWarnings': 'Замечаний',
+
+    /* --- Перевод в евро --------------------------------------------------- */
+    'sales.allInEur': 'Всё в евро',
+    'sales.note.converted': 'Суммы переведены в евро по справочным курсам ЕЦБ ({from} — {to}), понедельно. Это оценка: Amazon конвертирует по своему курсу на момент выплаты, и с Seller Central цифра не сойдётся.',
+    'sales.note.rateGap': 'На части недель курсов ЕЦБ нет (публикуются только по рабочим дням) — взят ближайший известный день.',
+    'sales.note.noRate': 'Без курса и потому не переведено: {currencies}.',
+
     /* --- Вики ------------------------------------------------------------ */
     'nav.wiki': 'Вики',
     'page.wiki.title': 'Вики',
@@ -118,6 +160,48 @@ extendDict({
     'page.soon.title': 'Section in progress',
     'page.soon.lead': 'This section is wired into the structure and will be filled in next.',
 
+    /* --- Settings --------------------------------------------------------- */
+    'settings.title': 'Settings',
+    'settings.close': 'Close settings',
+    'settings.language': 'Language',
+    'settings.timezone': 'Time zone',
+    'settings.theme': 'Theme',
+    'settings.tzSystem': 'Same as system ({zone})',
+    'settings.tzNow': '{offset}, now {time}',
+
+    /* --- Log: new sources and details ------------------------------------- */
+    'log.source.account': 'Account check',
+    'log.source.weeklySales': 'Weekly sales',
+    'log.source.fx': 'Exchange rates (ECB)',
+    'log.recentN': 'Last {n} runs',
+    'log.reason.unknown': 'Unknown error: {type}',
+    'log.stat.weeks': 'weeks: {n}',
+    'log.stat.units': 'units: {n}',
+    'log.stat.asins': 'products: {n}',
+    'log.stat.marketplaces': 'marketplaces: {n}',
+    'log.stat.rows': 'rows: {n}',
+    'log.stat.pages': 'pages: {n}',
+    'log.stat.events': 'events: {n}',
+    'log.stat.days': 'days: {n}',
+    'log.stat.checks': 'checks: {n}',
+    'log.stat.warnings': 'warnings: {n}',
+    'log.stat.unavailable': 'unavailable: {n}',
+    'log.stat.rates': 'rate days: {n}',
+
+    'logs.fieldData': 'What was updated',
+    'logs.fieldWeeks': 'Weeks',
+    'logs.fieldUnits': 'Units',
+    'logs.fieldAsins': 'Products',
+    'logs.fieldMarkets': 'Marketplaces',
+    'logs.fieldChecks': 'Checks',
+    'logs.fieldWarnings': 'Warnings',
+
+    /* --- Conversion to euro ----------------------------------------------- */
+    'sales.allInEur': 'All in euro',
+    'sales.note.converted': 'Amounts converted to euro at ECB reference rates ({from} — {to}), week by week. This is an estimate: Amazon converts at its own rate on payout, so the figure will not match Seller Central.',
+    'sales.note.rateGap': 'Some weeks have no ECB rates (published on business days only) — the nearest known day was used.',
+    'sales.note.noRate': 'No rate available, so not converted: {currencies}.',
+
     /* --- Wiki ------------------------------------------------------------- */
     'nav.wiki': 'Wiki',
     'page.wiki.title': 'Wiki',
@@ -206,6 +290,48 @@ extendDict({
 
     'page.soon.title': 'Розділ у роботі',
     'page.soon.lead': 'Цей розділ закладено у структурі й буде наповнено наступним кроком.',
+
+    /* --- Налаштування ----------------------------------------------------- */
+    'settings.title': 'Налаштування',
+    'settings.close': 'Закрити налаштування',
+    'settings.language': 'Мова',
+    'settings.timezone': 'Часовий пояс',
+    'settings.theme': 'Тема',
+    'settings.tzSystem': 'Як у системі ({zone})',
+    'settings.tzNow': '{offset}, зараз {time}',
+
+    /* --- Журнал: нові джерела й подробиці ---------------------------------- */
+    'log.source.account': 'Перевірка акаунта',
+    'log.source.weeklySales': 'Продажі по тижнях',
+    'log.source.fx': 'Курси валют (ЄЦБ)',
+    'log.recentN': 'Останні {n} запусків',
+    'log.reason.unknown': 'Невідома помилка: {type}',
+    'log.stat.weeks': 'тижнів: {n}',
+    'log.stat.units': 'штук: {n}',
+    'log.stat.asins': 'товарів: {n}',
+    'log.stat.marketplaces': 'площадок: {n}',
+    'log.stat.rows': 'рядків: {n}',
+    'log.stat.pages': 'сторінок: {n}',
+    'log.stat.events': 'подій: {n}',
+    'log.stat.days': 'днів: {n}',
+    'log.stat.checks': 'перевірок: {n}',
+    'log.stat.warnings': 'зауважень: {n}',
+    'log.stat.unavailable': 'недоступно: {n}',
+    'log.stat.rates': 'курсів: {n}',
+
+    'logs.fieldData': 'Що оновилося',
+    'logs.fieldWeeks': 'Тижнів',
+    'logs.fieldUnits': 'Штук',
+    'logs.fieldAsins': 'Товарів',
+    'logs.fieldMarkets': 'Площадок',
+    'logs.fieldChecks': 'Перевірок',
+    'logs.fieldWarnings': 'Зауважень',
+
+    /* --- Переведення в євро ------------------------------------------------ */
+    'sales.allInEur': 'Усе в євро',
+    'sales.note.converted': 'Суми переведені в євро за довідковими курсами ЄЦБ ({from} — {to}), потижнево. Це оцінка: Amazon конвертує за власним курсом на момент виплати, і з Seller Central цифра не зійдеться.',
+    'sales.note.rateGap': 'На частині тижнів курсів ЄЦБ немає (публікуються лише в робочі дні) — узято найближчий відомий день.',
+    'sales.note.noRate': 'Без курсу і тому не переведено: {currencies}.',
 
     /* --- Вікі -------------------------------------------------------------- */
     'nav.wiki': 'Вікі',
