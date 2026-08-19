@@ -1,0 +1,175 @@
+/* ==========================================================================
+   Раздел «Вики»: список статей слева, статья справа.
+
+   Здесь же типографика статьи (.prose) — она нужна только тут, а в общий
+   base.css попала бы стилями, которые больше нигде не применяются.
+   ========================================================================== */
+
+.wiki {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: var(--sp-4);
+  align-items: start;
+}
+
+/* Список липнет к верху: статья длинная, и прокручивая её, читатель теряет
+   навигацию из виду */
+.wiki__list {
+  position: sticky;
+  top: var(--sp-4);
+  padding: var(--sp-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: calc(100vh - var(--sp-8, 64px));
+  overflow-y: auto;
+}
+
+.wiki__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--sp-2) var(--sp-3);
+  text-align: left;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--ink-2);
+  cursor: pointer;
+  font: inherit;
+}
+
+.wiki__item:hover { background: var(--surface-2); color: var(--ink-1); }
+
+.wiki__item--current {
+  background: var(--surface-2);
+  color: var(--ink-1);
+  font-weight: 550;
+  /* Полоса слева, а не заливка цветом: активный пункт должен читаться и
+     в монохроме, и при forced-colors */
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.wiki__item-title { line-height: 1.35; }
+
+.wiki__item-tags {
+  font-size: var(--fs-xs, 11px);
+  color: var(--ink-3);
+}
+
+.wiki__empty { padding: var(--sp-3); color: var(--ink-3); }
+
+.wiki__article { padding: var(--sp-5) var(--sp-5) var(--sp-6); }
+
+.wiki__head { margin-bottom: var(--sp-4); }
+
+.wiki__title {
+  margin: 0;
+  font-size: var(--fs-2xl, 26px);
+  line-height: 1.2;
+}
+
+.wiki__meta {
+  margin: var(--sp-2) 0 0;
+  font-size: var(--fs-sm);
+  color: var(--ink-3);
+}
+
+.wiki__notice {
+  margin: var(--sp-3) 0 0;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--surface-2);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+.wiki__toc {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  margin-bottom: var(--sp-5);
+  padding: var(--sp-3);
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+}
+
+.wiki__toc a { color: var(--ink-2); text-decoration: none; }
+.wiki__toc a:hover { color: var(--ink-1); text-decoration: underline; }
+
+/* --- Типографика статьи -------------------------------------------------- */
+
+/* Мера строки, а не вся ширина карточки: длинная строка теряется на переносе */
+.prose { max-width: 68ch; color: var(--ink-1); }
+
+.prose h2, .prose h3, .prose h4, .prose h5 {
+  margin: var(--sp-5) 0 var(--sp-2);
+  line-height: 1.25;
+  scroll-margin-top: var(--sp-4);
+}
+
+.prose h2 { font-size: var(--fs-lg, 19px); }
+.prose h3 { font-size: var(--fs-md, 16px); }
+.prose h4, .prose h5 { font-size: var(--fs-sm); color: var(--ink-2); }
+
+.prose p, .prose ul, .prose ol { margin: 0 0 var(--sp-3); line-height: 1.65; }
+
+.prose ul, .prose ol { padding-left: var(--sp-5); }
+.prose li { margin-bottom: var(--sp-2); }
+
+.prose a { color: var(--accent); }
+
+.prose code {
+  padding: 1px 5px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.92em;
+}
+
+.prose pre {
+  margin: 0 0 var(--sp-4);
+  padding: var(--sp-3);
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  /* Код не переносится, а прокручивается: перенос ломает команды, которые
+     копируют в терминал */
+  overflow-x: auto;
+}
+
+.prose pre code { padding: 0; background: none; }
+
+.prose blockquote {
+  margin: 0 0 var(--sp-4);
+  padding-left: var(--sp-3);
+  border-left: 2px solid var(--border-strong);
+  color: var(--ink-2);
+}
+
+.prose blockquote p { margin: 0; }
+
+.prose hr {
+  margin: var(--sp-5) 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+.prose table { border-collapse: collapse; width: 100%; font-size: var(--fs-sm); }
+
+.prose th, .prose td {
+  padding: var(--sp-2) var(--sp-3);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.prose th { color: var(--ink-2); font-weight: 550; }
+
+/* --- Узкий экран ---------------------------------------------------------- */
+
+@media (max-width: 860px) {
+  .wiki { grid-template-columns: 1fr; }
+  .wiki__list { position: static; max-height: 320px; }
+}
