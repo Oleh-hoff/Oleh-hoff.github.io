@@ -22,6 +22,10 @@ import { formatNumber, formatMoney, formatCompact, formatDayShort, formatDateTim
 import { createStackedColumnChart, createBarChart, renderLegend } from '../charts.js';
 
 const DATA_URL = 'data/weekly-sales.json';
+const FX_URL = 'data/fx-rates.json';
+
+/** Значение переключателя валюты «всё в евро». */
+const EUR_ALL = '__eur';
 
 /* Больше семи площадок на одном столбце различить нельзя, а восьмой цвет
    палитры уходит под «остальные». Порядок цветов фиксирован: площадка не
@@ -47,27 +51,27 @@ function sliceRows(data, { marketplace, asins, currency, metric }) {
   return data.rows.filter((row) => {
     if (marketplace !== 'all' && row.m !== marketplace) return false;
     if (asins.size && !asins.has(row.a)) return false;
-    // Деньги считаются только внутри одной валюты — смешивать нечем
-    if (metric === 'money' && data.marketplaces[row.m]?.currency !== currency) return false;
+    // Деньги считаются внутри одной валюты — смешивать их нечем. Исключение
+    // одно: режим «всё в евро», где каждая сумма переведена по курсу.
+    if (metric === 'money' && currency !== EUR_ALL
+        && data.marketplaces[row.m]?.currency !== currency) return false;
     return true;
   });
 }
 
-const valueOf = (row, metric) => (metric === 'money' ? row.r : row.u);
-
 /** Итог по каждой неделе. Индекс массива = индекс недели в data.weeks. */
-function weeklyTotals(rows, weekCount, metric) {
+function weeklyTotals(rows, weekCount, amount) {
   const totals = new Array(weekCount).fill(0);
-  for (const row of rows) totals[row.w] += valueOf(row, metric);
+  for (const row of rows) totals[row.w] += amount(row);
   return totals;
 }
 
 /** Ряды по площадкам: топ-N по объёму, остальные — одной серией. */
-function marketplaceSeries(data, rows, weekCount, metric) {
+function marketplaceSeries(data, rows, weekCount, amount) {
   const byMarket = new Map();
   for (const row of rows) {
     if (!byMarket.has(row.m)) byMarket.set(row.m, new Array(weekCount).fill(0));
-    byMarket.get(row.m)[row.w] += valueOf(row, metric);
+    byMarket.get(row.m)[row.w] += amount(row);
   }
 
   const ranked = [...byMarket.entries()]
@@ -92,11 +96,11 @@ function marketplaceSeries(data, rows, weekCount, metric) {
 }
 
 /** Итоги по семьям вариаций — для столбцов «что продаётся». */
-function familyTotals(data, rows, metric) {
+function familyTotals(data, rows, amount) {
   const totals = new Map();
   for (const row of rows) {
     const family = data.asins[row.a]?.family || row.a;
-    totals.set(family, (totals.get(family) || 0) + valueOf(row, metric));
+    totals.set(family, (totals.get(family) || 0) + amount(row));
   }
   return [...totals.entries()]
     .filter(([, value]) => value > 0)
@@ -117,6 +121,53 @@ function moneyByCurrency(data, rows) {
     totals.set(currency, (totals.get(currency) || 0) + row.r);
   }
   return [...totals.entries()].sort((a, b) => b[1] - a[1]);
+}
+
+/* --------------------------------------------------------------------------
+   Перевод в евро
+   -------------------------------------------------------------------------- */
+
+/**
+ * Курс каждой валюты на каждую неделю: среднее по рабочим дням этой недели.
+ *
+ * Среднее за неделю, а не курс одного дня: продажи размазаны по всей неделе,
+ * и брать курс понедельника для субботней выручки — произвол. Если внутри
+ * недели курсов нет вовсе (ЕЦБ публикует только по рабочим дням, а история
+ * не всегда покрывает край периода), берётся ближайшая известная дата.
+ */
+function weeklyRates(weeks, fx) {
+  if (!fx?.rates) return null;
+
+  const dates = Object.keys(fx.rates).sort();
+  if (!dates.length) return null;
+
+  const nearest = (target) => {
+    let best = dates[0];
+    let bestGap = Infinity;
+    for (const date of dates) {
+      const gap = Math.abs(new Date(date) - new Date(target));
+      if (gap < bestGap) { bestGap = gap; best = date; }
+    }
+    return best;
+  };
+
+  return weeks.map((week) => {
+    const inside = dates.filter((date) => date >= week.start && date <= week.end);
+    const used = inside.length ? inside : [nearest(week.start)];
+
+    const sums = new Map();
+    for (const date of used) {
+      for (const [currency, rate] of Object.entries(fx.rates[date] || {})) {
+        if (!sums.has(currency)) sums.set(currency, []);
+        sums.get(currency).push(rate);
+      }
+    }
+    const out = {};
+    for (const [currency, list] of sums) {
+      out[currency] = list.reduce((a, b) => a + b, 0) / list.length;
+    }
+    return { rates: out, exact: inside.length > 0 };
+  });
 }
 
 /* --------------------------------------------------------------------------
@@ -332,14 +383,27 @@ export const weeklySales = {
       return () => {};
     }
 
+    /* Курсы — вспомогательные данные: без них раздел работает, просто без
+       перевода в евро. Поэтому сбой чтения не роняет раздел. */
+    let fx = null;
+    try {
+      const response = await fetch(FX_URL, { cache: 'no-store' });
+      if (response.ok) fx = await response.json();
+    } catch { /* перевод в евро будет недоступен */ }
+
     /* --- состояние фильтров --- */
     const currencies = [...new Set(Object.values(data.marketplaces)
       .map((m) => m.currency).filter(Boolean))];
+    const rateByWeek = weeklyRates(data.weeks, fx);
+    const canConvert = Boolean(rateByWeek);
+
     const state = {
       marketplace: 'all',
       asins: new Set(),
       metric: 'units',
-      currency: currencies[0] || 'EUR',
+      // По умолчанию — перевод в евро, если курсы есть: именно он отвечает
+      // на вопрос «сколько всего», ради которого раздел и открывают
+      currency: canConvert ? EUR_ALL : (currencies[0] || 'EUR'),
     };
 
     /* --- панель управления --- */
@@ -366,6 +430,9 @@ export const weeklySales = {
       });
 
     const currencySelect = el('select', { class: 'select' });
+    if (canConvert) {
+      currencySelect.appendChild(el('option', { value: EUR_ALL, text: t('sales.allInEur') }));
+    }
     currencies.forEach((code) => currencySelect.appendChild(
       el('option', { value: code, text: code })));
     currencySelect.value = state.currency;
@@ -426,21 +493,43 @@ export const weeklySales = {
       metricButtons.forEach(({ value, button }) => {
         button.setAttribute('aria-checked', String(state.metric === value));
       });
-      // Валюта имеет смысл только для денег и только когда их больше одной
-      currencyField.hidden = state.metric !== 'money' || currencies.length < 2;
+      // Валюта имеет смысл только для денег; при одной валюте и без курсов
+      // выбирать не из чего
+      currencyField.hidden = state.metric !== 'money'
+        || (currencies.length < 2 && !canConvert);
 
       const rows = sliceRows(data, state);
       const complete = data.weeks.filter((w) => !w.partial);
       const running = data.weeks.find((w) => w.partial);
       const runningIndex = running ? data.weeks.indexOf(running) : -1;
 
-      const allTotals = weeklyTotals(rows, data.weeks.length, state.metric);
+      const converting = state.metric === 'money' && state.currency === EUR_ALL;
+
+      /* Не переведённое считаем отдельно, а не роняем в ноль молча: строка
+         без курса иначе просто уменьшила бы итог, и объяснить это было бы
+         нечем. «Вне Amazon» сюда не попадает — там и суммы нет. */
+      const noRate = new Set();
+
+      const amount = (row) => {
+        if (state.metric !== 'money') return row.u;
+        if (!converting) return row.r;
+
+        const currency = data.marketplaces[row.m]?.currency;
+        if (!currency) return 0;                 // продажи вне Amazon: суммы нет
+        if (currency === 'EUR') return row.r;
+
+        const rate = rateByWeek[row.w]?.rates?.[currency];
+        if (!rate) { noRate.add(currency); return 0; }
+        return row.r / rate;                     // курс ЕЦБ — единиц валюты за евро
+      };
+
+      const allTotals = weeklyTotals(rows, data.weeks.length, amount);
       const totals = complete.map((_, i) => allTotals[i]);
 
-      const series = marketplaceSeries(data, rows, data.weeks.length, state.metric)
+      const series = marketplaceSeries(data, rows, data.weeks.length, amount)
         .map((s) => ({ ...s, values: complete.map((_, i) => s.values[i]) }));
 
-      const money = state.metric === 'money' ? state.currency : null;
+      const money = state.metric === 'money' ? (converting ? 'EUR' : state.currency) : null;
       const format = (v) => (money ? formatMoney(v, money) : formatNumber(v));
       const formatAxis = (v) => (money ? formatMoney(v, money, 0) : formatCompact(v));
 
@@ -496,7 +585,7 @@ export const weeklySales = {
 
       /* --- график по товарам --- */
       productChart.update({
-        items: familyTotals(data, rows, state.metric).slice(0, 12),
+        items: familyTotals(data, rows, amount).slice(0, 12),
         formatValue: format,
         emptyText: t('sales.empty'),
       });
@@ -504,7 +593,19 @@ export const weeklySales = {
       /* --- сноска: то, что иначе молча разошлось бы --- */
       const notes = [t('sales.note.generated', { at: formatDateTime(data.generatedAt) })];
       if (data.unpricedUnits) notes.push(t('sales.note.unpriced', { units: data.unpricedUnits }));
-      if (!money && currencies.length > 1) notes.push(t('sales.note.currencies'));
+
+      if (converting) {
+        // Перевод обязан быть подписан как оценка. Amazon конвертирует по
+        // своему курсу на момент выплаты, и совпадения с кабинетом не будет.
+        notes.push(t('sales.note.converted', { from: fx.periodStart, to: fx.periodEnd }));
+        const approximate = complete.some((_, i) => rateByWeek[i] && !rateByWeek[i].exact);
+        if (approximate) notes.push(t('sales.note.rateGap'));
+        if (noRate.size) {
+          notes.push(t('sales.note.noRate', { currencies: [...noRate].sort().join(', ') }));
+        }
+      } else if (!money && currencies.length > 1) {
+        notes.push(t('sales.note.currencies'));
+      }
       footnote.textContent = notes.join(' ');
     }
 

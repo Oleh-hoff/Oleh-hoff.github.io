@@ -111,6 +111,14 @@ jobs:
           SPAPI_ENV: production
         run: python3 scripts/collect_weekly_sales.py
 
+      - name: Обновить курсы валют
+        # Источник — Европейский центробанк, не Amazon: курса в данных Amazon
+        # нет ни в одном отчёте. Секреты этому шагу не нужны. Без курсов
+        # раздел продаж работает, просто без перевода в евро, поэтому шаг
+        # не должен ронять остальные.
+        if: always()
+        run: python3 scripts/collect_fx_rates.py
+
       - name: Записать в журнал, если сборщик не успел
         if: always()
         run: |

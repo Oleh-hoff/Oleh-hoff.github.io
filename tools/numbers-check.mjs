@@ -103,7 +103,72 @@ if (idx >= 0) {
         digits(t[0].value), sum((r) => full(r) && famAsins.includes(r.a)));
 } else { console.log('ПЛОХО семья не найдена в списке фильтра'); bad++; }
 
-/* 5. Итог таблицы-двойника должен совпасть с плиткой */
+/* 5. Перевод в евро */
+const fxPath = ROOT + 'data/fx-rates.json';
+if (existsSync(fxPath)) {
+  const fx = JSON.parse(readFileSync(fxPath, 'utf8'));
+  const fxDates = Object.keys(fx.rates).sort();
+
+  // Курс недели считаем заново от исходного файла: среднее по рабочим дням
+  // внутри недели, иначе ближайший известный день
+  const weekRate = (wi, cur) => {
+    const w = data.weeks[wi];
+    const inside = fxDates.filter((d) => d >= w.start && d <= w.end);
+    const used = inside.length ? inside : [fxDates.reduce((best, d) =>
+      Math.abs(new Date(d) - new Date(w.start)) < Math.abs(new Date(best) - new Date(w.start))
+        ? d : best, fxDates[0])];
+    const vals = used.map((d) => fx.rates[d]?.[cur]).filter(Boolean);
+    return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+  };
+
+  const inEuro = (r) => {
+    const cur = data.marketplaces[r.m]?.currency;
+    if (!cur) return 0;
+    if (cur === 'EUR') return r.r;
+    const rate = weekRate(r.w, cur);
+    return rate ? r.r / rate : 0;
+  };
+
+  // Сбрасываем фильтры и включаем «всё в евро»
+  [...controls.querySelectorAll('.picker__row--family input')].forEach((b) => {
+    if (b.checked) { b.checked = false; b.dispatchEvent(new window.Event('change')); }
+  });
+  select.value = 'all';
+  select.dispatchEvent(new window.Event('change'));
+  metric[1].dispatchEvent(new window.Event('click'));
+
+  const currencySelect = [...controls.querySelectorAll('select')][1];
+  currencySelect.value = '__eur';
+  currencySelect.dispatchEvent(new window.Event('change'));
+
+  const expected = Math.round(data.rows.filter(full).reduce((a, r) => a + inEuro(r), 0));
+  check('всё в евро, итог', digits(tiles()[0].value), expected, 3);
+
+  // Направление деления: курс ЕЦБ — единиц валюты за евро, значит фунтов
+  // должно стать больше евро, а крон — меньше. Ошибка в направлении даёт
+  // правдоподобное, но неверное число, и только эта проверка её ловит.
+  select.value = 'GB';
+  select.dispatchEvent(new window.Event('change'));
+  const gbpRaw = data.rows.filter((r) => full(r) && r.m === 'GB').reduce((a, r) => a + r.r, 0);
+  const gbpEur = digits(tiles()[0].value);
+  check('GBP → EUR: евро больше фунтов', gbpEur > gbpRaw ? 1 : 0, 1, 0);
+  console.log(`       £${Math.round(gbpRaw)} → €${gbpEur}`);
+
+  select.value = 'SE';
+  select.dispatchEvent(new window.Event('change'));
+  const sekRaw = data.rows.filter((r) => full(r) && r.m === 'SE').reduce((a, r) => a + r.r, 0);
+  const sekEur = digits(tiles()[0].value);
+  check('SEK → EUR: евро меньше крон', sekEur < sekRaw ? 1 : 0, 1, 0);
+  console.log(`       ${Math.round(sekRaw)} kr → €${sekEur}`);
+
+  select.value = 'all';
+  select.dispatchEvent(new window.Event('change'));
+  metric[0].dispatchEvent(new window.Event('click'));
+} else {
+  console.log('  курсов нет — перевод в евро не проверяется');
+}
+
+/* 6. Итог таблицы-двойника должен совпасть с плиткой */
 const foot = view.querySelector('tfoot tr td:last-child');
 if (foot) check('итог таблицы = плитка', digits(foot.textContent), digits(tiles()[0].value));
 else { console.log('ПЛОХО таблицы-двойника нет'); bad++; }
