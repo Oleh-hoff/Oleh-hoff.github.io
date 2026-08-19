@@ -29,6 +29,21 @@ extendDict({
     'page.soon.title': 'Раздел в работе',
     'page.soon.lead': 'Этот раздел заложен в структуре и будет наполнен следующим шагом.',
 
+    /* --- Отметки акций ---------------------------------------------------- */
+    'sales.promo.title': 'Акции',
+    'sales.promo.coupon': 'Купоны',
+    'sales.promo.best_deal': 'Бест-дилы',
+    'sales.promo.lightning_deal': 'Молниеносные дилы',
+    'sales.promo.units': 'продано {n} шт',
+    'sales.promo.more': '… и ещё {n}',
+    'sales.note.promo': 'Значки над неделями — акции: {n} кампаний задели {weeks} недель в текущем срезе. Значок один на тип, счёт и список — в подсказке.',
+    'sales.note.promoNone': 'В текущем срезе акций не было.',
+    'log.source.promotions': 'Купоны и дилы',
+    'log.stat.campaigns': 'кампаний: {n}',
+    'log.stat.coupons': 'купонов: {n}',
+    'log.stat.deals': 'дилов: {n}',
+    'logs.fieldCampaigns': 'Кампаний',
+
     /* --- Настройки -------------------------------------------------------- */
     'settings.title': 'Настройки',
     'settings.close': 'Закрыть настройки',
@@ -160,6 +175,21 @@ extendDict({
     'page.soon.title': 'Section in progress',
     'page.soon.lead': 'This section is wired into the structure and will be filled in next.',
 
+    /* --- Promotion marks -------------------------------------------------- */
+    'sales.promo.title': 'Promotions',
+    'sales.promo.coupon': 'Coupons',
+    'sales.promo.best_deal': 'Best Deals',
+    'sales.promo.lightning_deal': 'Lightning Deals',
+    'sales.promo.units': '{n} units sold',
+    'sales.promo.more': '… and {n} more',
+    'sales.note.promo': 'Marks above the weeks are promotions: {n} campaigns touched {weeks} weeks in the current slice. One mark per type; the count and list are in the tooltip.',
+    'sales.note.promoNone': 'No promotions in the current slice.',
+    'log.source.promotions': 'Coupons and deals',
+    'log.stat.campaigns': 'campaigns: {n}',
+    'log.stat.coupons': 'coupons: {n}',
+    'log.stat.deals': 'deals: {n}',
+    'logs.fieldCampaigns': 'Campaigns',
+
     /* --- Settings --------------------------------------------------------- */
     'settings.title': 'Settings',
     'settings.close': 'Close settings',
@@ -290,6 +320,21 @@ extendDict({
 
     'page.soon.title': 'Розділ у роботі',
     'page.soon.lead': 'Цей розділ закладено у структурі й буде наповнено наступним кроком.',
+
+    /* --- Позначки акцій ---------------------------------------------------- */
+    'sales.promo.title': 'Акції',
+    'sales.promo.coupon': 'Купони',
+    'sales.promo.best_deal': 'Бест-діли',
+    'sales.promo.lightning_deal': 'Блискавичні діли',
+    'sales.promo.units': 'продано {n} шт',
+    'sales.promo.more': '… і ще {n}',
+    'sales.note.promo': 'Значки над тижнями — акції: {n} кампаній зачепили {weeks} тижнів у поточному зрізі. Значок один на тип, лічба і список — у підказці.',
+    'sales.note.promoNone': 'У поточному зрізі акцій не було.',
+    'log.source.promotions': 'Купони й діли',
+    'log.stat.campaigns': 'кампаній: {n}',
+    'log.stat.coupons': 'купонів: {n}',
+    'log.stat.deals': 'дилів: {n}',
+    'logs.fieldCampaigns': 'Кампаній',
 
     /* --- Налаштування ----------------------------------------------------- */
     'settings.title': 'Налаштування',

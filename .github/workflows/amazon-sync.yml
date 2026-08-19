@@ -111,6 +111,19 @@ jobs:
           SPAPI_ENV: production
         run: python3 scripts/collect_weekly_sales.py
 
+      - name: Собрать купоны и дилы
+        # Отметки акций на графике продаж. Эти два отчёта принимают ровно
+        # одну площадку за запрос, поэтому шаг обходит их по одной и
+        # переживает отказ отдельной площадки.
+        if: always()
+        env:
+          SPAPI_CLIENT_ID: ${{ secrets.SPAPI_CLIENT_ID }}
+          SPAPI_CLIENT_SECRET: ${{ secrets.SPAPI_CLIENT_SECRET }}
+          SPAPI_REFRESH_TOKEN: ${{ secrets.SPAPI_REFRESH_TOKEN }}
+          SPAPI_REGION: eu
+          SPAPI_ENV: production
+        run: python3 scripts/collect_promotions.py
+
       - name: Обновить курсы валют
         # Источник — Европейский центробанк, не Amazon: курса в данных Amazon
         # нет ни в одном отчёте. Секреты этому шагу не нужны. Без курсов

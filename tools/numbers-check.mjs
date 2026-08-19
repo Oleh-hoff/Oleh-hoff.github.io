@@ -168,7 +168,55 @@ if (existsSync(fxPath)) {
   console.log('  курсов нет — перевод в евро не проверяется');
 }
 
-/* 6. Итог таблицы-двойника должен совпасть с плиткой */
+/* 6. Отметки акций попадают ровно на те недели, которые кампания задела */
+const promoPath = ROOT + 'data/promotions.json';
+if (existsSync(promoPath)) {
+  const promo = JSON.parse(readFileSync(promoPath, 'utf8'));
+  const weeksShown = data.weeks.filter((w) => !w.partial);
+
+  // Значок рисуется один на тип на неделю, а не на кампанию: считаем так же,
+  // но от исходного файла
+  const expectedMarks = weeksShown.reduce((n, w) => {
+    const kinds = new Set(promo.campaigns
+      .filter((c) => c.start <= w.end && c.end >= w.start)
+      .map((c) => c.kind));
+    return n + kinds.size;
+  }, 0);
+
+  const drawn = () => view.querySelectorAll('.chart-mark').length;
+  check('отметок акций на графике', drawn(), expectedMarks);
+
+  // Снятая галочка обязана убрать свой тип и не тронуть чужой
+  const boxes = [...controls.querySelectorAll('.promo-toggle input')];
+  if (boxes.length) {
+    const before = drawn();
+    boxes[0].checked = false;
+    boxes[0].dispatchEvent(new window.Event('change'));
+    const after = drawn();
+    check('снятая галочка убирает отметки', after < before ? 1 : 0, 1, 0);
+    boxes[0].checked = true;
+    boxes[0].dispatchEvent(new window.Event('change'));
+    check('возврат галочки возвращает отметки', drawn(), before);
+    console.log(`       галочек ${boxes.length}, отметок ${before} → ${after} → ${drawn()}`);
+  }
+
+  // Фильтр по товару должен сужать и отметки: акция на соседний товар
+  // не имеет права отмечать неделю выбранного
+  const famBoxes = [...controls.querySelectorAll('.picker__row--family input')];
+  if (famBoxes.length) {
+    const all = drawn();
+    famBoxes[0].checked = true;
+    famBoxes[0].dispatchEvent(new window.Event('change'));
+    check('фильтр товара сужает отметки', drawn() <= all ? 1 : 0, 1, 0);
+    console.log(`       все товары ${all} → одна семья ${drawn()}`);
+    famBoxes[0].checked = false;
+    famBoxes[0].dispatchEvent(new window.Event('change'));
+  }
+} else {
+  console.log('  акций нет — отметки не проверяются');
+}
+
+/* 7. Итог таблицы-двойника должен совпасть с плиткой */
 const foot = view.querySelector('tfoot tr td:last-child');
 if (foot) check('итог таблицы = плитка', digits(foot.textContent), digits(tiles()[0].value));
 else { console.log('ПЛОХО таблицы-двойника нет'); bad++; }

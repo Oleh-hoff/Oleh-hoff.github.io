@@ -172,7 +172,15 @@ for (const lang of ['ru', 'en', 'uk']) {
     for (const button of controls.querySelectorAll('.segmented__item')) {
       button.dispatchEvent(new window.Event('click'));
     }
-    for (const box of controls.querySelectorAll('input[type="checkbox"]')) {
+    // Галочки акций выключаем и включаем обратно: отметки на графике
+    // пересобираются заново, и именно здесь ломается их привязка к неделям
+    for (const box of controls.querySelectorAll('.promo-toggle input')) {
+      box.checked = !box.checked;
+      box.dispatchEvent(new window.Event('change'));
+      box.checked = !box.checked;
+      box.dispatchEvent(new window.Event('change'));
+    }
+    for (const box of controls.querySelectorAll('.picker__row--family input')) {
       box.checked = true;
       box.dispatchEvent(new window.Event('change'));
       break;

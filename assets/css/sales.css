@@ -99,3 +99,38 @@
 .picker__empty { padding: var(--sp-3); color: var(--ink-3); }
 
 .picker__actions { display: flex; justify-content: flex-end; }
+
+/* --- Галочки акций ------------------------------------------------------- */
+
+.promo-toggles {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.promo-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.promo-toggle:hover { color: var(--ink-1); }
+
+/* Значок рядом с подписью повторяет форму отметки на графике: круг — купон,
+   ромб — дил, треугольник — молниеносный. Иначе связать галочку с тем, что
+   нарисовано над столбцом, можно только угадыванием. */
+.promo-toggle__mark {
+  width: 9px;
+  height: 9px;
+  background: var(--ink-2);
+  flex: none;
+}
+
+.promo-toggle__mark--coupon { border-radius: 50%; }
+.promo-toggle__mark--best_deal { transform: rotate(45deg); }
+.promo-toggle__mark--lightning_deal { clip-path: polygon(50% 0, 100% 100%, 0 100%); }

@@ -15,6 +15,7 @@ export const SOURCES = {
   'amazon-account': { nameKey: 'log.source.account', schedule: 'log.schedule.4h' },
   'amazon-weekly-sales': { nameKey: 'log.source.weeklySales', schedule: 'log.schedule.4h' },
   'amazon-fx': { nameKey: 'log.source.fx', schedule: 'log.schedule.4h' },
+  'amazon-promotions': { nameKey: 'log.source.promotions', schedule: 'log.schedule.4h' },
   'google-sheets': { nameKey: 'log.source.sheets', schedule: 'log.schedule.manual' },
 };
 
@@ -45,6 +46,9 @@ export function describeStats(entry, t) {
   add('log.stat.warnings', stats.warnings);
   add('log.stat.unavailable', stats.unavailable);
   add('log.stat.rates', stats.rates);
+  add('log.stat.campaigns', stats.campaigns);
+  add('log.stat.coupons', stats.coupons);
+  add('log.stat.deals', stats.deals);
 
   return parts.join(' · ');
 }

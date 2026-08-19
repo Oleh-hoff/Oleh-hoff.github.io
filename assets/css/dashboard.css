@@ -300,6 +300,16 @@
 
 .chart-surface { cursor: crosshair; }
 .chart-hit { cursor: pointer; }
+/* Отметки событий над столбцами: чернильные, а не цветные. Ещё один цвет
+   рядом с цветными сериями читался бы как очередная серия, а различает их
+   форма — круг, ромб, треугольник. */
+.chart-mark {
+  fill: var(--ink-2);
+  stroke: var(--surface-1);
+  stroke-width: 1;
+}
+.chart-mark:hover { fill: var(--ink-1); }
+
 .chart-bar { transition: opacity var(--transition); }
 .chart-hit:hover + .chart-bar { opacity: 0.85; }
 

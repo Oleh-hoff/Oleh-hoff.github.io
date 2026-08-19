@@ -128,6 +128,8 @@ function entryNode(entry) {
     field('logs.fieldMarkets',
       Number.isFinite(stats.marketplaces) ? formatNumber(stats.marketplaces) : null),
     field('logs.fieldChecks', Number.isFinite(stats.checks) ? formatNumber(stats.checks) : null),
+    field('logs.fieldCampaigns',
+      Number.isFinite(stats.campaigns) ? formatNumber(stats.campaigns) : null),
     field('logs.fieldWarnings',
       Number.isFinite(stats.warnings) ? formatNumber(stats.warnings) : null),
     field('logs.fieldPeriod',

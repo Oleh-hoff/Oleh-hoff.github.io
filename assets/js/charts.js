@@ -459,9 +459,55 @@ export function createBarChart(container) {
    Сегменты разделяет зазор 2px цветом поверхности, а не обводка.
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   Отметки событий над столбцами
+
+   Форма, а не цвет: отметки лежат поверх цветных столбцов, и ещё один цвет
+   там читался бы как очередная серия. Круг, ромб и треугольник различимы и
+   в монохроме, и при дальтонизме, а подпись у них общая — в легенде.
+   -------------------------------------------------------------------------- */
+
+const MARK_SIZE = 9;
+
+function markShape(kind, cx, cy) {
+  const r = MARK_SIZE / 2;
+  if (kind === 'coupon') {
+    return svgEl('circle', { cx, cy, r: r - 0.5, class: 'chart-mark' });
+  }
+  if (kind === 'lightning_deal') {
+    return svgEl('polygon', {
+      points: `${cx},${cy - r} ${cx + r},${cy + r} ${cx - r},${cy + r}`,
+      class: 'chart-mark',
+    });
+  }
+  // Ромб — под дилы: единственная форма, которая не путается с кругом
+  return svgEl('polygon', {
+    points: `${cx},${cy - r} ${cx + r},${cy} ${cx},${cy + r} ${cx - r},${cy}`,
+    class: 'chart-mark',
+  });
+}
+
+/** Отметки одной колонки: по одной на тип, а не на кампанию. */
+function renderMarks(svg, items, cx, y) {
+  const kinds = [...new Set(items.map((item) => item.kind))];
+  const width = kinds.length * (MARK_SIZE + 3) - 3;
+  let x = cx - width / 2 + MARK_SIZE / 2;
+
+  for (const kind of kinds) {
+    const shape = markShape(kind, x, y);
+    // Подсказка списком: какая именно кампания шла на этой неделе
+    const title = svgEl('title');
+    title.textContent = items.filter((item) => item.kind === kind)
+      .map((item) => item.label).join('\n');
+    shape.appendChild(title);
+    svg.appendChild(shape);
+    x += MARK_SIZE + 3;
+  }
+}
+
 export function createStackedColumnChart(container) {
   return mountChart(container, ({ width, tooltip, data }) => {
-    const { labels, series, formatValue = formatNumber, height = 260 } = data;
+    const { labels, series, formatValue = formatNumber, height = 260, marks = null } = data;
     if (!labels.length || !series.length) { renderEmpty(container, data.emptyText); return; }
 
     const totals = labels.map((_, i) => series.reduce((sum, s) => sum + s.values[i], 0));
@@ -470,7 +516,13 @@ export function createStackedColumnChart(container) {
     const top = ticks.at(-1);
 
     const tickWidth = Math.max(...ticks.map((v) => measureText(formatValue(v))));
-    const m = { top: 16, right: 8, bottom: 28, left: Math.ceil(tickWidth) + 12 };
+    // Отметкам нужна своя полоса над столбцами: положить их внутрь поля
+    // графика значило бы накрыть ими самые высокие недели
+    const hasMarks = Array.isArray(marks) && marks.some((list) => list?.length);
+    const m = {
+      top: hasMarks ? 16 + MARK_SIZE + 6 : 16,
+      right: 8, bottom: 28, left: Math.ceil(tickWidth) + 12,
+    };
 
     const plotW = Math.max(40, width - m.left - m.right);
     const plotH = height - m.top - m.bottom;
@@ -520,6 +572,12 @@ export function createStackedColumnChart(container) {
 
         cursor += value;
       });
+
+      // Отметка стоит над столбцом на одной высоте у всех недель: скачущая
+      // по вершинам, она читалась бы как ещё один ряд данных
+      if (hasMarks && marks[i]?.length) {
+        renderMarks(svg, marks[i], cx, 16 + MARK_SIZE / 2);
+      }
 
       const tick = svgEl('text', {
         x: cx, y: height - 8, 'text-anchor': 'middle', class: 'chart-tick',

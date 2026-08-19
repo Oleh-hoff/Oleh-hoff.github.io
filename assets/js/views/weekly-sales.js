@@ -23,6 +23,11 @@ import { createStackedColumnChart, createBarChart, renderLegend } from '../chart
 
 const DATA_URL = 'data/weekly-sales.json';
 const FX_URL = 'data/fx-rates.json';
+const PROMO_URL = 'data/promotions.json';
+
+/* Порядок отметок фиксирован: купон всегда слева от дила, иначе на соседних
+   неделях одна и та же пара значков меняется местами и читается как разная. */
+const PROMO_KINDS = ['coupon', 'best_deal', 'lightning_deal'];
 
 /** Значение переключателя валюты «всё в евро». */
 const EUR_ALL = '__eur';
@@ -168,6 +173,68 @@ function weeklyRates(weeks, fx) {
     }
     return { rates: out, exact: inside.length > 0 };
   });
+}
+
+/* --------------------------------------------------------------------------
+   Отметки акций над неделями
+   -------------------------------------------------------------------------- */
+
+/**
+ * Кампании, попавшие на каждую неделю, с учётом текущих фильтров.
+ *
+ * Кампания отмечает неделю, если пересекается с ней хотя бы одним днём:
+ * дил на четыре дня внутри недели — это событие этой недели, а купон на три
+ * недели отмечает все три.
+ *
+ * Фильтры соблюдаются: при выбранном товаре отмечаются только его акции,
+ * иначе отметка утверждала бы, что скидка была на то, что сейчас на экране.
+ */
+function promoByWeek(promotions, weeks, { marketplace, asins, kinds }) {
+  const out = weeks.map(() => []);
+  if (!promotions?.campaigns?.length) return out;
+
+  for (const campaign of promotions.campaigns) {
+    if (!kinds.has(campaign.kind)) continue;
+    if (marketplace !== 'all' && campaign.m !== marketplace) continue;
+    if (asins.size && !campaign.asins.some((asin) => asins.has(asin))) continue;
+
+    weeks.forEach((week, i) => {
+      if (campaign.start <= week.end && campaign.end >= week.start) {
+        out[i].push(campaign);
+      }
+    });
+  }
+  return out;
+}
+
+/** Подпись кампании в подсказке: что это было, по чём и сколько. */
+function campaignLabel(campaign, t) {
+  const parts = [campaign.name || t(`sales.promo.${campaign.kind}`)];
+  if (campaign.discount) parts.push(`−${campaign.discount}`);
+  parts.push(`${campaign.start} — ${campaign.end}`);
+  if (Number.isFinite(campaign.units)) {
+    parts.push(t('sales.promo.units', { n: campaign.units }));
+  }
+  return parts.join(' · ');
+}
+
+/* Сколько кампаний перечислять в подсказке. Купоны идут почти каждую неделю
+   — их бывает больше сотни на неделю, и полный список нечитаем. Первым
+   идёт счёт, дальше самые крупные по продажам. */
+const TOOLTIP_LIMIT = 8;
+
+/**
+ * Одна отметка на тип, а не на кампанию: над столбцом стоит значок «здесь
+ * были купоны», а число и список живут в подсказке.
+ */
+function markFor(kind, campaigns, t) {
+  const sorted = [...campaigns].sort((a, b) => (b.units || 0) - (a.units || 0));
+  const lines = [t(`sales.promo.${kind}`) + `: ${campaigns.length}`];
+  lines.push(...sorted.slice(0, TOOLTIP_LIMIT).map((c) => campaignLabel(c, t)));
+  if (sorted.length > TOOLTIP_LIMIT) {
+    lines.push(t('sales.promo.more', { n: sorted.length - TOOLTIP_LIMIT }));
+  }
+  return { kind, label: lines.join('\n') };
 }
 
 /* --------------------------------------------------------------------------
@@ -391,16 +458,30 @@ export const weeklySales = {
       if (response.ok) fx = await response.json();
     } catch { /* перевод в евро будет недоступен */ }
 
+    /* Акции — тоже вспомогательные данные: без них раздел работает, просто
+       без отметок над столбцами. */
+    let promotions = null;
+    try {
+      const response = await fetch(PROMO_URL, { cache: 'no-store' });
+      if (response.ok) promotions = await response.json();
+    } catch { /* отметок не будет */ }
+
     /* --- состояние фильтров --- */
     const currencies = [...new Set(Object.values(data.marketplaces)
       .map((m) => m.currency).filter(Boolean))];
     const rateByWeek = weeklyRates(data.weeks, fx);
     const canConvert = Boolean(rateByWeek);
 
+    /* Галочки строятся по тому, что есть в данных: обещать «бест-дилы»,
+       когда их нет ни одного, значит показать пустую настройку. */
+    const promoKinds = PROMO_KINDS.filter((kind) =>
+      promotions?.campaigns?.some((c) => c.kind === kind));
+
     const state = {
       marketplace: 'all',
       asins: new Set(),
       metric: 'units',
+      kinds: new Set(promoKinds),
       // По умолчанию — перевод в евро, если курсы есть: именно он отвечает
       // на вопрос «сколько всего», ради которого раздел и открывают
       currency: canConvert ? EUR_ALL : (currencies[0] || 'EUR'),
@@ -446,6 +527,26 @@ export const weeklySales = {
 
     const picker = productFilter(data, state.asins, () => { picker.paint(); render(); });
 
+    /* Галочки акций. Каждая — отдельный переключатель, а не один общий:
+       купоны и дилы работают по-разному, и смотрят на них порознь. */
+    const promoBox = el('div', { class: 'promo-toggles' });
+    if (promoKinds.length) {
+      promoBox.appendChild(el('span', { class: 'filters__label', text: t('sales.promo.title') }));
+      for (const kind of promoKinds) {
+        const label = el('label', { class: 'promo-toggle' });
+        const box = el('input', { type: 'checkbox' });
+        box.checked = state.kinds.has(kind);
+        box.addEventListener('change', () => {
+          if (box.checked) state.kinds.add(kind); else state.kinds.delete(kind);
+          render();
+        });
+        label.append(box,
+          el('span', { class: `promo-toggle__mark promo-toggle__mark--${kind}` }),
+          el('span', { text: t(`sales.promo.${kind}`) }));
+        promoBox.appendChild(label);
+      }
+    }
+
     controls.append(
       el('label', { class: 'filters__group' }, [
         el('span', { class: 'filters__label', text: t('sales.marketplace') }), marketSelect]),
@@ -453,6 +554,7 @@ export const weeklySales = {
         el('span', { class: 'filters__label', text: t('sales.product') }), picker.node]),
       metricToggle,
       currencyField,
+      promoBox,
     );
     picker.paint();
 
@@ -570,9 +672,28 @@ export const weeklySales = {
         : t('sales.chart.weeksOne', { market: data.marketplaces[state.marketplace]?.name || '' });
 
       renderLegend(weekLegend, series, { mark: 'rect' });
+
+      /* Отметки считаются по тем же неделям, что и столбцы: текущая неделя
+         на графике не показана, значит и её акции туда не идут. */
+      const promoWeeks = promoByWeek(promotions, complete, state);
+      const marks = promoWeeks.map((list) => PROMO_KINDS
+        .map((kind) => [kind, list.filter((c) => c.kind === kind)])
+        .filter(([, group]) => group.length)
+        .map(([kind, group]) => markFor(kind, group, t)));
+      /* Считаем кампании и отмеченные недели, а не пересечения: одна
+         кампания на три недели даёт три пересечения, и число «отметок»
+         в сноске оказалось бы втрое больше, чем акций было. */
+      const promoIds = new Set();
+      let promoWeeksCount = 0;
+      for (const list of promoWeeks) {
+        if (list.length) promoWeeksCount += 1;
+        list.forEach((c) => promoIds.add(c.id));
+      }
+
       weekChart.update({
         labels: complete.map((w) => formatDayShort(w.start)),
         series,
+        marks,
         formatValue: formatAxis,
         emptyText: t('sales.empty'),
         ariaLabel: t('sales.chart.weeks'),
@@ -605,6 +726,11 @@ export const weeklySales = {
         }
       } else if (!money && currencies.length > 1) {
         notes.push(t('sales.note.currencies'));
+      }
+      if (promoKinds.length && state.kinds.size) {
+        notes.push(promoIds.size
+          ? t('sales.note.promo', { n: promoIds.size, weeks: promoWeeksCount })
+          : t('sales.note.promoNone'));
       }
       footnote.textContent = notes.join(' ');
     }
