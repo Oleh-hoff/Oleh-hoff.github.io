@@ -42,6 +42,7 @@ assets/js/
   sync-log.js           журнал синхронизаций
   notifications.js      колокольчик и модальное окно
   app.js                роутер и сборка оболочки
+  fba-spec.js           колонки пульта дефицита и их источники в SP-API
   views/                разделы CRM
 scripts/
   collect_amazon.py         финансовые проводки

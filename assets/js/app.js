@@ -17,6 +17,8 @@ import { mountNotifications } from './notifications.js';
 import { accountCheck } from './views/account-check.js';
 import { weeklySales } from './views/weekly-sales.js';
 import { wiki } from './views/wiki.js';
+import { fbaStock } from './views/fba-stock.js';
+import { fbaStockApi } from './views/fba-stock-api.js';
 
 /* --- Доступ ------------------------------------------------------------- */
 
@@ -44,6 +46,8 @@ function placeholder(titleKey) {
 const ROUTES = {
   'account-check': accountCheck,
   'weekly-sales': weeklySales,
+  'fba-stock': fbaStock,
+  'fba-stock-api': fbaStockApi,
   wiki,
   products: placeholder('nav.products'),
   customers: placeholder('nav.customers'),

@@ -93,6 +93,24 @@ for (const key of ['window', 'document', 'navigator', 'location', 'localStorage'
 const problems = [];
 const load = (rel) => import(pathToFileURL(ROOT + rel).href);
 
+/* Текст узла с пробелом между соседними элементами.
+
+   textContent склеивает ячейки таблицы вплотную: фраза, кончающаяся на
+   «…towards sales.», и следующая ячейка «Reports API» дают в сумме
+   «sales.Reports» — ровно форму ключа словаря. Проверка на непереведённые
+   ключи ловила это как ошибку раздела, которой нет. */
+function visibleText(node) {
+  const parts = [];
+  const walk = (el) => {
+    for (const child of el.childNodes) {
+      if (child.nodeType === 3) parts.push(child.nodeValue);
+      else walk(child);
+    }
+  };
+  walk(node);
+  return parts.join(' ');
+}
+
 await load('assets/js/strings-crm.js');
 const { setLang, t } = await load('assets/js/i18n.js');
 
@@ -112,6 +130,25 @@ const VIEWS = {
     path: 'assets/js/views/wiki.js', name: 'wiki',
     expect: { selectors: ['.wiki__item', '.prose', '.prose h2'] },
   },
+  /* Разделы-инструкции строятся из словаря, а не из данных: у них нет
+     графиков и наблюдателей, зато есть таблицы, которые обязаны быть
+     непустыми. Пустая таблица здесь означает потерянный ключ, а не
+     отсутствие выгрузки. */
+  'fba-stock': {
+    path: 'assets/js/views/fba-stock.js', name: 'fbaStock',
+    expect: {
+      tiles: true,
+      selectors: ['.fba-table tbody tr', '.fba-tag--manual', '.fba-steps li',
+        '.fba-legend__row', '.fba-faq details', '.fba-code'],
+    },
+  },
+  'fba-stock-api': {
+    path: 'assets/js/views/fba-stock-api.js', name: 'fbaStockApi',
+    expect: {
+      tiles: true,
+      selectors: ['.fba-table tbody tr', '.fba-steps li', '.fba-tag--manual', '.fba-list li'],
+    },
+  },
 };
 const { path: modulePath, name: exportName, expect = {} } = VIEWS[route] || {};
 if (!modulePath) {
@@ -130,14 +167,14 @@ for (const lang of ['ru', 'en', 'uk']) {
 
   const dispose = await section.mount(view, controls);
 
-  const text = view.textContent + ' ' + controls.textContent;
+  const text = `${visibleText(view)} ${visibleText(controls)}`;
   if (!view.children.length) problems.push(`[${lang}] раздел смонтировался пустым`);
   if (/NaN/.test(text)) problems.push(`[${lang}] в тексте есть NaN`);
   if (/undefined/.test(text)) problems.push(`[${lang}] в тексте есть undefined`);
   if (/\bnull\b/.test(text)) problems.push(`[${lang}] в тексте есть null`);
 
   // Непереведённый ключ отдаётся самим t() как есть — он и виден в тексте
-  const raw = text.match(/\b(sales|check|page|nav)\.[a-zA-Z.]+\b/g);
+  const raw = text.match(/\b(sales|check|page|nav|fba)\.[a-zA-Z.]+\b/g);
   if (raw) problems.push(`[${lang}] непереведённые ключи: ${[...new Set(raw)].join(', ')}`);
 
   if (lang === 'ru') {
@@ -185,7 +222,7 @@ for (const lang of ['ru', 'en', 'uk']) {
       box.dispatchEvent(new window.Event('change'));
       break;
     }
-    const after = view.textContent;
+    const after = visibleText(view);
     if (/NaN|undefined/.test(after)) problems.push('[ru] после смены фильтров появились NaN/undefined');
     if (!view.children.length) problems.push('[ru] после смены фильтров раздел опустел');
   }

@@ -15,3 +15,9 @@ credentials.json
 __pycache__/
 *.py[cod]
 .venv/
+# --- Node ------------------------------------------------------------------
+# jsdom ставится локально ради tools/*-check.mjs и в репозитории не нужен:
+# Pages отдаёт файлы как есть, а Actions собирают данные, а не страницу
+node_modules/
+package-lock.json
+package.json
