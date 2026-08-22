@@ -112,6 +112,7 @@ function visibleText(node) {
 }
 
 await load('assets/js/strings-crm.js');
+await load('assets/js/strings-oos.js');
 const { setLang, t } = await load('assets/js/i18n.js');
 
 /* Что раздел обязан построить. Проверять графики у текстового раздела
@@ -142,11 +143,49 @@ const VIEWS = {
         '.fba-legend__row', '.fba-faq details', '.fba-code'],
     },
   },
+  /* Карточка товара — единственная страница «Логистики» с настоящими
+     графиками и наблюдателями за размером: тепловая карта «Обзора» — таблица,
+     лента «Плана заказов» — CSS Grid. */
+  'oos-product': {
+    path: 'assets/js/views/oos-product.js', name: 'oosProduct',
+    expect: {
+      tiles: true, charts: true, observers: true,
+      selectors: ['.oos-thresholds', '.oos-stack', '.oos-mix__seg', '.oos-coverage__item',
+        '.oos-forecast tbody tr', '.oos-forecast td[data-tone]', '.oos-charts',
+        '.oos-cnt tbody tr', '.oos-wh tbody tr', '.oos-explain'],
+    },
+  },
   'fba-stock-api': {
     path: 'assets/js/views/fba-stock-api.js', name: 'fbaStockApi',
     expect: {
       tiles: true,
       selectors: ['.fba-table tbody tr', '.fba-steps li', '.fba-tag--manual', '.fba-list li'],
+    },
+  },
+  /* Обзор OOS: графиков и наблюдателей за размером нет намеренно — тепловая
+     карта верстается таблицей, а не SVG. Ставить ей charts/observers значило
+     бы завалить прогон на пустом счётчике disconnect(). */
+  'oos-overview': {
+    path: 'assets/js/views/oos-overview.js', name: 'oosOverview',
+    expect: {
+      tiles: true,
+      selectors: ['.oos-thresholds', '.oos-demo', '.oos-heat__cell', '.oos-heat__cell[data-tone="oos"]',
+        '.oos-summary tbody tr', '.oos-badge', '.oos-rowlink', '.oos-sort',
+        '.oos-heat-twin tbody tr', '.oos-inactive tbody tr', '.oos-check__row', '.oos-flag'],
+    },
+  },
+  /* План заказов: лента Ганта — CSS Grid, а не SVG, поэтому ни charts, ни
+     observers у раздела нет: пустой счётчик disconnect() завалил бы прогон
+     исправного кода. Проверяются лента, её полосы, таблица плана, блок
+     непоправимого окна и строки итога по округлению. */
+  'oos-orders': {
+    path: 'assets/js/views/oos-orders.js', name: 'oosOrders',
+    expect: {
+      tiles: true,
+      selectors: ['.oos-topbar', '.oos-thresholds', '.oos-params',
+        '.oos-gantt', '.oos-gantt__col', '.oos-gantt__lane', '.oos-gantt__bar',
+        '.oos-legend__item', '.breakdown tbody tr', '.oos-num',
+        '.oos-unrec-panel', '.oos-unrec', '.oos-unrec__list li', '.oos-round__row'],
     },
   },
 };
@@ -174,7 +213,7 @@ for (const lang of ['ru', 'en', 'uk']) {
   if (/\bnull\b/.test(text)) problems.push(`[${lang}] в тексте есть null`);
 
   // Непереведённый ключ отдаётся самим t() как есть — он и виден в тексте
-  const raw = text.match(/\b(sales|check|page|nav|fba)\.[a-zA-Z.]+\b/g);
+  const raw = text.match(/\b(sales|check|page|nav|fba|oos|settings|int)\.[a-zA-Z.]+\b/g);
   if (raw) problems.push(`[${lang}] непереведённые ключи: ${[...new Set(raw)].join(', ')}`);
 
   if (lang === 'ru') {

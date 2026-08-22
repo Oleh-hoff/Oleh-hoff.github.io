@@ -240,8 +240,11 @@ export function createLineChart(container) {
     /* --- линии --- */
     series.forEach((s, si) => {
       const d = s.values.map((v, i) => `${i ? 'L' : 'M'}${x(i)},${y(v)}`).join(' ');
+      /* Пунктир по запросу серии: опорная линия (порог, план, цель) — не
+         измерение, и сплошным штрихом она выдаёт себя за ещё одну серию. */
       svg.appendChild(svgEl('path', {
         d, class: 'chart-line',
+        'stroke-dasharray': s.dash || null,
         style: `stroke: ${s.color || seriesColor(si)}`,
       }));
     });

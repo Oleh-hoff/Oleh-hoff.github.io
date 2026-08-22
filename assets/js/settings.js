@@ -8,20 +8,32 @@
    Настройки применяются сразу, без кнопки «Сохранить»: все три меняют вид
    мгновенно и обратимы одним кликом, а лишний шаг подтверждения в такой
    ситуации только мешает.
+
+   Второй вкладкой в то же окно въехали «Интеграции» — откуда дашборд берёт
+   данные. Отдельным окном их делать не стали: шестерёнка в шапке одна, и
+   человек ищет любые настройки за ней, а не за второй кнопкой рядом.
+   Раздел живёт в settings-integrations.js целиком; здесь только вкладки.
    ========================================================================== */
 
-import { t, getLang, setLang, onLangChange, LANGS } from './i18n.js';
+import { t, getLang, setLang, onLangChange, applyTranslations, LANGS } from './i18n.js';
 import { getMode as themeMode, setMode as setThemeMode, onThemeChange } from './theme.js';
 import {
   getMode as zoneMode, setZone, listZones, onZoneChange, systemZone,
   offsetMinutes, formatOffset,
 } from './timezone.js';
+import { integrationsPanel } from './settings-integrations.js';
 
 const SVG = 'http://www.w3.org/2000/svg';
 
 /* Порядок языков — как их назвал пользователь. Подписи не переводятся:
    человек ищет свой язык на своём языке, а не на текущем. */
 const LANG_LABELS = { uk: 'Українська', ru: 'Русский', en: 'English' };
+
+/* Вкладка не запоминается: окно всегда открывается на «Общих». Язык, тема и
+   пояс — то, за чем сюда приходят ежедневно; интеграции настраивают один раз,
+   и открывать окно шириной 960 px со 178 контролами ради смены темы значило
+   бы наказывать за один визит во вторую вкладку. */
+const FIRST_TAB = 'general';
 
 function el(tag, attrs = {}, children = []) {
   const node = document.createElement(tag);
@@ -71,13 +83,32 @@ function segmentedGroup(labelText, options, isCurrent, onPick) {
       type: 'button', class: 'segmented__item', role: 'radio', text,
       'aria-checked': String(isCurrent(value)),
     });
-    button.addEventListener('click', () => onPick(value));
+    button.addEventListener('click', () => { onPick(value); sync(); });
     bar.appendChild(button);
     return { value, button };
   });
 
-  const sync = () => buttons.forEach(({ value, button }) =>
-    button.setAttribute('aria-checked', String(isCurrent(value))));
+  /* Roving tabindex: группа радиокнопок — одна остановка Tab, внутри
+     перемещение стрелками. Без этого три кнопки языка были тремя остановками,
+     а ArrowRight не делал ничего — и та же на вид полоса в соседней вкладке
+     «Интеграции» вела себя по-другому. */
+  const sync = () => buttons.forEach(({ value, button }) => {
+    const on = isCurrent(value);
+    button.setAttribute('aria-checked', String(on));
+    button.tabIndex = on ? 0 : -1;
+  });
+
+  bar.addEventListener('keydown', (event) => {
+    const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+    if (!step) return;
+    event.preventDefault();
+    const index = buttons.findIndex(({ button }) => button.tabIndex === 0);
+    const next = buttons[((index < 0 ? 0 : index) + step + buttons.length) % buttons.length];
+    next.button.click();
+    next.button.focus();
+  });
+
+  sync();
 
   group.append(label, bar);
   return { node: group, sync };
@@ -142,10 +173,12 @@ export function mountSettings(host) {
   button.appendChild(icon(GEAR));
   host.appendChild(button);
 
-  const dialog = el('dialog', { class: 'settings-modal' });
+  const dialog = el('dialog', { class: 'settings-modal', 'aria-labelledby': 'set-title' });
 
   const header = el('div', { class: 'settings-modal__header' });
-  const title = el('h2', { class: 'settings-modal__title', text: t('settings.title') });
+  const title = el('h2', {
+    class: 'settings-modal__title', id: 'set-title', text: t('settings.title'),
+  });
   const close = el('button', {
     type: 'button', class: 'btn btn--icon', 'aria-label': t('settings.close'),
   });
@@ -154,6 +187,13 @@ export function mountSettings(host) {
   header.append(title, close);
 
   const body = el('div', { class: 'settings-modal__body' });
+
+  /* --- Вкладка «Общие»: язык, пояс, тема --------------------------------- */
+
+  const generalPanel = el('div', {
+    class: 'settings-panel', id: 'set-panel-general',
+    role: 'tabpanel', 'aria-labelledby': 'set-tab-general', tabindex: '0',
+  });
 
   const language = segmentedGroup(
     t('settings.language'),
@@ -177,18 +217,103 @@ export function mountSettings(host) {
     (value) => setThemeMode(value),
   );
 
-  body.append(language.node, zone.node, theme.node);
-  dialog.append(header, body);
+  generalPanel.append(language.node, zone.node, theme.node);
+
+  /* --- Вкладка «Интеграции» ---------------------------------------------- */
+
+  /* Собирается сразу вместе с окном, а не при первом открытии вкладки: это
+     чистый DOM без единого запроса, а ленивая сборка сделала бы содержимое
+     окна зависящим от того, заглядывал ли человек во вторую вкладку. */
+  const integrations = integrationsPanel();
+
+  const panels = { general: generalPanel, integrations: integrations.node };
+
+  const tabs = el('div', {
+    class: 'settings-modal__tabs', role: 'tablist',
+    'data-i18n-attr': 'aria-label:int.tabs.aria',
+  });
+
+  const tabButtons = [
+    { name: 'general', key: 'int.tab.general' },
+    { name: 'integrations', key: 'int.tab.integrations' },
+  ].map(({ name, key }) => {
+    const tab = el('button', {
+      type: 'button', class: 'settings-tab', id: `set-tab-${name}`,
+      role: 'tab', 'aria-controls': `set-panel-${name}`,
+      'data-tab': name, 'data-i18n': key, text: t(key),
+    });
+    tab.addEventListener('click', () => selectTab(name));
+    tabs.appendChild(tab);
+    return tab;
+  });
+
+  function selectTab(name) {
+    const target = panels[name] ? name : FIRST_TAB;
+    dialog.dataset.tab = target;
+    /* Ширина переезжает классом, а не инлайновым стилем: инлайновый пришлось
+       бы считать в JS и пересчитывать при повороте экрана, а так все размеры
+       остаются в CSS вместе с медиазапросами. */
+    dialog.classList.toggle('settings-modal--wide', target === 'integrations');
+    for (const tab of tabButtons) {
+      const on = tab.dataset.tab === target;
+      tab.setAttribute('aria-selected', String(on));
+      tab.tabIndex = on ? 0 : -1;        // roving tabindex: полоса — одна остановка Tab
+      panels[tab.dataset.tab].hidden = !on;
+    }
+    body.scrollTop = 0;                  // новая вкладка начинается сверху, а не с середины
+    /* Фокус переезжает здесь, а не в обработчике стрелок: после клика мышью
+       он иначе оставался бы на прежней вкладке, у которой уже tabindex="-1"
+       и aria-selected="false". Закрытое окно display:none — focus() там
+       ничего не делает и никого не дёргает. */
+    if (dialog.open) tabButtons.find((tab) => tab.dataset.tab === target)?.focus();
+  }
+
+  /* Стрелки внутри полосы — как у радиогруппы: иначе до содержимого пришлось
+     бы добираться, протыкав Tab-ом каждую вкладку. */
+  tabs.addEventListener('keydown', (event) => {
+    const index = tabButtons.indexOf(event.target);
+    if (index < 0) return;
+    const last = tabButtons.length - 1;
+    const next = {
+      ArrowRight: index === last ? 0 : index + 1,
+      ArrowLeft: index === 0 ? last : index - 1,
+      ArrowDown: index === last ? 0 : index + 1,
+      ArrowUp: index === 0 ? last : index - 1,
+      Home: 0,
+      End: last,
+    }[event.key];
+    if (next === undefined) return;
+    event.preventDefault();
+    selectTab(tabButtons[next].dataset.tab);
+  });
+
+  body.append(generalPanel, integrations.node);
+  dialog.append(header, tabs, body);
   document.body.appendChild(dialog);
+  selectTab(FIRST_TAB);
 
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) dialog.close();
   });
 
-  button.addEventListener('click', () => {
+  /* Секреты живут только в полях: окно закрылось — их больше нет нигде.
+     Несохранённое дописывается до очистки; секретов в записи нет по
+     построению (RULES.md §1.2), очистка полей — отдельный слой. */
+  dialog.addEventListener('close', () => {
+    integrations.flush();
+    integrations.clearSecrets();
+  });
+
+  const open = () => {
     zone.sync();                 // время в подсказке успевает уйти между открытиями
     dialog.showModal();
-  });
+    // Фокус на вкладке, а не на крестике: он называет, где человек оказался.
+    // Ставит его selectTab — сначала окно, потом вкладка, иначе фокус ушёл бы
+    // в закрытое (display:none) окно и никуда не встал
+    selectTab(FIRST_TAB);
+  };
+
+  button.addEventListener('click', open);
 
   /* Подписи внутри окна собраны в JS и сами не обновятся: перерисовываем их
      на смене языка, иначе окно останется на прежнем до перезагрузки. */
@@ -205,11 +330,15 @@ export function mountSettings(host) {
     zone.sync();
     language.sync();
     theme.sync();
+    // Вкладки размечены data-i18n — их переводит сам i18n, списком их держать не нужно
+    applyTranslations(tabs);
+    // Раздел интеграций переводит себя сам: полторы сотни подписей списком не выживут
+    integrations.sync();
   };
 
   onLangChange(retitle);
   onThemeChange(() => theme.sync());
   onZoneChange(() => zone.sync());
 
-  return { open: () => dialog.showModal(), refresh: retitle };
+  return { open, refresh: retitle };
 }

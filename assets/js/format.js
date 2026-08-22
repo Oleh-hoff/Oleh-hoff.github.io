@@ -153,5 +153,11 @@ export function niceTicks(max, count = 4) {
 
   const ticks = [];
   for (let v = 0; v <= max + step * 0.001; v += step) ticks.push(v);
+  /* Последнее деление обязано быть НЕ НИЖЕ максимума: `createLineChart`
+     берёт его за верх домена, и при `max = 2 800` с делениями 0–1 000–2 000
+     точка получала отрицательную координату Y и просто пропадала за краем
+     viewBox — на двенадцати парах товар×рынок из пятнадцати. Условие цикла
+     этого не даёт: оно останавливается ДО превышения max. */
+  if (ticks[ticks.length - 1] < max) ticks.push(ticks[ticks.length - 1] + step);
   return ticks;
 }

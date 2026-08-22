@@ -1,0 +1,1931 @@
+{
+  "schemaVersion": 1,
+  "kind": "oos-demo",
+  "asOf": "2026-08-15",
+  "generatedAt": "2026-08-15T06:00:00Z",
+  "demo": true,
+  "note": "Демонстрационный набор. Товары, ASIN, склады и контейнеры вымышлены.",
+  "horizon": {
+    "from": "2026-08-16",
+    "to": "2027-01-31",
+    "granularity": "half-month"
+  },
+  "horizonEnd": "2027-01-31",
+  "markets": [
+    {
+      "code": "DE",
+      "marketplaceId": "A1PA6795UKMFR9",
+      "domain": "amazon.de",
+      "currency": "EUR",
+      "locale": "de-DE",
+      "orderRounding": 100,
+      "reportLanguage": "de",
+      "accent": "series-1"
+    },
+    {
+      "code": "UK",
+      "marketplaceId": "A1F83G8C2ARO7P",
+      "domain": "amazon.co.uk",
+      "currency": "GBP",
+      "locale": "en-GB",
+      "orderRounding": 50,
+      "reportLanguage": "en",
+      "accent": "series-4"
+    }
+  ],
+  "warehouses": [
+    {
+      "id": "fba-de",
+      "kind": "fba",
+      "market": "DE",
+      "name": "FBA Germany",
+      "aliases": [],
+      "includedByDefault": true
+    },
+    {
+      "id": "fba-uk",
+      "kind": "fba",
+      "market": "UK",
+      "name": "FBA United Kingdom",
+      "aliases": [],
+      "includedByDefault": true
+    },
+    {
+      "id": "awd-de",
+      "kind": "awd",
+      "market": "DE",
+      "name": "AWD Germany",
+      "aliases": [],
+      "includedByDefault": true,
+      "autoReplenishesFba": true
+    },
+    {
+      "id": "awd-uk",
+      "kind": "awd",
+      "market": "UK",
+      "name": "AWD United Kingdom",
+      "aliases": [],
+      "includedByDefault": true,
+      "autoReplenishesFba": true
+    },
+    {
+      "id": "prep-wm",
+      "kind": "prep",
+      "market": "DE",
+      "name": "WM / Eichenzell",
+      "aliases": [
+        "WM Warehouse",
+        "WM FOB",
+        "EXW WM",
+        "Lager Eichenzell",
+        "Eichenzell",
+        "Lager"
+      ],
+      "includedByDefault": true,
+      "prepToFbaLagDays": 7
+    },
+    {
+      "id": "prep-kastellaun",
+      "kind": "prep",
+      "market": "DE",
+      "name": "Kastellaun",
+      "aliases": [
+        "Kastellaun",
+        "Lager Kastellaun"
+      ],
+      "includedByDefault": false,
+      "prepToFbaLagDays": 7,
+      "note": "Add. Info: сток не трогаем при формировании нового заказа."
+    },
+    {
+      "id": "prep-weprep",
+      "kind": "prep",
+      "market": "UK",
+      "name": "WePrep Stowmarket",
+      "aliases": [
+        "WePrep",
+        "Stowmarket",
+        "WePrep Stowmarket"
+      ],
+      "includedByDefault": true,
+      "prepToFbaLagDays": 7
+    },
+    {
+      "id": "prep-asialog",
+      "kind": "prep",
+      "market": "DE",
+      "name": "AsiaLog Shenzhen",
+      "aliases": [
+        "AsiaLog",
+        "Asia Log",
+        "AsiaLog Shenzhen"
+      ],
+      "includedByDefault": false,
+      "prepToFbaLagDays": 45
+    }
+  ],
+  "products": [
+    {
+      "sku": "SQ1",
+      "asin": "B0SQ1DEMO1",
+      "category": "corner-guards",
+      "title": {
+        "ru": "Защита углов XL, 4 шт.",
+        "en": "Corner Protectors XL, 4-pack",
+        "uk": "Захист кутів XL, 4 шт."
+      },
+      "markets": {
+        "DE": {
+          "sellerSku": "SQ1-DE",
+          "reportTitle": "Eckenschutz XL 4er-Set",
+          "active": true,
+          "fba": {
+            "available": 2854,
+            "fcTransfer": 158,
+            "reservedFcProcessing": 33,
+            "reservedCustomerOrder": 210,
+            "unfulfillable": 4
+          },
+          "awd": {
+            "units": 1100
+          },
+          "prep": [
+            {
+              "warehouse": "prep-wm",
+              "unitsPerCarton": 40,
+              "cartons": 12
+            },
+            {
+              "warehouse": "prep-kastellaun",
+              "unitsPerCarton": 60,
+              "cartons": 30
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 2400
+            },
+            {
+              "month": "2026-01",
+              "units": 2450
+            },
+            {
+              "month": "2026-02",
+              "units": 2560
+            },
+            {
+              "month": "2026-03",
+              "units": 2670
+            },
+            {
+              "month": "2026-04",
+              "units": 2790
+            },
+            {
+              "month": "2026-05",
+              "units": 2900
+            },
+            {
+              "month": "2026-06",
+              "units": 3050
+            },
+            {
+              "month": "2026-07",
+              "units": 3480
+            }
+          ],
+          "t30": {
+            "units": 3200,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 4180,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 520,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15LTGMSKM",
+              "expected": 1200,
+              "located": 1200,
+              "expectedArrival": "2026-08-12"
+            },
+            {
+              "shipmentId": "FBA15QJ4RN8P",
+              "expected": 2400,
+              "located": 0
+            }
+          ]
+        },
+        "UK": {
+          "sellerSku": "SQ1-UK",
+          "reportTitle": "Corner Protectors XL 4-Pack",
+          "active": true,
+          "fba": {
+            "available": 900,
+            "fcTransfer": 60,
+            "reservedFcProcessing": 20,
+            "reservedCustomerOrder": 38,
+            "unfulfillable": 2
+          },
+          "awd": {
+            "units": 0
+          },
+          "prep": [
+            {
+              "warehouse": "prep-weprep",
+              "unitsPerCarton": 25,
+              "cartons": 4
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 480
+            },
+            {
+              "month": "2026-01",
+              "units": 500
+            },
+            {
+              "month": "2026-02",
+              "units": 520
+            },
+            {
+              "month": "2026-03",
+              "units": 545
+            },
+            {
+              "month": "2026-04",
+              "units": 565
+            },
+            {
+              "month": "2026-05",
+              "units": 590
+            },
+            {
+              "month": "2026-06",
+              "units": 615
+            },
+            {
+              "month": "2026-07",
+              "units": 700
+            }
+          ],
+          "t30": {
+            "units": 640,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 840,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 95,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15QW7T2N1",
+              "expected": 2200,
+              "located": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sku": "SQ2",
+      "asin": "B0SQ2DEMO2",
+      "category": "locks",
+      "title": {
+        "ru": "Магнитные блокираторы шкафов",
+        "en": "Magnetic Cupboard Locks",
+        "uk": "Магнітні блокатори шаф"
+      },
+      "markets": {
+        "DE": {
+          "sellerSku": "SQ2-DE",
+          "reportTitle": "Magnetische Kindersicherung Schrank",
+          "active": true,
+          "fba": {
+            "available": 3820,
+            "fcTransfer": 240,
+            "reservedFcProcessing": 40,
+            "reservedCustomerOrder": 96,
+            "unfulfillable": 0
+          },
+          "awd": {
+            "units": 1200
+          },
+          "prep": [
+            {
+              "warehouse": "prep-wm",
+              "unitsPerCarton": 30,
+              "cartons": 36
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 1180
+            },
+            {
+              "month": "2026-01",
+              "units": 1240
+            },
+            {
+              "month": "2026-02",
+              "units": 1290
+            },
+            {
+              "month": "2026-03",
+              "units": 1350
+            },
+            {
+              "month": "2026-04",
+              "units": 1400
+            },
+            {
+              "month": "2026-05",
+              "units": 1470
+            },
+            {
+              "month": "2026-06",
+              "units": 1520
+            },
+            {
+              "month": "2026-07",
+              "units": 1600
+            }
+          ],
+          "t30": {
+            "units": 1642,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 1920,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 360,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15WQ7N4TZ",
+              "expected": 2400,
+              "located": 0,
+              "expectedArrival": "2026-10-20"
+            }
+          ],
+          "notes": [
+            "Окно t30 захватило августовский всплеск после смены главного изображения, поэтому t30 выше интерполяции истории."
+          ]
+        },
+        "UK": {
+          "sellerSku": "SQ2-UK",
+          "reportTitle": "Magnetic Cupboard Locks 8+2",
+          "active": true,
+          "fba": {
+            "available": 1450,
+            "fcTransfer": 90,
+            "reservedFcProcessing": 20,
+            "reservedCustomerOrder": 24,
+            "unfulfillable": 0
+          },
+          "awd": {
+            "units": 400
+          },
+          "prep": [
+            {
+              "warehouse": "prep-weprep",
+              "unitsPerCarton": 25,
+              "cartons": 48
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 330
+            },
+            {
+              "month": "2026-01",
+              "units": 340
+            },
+            {
+              "month": "2026-02",
+              "units": 352
+            },
+            {
+              "month": "2026-03",
+              "units": 362
+            },
+            {
+              "month": "2026-04",
+              "units": 375
+            },
+            {
+              "month": "2026-05",
+              "units": 385
+            },
+            {
+              "month": "2026-06",
+              "units": 398
+            },
+            {
+              "month": "2026-07",
+              "units": 430
+            }
+          ],
+          "t30": {
+            "units": 410,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 520,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 70,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15UK7T2P4",
+              "expected": 400,
+              "located": 250,
+              "expectedArrival": "2026-08-26"
+            },
+            {
+              "shipmentId": "FBA15RM4V8JD",
+              "expected": 1200,
+              "located": 0,
+              "expectedArrival": "2026-12-02"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "sku": "SQ3",
+      "asin": "B0SQ3DEMO3",
+      "category": "sockets",
+      "title": {
+        "ru": "Заглушки для розеток, 24 шт.",
+        "en": "Socket Covers, 24-pack",
+        "uk": "Заглушки для розеток, 24 шт."
+      },
+      "markets": {
+        "DE": {
+          "sellerSku": "SQ3-DE",
+          "reportTitle": "Steckdosenschutz 24er",
+          "active": true,
+          "fba": {
+            "available": 1410,
+            "fcTransfer": 70,
+            "reservedFcProcessing": 20,
+            "reservedCustomerOrder": 54,
+            "unfulfillable": 2
+          },
+          "awd": {
+            "units": 700
+          },
+          "prep": [
+            {
+              "warehouse": "prep-wm",
+              "unitsPerCarton": 25,
+              "cartons": 80
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 820
+            },
+            {
+              "month": "2026-01",
+              "units": 835
+            },
+            {
+              "month": "2026-02",
+              "units": 845
+            },
+            {
+              "month": "2026-03",
+              "units": 860
+            },
+            {
+              "month": "2026-04",
+              "units": 870
+            },
+            {
+              "month": "2026-05",
+              "units": 880
+            },
+            {
+              "month": "2026-06",
+              "units": 895
+            },
+            {
+              "month": "2026-07",
+              "units": 930
+            }
+          ],
+          "t30": {
+            "units": 900,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 1120,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 150,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15DK9P2LR",
+              "expected": 3000,
+              "located": 0,
+              "expectedArrival": "2026-09-25"
+            },
+            {
+              "shipmentId": "FBA15EQ4N7BX",
+              "expected": 400,
+              "located": 400,
+              "expectedArrival": "2026-08-11"
+            }
+          ]
+        },
+        "UK": {
+          "sellerSku": "SQ3-UK",
+          "reportTitle": "Socket Covers 24-Pack",
+          "active": true,
+          "fba": {
+            "available": 1370,
+            "fcTransfer": 60,
+            "reservedFcProcessing": 20,
+            "reservedCustomerOrder": 16,
+            "unfulfillable": 1
+          },
+          "awd": {
+            "units": 0
+          },
+          "prep": [
+            {
+              "warehouse": "prep-weprep",
+              "unitsPerCarton": 20,
+              "cartons": 3
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 285
+            },
+            {
+              "month": "2026-01",
+              "units": 280
+            },
+            {
+              "month": "2026-02",
+              "units": 276
+            },
+            {
+              "month": "2026-03",
+              "units": 272
+            },
+            {
+              "month": "2026-04",
+              "units": 268
+            },
+            {
+              "month": "2026-05",
+              "units": 264
+            },
+            {
+              "month": "2026-06",
+              "units": 262
+            },
+            {
+              "month": "2026-07",
+              "units": 272
+            }
+          ],
+          "t30": {
+            "units": 260,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 330,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 40,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": []
+        }
+      }
+    },
+    {
+      "sku": "SQ4",
+      "asin": "B0SQ4DEMO4",
+      "category": "door-safety",
+      "title": {
+        "ru": "Защита дверей от защемления",
+        "en": "Door Finger Guards",
+        "uk": "Захист дверей від защемлення"
+      },
+      "markets": {
+        "DE": {
+          "sellerSku": "SQ4-DE",
+          "reportTitle": "Türstopper Fingerschutz",
+          "active": true,
+          "fba": {
+            "available": 2450,
+            "fcTransfer": 120,
+            "reservedFcProcessing": 30,
+            "reservedCustomerOrder": 38,
+            "unfulfillable": 0
+          },
+          "awd": {
+            "units": 900
+          },
+          "prep": [
+            {
+              "warehouse": "prep-wm",
+              "unitsPerCarton": 20,
+              "cartons": 45
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 590
+            },
+            {
+              "month": "2026-01",
+              "units": 595
+            },
+            {
+              "month": "2026-02",
+              "units": 600
+            },
+            {
+              "month": "2026-03",
+              "units": 608
+            },
+            {
+              "month": "2026-04",
+              "units": 612
+            },
+            {
+              "month": "2026-05",
+              "units": 618
+            },
+            {
+              "month": "2026-06",
+              "units": 625
+            },
+            {
+              "month": "2026-07",
+              "units": 655
+            }
+          ],
+          "t30": {
+            "units": 620,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 790,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 90,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15MC8T7YU",
+              "expected": 1800,
+              "located": 0,
+              "expectedArrival": "2026-11-05"
+            },
+            {
+              "shipmentId": "FBA15SD4T9NM",
+              "expected": 600,
+              "located": 0
+            }
+          ]
+        },
+        "UK": {
+          "sellerSku": "SQ4-UK",
+          "reportTitle": "Door Finger Guards",
+          "active": true,
+          "fba": {
+            "available": 0,
+            "fcTransfer": 0,
+            "reservedFcProcessing": 0,
+            "reservedCustomerOrder": 0,
+            "unfulfillable": 0
+          },
+          "awd": {
+            "units": 0
+          },
+          "prep": [],
+          "salesHistory": [],
+          "t30": {
+            "units": 0,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 0,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": []
+        }
+      }
+    },
+    {
+      "sku": "SQ5",
+      "asin": "B0SQ5DEMO5",
+      "category": "drawer-safety",
+      "title": {
+        "ru": "Защёлки для ящиков, 12 шт.",
+        "en": "Drawer Latches, 12-pack",
+        "uk": "Засувки для шухляд, 12 шт."
+      },
+      "markets": {
+        "DE": {
+          "sellerSku": "SQ5-DE",
+          "reportTitle": "Schubladensicherung 12er",
+          "active": true,
+          "fba": {
+            "available": 2680,
+            "fcTransfer": 190,
+            "reservedFcProcessing": 30,
+            "reservedCustomerOrder": 74,
+            "unfulfillable": 6
+          },
+          "awd": {
+            "units": 1500
+          },
+          "prep": [
+            {
+              "warehouse": "prep-wm",
+              "unitsPerCarton": 60,
+              "cartons": 80
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 1050
+            },
+            {
+              "month": "2026-01",
+              "units": 1075
+            },
+            {
+              "month": "2026-02",
+              "units": 1100
+            },
+            {
+              "month": "2026-03",
+              "units": 1130
+            },
+            {
+              "month": "2026-04",
+              "units": 1160
+            },
+            {
+              "month": "2026-05",
+              "units": 1185
+            },
+            {
+              "month": "2026-06",
+              "units": 1215
+            },
+            {
+              "month": "2026-07",
+              "units": 1300
+            }
+          ],
+          "t30": {
+            "units": 1250,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 1560,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 210,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15HN3B6QW",
+              "expected": 1600,
+              "located": 0
+            }
+          ]
+        },
+        "UK": {
+          "sellerSku": "SQ5-UK",
+          "reportTitle": "Drawer Latches 12-Pack",
+          "active": true,
+          "fba": {
+            "available": 580,
+            "fcTransfer": 50,
+            "reservedFcProcessing": 10,
+            "reservedCustomerOrder": 31,
+            "unfulfillable": 0
+          },
+          "awd": {
+            "units": 0
+          },
+          "prep": [
+            {
+              "warehouse": "prep-weprep",
+              "unitsPerCarton": 15,
+              "cartons": 2
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 400
+            },
+            {
+              "month": "2026-01",
+              "units": 420
+            },
+            {
+              "month": "2026-02",
+              "units": 445
+            },
+            {
+              "month": "2026-03",
+              "units": 470
+            },
+            {
+              "month": "2026-04",
+              "units": 500
+            },
+            {
+              "month": "2026-05",
+              "units": 525
+            },
+            {
+              "month": "2026-06",
+              "units": 555
+            },
+            {
+              "month": "2026-07",
+              "units": 620
+            }
+          ],
+          "t30": {
+            "units": 600,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 740,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 88,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": []
+        }
+      }
+    },
+    {
+      "sku": "SQ6",
+      "asin": "B0SQ6DEMO6",
+      "category": "kitchen-safety",
+      "title": {
+        "ru": "Защитный экран для плиты",
+        "en": "Stove Guard",
+        "uk": "Захисний екран для плити"
+      },
+      "markets": {
+        "DE": {
+          "sellerSku": "SQ6-DE",
+          "reportTitle": "Herdschutzgitter",
+          "active": true,
+          "fba": {
+            "available": 7400,
+            "fcTransfer": 320,
+            "reservedFcProcessing": 70,
+            "reservedCustomerOrder": 128,
+            "unfulfillable": 3
+          },
+          "awd": {
+            "units": 1400
+          },
+          "prep": [
+            {
+              "warehouse": "prep-wm",
+              "unitsPerCarton": 45,
+              "cartons": 36
+            },
+            {
+              "warehouse": "prep-kastellaun",
+              "unitsPerCarton": 40,
+              "cartons": 25
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 1300
+            },
+            {
+              "month": "2026-01",
+              "units": 1420
+            },
+            {
+              "month": "2026-02",
+              "units": 1560
+            },
+            {
+              "month": "2026-03",
+              "units": 1700
+            },
+            {
+              "month": "2026-04",
+              "units": 1860
+            },
+            {
+              "month": "2026-05",
+              "units": 2010
+            },
+            {
+              "month": "2026-06",
+              "units": 2180
+            },
+            {
+              "month": "2026-07",
+              "units": 2560
+            }
+          ],
+          "t30": {
+            "units": 2390,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 3070,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 480,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15JD3K8PQ",
+              "expected": 900,
+              "located": 450,
+              "expectedArrival": "2026-08-24"
+            },
+            {
+              "shipmentId": "FBA15ZR5G1XK",
+              "expected": 4200,
+              "located": 0,
+              "expectedArrival": "2026-11-12"
+            }
+          ]
+        },
+        "UK": {
+          "sellerSku": "SQ6-UK",
+          "reportTitle": "Stove Guard",
+          "active": false,
+          "fba": {
+            "available": 240,
+            "fcTransfer": 0,
+            "reservedFcProcessing": 0,
+            "reservedCustomerOrder": 0,
+            "unfulfillable": 0
+          },
+          "awd": {
+            "units": 0
+          },
+          "prep": [],
+          "salesHistory": [],
+          "t30": {
+            "units": 0,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 0,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": []
+        }
+      }
+    },
+    {
+      "sku": "SQ7",
+      "asin": "B0SQ7DEMO7",
+      "category": "gates",
+      "title": {
+        "ru": "Барьер на лестницу 75–85 см",
+        "en": "Stair Gate 75–85 cm",
+        "uk": "Бар'єр на сходи 75–85 см"
+      },
+      "markets": {
+        "DE": {
+          "sellerSku": "SQ7-DE",
+          "reportTitle": "Treppenschutzgitter 75-85 cm",
+          "active": true,
+          "fba": {
+            "available": 2950,
+            "fcTransfer": 210,
+            "reservedFcProcessing": 40,
+            "reservedCustomerOrder": 88,
+            "unfulfillable": 1
+          },
+          "awd": {
+            "units": 1000
+          },
+          "prep": [
+            {
+              "warehouse": "prep-wm",
+              "unitsPerCarton": 40,
+              "cartons": 100
+            },
+            {
+              "warehouse": "prep-asialog",
+              "unitsPerCarton": 30,
+              "cartons": 40
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 1120
+            },
+            {
+              "month": "2026-01",
+              "units": 1160
+            },
+            {
+              "month": "2026-02",
+              "units": 1210
+            },
+            {
+              "month": "2026-03",
+              "units": 1260
+            },
+            {
+              "month": "2026-04",
+              "units": 1310
+            },
+            {
+              "month": "2026-05",
+              "units": 1370
+            },
+            {
+              "month": "2026-06",
+              "units": 1420
+            },
+            {
+              "month": "2026-07",
+              "units": 1560
+            }
+          ],
+          "t30": {
+            "units": 1450,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 1870,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 260,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15AB7K2NP",
+              "expected": 3500,
+              "located": 0,
+              "expectedArrival": "2026-10-18"
+            },
+            {
+              "shipmentId": "FBA15AB7K2NQ",
+              "expected": 2500,
+              "located": 0
+            }
+          ]
+        },
+        "UK": {
+          "sellerSku": "SQ7-UK",
+          "reportTitle": "Stair Gate 75-85 cm",
+          "active": false,
+          "fba": {
+            "available": 0,
+            "fcTransfer": 0,
+            "reservedFcProcessing": 0,
+            "reservedCustomerOrder": 0,
+            "unfulfillable": 0
+          },
+          "awd": {
+            "units": 0
+          },
+          "prep": [],
+          "salesHistory": [],
+          "t30": {
+            "units": 0,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 0,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": []
+        }
+      }
+    },
+    {
+      "sku": "SQ8",
+      "asin": "B0SQ8DEMO8",
+      "category": "edge-guards",
+      "title": {
+        "ru": "Лента на кромку стола, 5 м",
+        "en": "Table Edge Guard, 5 m",
+        "uk": "Стрічка на кромку столу, 5 м"
+      },
+      "markets": {
+        "DE": {
+          "sellerSku": "SQ8-DE",
+          "reportTitle": "Tischkantenschutz Band 5 m",
+          "active": true,
+          "fba": {
+            "available": 2350,
+            "fcTransfer": 0,
+            "reservedFcProcessing": 25,
+            "reservedCustomerOrder": 46,
+            "unfulfillable": 12
+          },
+          "awd": {
+            "units": 300
+          },
+          "prep": [
+            {
+              "warehouse": "prep-wm",
+              "unitsPerCarton": 20,
+              "cartons": 15
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 1050
+            },
+            {
+              "month": "2026-01",
+              "units": 1010
+            },
+            {
+              "month": "2026-02",
+              "units": 960
+            },
+            {
+              "month": "2026-03",
+              "units": 915
+            },
+            {
+              "month": "2026-04",
+              "units": 870
+            },
+            {
+              "month": "2026-05",
+              "units": 830
+            },
+            {
+              "month": "2026-06",
+              "units": 800
+            },
+            {
+              "month": "2026-07",
+              "units": 830
+            }
+          ],
+          "t30": {
+            "units": 780,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 1000,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 100,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15RQ8W2LM",
+              "expected": 1200,
+              "located": 900,
+              "expectedArrival": "2026-08-28"
+            },
+            {
+              "shipmentId": "FBA15RQ8W2LN",
+              "expected": 600,
+              "located": 600,
+              "expectedArrival": "2026-08-09"
+            }
+          ]
+        },
+        "UK": {
+          "sellerSku": "SQ8-UK",
+          "reportTitle": "Table Edge Guard 5 m",
+          "active": true,
+          "fba": {
+            "available": 230,
+            "fcTransfer": 10,
+            "reservedFcProcessing": 0,
+            "reservedCustomerOrder": 11,
+            "unfulfillable": 3
+          },
+          "awd": {
+            "units": 0
+          },
+          "prep": [],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 205
+            },
+            {
+              "month": "2026-01",
+              "units": 198
+            },
+            {
+              "month": "2026-02",
+              "units": 190
+            },
+            {
+              "month": "2026-03",
+              "units": 182
+            },
+            {
+              "month": "2026-04",
+              "units": 175
+            },
+            {
+              "month": "2026-05",
+              "units": 180
+            },
+            {
+              "month": "2026-06",
+              "units": 178
+            },
+            {
+              "month": "2026-07",
+              "units": 186
+            }
+          ],
+          "t30": {
+            "units": 180,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 220,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 22,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": []
+        }
+      }
+    },
+    {
+      "sku": "SQ9",
+      "asin": "B0SQ9DEMO9",
+      "category": "window-safety",
+      "title": {
+        "ru": "Ограничитель открывания окна",
+        "en": "Window Restrictor Cable",
+        "uk": "Обмежувач відкривання вікна"
+      },
+      "markets": {
+        "DE": {
+          "sellerSku": "SQ9-DE",
+          "reportTitle": "Fenstersicherung Kabel",
+          "active": true,
+          "fba": {
+            "available": 10600,
+            "fcTransfer": 620,
+            "reservedFcProcessing": 80,
+            "reservedCustomerOrder": 245,
+            "unfulfillable": 8
+          },
+          "awd": {
+            "units": 3500
+          },
+          "prep": [
+            {
+              "warehouse": "prep-wm",
+              "unitsPerCarton": 100,
+              "cartons": 24
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 1800
+            },
+            {
+              "month": "2026-01",
+              "units": 2050
+            },
+            {
+              "month": "2026-02",
+              "units": 2350
+            },
+            {
+              "month": "2026-03",
+              "units": 2700
+            },
+            {
+              "month": "2026-04",
+              "units": 3100
+            },
+            {
+              "month": "2026-05",
+              "units": 3500
+            },
+            {
+              "month": "2026-06",
+              "units": 3950
+            },
+            {
+              "month": "2026-07",
+              "units": 5100
+            }
+          ],
+          "t30": {
+            "units": 4100,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 6120,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 980,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15CJ6D4WE",
+              "expected": 6000,
+              "located": 0,
+              "expectedArrival": "2026-09-20"
+            },
+            {
+              "shipmentId": "FBA15PL2S9HT",
+              "expected": 8000,
+              "located": 0,
+              "expectedArrival": "2026-11-25"
+            }
+          ],
+          "notes": [
+            "SB Sales Units за 16.07–14.08 ниже июльского тренда: ореол Prime Day поднял первую половину июля целиком, а окно t30 её не захватывает."
+          ]
+        },
+        "UK": {
+          "sellerSku": "SQ9-UK",
+          "reportTitle": "Window Restrictor Cable",
+          "active": false,
+          "fba": {
+            "available": 0,
+            "fcTransfer": 0,
+            "reservedFcProcessing": 0,
+            "reservedCustomerOrder": 0,
+            "unfulfillable": 0
+          },
+          "awd": {
+            "units": 0
+          },
+          "prep": [],
+          "salesHistory": [],
+          "primeDay": {
+            "days": 4,
+            "units": 0,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": []
+        }
+      }
+    },
+    {
+      "sku": "SQ10",
+      "asin": "B0SQ10DEM0",
+      "category": "bathroom-safety",
+      "title": {
+        "ru": "Блокиратор крышки унитаза",
+        "en": "Toilet Lid Lock",
+        "uk": "Блокатор кришки унітаза"
+      },
+      "markets": {
+        "DE": {
+          "sellerSku": "SQ10-DE",
+          "reportTitle": "",
+          "active": false,
+          "fba": {
+            "available": 0,
+            "fcTransfer": 0,
+            "reservedFcProcessing": 0,
+            "reservedCustomerOrder": 0,
+            "unfulfillable": 0
+          },
+          "awd": {
+            "units": 0
+          },
+          "prep": [],
+          "salesHistory": [],
+          "t30": {
+            "units": 0,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 0,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": []
+        },
+        "UK": {
+          "sellerSku": "SQ10-UK",
+          "reportTitle": "Toilet Lid Lock",
+          "active": true,
+          "fba": {
+            "available": 1760,
+            "fcTransfer": 120,
+            "reservedFcProcessing": 20,
+            "reservedCustomerOrder": 20,
+            "unfulfillable": 0
+          },
+          "awd": {
+            "units": 600
+          },
+          "prep": [
+            {
+              "warehouse": "prep-weprep",
+              "unitsPerCarton": 25,
+              "cartons": 6
+            }
+          ],
+          "salesHistory": [
+            {
+              "month": "2025-12",
+              "units": 250
+            },
+            {
+              "month": "2026-01",
+              "units": 262
+            },
+            {
+              "month": "2026-02",
+              "units": 275
+            },
+            {
+              "month": "2026-03",
+              "units": 290
+            },
+            {
+              "month": "2026-04",
+              "units": 300
+            },
+            {
+              "month": "2026-05",
+              "units": 315
+            },
+            {
+              "month": "2026-06",
+              "units": 330
+            },
+            {
+              "month": "2026-07",
+              "units": 375
+            }
+          ],
+          "t30": {
+            "units": 340,
+            "windowFrom": "2026-07-16",
+            "windowTo": "2026-08-14"
+          },
+          "forecast": {
+            "units": 450,
+            "source": "seller-central-july"
+          },
+          "primeDay": {
+            "days": 4,
+            "units": 55,
+            "from": "2026-07-16",
+            "to": "2026-07-19"
+          },
+          "shipments": [
+            {
+              "shipmentId": "FBA15GH9T5RK",
+              "expected": 1500,
+              "located": 0,
+              "expectedArrival": "2026-10-14"
+            },
+            {
+              "shipmentId": "FBA15XN6P4QB",
+              "expected": 900,
+              "located": 800,
+              "expectedArrival": "2026-08-09"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "containers": [
+    {
+      "ref": "C-2601",
+      "sku": "SQ1",
+      "forwarderRef": "FBA15LTGMSKM",
+      "units": 1200,
+      "status": "arrived",
+      "eta": "2026-08-02",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Ningbo Sunquest"
+    },
+    {
+      "ref": "C-2602",
+      "sku": "SQ1",
+      "forwarderRef": "FBA15QJ4RN8P",
+      "units": 2400,
+      "status": "ready-for-shipment",
+      "eta": null,
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Ningbo Sunquest"
+    },
+    {
+      "ref": "C-2603",
+      "sku": "SQ1",
+      "forwarderRef": "FBA15VB2XKD9",
+      "units": 4800,
+      "status": "in-produce",
+      "eta": null,
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Ningbo Sunquest"
+    },
+    {
+      "ref": "C-2604",
+      "sku": "SQ2",
+      "forwarderRef": "FBA15WQ7N4TZ",
+      "units": 2400,
+      "status": "scheduled",
+      "eta": "2026-10-20",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Ningbo Sunquest"
+    },
+    {
+      "ref": "C-2605",
+      "sku": "SQ3",
+      "forwarderRef": "FBA15DK9P2LR",
+      "units": 3000,
+      "status": "scheduled",
+      "eta": "2026-09-25",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Shenzhen Kidsafe"
+    },
+    {
+      "ref": "C-2606",
+      "sku": "SQ4",
+      "forwarderRef": "FBA15MC8T7YU",
+      "units": 1800,
+      "status": "scheduled",
+      "eta": "2026-11-05",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Shenzhen Kidsafe"
+    },
+    {
+      "ref": "C-2607",
+      "sku": "SQ5",
+      "forwarderRef": "FBA15HN3B6QW",
+      "units": 1600,
+      "status": "ready-for-shipment",
+      "eta": null,
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Qingdao HomeGuard"
+    },
+    {
+      "ref": "C-2608",
+      "sku": "SQ5",
+      "forwarderRef": "WM FOB 26-118",
+      "units": 900,
+      "status": "scheduled",
+      "eta": "2026-09-12",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Qingdao HomeGuard"
+    },
+    {
+      "ref": "C-2609",
+      "sku": "SQ6",
+      "forwarderRef": "FBA15ZR5G1XK",
+      "units": 4200,
+      "status": "scheduled",
+      "eta": "2026-11-12",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Qingdao HomeGuard"
+    },
+    {
+      "ref": "C-2610",
+      "sku": "SQ6",
+      "forwarderRef": "FBA15TY8M3CV",
+      "units": 1500,
+      "status": "in-produce",
+      "eta": null,
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Qingdao HomeGuard"
+    },
+    {
+      "ref": "C-2611",
+      "sku": "SQ6",
+      "forwarderRef": "Lager Kastellaun",
+      "units": 1200,
+      "status": "scheduled",
+      "eta": "2026-10-05",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Qingdao HomeGuard"
+    },
+    {
+      "ref": "C-2612",
+      "sku": "SQ7",
+      "forwarderRef": "Invoice divided",
+      "units": 6000,
+      "status": "scheduled",
+      "eta": "2026-10-18",
+      "invoiceDivided": true,
+      "parentRef": null,
+      "children": [
+        "C-2613",
+        "C-2614"
+      ],
+      "supplier": "Foshan Gatewell"
+    },
+    {
+      "ref": "C-2613",
+      "sku": "SQ7",
+      "forwarderRef": "FBA15AB7K2NP",
+      "units": 3500,
+      "status": "scheduled",
+      "eta": "2026-10-18",
+      "invoiceDivided": false,
+      "parentRef": "C-2612",
+      "supplier": "Foshan Gatewell"
+    },
+    {
+      "ref": "C-2614",
+      "sku": "SQ7",
+      "forwarderRef": "FBA15AB7K2NQ",
+      "units": 2500,
+      "status": "ready-for-shipment",
+      "eta": null,
+      "invoiceDivided": false,
+      "parentRef": "C-2612",
+      "supplier": "Foshan Gatewell"
+    },
+    {
+      "ref": "C-2615",
+      "sku": "SQ7",
+      "forwarderRef": "AsiaLog Shenzhen",
+      "units": 1500,
+      "status": "in-produce",
+      "eta": null,
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Foshan Gatewell"
+    },
+    {
+      "ref": "C-2616",
+      "sku": "SQ9",
+      "forwarderRef": "Lager Eichenzell",
+      "units": 3000,
+      "status": "scheduled",
+      "eta": "2026-10-08",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Ningbo Sunquest"
+    },
+    {
+      "ref": "C-2617",
+      "sku": "SQ9",
+      "forwarderRef": "FBA15CJ6D4WE",
+      "units": 6000,
+      "status": "scheduled",
+      "eta": "2026-09-20",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Ningbo Sunquest"
+    },
+    {
+      "ref": "C-2618",
+      "sku": "SQ9",
+      "forwarderRef": "FBA15PL2S9HT",
+      "units": 8000,
+      "status": "scheduled",
+      "eta": "2026-11-25",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Ningbo Sunquest"
+    },
+    {
+      "ref": "C-2619",
+      "sku": "SQ1",
+      "forwarderRef": "AGL EXW UK FBA15QW7T2N1",
+      "units": 2200,
+      "status": "ready-for-shipment",
+      "eta": null,
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Ningbo Sunquest"
+    },
+    {
+      "ref": "C-2620",
+      "sku": "SQ2",
+      "forwarderRef": "AGL EXW UK FBA15RM4V8JD",
+      "units": 1200,
+      "status": "scheduled",
+      "eta": "2026-12-02",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Ningbo Sunquest"
+    },
+    {
+      "ref": "C-2621",
+      "sku": "SQ5",
+      "forwarderRef": "AGL EXW UK FBA15NB3C7YX",
+      "units": 3000,
+      "status": "in-produce",
+      "eta": null,
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Qingdao HomeGuard"
+    },
+    {
+      "ref": "C-2622",
+      "sku": "SQ10",
+      "forwarderRef": "AGL EXW UK FBA15GH9T5RK",
+      "units": 1500,
+      "status": "scheduled",
+      "eta": "2026-10-14",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Shenzhen Kidsafe"
+    },
+    {
+      "ref": "C-2623",
+      "sku": "SQ10",
+      "forwarderRef": "AGL EXW UK FBA15XN6P4QB",
+      "units": 900,
+      "status": "arrived",
+      "eta": "2026-08-09",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Shenzhen Kidsafe"
+    },
+    {
+      "ref": "C-2624",
+      "sku": "SQ7",
+      "forwarderRef": "AGL EXW UK FBA15KD8W2LM",
+      "units": 1800,
+      "status": "ready-for-shipment",
+      "eta": null,
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Foshan Gatewell"
+    },
+    {
+      "ref": "C-2625",
+      "sku": "SQ3",
+      "forwarderRef": "FBA15EQ4N7BX",
+      "units": 400,
+      "status": "arrived",
+      "eta": "2026-08-11",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Shenzhen Kidsafe"
+    },
+    {
+      "ref": "C-2626",
+      "sku": "SQ4",
+      "forwarderRef": "FBA15SD4T9NM",
+      "units": 600,
+      "status": "in transit",
+      "eta": null,
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Shenzhen Kidsafe"
+    },
+    {
+      "ref": "C-2627",
+      "sku": "SQ4",
+      "forwarderRef": "Lager 26-204",
+      "units": 400,
+      "status": "scheduled",
+      "eta": "2026-11-10",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Shenzhen Kidsafe"
+    },
+    {
+      "ref": "C-2628",
+      "sku": "SQ7",
+      "forwarderRef": "MSC 4471182",
+      "units": 900,
+      "status": "scheduled",
+      "eta": "2026-11-20",
+      "invoiceDivided": false,
+      "parentRef": null,
+      "supplier": "Foshan Gatewell"
+    }
+  ]
+}

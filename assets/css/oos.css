@@ -1,0 +1,1445 @@
+/* ==========================================================================
+   Раздел «Логистика» (прогноз OOS): три страницы — обзор, карточка товара,
+   план заказов.
+
+   Файл отдельный по той же причине, что и fba.css: эти правила нужны трём
+   страницам из тринадцати, в base.css они стали бы общим весом для всех.
+
+   Цвета берутся ТОЛЬКО из tokens.css. Единственное собственное значение
+   здесь — --oos-tone-mix, и это процент насыщенности подложки, а не цвет
+   (см. §0). Статусные токены проекта намеренно одинаковы в обеих темах:
+   носителем смысла работает не оттенок, а значок и подпись рядом с ним,
+   поэтому раздел обязан ставить их везде, где красит.
+
+   Порядок разделов:
+     §0  локальные переменные и общие тоны
+     §1  общее для трёх страниц
+     §2  «Обзор OOS»
+     §3  «Карточка товара»
+     §4  «План заказов»
+     §5  узкий экран и уменьшенная анимация
+   ========================================================================== */
+
+
+/* ==========================================================================
+   §0. Локальные переменные и таблица тонов
+   ========================================================================== */
+
+/* Насыщенность статусных подложек и заливка марок по состоянию.
+
+   ПОЧЕМУ ОДНОЙ ДОЛИ ПРИМЕСИ НЕ ХВАТИЛО
+   Раньше все четыре состояния красились одной формулой: статусный тон,
+   подмешанный к поверхности на 14 %. Четыре получавшихся подложки
+   расходились между собой на ΔE 1,9–4,6 при пороге 15 для обычного зрения,
+   а «Норма» и «OOS в горизонте» под дейтанопией — на 0,3. Цветовой канал
+   карты не нёс информации вовсе: всё держалось на значке 12 px, которого у
+   «Нормы» не было намеренно.
+
+   ПОЧЕМУ ЛЕСЕНКА, А НЕ ОДИН ПРОЦЕНТ
+   Четыре статусных токена проекта (зелёный, жёлтый, оранжевый, красный)
+   стоят в палитре слишком тесно, чтобы разойтись при одинаковой примеси:
+   развести их может только разная светлота. Поэтому доля примеси своя у
+   каждого состояния и своя в каждой теме, а «Норма» не красится вовсе —
+   ровная поверхность и есть её знак.
+
+   ЧИСЛА (OKLab ΔE×100, симуляция Machado 2009, порог навыка dataviz:
+   15 для обычного зрения, 6 для ЦВД)
+     светлая  ok --surface-2 · below-reserve 75 % · below-fba 100 % · oos 100 %
+              худшая пара 15,7 обычное зрение / 13,9 ЦВД
+     тёмная   ok --surface-2 · below-reserve 100 % · below-fba 80 % · oos 60 %
+              худшая пара 18,8 обычное зрение / 12,6 ЦВД
+   Контраст знака к своей подложке — не ниже 4,8:1 в обеих темах, поэтому у
+   двух состояний он инвертирован (--oos-ink-*).
+
+   Определено трижды ровно по той же схеме, что и сама тёмная тема в
+   tokens.css: выбор пользователя (data-theme), системная настройка (media)
+   и базовое значение. Правка одного блока без двух других рассинхронизирует
+   тему — это не цвет, поэтому исключение из правила «всё в tokens.css»
+   допустимо, но цена у него та же. */
+:root {
+  /* Плашка статуса рядом всегда несёт значок и подпись, поэтому ей хватает
+     лёгкой подложки: сплошной красный овал кричал бы там, где текст уже
+     всё сказал. */
+  --oos-tone-mix: 14%;
+
+  /* Доля статусного тона в подложке — своя у каждого состояния. «Норма» не
+     красится вовсе: её подложка — ровная поверхность (--tone-ground). */
+  --oos-mix-ok: 0%;
+  --oos-mix-below-reserve: 75%;
+  --oos-mix-below-fba: 100%;
+  --oos-mix-oos: 100%;
+
+  --oos-ink-ok: var(--ink-1);
+  --oos-ink-below-reserve: var(--ink-1);
+  --oos-ink-below-fba: var(--ink-1);
+  --oos-ink-oos: var(--ink-on-accent);
+}
+
+:root[data-theme="dark"] {
+  --oos-tone-mix: 26%;
+
+  --oos-mix-ok: 0%;
+  --oos-mix-below-reserve: 100%;
+  --oos-mix-below-fba: 80%;
+  --oos-mix-oos: 60%;
+
+  /* На жёлтой и оранжевой подложке белый знак даёт 1,7:1 — здесь чернила
+     тёмные, и берётся фон страницы, а не хекс. */
+  --oos-ink-ok: var(--ink-1);
+  --oos-ink-below-reserve: var(--plane);
+  --oos-ink-below-fba: var(--plane);
+  --oos-ink-oos: var(--ink-1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --oos-tone-mix: 26%;
+
+    --oos-mix-ok: 0%;
+    --oos-mix-below-reserve: 100%;
+    --oos-mix-below-fba: 80%;
+    --oos-mix-oos: 60%;
+
+    --oos-ink-ok: var(--ink-1);
+    --oos-ink-below-reserve: var(--plane);
+    --oos-ink-below-fba: var(--plane);
+    --oos-ink-oos: var(--ink-1);
+  }
+}
+
+/* Таблица тонов: сущность → токен, заливка и цвет знака поверх неё. Дальше
+   по файлу ни одно правило не называет статусный токен напрямую, оно читает
+   --tone / --tone-mix / --tone-ink. Так «резерв ниже порога» красится
+   одинаково в ячейке карты, в ячейке прогноза, в плашке статуса и в ключе
+   легенды, и перекрасить одно, забыв другое, невозможно.
+
+   Имена тонов одни и те же на трёх страницах. Раньше таблица прогноза
+   пользовалась своим «warn» — им красились И «FBA ниже порога», И «резерв
+   ниже порога», а легенда объясняла оба одним словом «Ниже порога FBA»;
+   на «Обзоре» тот же жёлтый означал «Резерв ниже порога». Одно слово несло
+   два цвета, один цвет — два смысла.
+
+   Селекторы перечислены поимённо, а не через голый [data-tone]: атрибут с
+   таким именем может завестись в любом другом разделе, и глобальное правило
+   молча покрасило бы его. */
+.oos-heat__cell[data-tone="ok"],
+.oos-forecast td[data-tone="ok"],
+.oos-summary td[data-tone="ok"],
+.oos-heat-twin td[data-tone="ok"],
+.oos-legend__key[data-tone="ok"],
+.oos-badge--ok                        { --tone: var(--status-good);
+                                        --tone-mix: var(--oos-mix-ok);
+                                        --tone-ground: var(--surface-2);
+                                        --tone-ink: var(--oos-ink-ok); }
+
+.oos-heat__cell[data-tone="below-reserve"],
+.oos-forecast td[data-tone="below-reserve"],
+.oos-summary td[data-tone="below-reserve"],
+.oos-heat-twin td[data-tone="below-reserve"],
+.oos-legend__key[data-tone="below-reserve"],
+.oos-badge--below-reserve             { --tone: var(--status-warning);
+                                        --tone-mix: var(--oos-mix-below-reserve);
+                                        --tone-ink: var(--oos-ink-below-reserve); }
+
+.oos-heat__cell[data-tone="below-fba"],
+.oos-forecast td[data-tone="below-fba"],
+.oos-summary td[data-tone="below-fba"],
+.oos-heat-twin td[data-tone="below-fba"],
+.oos-legend__key[data-tone="below-fba"],
+.oos-badge--below-fba                 { --tone: var(--status-serious);
+                                        --tone-mix: var(--oos-mix-below-fba);
+                                        --tone-ink: var(--oos-ink-below-fba); }
+
+.oos-heat__cell[data-tone="oos"],
+.oos-forecast td[data-tone="oos"],
+.oos-summary td[data-tone="oos"],
+.oos-heat-twin td[data-tone="oos"],
+.oos-legend__key[data-tone="oos"],
+.oos-badge--oos,
+.oos-badge--unrecoverable             { --tone: var(--status-critical);
+                                        --tone-mix: var(--oos-mix-oos);
+                                        --tone-ink: var(--oos-ink-oos); }
+
+/* «Нет горизонта» и «неактивен» — не состояние запаса, а отсутствие расчёта.
+   Статусным цветом их красить нельзя: это сказало бы «всё хорошо» или
+   «всё плохо» там, где ответа нет вовсе. */
+.oos-badge--no-horizon,
+.oos-badge--inactive,
+.oos-legend__key[data-tone="none"]    { --tone: var(--ink-3);
+                                        --tone-mix: 0%;
+                                        --tone-ground: var(--surface-2);
+                                        --tone-ink: var(--ink-1); }
+
+/* Категориальные слоты: цвет закреплён за сущностью, а не за её местом в
+   списке. Фильтр рынка меняет число строк, но оставшиеся не перекрашивает.
+   Подмножества 1-2-3-4 (состав запаса) и 1-4-7 (каналы ленты) прогнаны
+   валидатором палитры ОТДЕЛЬНО, в обеих темах; результаты записаны в шапке
+   tokens.css. Прежний набор каналов 1-3-5 на полном наборе проходил, а сам
+   по себе давал ΔE 1,6 при дейтанопии в тёмной теме — «Пополнение
+   препцентра» и «Ускорение партии» были одного цвета. */
+.oos-mix__seg[data-part="fba"],
+.oos-legend__key[data-part="fba"]        { --tone: var(--series-1); }
+.oos-mix__seg[data-part="awd"],
+.oos-legend__key[data-part="awd"]        { --tone: var(--series-2); }
+.oos-mix__seg[data-part="prep"],
+.oos-legend__key[data-part="prep"]       { --tone: var(--series-3); }
+.oos-mix__seg[data-part="inTransit"],
+.oos-legend__key[data-part="inTransit"]  { --tone: var(--series-4); }
+
+/* Канал заказа — идентичность, а не состояние. Красная полоса «ускорения»
+   читалась бы как ошибка, поэтому статусные токены здесь не используются. */
+.oos-gantt__bar[data-channel="direct-fba"],
+.oos-legend__key[data-channel="direct-fba"]  { --tone: var(--series-1); }
+.oos-gantt__bar[data-channel="prep-refill"],
+.oos-legend__key[data-channel="prep-refill"] { --tone: var(--series-4); }
+.oos-gantt__bar[data-channel="expedite"],
+.oos-legend__key[data-channel="expedite"]    { --tone: var(--series-7); }
+
+/* Акцент рынка (§«Обзор» спецификации). Имя токена приходит из данных
+   инлайновой переменной --market-accent; запасное значение — на случай
+   рынка, которому акцент не задан. Цвет здесь второй носитель: код «DE» или
+   «UK» стоит рядом всегда. */
+.oos-market {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--sp-1);
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+}
+
+.oos-market::before {
+  content: "";
+  align-self: center;
+  width: 3px;
+  height: 0.85em;
+  border-radius: 2px;
+  background: var(--market-accent, var(--ink-3));
+}
+
+
+/* ==========================================================================
+   §1. Общее для трёх страниц
+   ========================================================================== */
+
+/* --- Шапка раздела: плашка демо-данных и сводка порогов ------------------ */
+
+.oos-topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-3);
+  /* min-width сбрасывается, чтобы длинная сводка порогов не растягивала
+     колонку сетки и не увозила страницу по горизонтали */
+  min-width: 0;
+}
+
+/* Плашка «демонстрационные данные»: акцентная подкладка, а не статусная.
+   Это не предупреждение о проблеме, а пометка происхождения чисел. */
+.oos-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--ink-1);
+  font-size: var(--fs-sm);
+}
+
+.oos-demo__icon {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  color: var(--ink-2);
+}
+
+/* Строка действующих порогов. Видна всегда и на всех трёх страницах:
+   спецификация требует, чтобы пороги подтверждались перед показом
+   результатов, — значит человек обязан видеть, какие взяты, не открывая
+   панель параметров. */
+.oos-thresholds {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-3);
+  margin: 0;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  min-width: 0;
+}
+
+.oos-thresholds__item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--sp-1);
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+}
+
+/* Значение порога — единственное, что здесь читают числом, поэтому оно
+   выходит из капители обратно в обычный кегль и чернильный цвет */
+.oos-thresholds__value {
+  color: var(--ink-1);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.oos-thresholds__state {
+  padding: 2px var(--sp-2);
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+}
+
+/* Отклонение от базовых параметров подсвечивается акцентом: «изменено 3»
+   должно быть заметно, иначе человек сравнит числа с чужими порогами */
+.oos-thresholds__state[data-changed="true"] {
+  background: var(--accent-soft);
+  color: var(--ink-1);
+}
+
+/* --- Панель параметров расчёта ------------------------------------------ */
+
+.oos-params {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.oos-params[hidden] { display: none; }
+
+.oos-params__grid {
+  display: grid;
+  /* auto-fit + minmax вместо media-запросов: панель живёт и на всю ширину
+     рабочей области, и в узкой колонке, а число полей меняется */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--sp-4);
+}
+
+.oos-params__group {
+  display: grid;
+  gap: var(--sp-2);
+  align-content: start;
+  min-width: 0;
+}
+
+.oos-params__label {
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.oos-params__hint {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: var(--fs-sm);
+  /* Пояснение под контролом — текст для чтения, а не подпись: ограничиваем
+     длину строки, иначе на широком мониторе глаз теряет начало строки */
+  max-width: 46ch;
+}
+
+/* Числовое поле параметра. Ширина по содержимому: поле на 8 символов под
+   значение «1.5» выглядит как поле под что-то большее и провоцирует ввод. */
+.oos-params__group input[type="number"] {
+  width: 100%;
+  max-width: 9ch;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--ink-1);
+  font-variant-numeric: tabular-nums;
+}
+
+.oos-params__checks {
+  display: grid;
+  gap: var(--sp-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.oos-params__checks legend {
+  padding: 0;
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.oos-params__checks label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--ink-1);
+  font-size: var(--fs-sm);
+}
+
+.oos-params__market {
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.oos-params__foot {
+  display: grid;
+  gap: var(--sp-3);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+.oos-params__foot p {
+  max-width: 64ch;
+}
+
+/* Кнопка панели в шапке. Открытое состояние читается не только стрелкой
+   внутри кнопки: aria-expanded уже стоит, и подложка повторяет его глазу. */
+.oos-params-btn[aria-expanded="true"] {
+  background: var(--surface-2);
+  color: var(--ink-1);
+  border-color: var(--border-strong);
+}
+
+/* Выбор товара в шапке. Подпись опции — «SQ1 · Eckenschutz XL 4er-Set · DE»,
+   и без ограничения ширины она растягивает флекс-строку controls до тех пор,
+   пока фильтр рынка не уедет за край. Обрезается сам контрол, не текст опции:
+   в раскрытом списке названия видны целиком. */
+.oos-pick {
+  max-width: 32ch;
+}
+
+/* --- Статусная плашка ---------------------------------------------------- */
+
+/* Значок из statusIcon() даёт три формы на семь состояний, поэтому текст
+   в плашке обязателен — цвет и форма их не различают. */
+.oos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 2px var(--sp-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--ink-1);
+  background: var(--surface-2);
+  /* Вторая декларация выигрывает там, где color-mix поддержан; где нет —
+     остаётся нейтральная подложка, и смысл несут значок и подпись */
+  background: color-mix(in oklab, var(--tone, var(--ink-3)) var(--oos-tone-mix), var(--surface-1));
+}
+
+.oos-badge .status-icon {
+  width: 14px;
+  height: 14px;
+}
+
+/* --- Легенда ------------------------------------------------------------- */
+
+.oos-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-4);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+.oos-legend__item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+
+/* Ключ легенды красится ТОЙ ЖЕ заливкой, что и марка, которую он объясняет.
+   Раньше ключ заливался чистым статусным токеном (контраст к поверхности
+   4,68:1), а ячейка карты — смесью того же токена на 14 % (1,20:1): человек
+   искал насыщенно-красный квадрат из легенды и находил бледно-розовые
+   ячейки, ΔE между ними доходил до 39.
+
+   Категориальные ключи (канал ленты, доля состава) заливки не имеют — у них
+   марка и есть чистый цвет серии, поэтому --tone остаётся запасным.
+
+   Тонкая обводка обязательна: у «Нормы» заливка — сама поверхность, и без
+   рамки ключ был бы невидим. */
+.oos-legend__key {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  /* Первая декларация — запасная для движка без color-mix: там она и
+     сработает, потому что вторая при отсутствии поддержки не разбирается
+     вовсе (color-mix стоит в правиле буквально, а не внутри переменной). */
+  background: var(--tone, var(--ink-3));
+  background: color-mix(in oklab, var(--tone, var(--ink-3)) var(--tone-mix, 100%), var(--tone-ground, var(--surface-1)));
+  /* Марка стоит на строке текста, а не над ней */
+  transform: translateY(1px);
+}
+
+/* Ключ отметки прибытия повторяет ромб из charts.js: другой формы марки
+   там нет, и квадрат обещал бы другую отметку. */
+.oos-legend__key--mark {
+  border: none;
+  background: var(--ink-2);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+/* Марка линейного графика повторяет саму линию: 2 px штрих, а не квадрат —
+   иначе легенда обещает заливку, которой на графике нет */
+.oos-legend__key--line {
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  transform: translateY(-3px);
+}
+
+.oos-legend__key--rect {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  transform: translateY(1px);
+}
+
+.oos-legend__name { color: var(--ink-2); }
+
+.oos-legend__desc {
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+
+/* --- Подсказка ----------------------------------------------------------- */
+
+/* createTooltip() считает координаты ОТНОСИТЕЛЬНО хоста
+   (`cell.left - box.left`) и двигает узел через transform — значит подсказка
+   обязана быть absolute внутри позиционированного хоста, а не fixed.
+   Хост позиционируется правилом ниже: какой именно узел передадут в
+   createTooltip(), CSS заранее не знает, поэтому он опознаётся по ребёнку. */
+:where(div, section, main):has(> .oos-tip) {
+  position: relative;
+}
+
+.oos-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  z-index: 40;
+  min-width: 180px;
+  max-width: 280px;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--surface-1);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-pop);
+  font-size: var(--fs-sm);
+  /* Подсказка не должна перехватывать наведение: иначе она гасит сама себя,
+     как только курсор доедет до её края */
+  pointer-events: none;
+}
+
+.oos-tip[hidden] { display: none; }
+
+.oos-tip__title {
+  margin-bottom: var(--sp-1);
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+
+.oos-tip__row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  padding: 2px 0;
+}
+
+.oos-tip__name {
+  margin-right: auto;
+  color: var(--ink-2);
+}
+
+.oos-tip__value {
+  color: var(--ink-1);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Раскрывающееся объяснение ------------------------------------------- */
+
+.oos-explain {
+  padding: var(--sp-3);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  color: var(--ink-2);
+}
+
+.oos-explain__summary {
+  cursor: pointer;
+  color: var(--ink-1);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  /* Свой маркер вместо системного треугольника: он одинаков во всех
+     браузерах и не прыгает при раскрытии */
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+}
+
+.oos-explain__summary::-webkit-details-marker { display: none; }
+
+.oos-explain__summary::before {
+  content: "▸";
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+
+.oos-explain[open] > .oos-explain__summary::before { content: "▾"; }
+
+.oos-explain[open] > .oos-explain__summary { margin-bottom: var(--sp-2); }
+
+.oos-explain__body {
+  /* 64ch — верхняя граница читаемой строки; на широком мониторе абзац без
+     ограничения теряется глазом при переходе на следующую строку */
+  max-width: 64ch;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+/* --- Ссылка из строки таблицы -------------------------------------------- */
+
+.oos-rowlink {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.oos-rowlink:hover,
+.oos-rowlink:focus-visible { text-decoration: underline; }
+
+/* --- Сортируемый заголовок ------------------------------------------------ */
+
+/* Кнопка внутри th: она переключает сортировку, а состояние живёт в
+   aria-sort на самом th — стрелка рисуется по нему, поэтому визуальное и
+   озвученное состояние не могут разойтись. */
+.oos-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.oos-sort:hover { color: var(--ink-1); }
+
+/* Стрелка — оформление уже озвученного aria-sort, поэтому уходит из
+   доступного имени альтернативным текстом «» */
+.oos-sort::after {
+  content: "↕" / "";
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+
+th[aria-sort="ascending"] .oos-sort::after {
+  content: "▲" / "";
+  color: var(--ink-1);
+}
+
+th[aria-sort="descending"] .oos-sort::after {
+  content: "▼" / "";
+  color: var(--ink-1);
+}
+
+/* --- Числовая колонка ------------------------------------------------------ */
+
+.oos-num {
+  text-align: right;
+  /* Моноширинные цифры только в колонках чисел: столбик читается сравнением
+     длины, а не чтением каждой цифры */
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* --- Фокус ----------------------------------------------------------------- */
+
+/* base.css задаёт кольцо глобально, но у трёх элементов оно нуждается в
+   уточнении: ячейка карты и полоса ленты живут в контейнере с прокруткой,
+   и кольцо снаружи подрезалось бы его краем. */
+.oos-heat__cell:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  /* внутрь, а не наружу: между ячейками 2 px зазора, внешнее кольцо село бы
+     на соседей и обрезалось краем прокрутки */
+  outline-offset: -2px;
+  position: relative;
+  z-index: 3;
+}
+
+.oos-gantt__bar:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  position: relative;
+  z-index: 3;
+}
+
+.oos-sort:focus-visible,
+.oos-rowlink:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+
+/* ==========================================================================
+   §2. Страница «Обзор OOS»
+   ========================================================================== */
+
+/* --- Тепловая карта -------------------------------------------------------- */
+
+/* Настоящая таблица, а не сетка из div: связь ячейки с заголовком строки и
+   столбца, чтение с клавиатуры и текстовая альтернатива достаются даром.
+   Разделяет поверхность, а не рамка — отсюда border-spacing вместо border. */
+.oos-heat {
+  border-collapse: separate;
+  border-spacing: 2px;
+  font-size: var(--fs-xs);
+  background: var(--surface-1);
+}
+
+.oos-heat__corner,
+.oos-heat__rowhead {
+  position: sticky;
+  left: 0;
+  /* Непрозрачный фон обязателен: без него под липким столбцом просвечивают
+     проезжающие ячейки, и карта выглядит сломанной */
+  background: var(--surface-1);
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Шапка периодов липнет к верху прокручиваемого бокса — как строка дат
+   в ленте. Бокс ограничен по высоте только тогда, когда карта в него не
+   влезает: на пятнадцати строках прокрутки обычно нет вовсе, и лишней
+   полосы прокрутки не появляется. */
+.oos-heat-scroll,
+.oos-forecast-scroll {
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.oos-heat thead th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: var(--surface-1);
+}
+
+.oos-heat__corner {
+  /* Угол липнет по обеим осям, поэтому он обязан быть выше и шапки,
+     и липкого столбца — иначе проезжает под ними. */
+  z-index: 4;
+  color: var(--ink-3);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.oos-heat__rowhead {
+  z-index: 1;
+  padding: 0 var(--sp-3) 0 0;
+  color: var(--ink-1);
+  font-weight: 500;
+}
+
+.oos-heat__market {
+  margin-left: var(--sp-1);
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+
+/* Шапка в два этажа: месяц сверху, дни снизу. writing-mode не используется —
+   повёрнутый текст читается медленнее любого сокращения. */
+.oos-heat__colhead {
+  padding: 0 var(--sp-1) var(--sp-1);
+  color: var(--ink-3);
+  font-weight: 500;
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+}
+
+.oos-heat__colhead span { display: block; }
+
+.oos-heat__cell {
+  min-width: 44px;
+  height: 32px;
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: var(--radius-sm);
+  color: var(--ink-1);
+  cursor: default;
+  /* Подложка и цвет знака — из таблицы тонов §0: доля примеси своя у каждого
+     состояния и своя в каждой теме, иначе четыре состояния расходятся на
+     ΔE 2–4 и цвет перестаёт что-либо значить. Первая декларация остаётся
+     запасной для движка без color-mix: ячейка станет нейтральной, но значок,
+     скрытый текст и таблица-двойник никуда не денутся. */
+  background: var(--surface-2);
+  background: color-mix(in oklab, var(--tone, var(--surface-2)) var(--tone-mix, var(--oos-tone-mix)), var(--tone-ground, var(--surface-1)));
+  color: var(--tone-ink, var(--ink-1));
+  transition: box-shadow var(--transition);
+}
+
+/* Второй канал поверх цвета: значок в КАЖДОЙ ячейке, включая норму. Раньше
+   норма значка не получала намеренно — «чтобы проблемные периоды не тонули
+   в поле символов», — но тогда «значка нет» и «значок не разглядел»
+   выглядели одинаково. Галочка нормы приглушена до --ink-3 и не спорит с
+   восклицательным знаком и крестом. */
+.oos-heat__mark {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--tone-ink, var(--ink-1));
+}
+
+.oos-heat__cell[data-tone="ok"]            .oos-heat__mark::before { content: "✓"; }
+.oos-heat__cell[data-tone="ok"]            .oos-heat__mark { color: var(--ink-3); font-weight: 500; }
+.oos-heat__cell[data-tone="below-reserve"] .oos-heat__mark::before { content: "·"; }
+.oos-heat__cell[data-tone="below-fba"]     .oos-heat__mark::before { content: "!"; }
+.oos-heat__cell[data-tone="oos"]           .oos-heat__mark::before { content: "✕"; }
+
+/* Третий канал у самого тяжёлого состояния: штриховка 45°. Она читается в
+   монохроме, при печати и при цветовой слепоте, где тон и значок могут
+   слиться. transparent здесь — не цвет, а пропуск полосы. */
+.oos-heat__cell[data-tone="oos"] {
+  /* Полосы чернилами знака, а не самим красным: подложка теперь плотная,
+     и красная штриховка по красному не читалась бы вовсе. */
+  background-image: repeating-linear-gradient(
+    45deg,
+    color-mix(in oklab, var(--tone-ink, var(--ink-1)) 22%, transparent) 0 2px,
+    transparent 2px 7px
+  );
+}
+
+/* Четвёртый канал: период непоправимого окна. «Красное, но лечится заказом»
+   и «красное, лечить нечем» — разные решения человека, и различить их
+   обязано не только скрытым текстом. */
+.oos-heat__cell[data-unrec="true"] {
+  box-shadow: inset 0 -2px 0 var(--status-critical);
+}
+
+.oos-heat__cell:hover {
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+.oos-heat__cell[data-unrec="true"]:hover {
+  box-shadow:
+    inset 0 -2px 0 var(--status-critical),
+    inset 0 0 0 1px var(--border-strong);
+}
+
+/* --- Сводная таблица ------------------------------------------------------- */
+
+/* Вся строка кликабельна ради удобства мыши, но доступный способ перехода —
+   ссылка в первом столбце: курсор о ней не сообщает никому */
+.oos-summary tbody tr {
+  cursor: pointer;
+}
+
+.oos-summary tbody tr:hover {
+  background: var(--surface-2);
+}
+
+.oos-summary__title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.oos-summary__title span {
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+
+.oos-inactive {
+  color: var(--ink-2);
+}
+
+/* --- Проверка данных и флаги ----------------------------------------------- */
+
+.oos-check {
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.oos-check__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+}
+
+.oos-check__lang {
+  color: var(--ink-1);
+  font-size: var(--fs-sm);
+}
+
+/* Примеры названий из выгрузки: именно на них сработала проверка языка,
+   поэтому они показываются, а не описываются словами */
+.oos-check__hint {
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}
+
+.oos-flags {
+  display: grid;
+  gap: var(--sp-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Флаг несёт уровень полосой слева и словом уровня в тексте: молча
+   проглоченное предупреждение — это данные, которых человек не увидел */
+.oos-flag {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  padding-left: var(--sp-3);
+  border-left: 3px solid var(--ink-3);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+.oos-flag[data-level="error"]   { border-left-color: var(--status-critical); }
+.oos-flag[data-level="warning"] { border-left-color: var(--status-warning); }
+.oos-flag[data-level="info"]    { border-left-color: var(--ink-3); }
+
+
+/* ==========================================================================
+   §3. Страница «Карточка товара»
+   ========================================================================== */
+
+/* --- Лесенка слагаемых запаса ----------------------------------------------- */
+
+.oos-stack {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--sp-2) var(--sp-3);
+  align-items: baseline;
+}
+
+.oos-stack__op {
+  justify-self: center;
+  color: var(--ink-3);
+  font-size: var(--fs-md);
+}
+
+.oos-stack__name { color: var(--ink-1); }
+
+.oos-stack__value {
+  text-align: right;
+  color: var(--ink-1);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Расшифровка под строкой (коробки, контейнеры) идёт от колонки названия
+   до правого края — иначе она рвётся по колонке значения */
+.oos-stack__sub {
+  grid-column: 2 / -1;
+  margin-top: calc(var(--sp-1) * -1);
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+
+/* Ставится на каждую ячейку итоговой строки: сетка не знает строк, и линия
+   поверх «Всего» собирается из трёх верхних границ */
+.oos-stack__total {
+  padding-top: var(--sp-2);
+  border-top: 1px solid var(--border-strong);
+  font-weight: 600;
+}
+
+/* Слагаемое, не вошедшее в расчёт. Приглушения прозрачностью здесь нет
+   намеренно: opacity уводит текст ниже порога контраста, а строка
+   «выключен, потому что…» обязана читаться. Смысл несут цвет ink-3,
+   зачёркнутое число и подпись причины рядом. */
+.oos-stack__off { color: var(--ink-3); }
+.oos-stack__off.oos-stack__value { text-decoration: line-through; }
+
+/* --- Полоса состава запаса --------------------------------------------------- */
+
+.oos-mix {
+  display: flex;
+  height: 14px;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+/* Сегменты разделяет поверхность, а не рамка: обводка добавила бы каждому
+   сегменту второй контур и съела бы узкие доли целиком */
+.oos-mix__seg {
+  flex: none;
+  min-width: 0;
+  background: var(--tone, var(--ink-3));
+  box-shadow: var(--mark-gap) 0 0 var(--surface-1);
+}
+
+.oos-mix__seg:last-child { box-shadow: none; }
+
+/* --- Два метода покрытия ------------------------------------------------------ */
+
+.oos-coverage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-5);
+}
+
+.oos-coverage__item {
+  display: grid;
+  gap: var(--sp-1);
+  min-width: 0;
+}
+
+.oos-coverage__item > span:first-child {
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.oos-coverage__value {
+  color: var(--ink-1);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+}
+
+/* --- Таблица прогноза ---------------------------------------------------------- */
+
+.oos-forecast {
+  width: 100%;
+  /* separate, а не collapse: при collapse липкая шапка теряет свои границы
+     (они принадлежат таблице, а не ячейке) и уезжает вместе со строками. */
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--fs-sm);
+}
+
+.oos-forecast th,
+.oos-forecast td {
+  padding: var(--sp-2) var(--sp-3);
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.oos-forecast thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--surface-1);
+  color: var(--ink-3);
+  font-weight: 500;
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Липкое название строки: при горизонтальной прокрутке 11 столбцов без него
+   непонятно, какой ряд перед глазами */
+.oos-forecast thead th:first-child {
+  /* Угол: липнет по обеим осям, значит выше и шапки, и первого столбца. */
+  left: 0;
+  z-index: 4;
+}
+
+.oos-forecast__rowhead {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--surface-1);
+  text-align: left;
+  color: var(--ink-1);
+  font-weight: 500;
+}
+
+/* Раскрашиваются только две строки из девяти — «FBA на конец» и «резерв».
+   Светофор из 99 ячеек не читается вовсе: цвет перестаёт означать «сюда
+   смотри», когда он везде. */
+.oos-forecast td[data-tone],
+.oos-summary td[data-tone],
+.oos-heat-twin td[data-tone] {
+  background: var(--surface-2);
+  background: color-mix(in oklab, var(--tone, var(--surface-2)) var(--tone-mix, var(--oos-tone-mix)), var(--tone-ground, var(--surface-1)));
+  color: var(--tone-ink, var(--ink-1));
+}
+
+.oos-forecast__mark {
+  margin-right: var(--sp-1);
+  color: var(--tone-ink, var(--ink-1));
+  font-weight: 700;
+}
+
+/* Знаки те же, что на карте: «·» — резерв ниже порога, «!» — FBA ниже
+   порога, «✕» — OOS. Общего «warn» на два разных состояния больше нет. */
+.oos-forecast td[data-tone="below-reserve"] .oos-forecast__mark::before,
+.oos-summary  td[data-tone="below-reserve"] .oos-forecast__mark::before,
+.oos-heat-twin td[data-tone="below-reserve"] .oos-forecast__mark::before { content: "·"; }
+
+.oos-forecast td[data-tone="below-fba"] .oos-forecast__mark::before,
+.oos-summary  td[data-tone="below-fba"] .oos-forecast__mark::before,
+.oos-heat-twin td[data-tone="below-fba"] .oos-forecast__mark::before { content: "!"; }
+
+.oos-forecast td[data-tone="oos"] .oos-forecast__mark::before,
+.oos-summary  td[data-tone="oos"] .oos-forecast__mark::before,
+.oos-heat-twin td[data-tone="oos"] .oos-forecast__mark::before { content: "✕"; }
+
+/* --- Стопка графиков ------------------------------------------------------------ */
+
+/* Две шкалы в одних осях — первая ошибка списка анти-паттернов, поэтому
+   линии и столбцы разведены на два графика с общей осью X */
+.oos-charts {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+/* --- Контейнеры ------------------------------------------------------------------ */
+
+/* Отброшенный контейнер приглушается, но остаётся читаемым: его строка —
+   ответ на вопрос «где ещё 6 000 штук», и спрятать её значит показать
+   потерянные данные. Полоса слева и слово в столбце причины дублируют цвет. */
+.oos-cnt--out td {
+  color: var(--ink-2);
+}
+
+.oos-cnt--out td:first-child {
+  box-shadow: inset 3px 0 0 var(--ink-3);
+}
+
+.oos-cnt__reason {
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  /* Причина — фраза, а не код: ей нужно переноситься, иначе таблица уезжает */
+  white-space: normal;
+  min-width: 16ch;
+}
+
+/* --- Склады ---------------------------------------------------------------------- */
+
+/* Выключенный склад помечен полосой и словом в столбце «в расчёте».
+   Текст не приглушается: остаток Kastellaun — настоящее число, которое
+   человек обязан увидеть, чтобы решить, включать ли центр. */
+.oos-wh__off td:first-child,
+.oos-wh tr[data-off="true"] td:first-child {
+  box-shadow: inset 3px 0 0 var(--status-warning);
+}
+
+.oos-wh__note {
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  white-space: normal;
+}
+
+
+/* ==========================================================================
+   §4. Страница «План заказов»
+   ========================================================================== */
+
+/* --- Календарь-лента (Ганта) --------------------------------------------------- */
+
+/* Сетка по полумесяцам совпадает с сеткой периодов, значит достаточно CSS
+   Grid: переносимость, работа без ResizeObserver и настоящие текстовые
+   подписи вместо <text> в SVG.
+
+   Раскладка колонок объявлена один раз переменной и повторяется в шапке,
+   дорожке и подряде полос. Три места с одинаковым списком колонок разъехались
+   бы при первой же правке, а разъезд ленты выглядит как неверные даты. */
+.oos-gantt {
+  /* Число периодов горизонта задаёт страница инлайном (style="--oos-cols: 11"):
+     горизонт переключается параметром, и захардкоженное 11 сломало бы ленту
+     на «6 месяцев». Значение по умолчанию объявлено здесь, чтобы лента
+     оставалась осмысленной, даже если JS его не проставит. */
+  --oos-cols: 11;
+  --oos-gantt-cols: minmax(150px, 200px) repeat(var(--oos-cols, 11), minmax(56px, 1fr));
+  display: grid;
+  grid-template-columns: var(--oos-gantt-cols);
+  gap: var(--sp-1) 0;
+  /* Лента шире экрана — прокручивается внутри .fba-scroll, страница по
+     горизонтали не едет */
+  min-width: max-content;
+}
+
+.oos-gantt__head,
+.oos-gantt__lane {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: var(--oos-gantt-cols);
+  align-items: center;
+}
+
+/* Строка дат липнет к верху прокручиваемого бокса. Без ограничения высоты
+   у `.fba-scroll` прокручивается страница, а не он, и `top: 0` внутри него
+   ничего не даёт — поэтому лента ограничена по высоте (.oos-gantt-scroll).
+   Иначе на втором экране прокрутки полосы висят без шапки, и понять, в какой
+   полумесяц упирается правый край полосы, нечем. */
+.oos-gantt-scroll {
+  max-height: 70vh;
+  overflow: auto;
+}
+
+.oos-gantt__head {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: var(--surface-1);
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  border-bottom: 1px solid var(--border);
+}
+
+.oos-gantt__col {
+  padding: var(--sp-1) var(--sp-1);
+  text-align: center;
+  white-space: nowrap;
+  /* Волосяная сплошная линия, без пунктира: пунктир читается как «прогноз»
+     там, где это просто разделитель столбцов */
+  border-left: 1px solid var(--grid);
+}
+
+/* Отметка даты расчёта: горизонт начинается «завтра» относительно asOf,
+   и левый край ленты обязан это показывать */
+.oos-gantt__today {
+  position: relative;
+}
+
+.oos-gantt__today::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--axis);
+}
+
+.oos-gantt__corner,
+.oos-gantt__label {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  /* Непрозрачный фон: иначе под липкой подписью просвечивают полосы */
+  background: var(--surface-1);
+  padding-right: var(--sp-3);
+  color: var(--ink-1);
+  font-size: var(--fs-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.oos-gantt__corner {
+  /* Угол шапки едет и по горизонтали, и по вертикали: без z-index выше
+     липкого столбца он проезжает под подписями дорожек. */
+  z-index: 4;
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Подпись дорожки перекрывает ВСЕ её подряды. Лид-тайм у всех товаров один,
+   полосы выходят широкими и почти не упаковываются — подрядов на реальных
+   данных бывает до восьми.
+
+   `grid-row: 1 / -1` здесь не работал: подряды создаются как НЕЯВНЫЕ строки
+   (CSS Grid Level 1 §7.1), а отрицательный индекс адресует только явную
+   сетку (§8.3) — при пустой явной строчной сетке `-1` разрешался в линию 1,
+   начало совпадало с концом, и SKU стоял напротив одной первой полосы.
+   Число подрядов страница проставляет инлайном (--oos-rows), и `span`
+   создаёт неявные строки штатно. */
+.oos-gantt__label {
+  grid-column: 1;
+  grid-row: 1 / span var(--oos-rows, 1);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.oos-gantt__track {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: repeat(var(--oos-cols, 11), minmax(56px, 1fr));
+  align-items: center;
+  height: 24px;
+}
+
+.oos-gantt__bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 20px;
+  padding: 0 var(--sp-1);
+  border-radius: var(--radius-sm);
+  background: var(--tone, var(--ink-3));
+  text-decoration: none;
+  overflow: hidden;
+  transition: filter var(--transition);
+}
+
+.oos-gantt__bar:hover {
+  filter: brightness(1.08);
+}
+
+/* Ускорение — не заказ: у него нет даты «заказать до», и это видно без
+   цвета по штриховке 45° и знаку «!» в подписи */
+.oos-gantt__bar[data-channel="expedite"] {
+  background-image: repeating-linear-gradient(
+    45deg,
+    color-mix(in oklab, var(--ink-1) 22%, transparent) 0 3px,
+    transparent 3px 8px
+  );
+}
+
+/* Подпись, не поместившаяся на полосу, стоит соседней колонкой — чернилами
+   страницы, а не цветом канала: она подписывает полосу, а не спорит с ней. */
+.oos-gantt__qty--out {
+  align-self: center;
+  padding: 0 var(--sp-1);
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.oos-gantt__qty--left { text-align: right; }
+
+/* Знак «!» рисуется всегда и отдельным узлом: раньше он входил в строку
+   количества и вместе с ней отбрасывался проверкой вместимости — а полосы
+   ускорения однопериодные, то есть знак не появлялся ни разу. */
+.oos-gantt__flag {
+  flex: none;
+  margin-right: auto;
+  padding-left: 2px;
+  color: var(--ink-on-accent);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Заказ начался раньше горизонта: левый край срезан, чтобы полоса не
+   выглядела начинающейся ровно в первом периоде */
+.oos-gantt__bar[data-from="before"] {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Число на полосе. Текст носит текстовый токен, а не цвет серии: белым по
+   --series-3 и --series-5 контраст не набирается ни в одной теме, а
+   подложка из поверхности читается на любом слоте палитры. */
+.oos-gantt__qty {
+  padding: 0 var(--sp-1);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklab, var(--surface-1) 88%, transparent);
+  color: var(--ink-1);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* --- Непоправимое окно ------------------------------------------------------------ */
+
+.oos-unrec {
+  display: grid;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  border-left: 3px solid var(--status-critical);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: var(--surface-2);
+  color: var(--ink-1);
+}
+
+.oos-unrec__list {
+  margin: 0;
+  padding-left: var(--sp-5);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+}
+
+/* --- Итог по округлению -------------------------------------------------------- */
+
+.oos-round {
+  display: grid;
+  gap: var(--sp-2);
+  color: var(--ink-2);
+}
+
+.oos-round__row {
+  color: var(--ink-1);
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ==========================================================================
+   §5. Узкий экран и уменьшенная анимация
+   ========================================================================== */
+
+@media (max-width: 720px) {
+  /* Плашка и сводка порогов встают в столбец: в строку они не помещаются,
+     а перенос по словам рвал бы пары «подпись — значение» */
+  .oos-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Липкие первые столбцы на узком экране съедают половину ширины —
+     ужимаем, но не отключаем: без них прокрутка теряет ориентир */
+  .oos-gantt {
+    --oos-gantt-cols: minmax(110px, 140px) repeat(var(--oos-cols, 11), minmax(48px, 1fr));
+  }
+
+  .oos-gantt__track {
+    grid-template-columns: repeat(var(--oos-cols, 11), minmax(48px, 1fr));
+  }
+
+  .oos-coverage { gap: var(--sp-4); }
+
+  /* Лесенка теряет колонку знаков операций: «+» и «=» на 320 px забирают
+     ширину у названий, а порядок слагаемых и так читается сверху вниз */
+  .oos-stack { grid-template-columns: 1fr auto; }
+  .oos-stack__op { display: none; }
+  .oos-stack__sub { grid-column: 1 / -1; }
+}
+
+/* Ячейка карты и полоса ленты — единственные места с переходами. Обводка при
+   наведении и подсветка полосы информации не несут, поэтому снимаются
+   целиком, а не замедляются. */
+@media (prefers-reduced-motion: reduce) {
+  .oos-heat__cell,
+  .oos-gantt__bar {
+    transition: none;
+  }
+}

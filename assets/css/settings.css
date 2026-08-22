@@ -17,6 +17,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: width var(--transition), max-height var(--transition);
 }
 
 .settings-modal::backdrop { background: rgba(0, 0, 0, 0.45); }
@@ -42,6 +43,11 @@
   flex-direction: column;
   gap: var(--sp-5);
   overflow-y: auto;
+  /* Единственный скроллер окна. min-height нужен, чтобы полоса вкладок не
+     выдавила тело за пределы экрана телефона: без него флекс-элемент
+     отказывается сжиматься ниже своего содержимого. */
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .settings__group {
@@ -78,3 +84,734 @@
   align-items: center;
   gap: var(--sp-2);
 }
+
+/* ==========================================================================
+   Вкладки окна: «Общие» и «Интеграции»
+
+   Подчёркивание, а не сегментированный переключатель: сегментированный в
+   этом окне уже занят выбором значения (язык, тема), и второй такой же
+   элемент рядом читался бы как ещё одна настройка, а не как навигация.
+   ========================================================================== */
+
+.settings-modal__tabs {
+  display: flex;
+  gap: var(--sp-1);
+  padding: 0 var(--sp-4);
+  border-bottom: 1px solid var(--border);
+  flex: none;
+}
+
+.settings-tab {
+  padding: var(--sp-3) var(--sp-2);
+  border: 0;
+  border-bottom: 2px solid transparent;   /* активность — линией, не заливкой */
+  margin-bottom: -1px;
+  background: transparent;
+  color: var(--ink-3);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.settings-tab:hover { color: var(--ink-1); }
+.settings-tab[aria-selected="true"] {
+  color: var(--ink-1);
+  font-weight: 600;
+  border-bottom-color: var(--accent);
+}
+
+/* В монохроме и при forced-colors подчёркивание пропадает — оставляем
+   рамку, иначе выбранная вкладка ничем не отличается от соседней */
+@media (forced-colors: active) {
+  .settings-tab[aria-selected="true"] { border-bottom-color: Highlight; }
+}
+
+/* Панель вкладки. Прокрутка одна на всё окно — в .settings-modal__body */
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  min-width: 0;
+}
+
+/* Окно шире только на «Интеграциях»: настроек там втрое больше, а сетка
+   полей в 440 px схлопывается в одну колонку и растягивается на экран.
+   На телефоне обе ширины упираются в calc(100vw - …) — окно за экран не
+   выходит ни на одной вкладке, прокручивается тело. */
+.settings-modal--wide {
+  width: min(960px, calc(100vw - 2 * var(--sp-4)));
+  max-height: min(780px, calc(100vh - 2 * var(--sp-5)));
+}
+
+/* ==========================================================================
+   Раздел «Интеграции»
+
+   Ни одного цвета мимо tokens.css: обе темы получаются подменой переменных.
+   Цвет нигде не единственный носитель смысла — у предупреждения есть иконка
+   и текст, у статуса слово, у чекбокса подпись.
+   ========================================================================== */
+
+.int-lead {
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+.int-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding: var(--sp-4);
+  /* Фон группы совпадает с фоном окна, поэтому границу несёт рамка — а
+     --border на этом фоне даёт 1.24:1, и три группы читались одной простынёй
+     из 178 контролов. Более тёмная рамка и тень разводят их на три темы. */
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--surface-1);
+  box-shadow: var(--shadow-card);
+  min-width: 0;
+}
+
+/* Заголовок группы отбит линией: где кончается одна тема и начинается
+   другая, видно и без цвета */
+.int-group__head {
+  display: block;
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--border);
+}
+.int-group__title {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.int-group__lead {
+  margin: 2px 0 0;
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+/* --- Поля --------------------------------------------------------------- */
+
+.int-fields {
+  display: grid;
+  /* min(220px, 100%) вместо 220px: на 320-378 px колонке достаётся меньше
+     220 px, и жёсткий минимум давал горизонтальную прокрутку внутри окна */
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: var(--sp-3) var(--sp-4);
+}
+
+.int-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+
+.int-field__label {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+}
+.int-unit { color: var(--ink-3); }
+
+/* --ink-3 на этих подложках даёт 3.1–3.5:1 при пороге AA 4.5 — а здесь весь
+   пояснительный слой раздела, все девяносто с лишним «почему». Приглушённость
+   держится размером и весом, а не цветом ниже порога. */
+.int-field__hint {
+  margin: 0;
+  font-size: var(--fs-xs);
+  line-height: 1.45;
+  color: var(--ink-2);
+  display: flex;
+  gap: var(--sp-1);
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+/* Пометку «не сохраняется» приглушать до неразличимости нельзя: это не
+   украшение, а единственное объяснение, почему поле пустеет */
+.int-field__hint--secret {
+  color: var(--ink-1);
+  font-weight: 500;
+}
+/* Помечено то, что сохраняется: пометка стоит у каждого текстового поля,
+   значение которого переживает закрытие окна */
+.int-field__hint--saved .int-ico { color: var(--ink-3); }
+.int-field__error { color: var(--status-critical); }
+
+.int-input { min-height: 38px; }
+.int-select { width: 100%; }
+
+/* Сегмент в ячейке сетки: без max-width он вылезает за колонку на узком */
+.int-field .segmented {
+  align-self: flex-start;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.int-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: var(--sp-3) var(--sp-4);
+}
+
+.int-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+/* Подпись группы капителью с разрядкой — как .settings__label и плитки.
+   Цвет --ink-2, а не --ink-3: эти подписи несут иерархию раздела
+   («ПЛОЩАДКИ», «ИСТОЧНИКИ ДАННЫХ»), а капитель 12 px и без того тяжело
+   читается — ниже 4.5:1 её опускать нельзя. */
+.int-fieldset__legend {
+  padding: 0;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+/* --- Чекбоксы ----------------------------------------------------------- */
+
+.int-checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+  gap: var(--sp-2);
+}
+
+.int-check {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  min-width: 0;
+  transition: background var(--transition), border-color var(--transition);
+}
+.int-check input[type="checkbox"] { flex: none; accent-color: var(--accent); }
+.int-check:hover { background: var(--surface-2); }
+.int-check:has(input:checked) {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  background: var(--accent-soft);
+}
+/* Фокус на скрытом под плиткой чекбоксе иначе не виден */
+.int-check:focus-within {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+.int-check__name { margin-right: auto; }
+
+/* --- Предупреждения и примечания ---------------------------------------- */
+
+.int-warn {
+  display: flex;
+  gap: var(--sp-2);
+  align-items: flex-start;
+  margin: 0;
+  padding: var(--sp-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  color: var(--ink-1);
+}
+/* na — данных не будет вовсе; sandbox — данные придут, но выдуманные */
+.int-warn--critical {
+  background: color-mix(in srgb, var(--status-critical) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--status-critical) 35%, transparent);
+}
+.int-warn--critical .int-ico { color: var(--status-critical); }
+.int-warn--warning {
+  background: color-mix(in srgb, var(--status-warning) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--status-warning) 40%, transparent);
+}
+/* Жёлтый по жёлтому — 1.65:1, треугольника фактически не видно. Заливка
+   блока остаётся жёлтой, а сам знак берёт тёмного носителя: 4.05:1 в светлой
+   теме и 9.1:1 в тёмной, где --ink-1 белый. */
+.int-warn--warning .int-ico {
+  color: color-mix(in srgb, var(--status-warning) 60%, var(--ink-1));
+}
+
+.int-ico {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  margin-top: 2px;
+}
+
+.int-note { margin: 0; }
+
+/* --- Плитка состояния SP-API -------------------------------------------- */
+
+.int-state {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+.int-state__dot {
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+  border-radius: 50%;
+  flex: none;
+  background: var(--ink-3);
+}
+.int-state[data-state="connected"] .int-state__dot { background: var(--status-good); }
+/* «Настройки заполнены» — это не связь: точка синяя, а не зелёная */
+.int-state[data-state="filled"] .int-state__dot { background: var(--accent); }
+.int-state[data-state="error"] .int-state__dot { background: var(--status-critical); }
+
+.int-state__main { min-width: 0; }
+.int-state__title {
+  font-weight: 600;
+  font-size: var(--fs-sm);
+}
+.int-state__why {
+  margin: 2px 0 0;
+  font-size: var(--fs-xs);
+  color: var(--ink-2);
+}
+.int-state__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin: 0 0 0 auto;
+}
+.int-meta dt {
+  font-size: var(--fs-xs);
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.int-meta dd {
+  margin: 2px 0 0;
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Плашки ------------------------------------------------------------- */
+
+.int-badge {
+  padding: 1px var(--sp-2);
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  flex: none;
+}
+
+/* Слово внутри, а не только цвет: в монохроме смысл сохраняется */
+.int-pill {
+  padding: 1px var(--sp-2);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  flex: none;
+}
+.int-pill[data-state="set"] {
+  background: color-mix(in srgb, var(--status-good) 14%, transparent);
+  color: var(--delta-up);
+}
+.int-pill[data-state="unset"],
+.int-pill[data-state="unknown"] {
+  background: var(--surface-2);
+  color: var(--ink-2);
+}
+.int-pill[data-state="unknown"] { border: 1px dashed var(--border-strong); }
+
+/* --- Источники данных --------------------------------------------------- */
+
+.int-sources {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+.int-source {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  min-width: 0;
+}
+
+/* --- Где лежат секреты -------------------------------------------------- */
+
+.int-secrets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-sunken);
+}
+.int-secrets__title {
+  margin: 0;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+.int-secrets__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+.int-secret {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-width: 0;
+}
+.int-path {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+
+/* --- Проверка связи ----------------------------------------------------- */
+
+.int-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-3);
+}
+.int-result {
+  width: 100%;
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+.int-result p { margin: var(--sp-2) 0 0; }
+.int-result__title {
+  color: var(--ink-1);
+  font-weight: 600;
+}
+
+/* --- Преп-центры -------------------------------------------------------- */
+
+.int-preps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.int-prep {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  min-width: 0;
+}
+/* Исключённый центр отличается пунктирной рамкой и пилюлей «Исключён».
+   opacity здесь стояла зря: она гасила не декорацию, а рабочие поля вместе с
+   подсказками (2.35:1) и обводкой фокуса — а поля в такой карточке
+   полностью рабочие. */
+.int-prep[data-active="false"] {
+  border-style: dashed;
+  border-color: var(--border-strong);
+}
+
+.int-prep__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.int-prep__title {
+  margin: 0;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  margin-right: auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.int-prep__remove { flex: none; }
+.int-prep__remove:hover { color: var(--status-critical); }
+
+/* Идентификатор расчёта: под этим именем склад виден в параметрах и во
+   флагах, поэтому он на карточке, а не спрятан */
+.int-prep__canon {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-1);
+  flex-wrap: wrap;
+}
+.int-prep__canon code {
+  color: var(--ink-1);
+  overflow-wrap: anywhere;
+}
+
+/* Тумблер без идентификатора не нажимается: записывать выбор некуда */
+.int-switch:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.int-field--switch {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--sp-3);
+}
+.int-field--switch .int-field__label { margin-right: auto; }
+
+/* Нативный чекбокс с role="switch": клавиатура и скринридер достаются
+   бесплатно, div-имитацию пришлось бы обучать обоим */
+.int-switch {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 40px;
+  height: 22px;
+  flex: none;
+  margin: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--surface-sunken);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+}
+.int-switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  transition: transform var(--transition), background var(--transition);
+}
+.int-switch:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.int-switch:checked::after {
+  transform: translateX(18px);
+  background: var(--ink-on-accent);
+}
+/* Положение тумблера дублируется пилюлей «Учитывается / Исключён», но в
+   forced-colors стоит оставить и его — рамкой */
+@media (forced-colors: active) {
+  .int-switch:checked { outline: 2px solid Highlight; }
+}
+
+/* --- Алиасы ------------------------------------------------------------- */
+
+.int-aliases {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.int-alias {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 2px 2px 2px var(--sp-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface-1);
+  font-size: var(--fs-sm);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.int-alias__x {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+.int-alias__x svg { width: 12px; height: 12px; }
+.int-alias__x:hover { background: var(--surface-2); color: var(--ink-1); }
+
+.int-alias--add {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex: 1 1 220px;
+  min-width: 0;
+}
+.int-alias__input { min-height: 32px; flex: 1 1 auto; min-width: 0; }
+.int-alias__add { flex: none; }
+
+/* --- Каналы получения остатков ------------------------------------------ */
+
+.int-channel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  border-left: 2px solid var(--accent-soft);
+  min-width: 0;
+}
+
+.int-cols {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-3);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+.int-cols li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  min-width: 0;
+}
+
+.int-drop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-5);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  text-align: center;
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+}
+.int-drop:hover,
+.int-drop.is-over {
+  background: var(--surface-1);
+  border-color: var(--accent);
+}
+/* Фокус может оказаться на скрытом input[type=file] — тогда его видно по зоне */
+.int-drop:focus-within {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.int-template-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-2);
+}
+/* Загрузка и показ содержимого — два действия рядом: успешную загрузку
+   страница увидеть не может, а текст должен быть доступен и без файла */
+.int-template-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+/* Если браузер не пустит загрузку, содержимое шаблона остаётся на экране —
+   скопировать руками можно всегда */
+.int-template {
+  width: 100%;
+  margin: 0;
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunken);
+  color: var(--ink-1);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  overflow-x: auto;         /* длинная строка не должна разъезжать окно */
+}
+
+/* --- Подвал раздела ----------------------------------------------------- */
+
+.int-storage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-sunken);
+}
+.int-storage__yes,
+.int-storage__no {
+  margin: 0;
+  display: flex;
+  gap: var(--sp-2);
+  align-items: flex-start;
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  color: var(--ink-1);
+}
+.int-storage__yes .int-ico { color: var(--status-good); }
+.int-storage__no .int-ico { color: var(--status-critical); }
+/* Видимая половина живой области: подтверждение записи, отказ записи и отказ
+   добавить дубликат раньше уходили только в visually-hidden — зрячий не видел
+   ничего, и ввод дубликата выглядел сломанной кнопкой */
+.int-status {
+  margin: 0;
+  padding: var(--sp-2) var(--sp-3);
+  border-left: 3px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-1);
+  font-size: var(--fs-sm);
+  color: var(--ink-2);
+}
+.int-status[data-tone="alert"] {
+  border-left-color: var(--status-critical);
+  color: var(--ink-1);
+  font-weight: 500;
+}
+
+.int-reset { align-self: flex-start; margin-top: var(--sp-2); }
+
+/* Моноширинные идентификаторы приезжают из fba.css, но окно настроек живёт
+   и на входе, и на странице логов — там fba.css не подключён */
+.settings-panel .fba-mono {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.92em;
+  padding: 1px 5px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+/* Скрытое — скрыто. Правила выше задают display классам, и без этой строки
+   [hidden] на панели или предупреждении браузер бы не пересилил.
+   Стоит последним: при равной силе побеждает последнее правило. */
+.settings-panel[hidden],
+.settings-panel [hidden] { display: none; }

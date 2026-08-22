@@ -7,6 +7,7 @@
    ========================================================================== */
 
 import './strings-crm.js';           // регистрирует словари CRM до первого t()
+import './strings-oos.js';           // словарь «Логистики» — тоже до первого t()
 import { applyTranslations, onLangChange, t } from './i18n.js';
 import { initTheme } from './theme.js';
 import { mountSettings } from './settings.js';
@@ -19,6 +20,9 @@ import { weeklySales } from './views/weekly-sales.js';
 import { wiki } from './views/wiki.js';
 import { fbaStock } from './views/fba-stock.js';
 import { fbaStockApi } from './views/fba-stock-api.js';
+import { oosOverview } from './views/oos-overview.js';
+import { oosProduct } from './views/oos-product.js';
+import { oosOrders } from './views/oos-orders.js';
 
 /* --- Доступ ------------------------------------------------------------- */
 
@@ -48,6 +52,9 @@ const ROUTES = {
   'weekly-sales': weeklySales,
   'fba-stock': fbaStock,
   'fba-stock-api': fbaStockApi,
+  'oos-overview': oosOverview,
+  'oos-product': oosProduct,
+  'oos-orders': oosOrders,
   wiki,
   products: placeholder('nav.products'),
   customers: placeholder('nav.customers'),
