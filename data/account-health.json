@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-08-23T03:38:45Z",
+ "generatedAt": "2026-08-23T05:21:46Z",
  "marketplace": "A1PA6795UKMFR9",
  "checks": [
   {
    "id": "actions",
    "item": "п.1",
-   "checkedAt": "2026-08-23T03:37:50Z",
+   "checkedAt": "2026-08-23T05:20:49Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -17,7 +17,7 @@
   {
    "id": "stranded",
    "item": "п.2",
-   "checkedAt": "2026-08-23T03:37:51Z",
+   "checkedAt": "2026-08-23T05:21:16Z",
    "status": "warn",
    "count": 3,
    "items": [
@@ -48,94 +48,21 @@
   {
    "id": "listingStatus",
    "item": "п.3",
-   "checkedAt": "2026-08-23T03:37:52Z",
-   "status": "warn",
-   "count": 9,
-   "items": [
-    {
-     "asin": "B0DJ1DGY6J",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "60-O7CT-8I0F",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0GGJ6VRCQ",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "JZ-7QN5-JBQ4",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0GQVR12BX",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "LZ-OBDX-1IFP",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0DNT4FNZ9",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "MC-DZIG-W9QU",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0FVGB9FHJ",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "NL-4NNP-5092",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0854MW97N",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "SH-G0PF-CSW1",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0DNTPCLRN",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "UK-P7TQ-VS08",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0GGJ4RNBC",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "VX-PB4F-4IMK",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0FNX21TZF",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "ZV-XWYM-FRWL",
-     "previousStatus": "active"
-    }
-   ],
+   "checkedAt": "2026-08-23T05:21:17Z",
+   "status": "ok",
+   "count": 0,
+   "items": [],
    "extra": {
-    "total": 59,
-    "inactive": 45,
+    "total": 58,
+    "inactive": 35,
     "firstRun": false
    },
-   "message": "9 товаров перестали быть активными с прошлой проверки."
+   "message": "Ни один активный товар не сменил статус."
   },
   {
    "id": "accountHealth",
    "item": "п.4",
-   "checkedAt": "2026-08-23T03:37:53Z",
+   "checkedAt": "2026-08-23T05:21:18Z",
    "status": "ok",
    "count": 0,
    "items": [
@@ -169,7 +96,7 @@
     },
     {
      "name": "orderDefectRate (AFN)",
-     "value": 2.0366183988106147e-05,
+     "value": 2.0429009193054138e-05,
      "target": 0.01,
      "condition": "LESS_THAN",
      "status": "GOOD"
@@ -299,7 +226,7 @@
   {
    "id": "feedback",
    "item": "п.5",
-   "checkedAt": "2026-08-23T03:38:19Z",
+   "checkedAt": "2026-08-23T05:21:44Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -312,7 +239,7 @@
   {
    "id": "performanceNotifications",
    "item": "п.6",
-   "checkedAt": "2026-08-23T03:38:19Z",
+   "checkedAt": "2026-08-23T05:21:44Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -324,7 +251,7 @@
   {
    "id": "pricingHealth",
    "item": "п.7",
-   "checkedAt": "2026-08-23T03:38:19Z",
+   "checkedAt": "2026-08-23T05:21:44Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -336,7 +263,7 @@
   {
    "id": "messages",
    "item": "п.8",
-   "checkedAt": "2026-08-23T03:38:19Z",
+   "checkedAt": "2026-08-23T05:21:44Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -348,7 +275,7 @@
   {
    "id": "customerReviews",
    "item": "п.9",
-   "checkedAt": "2026-08-23T03:38:19Z",
+   "checkedAt": "2026-08-23T05:21:44Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -360,7 +287,7 @@
   {
    "id": "fbaPerformance",
    "item": "п.10",
-   "checkedAt": "2026-08-23T03:38:45Z",
+   "checkedAt": "2026-08-23T05:21:46Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -369,7 +296,7 @@
   {
    "id": "cases",
    "item": "п.11",
-   "checkedAt": "2026-08-23T03:38:45Z",
+   "checkedAt": "2026-08-23T05:21:46Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
