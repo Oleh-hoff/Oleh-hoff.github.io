@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-08-24T21:08:18Z",
+ "generatedAt": "2026-08-25T03:20:54Z",
  "marketplace": "A1PA6795UKMFR9",
  "checks": [
   {
    "id": "actions",
    "item": "п.1",
-   "checkedAt": "2026-08-24T21:07:47Z",
+   "checkedAt": "2026-08-25T03:19:31Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -17,9 +17,9 @@
   {
    "id": "stranded",
    "item": "п.2",
-   "checkedAt": "2026-08-24T21:07:48Z",
+   "checkedAt": "2026-08-25T03:19:59Z",
    "status": "warn",
-   "count": 3,
+   "count": 2,
    "items": [
     {
      "asin": "B0GT1C3GYC",
@@ -34,35 +34,109 @@
      "title": "WunderHippo Magnetische Kindersicherung (Schwarz, 20+4)",
      "quantity": "",
      "reason": "Listing closed"
-    },
-    {
-     "asin": "B0DNTL474T",
-     "sku": "5L-HQRV-TKZ2",
-     "title": "WunderHippo 25x Steckdosensicherung mit Drehmechanik – Kindersicherung für Steckdosen – Steckdosenschutz verhindert Unfä",
-     "quantity": "",
-     "reason": "Listing closed"
     }
    ],
-   "message": "На складе 3 позиций без активного объявления — они не продаются, но занимают место и копят плату за хранение."
+   "message": "На складе 2 позиций без активного объявления — они не продаются, но занимают место и копят плату за хранение."
   },
   {
    "id": "listingStatus",
    "item": "п.3",
-   "checkedAt": "2026-08-24T21:07:49Z",
-   "status": "ok",
-   "count": 0,
-   "items": [],
+   "checkedAt": "2026-08-25T03:20:00Z",
+   "status": "warn",
+   "count": 10,
+   "items": [
+    {
+     "asin": "B0DJ1DGY6J",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "60-O7CT-8I0F",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B07JZCWJMW",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "GM-1QEG-0QPK",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0GGJ6VRCQ",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "JZ-7QN5-JBQ4",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0GQVR12BX",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "LZ-OBDX-1IFP",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0DNT4FNZ9",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "MC-DZIG-W9QU",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0FVGB9FHJ",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "NL-4NNP-5092",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0854MW97N",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "SH-G0PF-CSW1",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0DNTPCLRN",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "UK-P7TQ-VS08",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0GGJ4RNBC",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "VX-PB4F-4IMK",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0FNX21TZF",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "ZV-XWYM-FRWL",
+     "previousStatus": "active"
+    }
+   ],
    "extra": {
-    "total": 58,
-    "inactive": 35,
+    "total": 59,
+    "inactive": 46,
     "firstRun": false
    },
-   "message": "Ни один активный товар не сменил статус."
+   "message": "10 товаров перестали быть активными с прошлой проверки."
   },
   {
    "id": "accountHealth",
    "item": "п.4",
-   "checkedAt": "2026-08-24T21:07:51Z",
+   "checkedAt": "2026-08-25T03:20:01Z",
    "status": "ok",
    "count": 0,
    "items": [
@@ -226,7 +300,7 @@
   {
    "id": "feedback",
    "item": "п.5",
-   "checkedAt": "2026-08-24T21:08:16Z",
+   "checkedAt": "2026-08-25T03:20:27Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -239,7 +313,7 @@
   {
    "id": "performanceNotifications",
    "item": "п.6",
-   "checkedAt": "2026-08-24T21:08:16Z",
+   "checkedAt": "2026-08-25T03:20:27Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -251,7 +325,7 @@
   {
    "id": "pricingHealth",
    "item": "п.7",
-   "checkedAt": "2026-08-24T21:08:16Z",
+   "checkedAt": "2026-08-25T03:20:27Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -263,7 +337,7 @@
   {
    "id": "messages",
    "item": "п.8",
-   "checkedAt": "2026-08-24T21:08:16Z",
+   "checkedAt": "2026-08-25T03:20:27Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -275,7 +349,7 @@
   {
    "id": "customerReviews",
    "item": "п.9",
-   "checkedAt": "2026-08-24T21:08:16Z",
+   "checkedAt": "2026-08-25T03:20:27Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -287,7 +361,7 @@
   {
    "id": "fbaPerformance",
    "item": "п.10",
-   "checkedAt": "2026-08-24T21:08:18Z",
+   "checkedAt": "2026-08-25T03:20:54Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -296,7 +370,7 @@
   {
    "id": "cases",
    "item": "п.11",
-   "checkedAt": "2026-08-24T21:08:18Z",
+   "checkedAt": "2026-08-25T03:20:54Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
