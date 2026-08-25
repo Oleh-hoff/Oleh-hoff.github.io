@@ -69,9 +69,9 @@ export const PREP_CENTERS = {
     aliases: ['Lager Kastellaun', 'prep-kastellaun', 'Kastellaun'],
   },
   ASIALOG: {
-    // 45 дней — как у склада prep-asialog в data/oos-demo.json. Число живёт
-    // здесь одно на всех: и расчёт, и карточка в «Интеграциях» читают его
-    // отсюда, поэтому назвать разные величины они больше не могут.
+    // 45 дней — срок склада prep-asialog. Число живёт здесь одно на всех,
+    // поэтому расчёт и карточка в «Интеграциях» не могут назвать разные
+    // величины.
     market: 'DE', defaultSelected: false, lagDays: 45, name: 'AsiaLog',
     aliases: ['AsiaLog Shenzhen', 'prep-asialog', 'Asia Log', 'AsiaLog'],
   },

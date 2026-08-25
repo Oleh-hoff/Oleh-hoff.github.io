@@ -1,10 +1,12 @@
 /* ==========================================================================
    Движок OOS-прогнозирования: чистые расчёты §2, §4–§11 спецификации.
 
+   Разделы «Логистики» удалены; из движка остались в работе только
+   `canonicalPrepId` и `normalizeName` — их читает `settings-integrations.js`,
+   когда сводит названия препцентров. Остальной расчёт лежит без вызовов.
+
    Модуль намеренно ничего не знает про DOM, localStorage, сеть и локаль:
-   на вход данные и параметры, на выход результат. Из-за этого его можно
-   импортировать в голом node и сверять числа без jsdom
-   (`tools/oos-engine-check.mjs`), а раздел дашборда остаётся тонким.
+   на вход данные и параметры, на выход результат.
 
    Три правила, которые здесь соблюдаются буквально:
    1. Дата расчёта берётся из данных (`asOf`). `Date.now()` в файле нет —
@@ -402,10 +404,12 @@ export function growthDetail(history, params = DEFAULT_PARAMS) {
   const max = Number.isFinite(params.growthMax) ? params.growthMax : DEFAULT_PARAMS.growthMax;
   const flags = [];
 
-  if (mode === 'flat') return { value: 1, raw: null, clamped: false, ratios: [], mode, flags };
+  if (mode === 'flat') {
+    return { value: 1, raw: null, clamped: false, ratios: [], mode, thinHistory: false, flags };
+  }
   if (mode === 'fixed') {
     const fixed = Number.isFinite(params.growthFixed) ? params.growthFixed : DEFAULT_PARAMS.growthFixed;
-    return { value: fixed, raw: fixed, clamped: false, ratios: [], mode, flags };
+    return { value: fixed, raw: fixed, clamped: false, ratios: [], mode, thinHistory: false, flags };
   }
 
   const rows = (history || []).filter((h) => h && Number.isFinite(h.units));
@@ -415,7 +419,23 @@ export function growthDetail(history, params = DEFAULT_PARAMS) {
     if (rows[i - 1].units > 0) ratios.push(rows[i].units / rows[i - 1].units);
   }
   if (rows.length < 3) flags.push({ code: 'history-too-short', level: 'warning' });
-  if (!ratios.length) return { value: 1, raw: null, clamped: false, ratios, mode, flags };
+
+  /* Тренд, посчитанный на двух отношениях, — не тот же тренд, что на семи.
+     Формула §7 от длины истории не зависит и на трёх ведрах отработает молча,
+     а число выйдет такое же уверенное с виду. Отдельный флаг существует
+     ровно затем, чтобы страница не выдала его за надёжный: `history-too-short`
+     сюда не годится — он про «истории нет», а здесь она есть, просто короткая.
+     Порог — три отношения (четыре ведра): меньше — среднее держится на паре
+     чисел, и один всплеск сдвигает его целиком. */
+  const thinHistory = ratios.length > 0 && ratios.length < 3;
+  if (thinHistory) {
+    flags.push({
+      code: 'growth-thin-history', level: 'warning', ratios: ratios.length, months: rows.length,
+    });
+  }
+  if (!ratios.length) {
+    return { value: 1, raw: null, clamped: false, ratios, mode, thinHistory, flags };
+  }
 
   // Среднее арифметическое — так буквально сформулировано в методичке.
   // Геометрическое корректнее для компаундинга, но это была бы правка
@@ -426,7 +446,7 @@ export function growthDetail(history, params = DEFAULT_PARAMS) {
   // поштучный зажим стёр бы величину выброса и смещал бы среднее вверх
   // на падающих товарах.
   if (Math.abs(value - raw) > EPS) flags.push({ code: 'growth-clamped', level: 'info', raw });
-  return { value, raw, clamped: Math.abs(value - raw) > EPS, ratios, mode, flags };
+  return { value, raw, clamped: Math.abs(value - raw) > EPS, ratios, mode, thinHistory, flags };
 }
 
 /** Коэффициент месячного роста, зажатый в [growthMin, growthMax]. */
@@ -938,8 +958,8 @@ export function classifyContainers(containers, market, params = DEFAULT_PARAMS) 
 /* ==========================================================================
    Нормализация входных данных
 
-   Поддерживаются две формы: демо-JSON `data/oos-demo.json` (плоские списки
-   markets/warehouses/products/containers) и форма §0.6 спецификации
+   Поддерживаются две формы: плоские списки
+   markets/warehouses/products/containers и форма §0.6 спецификации
    (markets как объект с вложенными products). Форма выбирается по типу
    `data.markets`: движок не должен зависеть от того, кто сегодня собрал файл.
    ========================================================================== */
@@ -1083,7 +1103,15 @@ export function normalizeData(data, params = DEFAULT_PARAMS) {
       // откатывался бы на SB Sales Units.
       forecastUnits: Number.isFinite(pair.forecastUnits) ? pair.forecastUnits
         : num(pair.forecast && pair.forecast.units, null),
-      t30Window: pair.t30 && pair.t30.windowFrom ? { from: pair.t30.windowFrom, to: pair.t30.windowTo } : null,
+      /* Окно измерения едет с длиной и основанием: набор может отдавать t30
+         не за 30 дней (четыре целые недели — 28), и тогда число в колонке
+         не равно ни одной сумме из отчёта, пока страница не назвала пересчёт. */
+      t30Window: pair.t30 && pair.t30.windowFrom ? {
+        from: pair.t30.windowFrom,
+        to: pair.t30.windowTo,
+        days: num(pair.t30.windowDays, null),
+        basis: typeof pair.t30.basis === 'string' ? pair.t30.basis : null,
+      } : null,
       primeDayUnits: num(pair.primeDay && pair.primeDay.units, num(pair.primeDayUnits, 0)),
       primeDayWindow: pair.primeDay && pair.primeDay.from ? { from: pair.primeDay.from, to: pair.primeDay.to } : null,
       salesHistory: (pair.salesHistory || []).filter((h) => h && Number.isFinite(h.units)),
@@ -1103,6 +1131,11 @@ export function normalizeData(data, params = DEFAULT_PARAMS) {
         currency: m.currency || null,
         accent: m.accent || null,
         reportLanguage: m.reportLanguage || null,
+        /* Признак «проверку языка названий к этому источнику применять
+           нечем» едет из данных нетронутым. Движок его не выводит и не
+           оспаривает: применимость — свойство ВЫГРУЗКИ, а не чисел, и знает
+           о ней только тот, кто выгрузку собрал (§1). */
+        titleCheck: normalizeTitleCheck(m.titleCheck),
         // Именно null, а не 1: «шаг в данных не задан» и «шаг равен единице» —
         // разные вещи, и подстановка единицы отменяла бы шаг из параметров.
         roundingStep: num(m.orderRounding, num(m.roundingStep, null)),
@@ -1128,6 +1161,7 @@ export function normalizeData(data, params = DEFAULT_PARAMS) {
         currency: m.currency || null,
         accent: m.accent || null,
         reportLanguage: m.titleLang || m.reportLanguage || null,
+        titleCheck: normalizeTitleCheck(m.titleCheck),
         roundingStep: num(m.roundingStep, num(m.orderRounding, null)),
         prepCenters: (m.prepCenters || []).map((c) => {
           const id = canonicalPrepId(c.id, [c.name], params);
@@ -1192,6 +1226,35 @@ export function normalizeData(data, params = DEFAULT_PARAMS) {
 /* ==========================================================================
    §1.2. Проверка «данные того рынка»
    ========================================================================== */
+
+/**
+ * Разбор поля `markets[].titleCheck` из данных.
+ *
+ * Существует ровно ради одного случая, которого §1.2 не предусматривала:
+ * проверку языка бывает не «не пройти», а НЕ НА ЧЕМ ПРОВЕСТИ. Источник
+ * названий может хранить одну строку на товар (сборщик недельных продаж
+ * держит немецкую и выбрасывает остальные) — тогда британских названий
+ * не существует, и любой вердикт о них — выдумка.
+ *
+ * Движок такое сам не выводит: пустота в `reportTitle` одинаково выглядит
+ * и при «названий нет в источнике», и при «выгрузка пришла битой», а это
+ * разные диагнозы. Признак ставит тот, кто собирал набор, движок его лишь
+ * переносит и показывает.
+ */
+function normalizeTitleCheck(raw) {
+  if (!raw || typeof raw !== 'object') return null;
+  return {
+    applicable: raw.applicable !== false,
+    /* «Проверка применима» и «проверка независима» — разные утверждения.
+       Названия могут приехать из той же единственной выгрузки, из которой
+       собран каталог: язык такой вердикт подтверждает, а происхождение —
+       нет, и зелёная галочка без оговорки закрывала бы вопрос, не ответив. */
+    singleSource: raw.singleSource === true,
+    reason: typeof raw.reason === 'string' ? raw.reason : null,
+    detail: typeof raw.detail === 'string' ? raw.detail : null,
+    fix: typeof raw.fix === 'string' ? raw.fix : null,
+  };
+}
 
 const DE_UMLAUT = /[äöüß]/i;
 /* Списки §1.2 плюс несколько слов той же природы, встречающихся в названиях
@@ -1951,6 +2014,22 @@ export function computeAll(data, params = DEFAULT_PARAMS) {
     const langCheck = checkMarketLanguage(marketItems, market.reportLanguage, p);
     const marketFlags = [...langCheck.flags];
 
+    /* «Проверять нечем» — отдельный исход, а не молчаливое «пройдено».
+       Без этого флага рынок с одноисточниковыми названиями выглядит на
+       странице ровно так же, как рынок, проверку прошедший: `share = null`,
+       флагов нет, значок зелёный. Уровень `info`, а не `warning`: замечание
+       не к данным рынка, а к охвату источника, и расчёт оно не останавливает
+       — блокировать рынок из-за того, что его названий никто не выгружал,
+       значило бы выбросить настоящие продажи ради непроверяемой строки. */
+    if (market.titleCheck && market.titleCheck.applicable === false) {
+      marketFlags.push({
+        code: 'title-check-not-applicable',
+        level: 'info',
+        reason: market.titleCheck.reason,
+        fix: market.titleCheck.fix,
+      });
+    }
+
     // Подмена файла: UK-стоки, побайтово повторяющие DE.
     const other = norm.markets.find((m) => m.code !== market.code);
     if (other && market.code !== norm.defaultMarket) {
@@ -2025,6 +2104,7 @@ export function computeAll(data, params = DEFAULT_PARAMS) {
       currency: market.currency,
       accent: market.accent,
       reportLanguage: market.reportLanguage,
+      titleCheck: market.titleCheck,
       // Действующий шаг: параметр главнее данных (§14). UI показывает именно
       // то число, которым движок округлял объёмы.
       roundingStep: num(p.roundingStep && p.roundingStep[market.code], 0)

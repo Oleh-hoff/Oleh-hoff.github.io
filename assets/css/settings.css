@@ -798,8 +798,9 @@
 
 .int-reset { align-self: flex-start; margin-top: var(--sp-2); }
 
-/* Моноширинные идентификаторы приезжают из fba.css, но окно настроек живёт
-   и на входе, и на странице логов — там fba.css не подключён */
+/* Моноширинные идентификаторы. Правило жило в fba.css, пока были разделы
+   «Дефицит FBA»; после их удаления единственный владелец класса — окно
+   настроек, которое открывается и на входе, и на странице логов */
 .settings-panel .fba-mono {
   font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
   font-size: 0.92em;
