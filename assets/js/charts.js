@@ -619,6 +619,116 @@ export function createStackedColumnChart(container) {
 }
 
 /* ==========================================================================
+   Сгруппированные колонки: одна категория — несколько столбцов рядом.
+
+   Форма для сравнения «этот период против прошлого». Стопка здесь не
+   годится: сложенные столбцы дают сумму текущего и прошлого года, а такой
+   суммы не существует — это разные периоды, а не части одного целого.
+   Столбцы, стоящие рядом от общей базовой линии, сравниваются по высоте
+   напрямую, без арифметики в уме.
+   ========================================================================== */
+
+export function createGroupedColumnChart(container) {
+  return mountChart(container, ({ width, tooltip, data }) => {
+    const { labels, series, formatValue = formatNumber, height = 280 } = data;
+    if (!labels.length || !series.length) { renderEmpty(container, data.emptyText); return; }
+
+    const maxValue = Math.max(1, ...series.flatMap((s) => s.values));
+    const ticks = niceTicks(maxValue);
+    const top = ticks.at(-1);
+
+    const tickWidth = Math.max(...ticks.map((v) => measureText(formatValue(v))));
+    const m = { top: 16, right: 8, bottom: 28, left: Math.ceil(tickWidth) + 12 };
+
+    const plotW = Math.max(40, width - m.left - m.right);
+    const plotH = height - m.top - m.bottom;
+
+    const band = plotW / labels.length;
+    const GAP = 2;   // зазор цветом поверхности между соседними столбцами группы
+
+    // Группа занимает не больше 62% полосы, столбец — не больше 24px. Остаток
+    // полосы это воздух: без него соседние месяцы сливаются в сплошную гребёнку
+    // и группы перестают читаться как группы.
+    const groupW = Math.min(band * 0.62, 24 * series.length + GAP * (series.length - 1));
+    const barW = Math.max(2, (groupW - GAP * (series.length - 1)) / series.length);
+    const yOf = (v) => m.top + plotH - (Math.max(0, v) / top) * plotH;
+
+    const svg = svgEl('svg', {
+      width: '100%', height, viewBox: `0 0 ${width} ${height}`,
+      role: 'img', 'aria-label': data.ariaLabel || '',
+    });
+
+    for (const tick of ticks) {
+      svg.appendChild(svgEl('line', {
+        x1: m.left, x2: m.left + plotW, y1: yOf(tick), y2: yOf(tick), class: 'chart-grid',
+      }));
+      const label = svgEl('text', {
+        x: m.left - 8, y: yOf(tick), 'text-anchor': 'end',
+        'dominant-baseline': 'middle', class: 'chart-tick',
+      });
+      label.textContent = formatValue(tick);
+      svg.appendChild(label);
+    }
+
+    labels.forEach((label, i) => {
+      const cx = m.left + band * i + band / 2;
+      const groupLeft = cx - groupW / 2;
+
+      series.forEach((s, si) => {
+        const value = s.values[i];
+        // Ноль рисовать нечем: столбец высотой в пиксель читается как данные,
+        // которых нет. Отсутствие столбца честнее огрызка.
+        if (!(value > 0)) return;
+
+        const yTop = yOf(value);
+        svg.appendChild(svgEl('path', {
+          d: barPath(groupLeft + si * (barW + GAP), yTop, barW,
+            Math.max(1, m.top + plotH - yTop), 4, 'top'),
+          style: `fill: ${s.color || seriesColor(si)}`,
+          class: 'chart-bar',
+        }));
+      });
+
+      const tick = svgEl('text', {
+        x: cx, y: height - 8, 'text-anchor': 'middle', class: 'chart-tick',
+      });
+      tick.textContent = label;
+      svg.appendChild(tick);
+
+      // Наведение на всю полосу, а не на отдельный столбец: сравнение читают
+      // по группе целиком, и целиться в столбец шириной 12px не нужно
+      const hit = svgEl('rect', {
+        x: m.left + band * i, y: m.top, width: band, height: plotH,
+        fill: 'transparent', tabindex: '0', class: 'chart-hit',
+      });
+      const show = (e) => {
+        const box = container.getBoundingClientRect();
+        const rows = series.map((s, si) => ({
+          color: s.color || seriesColor(si),
+          name: s.name,
+          value: formatValue(s.values[i]),
+        }));
+        // Дополнительные строки (например, разница год к году) приходят готовыми:
+        // считать их здесь значило бы зашить смысл данных в слой рисования
+        if (data.extraRows?.[i]?.length) rows.push(...data.extraRows[i]);
+        tooltip.show(
+          data.tooltipTitles?.[i] ?? label, rows,
+          e?.clientX !== undefined ? e.clientX - box.left : cx,
+          e?.clientY !== undefined ? e.clientY - box.top : yOf(maxValue),
+        );
+      };
+      hit.addEventListener('pointermove', show);
+      hit.addEventListener('pointerleave', () => tooltip.hide());
+      hit.addEventListener('focus', () => show());
+      hit.addEventListener('blur', () => tooltip.hide());
+      svg.appendChild(hit);
+    });
+
+    container.appendChild(svg);
+  });
+}
+
+/* ==========================================================================
    Спарклайн для плитки статистики: 12 точек, без осей и подписей.
    Это не самостоятельный график, а форма числа — подсказки ему не нужны.
    ========================================================================== */

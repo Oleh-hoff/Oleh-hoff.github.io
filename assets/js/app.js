@@ -17,6 +17,7 @@ import { mountNotifications } from './notifications.js';
 import { accountCheck } from './views/account-check.js';
 import { weeklySales } from './views/weekly-sales.js';
 import { wiki } from './views/wiki.js';
+import { advertising } from './views/advertising.js';
 
 /* --- Доступ ------------------------------------------------------------- */
 
@@ -44,6 +45,7 @@ function placeholder(titleKey) {
 const ROUTES = {
   'account-check': accountCheck,
   'weekly-sales': weeklySales,
+  advertising,
   wiki,
   products: placeholder('nav.products'),
   customers: placeholder('nav.customers'),

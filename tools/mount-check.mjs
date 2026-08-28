@@ -118,6 +118,15 @@ const { setLang, t } = await load('assets/js/i18n.js');
    бессмысленно, а требовать уборку наблюдателей — только у тех, кто их
    заводит: иначе проверка ругается на исправный код. */
 const VIEWS = {
+  // Пока data/ads-spend.json не собран, раздел живёт вторым законным
+  // состоянием — карточкой «данных ещё нет». Проверяем то, что осмысленно
+  // сейчас: раздел монтируется на трёх языках, ключи переведены, в тексте нет
+  // NaN/undefined, уборка отрабатывает. Вернуть charts/tiles/.data-table сюда
+  // вместе с первой выгрузкой — тогда пустое состояние станет регрессией.
+  advertising: {
+    path: 'assets/js/views/advertising.js', name: 'advertising',
+    expect: {},
+  },
   'weekly-sales': {
     path: 'assets/js/views/weekly-sales.js', name: 'weeklySales',
     expect: { charts: true, tiles: true, observers: true },
@@ -155,7 +164,7 @@ for (const lang of ['ru', 'en', 'uk']) {
   if (/\bnull\b/.test(text)) problems.push(`[${lang}] в тексте есть null`);
 
   // Непереведённый ключ отдаётся самим t() как есть — он и виден в тексте
-  const raw = text.match(/\b(sales|check|page|nav|settings|int)\.[a-zA-Z.]+\b/g);
+  const raw = text.match(/\b(sales|check|page|nav|settings|int|ads)\.[a-zA-Z.]+\b/g);
   if (raw) problems.push(`[${lang}] непереведённые ключи: ${[...new Set(raw)].join(', ')}`);
 
   if (lang === 'ru') {

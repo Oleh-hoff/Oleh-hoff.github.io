@@ -779,3 +779,163 @@ extendDict({
     'check.col.state': 'Стан',
   },
 });
+
+/* ==========================================================================
+   Раздел «Реклама».
+
+   ACOS намеренно оставлен латиницей во всех трёх языках: в рекламном
+   кабинете Amazon показатель называется именно так, и человек, который
+   сверяет наши цифры с кабинетом, должен видеть то же слово.
+   ========================================================================== */
+
+extendDict({
+  ru: {
+    'nav.advertising': 'Реклама',
+
+    'ads.fixture.title': 'Это не настоящие данные',
+    'ads.fixture.text': 'В файле лежит заглушка для проверки вёрстки: числа выдуманы. Раздел нельзя публиковать, пока её не заменит выгрузка из Amazon Ads API.',
+
+    'ads.title': 'Реклама',
+    'ads.lead': 'Расходы на рекламу по месяцам и сравнение с тем же месяцем год назад.',
+    'ads.loading': 'Загружаем расходы…',
+    'ads.error': 'Не удалось загрузить данные о рекламе. Выгрузка либо ещё не собрана, либо недоступна.',
+    'ads.empty': 'За выбранный период расходов не было.',
+
+    'ads.kpi.total': 'Расходы за 12 месяцев',
+    'ads.kpi.vsLastYear': '{delta} к прошлому году',
+    'ads.kpi.noLastYear': 'сравнить не с чем',
+    'ads.kpi.perMonth': 'В среднем за месяц',
+    'ads.kpi.acos': 'ACOS за 12 месяцев',
+    'ads.kpi.acosLastYear': 'год назад {value}',
+    'ads.kpi.running': '{month} — идёт',
+    'ads.kpi.runningNote': 'месяц не закончился, на графике его нет',
+
+    'ads.series.now': 'Текущие 12 месяцев',
+    'ads.series.past': 'Год назад',
+    'ads.tooltip.delta': 'Разница',
+
+    'ads.chart.spend': 'Расходы по месяцам',
+    'ads.chart.spendSub': 'Каждый месяц рядом со своим прошлогодним двойником.',
+    'ads.chart.spendAria': 'Столбчатый график расходов на рекламу по месяцам в сравнении с прошлым годом',
+    'ads.chart.acos': 'ACOS по месяцам',
+    'ads.chart.acosSub': 'Доля расходов в рекламной выручке. Отдельным графиком: у процентов и евро разные шкалы.',
+    'ads.chart.acosAria': 'Линейный график ACOS по месяцам в сравнении с прошлым годом',
+    'ads.chart.country': 'Расходы по площадкам',
+    'ads.chart.countrySub': 'Сумма за двенадцать полных месяцев.',
+    'ads.chart.countryAria': 'Расходы на рекламу по площадкам',
+    'ads.country.unavailable': 'Разрез по площадкам этот отчёт Amazon не отдаёт: страна есть только у кампаний, не у сводки. Нужна отдельная выгрузка по кампаниям.',
+
+    'ads.showTable': 'Показать таблицей',
+    'ads.table.month': 'Месяц',
+    'ads.table.spendNow': 'Расходы',
+    'ads.table.spendPast': 'Год назад',
+    'ads.table.delta': 'Разница',
+    'ads.table.acosNow': 'ACOS',
+    'ads.table.acosPast': 'ACOS год назад',
+
+    'ads.note.generated': 'Данные собраны {at}.',
+    'ads.note.currency': 'Площадки в GBP, SEK и PLN переведены в евро по курсу ЕЦБ на {date} — одним курсом для всех месяцев, чтобы в сравнении год к году не сидело движение валют. Это оценка: с выплатами Amazon она не совпадёт.',
+    'ads.note.running': '{month} ещё идёт и в сравнение не входит.',
+    'ads.note.gaps': 'За часть прошлогодних месяцев данных нет — в таблице у них прочерк.',
+  },
+
+  en: {
+    'nav.advertising': 'Advertising',
+
+    'ads.fixture.title': 'This is not real data',
+    'ads.fixture.text': 'The file holds a fixture used to check the layout: the numbers are made up. This section must not be published until a real Amazon Ads API export replaces it.',
+
+    'ads.title': 'Advertising',
+    'ads.lead': 'Monthly ad spend and how each month compares with the same month a year ago.',
+    'ads.loading': 'Loading spend…',
+    'ads.error': 'Could not load advertising data. The export is either not collected yet or unavailable.',
+    'ads.empty': 'No spend in the selected period.',
+
+    'ads.kpi.total': 'Spend over 12 months',
+    'ads.kpi.vsLastYear': '{delta} vs last year',
+    'ads.kpi.noLastYear': 'nothing to compare with',
+    'ads.kpi.perMonth': 'Monthly average',
+    'ads.kpi.acos': 'ACOS over 12 months',
+    'ads.kpi.acosLastYear': 'a year ago {value}',
+    'ads.kpi.running': '{month} — in progress',
+    'ads.kpi.runningNote': 'the month is not over; it is not on the chart',
+
+    'ads.series.now': 'Current 12 months',
+    'ads.series.past': 'A year ago',
+    'ads.tooltip.delta': 'Difference',
+
+    'ads.chart.spend': 'Spend by month',
+    'ads.chart.spendSub': 'Each month next to its counterpart from last year.',
+    'ads.chart.spendAria': 'Column chart of monthly ad spend compared with last year',
+    'ads.chart.acos': 'ACOS by month',
+    'ads.chart.acosSub': 'Share of spend in ad revenue. A separate chart: percentages and euros do not share a scale.',
+    'ads.chart.acosAria': 'Line chart of monthly ACOS compared with last year',
+    'ads.chart.country': 'Spend by marketplace',
+    'ads.chart.countrySub': 'Total over twelve complete months.',
+    'ads.chart.countryAria': 'Ad spend by marketplace',
+    'ads.country.unavailable': 'This Amazon report does not break spend down by marketplace: country belongs to campaigns, not to the summary. A separate campaign-level export is needed.',
+
+    'ads.showTable': 'Show as table',
+    'ads.table.month': 'Month',
+    'ads.table.spendNow': 'Spend',
+    'ads.table.spendPast': 'Last year',
+    'ads.table.delta': 'Difference',
+    'ads.table.acosNow': 'ACOS',
+    'ads.table.acosPast': 'ACOS last year',
+
+    'ads.note.generated': 'Data collected {at}.',
+    'ads.note.currency': 'Marketplaces in GBP, SEK and PLN were converted to euro at the ECB rate of {date} — one rate for every month, so that currency movement does not sit inside the year-on-year comparison. This is an estimate: it will not match Amazon payouts.',
+    'ads.note.running': '{month} is still in progress and is left out of the comparison.',
+    'ads.note.gaps': 'Some months of last year have no data — they show a dash in the table.',
+  },
+
+  uk: {
+    'nav.advertising': 'Реклама',
+
+    'ads.fixture.title': 'Це не справжні дані',
+    'ads.fixture.text': 'У файлі лежить заглушка для перевірки верстки: числа вигадані. Розділ не можна публікувати, доки її не замінить вивантаження з Amazon Ads API.',
+
+    'ads.title': 'Реклама',
+    'ads.lead': 'Витрати на рекламу помісячно й порівняння з тим самим місяцем торік.',
+    'ads.loading': 'Завантажуємо витрати…',
+    'ads.error': 'Не вдалося завантажити дані про рекламу. Вивантаження або ще не зібране, або недоступне.',
+    'ads.empty': 'За вибраний період витрат не було.',
+
+    'ads.kpi.total': 'Витрати за 12 місяців',
+    'ads.kpi.vsLastYear': '{delta} до торішнього',
+    'ads.kpi.noLastYear': 'порівняти нема з чим',
+    'ads.kpi.perMonth': 'У середньому за місяць',
+    'ads.kpi.acos': 'ACOS за 12 місяців',
+    'ads.kpi.acosLastYear': 'торік {value}',
+    'ads.kpi.running': '{month} — триває',
+    'ads.kpi.runningNote': 'місяць не закінчився, на графіку його немає',
+
+    'ads.series.now': 'Поточні 12 місяців',
+    'ads.series.past': 'Торік',
+    'ads.tooltip.delta': 'Різниця',
+
+    'ads.chart.spend': 'Витрати помісячно',
+    'ads.chart.spendSub': 'Кожен місяць поряд зі своїм торішнім двійником.',
+    'ads.chart.spendAria': 'Стовпчиковий графік витрат на рекламу помісячно проти торішніх',
+    'ads.chart.acos': 'ACOS помісячно',
+    'ads.chart.acosSub': 'Частка витрат у рекламній виручці. Окремим графіком: у відсотків і євро різні шкали.',
+    'ads.chart.acosAria': 'Лінійний графік ACOS помісячно проти торішнього',
+    'ads.chart.country': 'Витрати за площадками',
+    'ads.chart.countrySub': 'Сума за дванадцять повних місяців.',
+    'ads.chart.countryAria': 'Витрати на рекламу за площадками',
+    'ads.country.unavailable': 'Розрізу за площадками цей звіт Amazon не дає: країна є лише в кампаній, а не у зведенні. Потрібне окреме вивантаження за кампаніями.',
+
+    'ads.showTable': 'Показати таблицею',
+    'ads.table.month': 'Місяць',
+    'ads.table.spendNow': 'Витрати',
+    'ads.table.spendPast': 'Торік',
+    'ads.table.delta': 'Різниця',
+    'ads.table.acosNow': 'ACOS',
+    'ads.table.acosPast': 'ACOS торік',
+
+    'ads.note.generated': 'Дані зібрано {at}.',
+    'ads.note.currency': 'Площадки в GBP, SEK і PLN переведено в євро за курсом ЄЦБ на {date} — одним курсом для всіх місяців, щоб у порівнянні рік до року не сиділо валютне коливання. Це оцінка: з виплатами Amazon вона не збіжиться.',
+    'ads.note.running': '{month} ще триває і в порівняння не входить.',
+    'ads.note.gaps': 'За частину торішніх місяців даних немає — у таблиці в них прочерк.',
+  },
+});
