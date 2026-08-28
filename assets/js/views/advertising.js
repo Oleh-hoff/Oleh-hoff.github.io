@@ -116,6 +116,22 @@ function buildWindow(data) {
 
 const sum = (rows, field) => rows.reduce((acc, row) => acc + (row?.[field] || 0), 0);
 
+/**
+ * Совокупный ACOS за период — только по месяцам, где выручка известна.
+ *
+ * Складывать весь расход и делить на ту выручку, что нашлась, нельзя: у
+ * самого старого месяца окна Amazon обрезает атрибуцию (см. salesMissing в
+ * данных), расход там есть, а выручки нет. Такой месяц задрал бы долю на
+ * ровном месте — он выбрасывается из дроби целиком, вместе со своим расходом.
+ */
+function aggregateAcos(rows) {
+  const usable = rows.filter((row) => row && row.sales > 0);
+  if (!usable.length) return null;
+  const spend = usable.reduce((acc, row) => acc + row.spend, 0);
+  const sales = usable.reduce((acc, row) => acc + row.sales, 0);
+  return sales > 0 ? spend / sales : null;
+}
+
 /* --------------------------------------------------------------------------
    Куски разметки
    -------------------------------------------------------------------------- */
@@ -215,8 +231,6 @@ export const advertising = {
 
     const totalNow = sum(win.now, 'spend');
     const totalPast = sum(win.past, 'spend');
-    const salesNow = sum(win.now, 'sales');
-    const salesPast = sum(win.past, 'sales');
 
     /* --- каркас --- */
     const kpis = el('div', { class: 'stat-grid' });
@@ -264,8 +278,8 @@ export const advertising = {
     kpis.appendChild(statTile(t('ads.kpi.perMonth'),
       formatMoney(win.keys.length ? totalNow / win.keys.length : 0, currency)));
 
-    const acosNow = salesNow > 0 ? totalNow / salesNow : null;
-    const acosPast = salesPast > 0 ? totalPast / salesPast : null;
+    const acosNow = aggregateAcos(win.now);
+    const acosPast = aggregateAcos(win.past);
     kpis.appendChild(statTile(
       t('ads.kpi.acos'),
       acosNow === null ? '—' : formatPercent(acosNow * 100),
@@ -356,6 +370,18 @@ export const advertising = {
     ];
     if (win.running) notes.push(t('ads.note.running', { month: monthFull(win.running.m, lang) }));
     if (win.past.some((row) => !row)) notes.push(t('ads.note.gaps'));
+
+    /* Обрезанную атрибуцию надо назвать вслух. Иначе разрыв в линии ACOS
+       читается как «в тот месяц не рекламировались», хотя расход там был и
+       на графике трат стоит нормальный столбец. */
+    const truncated = (data.salesMissing || []).filter(
+      (m) => win.keys.includes(m) || win.keys.some((key) => yearBefore(key) === m),
+    );
+    if (truncated.length) {
+      notes.push(t('ads.note.salesMissing', {
+        months: truncated.map((m) => monthFull(m, lang)).join(', '),
+      }));
+    }
     footnote.textContent = notes.join(' ');
 
     return () => {

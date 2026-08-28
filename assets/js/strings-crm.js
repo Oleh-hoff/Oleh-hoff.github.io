@@ -837,6 +837,7 @@ extendDict({
     'ads.note.currency': 'Площадки в GBP, SEK и PLN переведены в евро по курсу ЕЦБ на {date} — одним курсом для всех месяцев, чтобы в сравнении год к году не сидело движение валют. Это оценка: с выплатами Amazon она не совпадёт.',
     'ads.note.running': '{month} ещё идёт и в сравнение не входит.',
     'ads.note.gaps': 'За часть прошлогодних месяцев данных нет — в таблице у них прочерк.',
+    'ads.note.salesMissing': 'За {months} Amazon отдаёт расход, но уже не отдаёт выручку: месяц упёрся в границу хранения данных. ACOS за него не считается, в расчёт средней доли он не входит, а расход учтён полностью.',
   },
 
   en: {
@@ -887,6 +888,7 @@ extendDict({
     'ads.note.currency': 'Marketplaces in GBP, SEK and PLN were converted to euro at the ECB rate of {date} — one rate for every month, so that currency movement does not sit inside the year-on-year comparison. This is an estimate: it will not match Amazon payouts.',
     'ads.note.running': '{month} is still in progress and is left out of the comparison.',
     'ads.note.gaps': 'Some months of last year have no data — they show a dash in the table.',
+    'ads.note.salesMissing': 'For {months} Amazon still returns spend but no longer returns revenue: the month has hit the data retention boundary. ACOS is not computed for it and it is left out of the average, while its spend is counted in full.',
   },
 
   uk: {
@@ -937,5 +939,6 @@ extendDict({
     'ads.note.currency': 'Площадки в GBP, SEK і PLN переведено в євро за курсом ЄЦБ на {date} — одним курсом для всіх місяців, щоб у порівнянні рік до року не сиділо валютне коливання. Це оцінка: з виплатами Amazon вона не збіжиться.',
     'ads.note.running': '{month} ще триває і в порівняння не входить.',
     'ads.note.gaps': 'За частину торішніх місяців даних немає — у таблиці в них прочерк.',
+    'ads.note.salesMissing': 'За {months} Amazon віддає витрати, але вже не віддає виручку: місяць уперся в межу зберігання даних. ACOS за нього не рахується й у середню частку він не входить, а витрати враховані повністю.'
   },
 });
