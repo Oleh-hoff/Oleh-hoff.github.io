@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-09-02T00:18:23Z",
+ "generatedAt": "2026-09-02T04:12:44Z",
  "marketplace": "A1PA6795UKMFR9",
  "checks": [
   {
    "id": "actions",
    "item": "п.1",
-   "checkedAt": "2026-09-02T00:18:18Z",
+   "checkedAt": "2026-09-02T04:12:40Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -17,7 +17,7 @@
   {
    "id": "stranded",
    "item": "п.2",
-   "checkedAt": "2026-09-02T00:18:19Z",
+   "checkedAt": "2026-09-02T04:12:41Z",
    "status": "warn",
    "count": 1,
    "items": [
@@ -34,128 +34,23 @@
   {
    "id": "listingStatus",
    "item": "п.3",
-   "checkedAt": "2026-09-02T00:18:20Z",
-   "status": "warn",
-   "count": 13,
-   "items": [
-    {
-     "asin": "B0F79C4Y9C",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "4Q-CIIG-VD9B",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0DJ1DGY6J",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "60-O7CT-8I0F",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B07JZCWJMW",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "GM-1QEG-0QPK",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0GGJ6VRCQ",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "JZ-7QN5-JBQ4",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0GQVR12BX",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "LZ-OBDX-1IFP",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0DNT4FNZ9",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "MC-DZIG-W9QU",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0FVGB9FHJ",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "NL-4NNP-5092",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0854MW97N",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "SH-G0PF-CSW1",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0GT1C3GYC",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "TD-6DJM-RO0O",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0GT1BWV7W",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "TH-98VA-0W60",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0DNTPCLRN",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "UK-P7TQ-VS08",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0GGJ4RNBC",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "VX-PB4F-4IMK",
-     "previousStatus": "active"
-    },
-    {
-     "asin": "B0FNX21TZF",
-     "title": "",
-     "status": "inactive",
-     "quantity": "",
-     "sku": "ZV-XWYM-FRWL",
-     "previousStatus": "active"
-    }
-   ],
+   "checkedAt": "2026-09-02T04:12:42Z",
+   "status": "ok",
+   "count": 0,
+   "items": [],
    "extra": {
     "total": 59,
     "inactive": 47,
     "firstRun": false
    },
-   "message": "13 товаров перестали быть активными с прошлой проверки."
+   "message": "Ни один активный товар не сменил статус."
   },
   {
    "id": "accountHealth",
    "item": "п.4",
-   "checkedAt": "2026-09-02T00:18:21Z",
-   "status": "ok",
-   "count": 0,
+   "checkedAt": "2026-09-02T04:12:42Z",
+   "status": "error",
+   "count": 7,
    "items": [
     {
      "name": "lateShipmentRate",
@@ -308,16 +203,16 @@
    "extra": {
     "ahrScore": 764.0,
     "ahrStatus": "GREAT",
-    "accountStatus": "NORMAL",
+    "accountStatus": "AT_RISK",
     "warnings": [],
     "problemMetrics": []
    },
-   "message": "Все 21 показателей в норме, рейтинг 764.0 (GREAT)."
+   "message": "Аккаунт под ограничениями: AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK."
   },
   {
    "id": "feedback",
    "item": "п.5",
-   "checkedAt": "2026-09-02T00:18:22Z",
+   "checkedAt": "2026-09-02T04:12:43Z",
    "status": "warn",
    "count": 1,
    "items": [
@@ -337,7 +232,7 @@
   {
    "id": "performanceNotifications",
    "item": "п.6",
-   "checkedAt": "2026-09-02T00:18:22Z",
+   "checkedAt": "2026-09-02T04:12:43Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -349,7 +244,7 @@
   {
    "id": "pricingHealth",
    "item": "п.7",
-   "checkedAt": "2026-09-02T00:18:22Z",
+   "checkedAt": "2026-09-02T04:12:43Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -361,7 +256,7 @@
   {
    "id": "messages",
    "item": "п.8",
-   "checkedAt": "2026-09-02T00:18:22Z",
+   "checkedAt": "2026-09-02T04:12:43Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -373,7 +268,7 @@
   {
    "id": "customerReviews",
    "item": "п.9",
-   "checkedAt": "2026-09-02T00:18:22Z",
+   "checkedAt": "2026-09-02T04:12:43Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -385,7 +280,7 @@
   {
    "id": "fbaPerformance",
    "item": "п.10",
-   "checkedAt": "2026-09-02T00:18:23Z",
+   "checkedAt": "2026-09-02T04:12:44Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -394,7 +289,7 @@
   {
    "id": "cases",
    "item": "п.11",
-   "checkedAt": "2026-09-02T00:18:23Z",
+   "checkedAt": "2026-09-02T04:12:44Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
