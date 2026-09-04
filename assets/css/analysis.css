@@ -1,0 +1,246 @@
+/* ==========================================================================
+   Раздел «Еженедельный анализ».
+
+   Цвета берутся только из токенов: расходящаяся шкала Фактора 1 — два
+   полюса (--delta-down / --delta-up) с нейтральной серединой, статусные
+   цвета к сериям не примешиваются. Оба полюса всегда подписаны словом:
+   на печати и при дальтонизме цвет полосы не читается, а название читается.
+   ========================================================================== */
+
+.chart-box { min-height: 280px; }
+
+/* --------------------------------------------------------------------------
+   Помета «правило не задано»
+
+   Обязана быть громкой. В исходной спецификации пятнадцать открытых
+   вопросов, и там, где правила нет, экран не имеет права выглядеть как
+   посчитанный: тихая помета читается как «всё в порядке, просто пусто».
+   -------------------------------------------------------------------------- */
+
+.wa-marker {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-start;
+  margin-top: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px solid var(--status-warning);
+  border-left-width: 3px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--ink-1);
+  font-size: var(--fs-sm);
+  line-height: 1.5;
+}
+
+.wa-marker__sign {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--status-warning);
+  color: #1a1a1a;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+}
+
+.wa-note {
+  margin-top: var(--sp-3);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+/* Одно крупное число или один вердикт — не таблица и не плитка */
+.wa-figure {
+  font-size: var(--fs-stat);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.wa-subtitle {
+  margin-top: var(--sp-4);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.wa-list {
+  margin: var(--sp-3) 0 0;
+  padding-left: var(--sp-5);
+  color: var(--ink-1);
+  font-size: var(--fs-sm);
+  line-height: 1.7;
+}
+.wa-list li { padding-left: var(--sp-1); }
+
+.wa-chip {
+  margin-left: var(--sp-3);
+  padding: 1px var(--sp-2);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+}
+
+.wa-badge {
+  display: inline-block;
+  padding: 2px var(--sp-3);
+  border-radius: var(--radius-pill);
+  background: var(--surface-sunken);
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* --------------------------------------------------------------------------
+   Шкала Фактора 1
+
+   Семь полос спецификации сверху вниз. Ширина полосы кодирует величину
+   отклонения, цвет — сторону. Ни то ни другое не остаётся единственным
+   носителем смысла: диапазон и название стоят текстом в той же строке.
+   -------------------------------------------------------------------------- */
+
+.wa-scale {
+  display: grid;
+  gap: 6px;
+  margin-top: var(--sp-4);
+}
+
+.wa-scale__row {
+  display: grid;
+  grid-template-columns: 108px 132px 1fr auto;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+}
+
+/* Текущая полоса выделяется подложкой и рамкой, а не цветом текста:
+   значение и так стоит в плитке над шкалой */
+.wa-scale__row.is-active {
+  background: var(--surface-2);
+  outline: 1px solid var(--border-strong);
+  font-weight: 600;
+}
+
+.wa-scale__range {
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.wa-scale__bar {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--ink-3);
+}
+
+/* Ширина = величина полосы. Крайние полосы открыты («от +20%»), поэтому
+   занимают дорожку целиком. */
+.wa-scale__row--up   .wa-scale__bar { background: var(--delta-up); }
+.wa-scale__row--down .wa-scale__bar { background: var(--delta-down); }
+
+.wa-scale__row--flat .wa-scale__bar { width: 34%; }
+.wa-scale__row:nth-child(3) .wa-scale__bar,
+.wa-scale__row:nth-child(5) .wa-scale__bar { width: 52%; }
+.wa-scale__row:nth-child(2) .wa-scale__bar,
+.wa-scale__row:nth-child(6) .wa-scale__bar { width: 76%; }
+
+.wa-scale__name { color: var(--ink-1); }
+
+.wa-scale__mark {
+  color: var(--ink-2);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 720px) {
+  .wa-scale__row { grid-template-columns: 96px 1fr; }
+  .wa-scale__bar { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Каталог прапорців
+
+   Показывается целиком, включая те, у которых источника нет. Спрятать их
+   значило бы объявить неделю чистой, ничего про out of stock не зная.
+   -------------------------------------------------------------------------- */
+
+.wa-flags {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 6px;
+  margin: var(--sp-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wa-flag {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+}
+
+.wa-flag--collected { border-color: var(--border-strong); }
+
+.wa-flag__name { color: var(--ink-1); }
+
+.wa-flag__source {
+  flex: 0 0 auto;
+  color: var(--ink-3);
+  font-size: var(--fs-xs);
+}
+.wa-flag--collected .wa-flag__source { color: var(--ink-2); font-weight: 600; }
+
+/* --------------------------------------------------------------------------
+   Два пула стока
+   -------------------------------------------------------------------------- */
+
+.wa-pools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+}
+
+.wa-pool {
+  padding: var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+
+.wa-pool__title { font-size: var(--fs-base); font-weight: 600; }
+
+.wa-pool__body {
+  margin-top: var(--sp-2);
+  color: var(--ink-2);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+}
+
+.wa-pool__list {
+  margin-top: var(--sp-3);
+  color: var(--ink-3);
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   Вариации: парент и его чайлды в одной таблице
+   -------------------------------------------------------------------------- */
+
+.wa-var-parent > td { font-weight: 600; }
+.wa-var-child { padding-left: var(--sp-5); color: var(--ink-2); }

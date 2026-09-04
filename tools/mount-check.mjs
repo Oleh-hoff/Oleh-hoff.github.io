@@ -122,6 +122,10 @@ const VIEWS = {
     path: 'assets/js/views/advertising.js', name: 'advertising',
     expect: { charts: true, tiles: true, selectors: ['.data-table'] },
   },
+  'weekly-analysis': {
+    path: 'assets/js/views/weekly-analysis.js', name: 'weeklyAnalysis',
+    expect: { charts: true, tiles: true, observers: true, selectors: ['.data-table', '.wa-scale', '.wa-marker'] },
+  },
   'weekly-sales': {
     path: 'assets/js/views/weekly-sales.js', name: 'weeklySales',
     expect: { charts: true, tiles: true, observers: true },
@@ -159,7 +163,7 @@ for (const lang of ['ru', 'en', 'uk']) {
   if (/\bnull\b/.test(text)) problems.push(`[${lang}] в тексте есть null`);
 
   // Непереведённый ключ отдаётся самим t() как есть — он и виден в тексте
-  const raw = text.match(/\b(sales|check|page|nav|settings|int|ads)\.[a-zA-Z.]+\b/g);
+  const raw = text.match(/\b(sales|check|page|nav|settings|int|ads|wa)\.[a-zA-Z.]+\b/g);
   if (raw) problems.push(`[${lang}] непереведённые ключи: ${[...new Set(raw)].join(', ')}`);
 
   if (lang === 'ru') {
