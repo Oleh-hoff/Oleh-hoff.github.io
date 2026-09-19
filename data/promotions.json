@@ -1,6 +1,6 @@
 {
  "source": "spapi-promotions",
- "generatedAt": "2026-09-18T22:40:01Z",
+ "generatedAt": "2026-09-19T03:34:20Z",
  "periodStart": "2026-06-15",
  "periodEnd": "2026-09-20",
  "searchFrom": "2026-05-06",
@@ -2625,22 +2625,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A1L9W6VXS181PQ",
-   "kind": "coupon",
-   "name": "Économisez 5 % sur Patins de Protection Murale",
-   "m": "BE",
-   "start": "2026-06-30",
-   "end": "2026-07-23",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 6,
-   "sales": 45.1,
-   "currency": "EUR",
-   "discount": "5%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A393GXO7MT71M5",
    "kind": "coupon",
    "name": "Économisez 5 % sur Patins de Protection Murale",
@@ -2652,6 +2636,22 @@
    ],
    "units": 21,
    "sales": 149.4,
+   "currency": "EUR",
+   "discount": "5%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A1L9W6VXS181PQ",
+   "kind": "coupon",
+   "name": "Économisez 5 % sur Patins de Protection Murale",
+   "m": "BE",
+   "start": "2026-06-30",
+   "end": "2026-07-23",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 6,
+   "sales": 45.1,
    "currency": "EUR",
    "discount": "5%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -5468,22 +5468,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A1F4FMGLHCXLOW",
-   "kind": "coupon",
-   "name": "Économisez 10 % sur Patins de Protection Murale",
-   "m": "BE",
-   "start": "2026-07-29",
-   "end": "2026-08-28",
-   "asins": [
-    "B08NCRRM6M"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "EUR",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A35YINI3URV35U",
    "kind": "coupon",
    "name": "Économisez 10 % sur Patins de Protection Murale",
@@ -5492,6 +5476,22 @@
    "end": "2026-08-28",
    "asins": [
     "B0DNTPCLRN"
+   ],
+   "units": 0,
+   "sales": 0.0,
+   "currency": "EUR",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A1F4FMGLHCXLOW",
+   "kind": "coupon",
+   "name": "Économisez 10 % sur Patins de Protection Murale",
+   "m": "BE",
+   "start": "2026-07-29",
+   "end": "2026-08-28",
+   "asins": [
+    "B08NCRRM6M"
    ],
    "units": 0,
    "sales": 0.0,
@@ -6268,14 +6268,13 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A2MON7MTYTFKEY",
+   "id": "A15Y0AMQQX3O22",
    "kind": "coupon",
    "name": "Économisez €5 sur Protection en Mousse pour Bords et Coins",
    "m": "BE",
    "start": "2026-08-07",
    "end": "2026-08-07",
    "asins": [
-    "B0GGJ4RNBC",
     "B0GGJ6VRCQ"
    ],
    "units": 0,
@@ -6285,13 +6284,14 @@
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
-   "id": "A15Y0AMQQX3O22",
+   "id": "A2MON7MTYTFKEY",
    "kind": "coupon",
    "name": "Économisez €5 sur Protection en Mousse pour Bords et Coins",
    "m": "BE",
    "start": "2026-08-07",
    "end": "2026-08-07",
    "asins": [
+    "B0GGJ4RNBC",
     "B0GGJ6VRCQ"
    ],
    "units": 0,
@@ -8213,7 +8213,7 @@
    "name": "Économisez 10 % sur Serrure magnetique pour enfants",
    "m": "BE",
    "start": "2026-09-03",
-   "end": "2026-10-03",
+   "end": "2026-09-17",
    "asins": [
     "B0DNT4FNZ9",
     "B0FNX21TZF",
@@ -8232,7 +8232,7 @@
    "name": "Économisez 10 % sur Serrure magnetique pour enfants",
    "m": "BE",
    "start": "2026-09-03",
-   "end": "2026-10-03",
+   "end": "2026-09-17",
    "asins": [
     "B072PPT9V3",
     "B07JZCWJMW",
@@ -8240,7 +8240,7 @@
     "B0DMTMHVK4"
    ],
    "units": 39,
-   "sales": 738.16,
+   "sales": 709.09,
    "currency": "EUR",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -8251,7 +8251,7 @@
    "name": "Économisez 5 % sur Patins de Protection Murale",
    "m": "BE",
    "start": "2026-09-03",
-   "end": "2026-10-03",
+   "end": "2026-09-17",
    "asins": [
     "B0DNTPCLRN"
    ],
@@ -8267,7 +8267,7 @@
    "name": "Économisez 7 % sur Eckenschutz Kantenschutz Baby",
    "m": "BE",
    "start": "2026-09-03",
-   "end": "2026-10-03",
+   "end": "2026-09-17",
    "asins": [
     "B0933B1NKB",
     "B0933DBFMS",
@@ -8287,7 +8287,7 @@
    "name": "Économisez €2 sur Protection en Mousse pour Bords et Coins",
    "m": "BE",
    "start": "2026-09-03",
-   "end": "2026-10-03",
+   "end": "2026-09-17",
    "asins": [
     "B0GGJ4RNBC",
     "B0GGJ6VRCQ"
