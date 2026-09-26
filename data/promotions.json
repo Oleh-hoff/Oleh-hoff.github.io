@@ -1,6 +1,6 @@
 {
  "source": "spapi-promotions",
- "generatedAt": "2026-09-26T19:20:42Z",
+ "generatedAt": "2026-09-26T22:45:19Z",
  "periodStart": "2026-06-22",
  "periodEnd": "2026-09-27",
  "searchFrom": "2026-05-13",
@@ -904,26 +904,6 @@
    "currency": "SEK"
   },
   {
-   "id": "A2YKQ3DRIDB0XA",
-   "kind": "coupon",
-   "name": "15% di sconto su Blocca Cassetti per Bambini",
-   "m": "IT",
-   "start": "2026-06-23",
-   "end": "2026-06-29",
-   "asins": [
-    "B072PPT9V3",
-    "B0DMTJXH9W",
-    "B0DMTMHVK4",
-    "B0FVG9MZR8",
-    "B0FVGB9FHJ"
-   ],
-   "units": 119,
-   "sales": 1844.54,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "AKDJC7Z53JXTV",
    "kind": "coupon",
    "name": "15% di sconto su Blocca Cassetti per Bambini",
@@ -939,6 +919,26 @@
    ],
    "units": 0,
    "sales": 0.0,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A2YKQ3DRIDB0XA",
+   "kind": "coupon",
+   "name": "15% di sconto su Blocca Cassetti per Bambini",
+   "m": "IT",
+   "start": "2026-06-23",
+   "end": "2026-06-29",
+   "asins": [
+    "B072PPT9V3",
+    "B0DMTJXH9W",
+    "B0DMTMHVK4",
+    "B0FVG9MZR8",
+    "B0FVGB9FHJ"
+   ],
+   "units": 119,
+   "sales": 1844.54,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -1556,23 +1556,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A12S22EM849VL4",
-   "kind": "coupon",
-   "name": "Sparen Sie 25 % auf Magnetische Kindersicherung",
-   "m": "DE",
-   "start": "2026-06-25",
-   "end": "2026-06-25",
-   "asins": [
-    "B0DNT4FNZ9",
-    "B0FNX21TZF"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "EUR",
-   "discount": "25%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A2WFMAF5LYITX0",
    "kind": "coupon",
    "name": "Sparen Sie 25 % auf Magnetische Kindersicherung",
@@ -1585,6 +1568,23 @@
    ],
    "units": 26,
    "sales": 358.57,
+   "currency": "EUR",
+   "discount": "25%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A12S22EM849VL4",
+   "kind": "coupon",
+   "name": "Sparen Sie 25 % auf Magnetische Kindersicherung",
+   "m": "DE",
+   "start": "2026-06-25",
+   "end": "2026-06-25",
+   "asins": [
+    "B0DNT4FNZ9",
+    "B0FNX21TZF"
+   ],
+   "units": 0,
+   "sales": 0.0,
    "currency": "EUR",
    "discount": "25%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -1606,23 +1606,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A3LQJF1M8MQI17",
-   "kind": "coupon",
-   "name": "Économisez 25 % sur Serrure Magnétique Invisible pour Sécurité Enfant",
-   "m": "FR",
-   "start": "2026-06-25",
-   "end": "2026-06-26",
-   "asins": [
-    "B0DNT4FNZ9",
-    "B0FNX21TZF"
-   ],
-   "units": 11,
-   "sales": 155.11,
-   "currency": "EUR",
-   "discount": "25%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "ARRH11L00UUAP",
    "kind": "coupon",
    "name": "Économisez 25 % sur Serrure Magnétique Invisible pour Sécurité Enfant",
@@ -1635,6 +1618,23 @@
    ],
    "units": 0,
    "sales": 0.0,
+   "currency": "EUR",
+   "discount": "25%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A3LQJF1M8MQI17",
+   "kind": "coupon",
+   "name": "Économisez 25 % sur Serrure Magnétique Invisible pour Sécurité Enfant",
+   "m": "FR",
+   "start": "2026-06-25",
+   "end": "2026-06-26",
+   "asins": [
+    "B0DNT4FNZ9",
+    "B0FNX21TZF"
+   ],
+   "units": 11,
+   "sales": 155.11,
    "currency": "EUR",
    "discount": "25%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -1755,6 +1755,22 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "ASDJQ57SZJI96",
+   "kind": "coupon",
+   "name": "Save 15% on Baby Corner Protectors",
+   "m": "IE",
+   "start": "2026-06-26",
+   "end": "2026-08-06",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 1,
+   "sales": 15.89,
+   "currency": "USD",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
    "id": "A2CIYKEK83YGV6",
    "kind": "coupon",
    "name": "Save 15% on Baby Corner Protectors",
@@ -1775,17 +1791,17 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "ASDJQ57SZJI96",
+   "id": "A1FHQQBNJBCX6K",
    "kind": "coupon",
-   "name": "Save 15% on Baby Corner Protectors",
+   "name": "Save 15% on Magnetic Cupboard Locks",
    "m": "IE",
    "start": "2026-06-26",
    "end": "2026-08-06",
    "asins": [
-    "B07PPXKJPQ"
+    "B0DNT4FNZ9"
    ],
-   "units": 1,
-   "sales": 15.89,
+   "units": 0,
+   "sales": 0.0,
    "currency": "USD",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -1806,22 +1822,6 @@
    ],
    "units": 16,
    "sales": 290.15,
-   "currency": "USD",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1FHQQBNJBCX6K",
-   "kind": "coupon",
-   "name": "Save 15% on Magnetic Cupboard Locks",
-   "m": "IE",
-   "start": "2026-06-26",
-   "end": "2026-08-06",
-   "asins": [
-    "B0DNT4FNZ9"
-   ],
-   "units": 0,
-   "sales": 0.0,
    "currency": "USD",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -2225,26 +2225,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "AP12TWILFTTV5",
-   "kind": "coupon",
-   "name": "Économisez 19 % sur Coussin de Sécurité en Mousse Adhésive pour Angles de Table",
-   "m": "FR",
-   "start": "2026-06-30",
-   "end": "2026-06-30",
-   "asins": [
-    "B0933B1NKB",
-    "B0933DBFMS",
-    "B0933F6ZWD",
-    "B0D7QMS49B",
-    "B0D7QMZZDG"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "EUR",
-   "discount": "19%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A2RZCG770WNCRI",
    "kind": "coupon",
    "name": "Économisez 19 % sur Coussin de Sécurité en Mousse Adhésive pour Angles de Table",
@@ -2265,19 +2245,23 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A1L9W6VXS181PQ",
+   "id": "AP12TWILFTTV5",
    "kind": "coupon",
-   "name": "Économisez 5 % sur Patins de Protection Murale",
-   "m": "BE",
+   "name": "Économisez 19 % sur Coussin de Sécurité en Mousse Adhésive pour Angles de Table",
+   "m": "FR",
    "start": "2026-06-30",
-   "end": "2026-07-23",
+   "end": "2026-06-30",
    "asins": [
-    "B0DNTPCLRN"
+    "B0933B1NKB",
+    "B0933DBFMS",
+    "B0933F6ZWD",
+    "B0D7QMS49B",
+    "B0D7QMZZDG"
    ],
-   "units": 6,
-   "sales": 45.1,
+   "units": 0,
+   "sales": 0.0,
    "currency": "EUR",
-   "discount": "5%",
+   "discount": "19%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
@@ -2292,6 +2276,22 @@
    ],
    "units": 21,
    "sales": 149.4,
+   "currency": "EUR",
+   "discount": "5%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A1L9W6VXS181PQ",
+   "kind": "coupon",
+   "name": "Économisez 5 % sur Patins de Protection Murale",
+   "m": "BE",
+   "start": "2026-06-30",
+   "end": "2026-07-23",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 6,
+   "sales": 45.1,
    "currency": "EUR",
    "discount": "5%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -2515,23 +2515,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A3QAJ07I6H6QPS",
-   "kind": "coupon",
-   "name": "Économisez €3 sur Bande de Sécurité pour Table",
-   "m": "FR",
-   "start": "2026-07-07",
-   "end": "2026-07-07",
-   "asins": [
-    "B0GGJ4RNBC",
-    "B0GGJ6VRCQ"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "EUR",
-   "discount": "3",
-   "discountKind": "AMOUNT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A1TUO0W54G238W",
    "kind": "coupon",
    "name": "Économisez €3 sur Bande de Sécurité pour Table",
@@ -2544,6 +2527,23 @@
    ],
    "units": 22,
    "sales": 270.18,
+   "currency": "EUR",
+   "discount": "3",
+   "discountKind": "AMOUNT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A3QAJ07I6H6QPS",
+   "kind": "coupon",
+   "name": "Économisez €3 sur Bande de Sécurité pour Table",
+   "m": "FR",
+   "start": "2026-07-07",
+   "end": "2026-07-07",
+   "asins": [
+    "B0GGJ4RNBC",
+    "B0GGJ6VRCQ"
+   ],
+   "units": 0,
+   "sales": 0.0,
    "currency": "EUR",
    "discount": "3",
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
@@ -3464,22 +3464,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A2BQ2OG8NA3GCO",
-   "kind": "coupon",
-   "name": "Save 10% on Magnetic Cupboard Locks",
-   "m": "IE",
-   "start": "2026-07-16",
-   "end": "2026-08-07",
-   "asins": [
-    "B0FNX21TZF"
-   ],
-   "units": 4,
-   "sales": 93.64,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A1O70RC1ZHH9FC",
    "kind": "coupon",
    "name": "Save 10% on Magnetic Cupboard Locks",
@@ -3491,6 +3475,22 @@
    ],
    "units": 0,
    "sales": 0.0,
+   "currency": "USD",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A2BQ2OG8NA3GCO",
+   "kind": "coupon",
+   "name": "Save 10% on Magnetic Cupboard Locks",
+   "m": "IE",
+   "start": "2026-07-16",
+   "end": "2026-08-07",
+   "asins": [
+    "B0FNX21TZF"
+   ],
+   "units": 4,
+   "sales": 93.64,
    "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -4253,7 +4253,7 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A299YXPCVGWNEA",
+   "id": "A15PKI69LT8XL0",
    "kind": "coupon",
    "name": "Save 15% on 4x Wall Protection Pads",
    "m": "IE",
@@ -4269,7 +4269,7 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A15PKI69LT8XL0",
+   "id": "A299YXPCVGWNEA",
    "kind": "coupon",
    "name": "Save 15% on 4x Wall Protection Pads",
    "m": "IE",
@@ -4746,6 +4746,22 @@
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
+   "id": "A35T94SEH4YZ2U",
+   "kind": "coupon",
+   "name": "Risparmia €2 su Paraspigoli per Bambini",
+   "m": "IT",
+   "start": "2026-07-29",
+   "end": "2026-08-12",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 36,
+   "sales": 560.1,
+   "currency": "EUR",
+   "discount": "2",
+   "discountKind": "AMOUNT_OFF_LIST_PRICE"
+  },
+  {
    "id": "AW0PZFK3NIIX8",
    "kind": "coupon",
    "name": "Risparmia €2 su Paraspigoli per Bambini",
@@ -4758,22 +4774,6 @@
    ],
    "units": 26,
    "sales": 342.46,
-   "currency": "EUR",
-   "discount": "2",
-   "discountKind": "AMOUNT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A35T94SEH4YZ2U",
-   "kind": "coupon",
-   "name": "Risparmia €2 su Paraspigoli per Bambini",
-   "m": "IT",
-   "start": "2026-07-29",
-   "end": "2026-08-12",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 36,
-   "sales": 560.1,
    "currency": "EUR",
    "discount": "2",
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
@@ -7848,25 +7848,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A72FCISDTL1MR",
-   "kind": "coupon",
-   "name": "Économisez 10 % sur Serrure magnetique pour enfants",
-   "m": "BE",
-   "start": "2026-09-03",
-   "end": "2026-09-17",
-   "asins": [
-    "B072PPT9V3",
-    "B07JZCWJMW",
-    "B0DMTJXH9W",
-    "B0DMTMHVK4"
-   ],
-   "units": 39,
-   "sales": 705.35,
-   "currency": "EUR",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A13XLBCVGAY7LY",
    "kind": "coupon",
    "name": "Économisez 10 % sur Serrure magnetique pour enfants",
@@ -7881,6 +7862,25 @@
    ],
    "units": 21,
    "sales": 319.97,
+   "currency": "EUR",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A72FCISDTL1MR",
+   "kind": "coupon",
+   "name": "Économisez 10 % sur Serrure magnetique pour enfants",
+   "m": "BE",
+   "start": "2026-09-03",
+   "end": "2026-09-17",
+   "asins": [
+    "B072PPT9V3",
+    "B07JZCWJMW",
+    "B0DMTJXH9W",
+    "B0DMTMHVK4"
+   ],
+   "units": 39,
+   "sales": 705.35,
    "currency": "EUR",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
