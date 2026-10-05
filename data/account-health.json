@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-04T22:45:31Z",
+ "generatedAt": "2026-10-05T03:56:16Z",
  "marketplace": "A1PA6795UKMFR9",
  "checks": [
   {
    "id": "actions",
    "item": "п.1",
-   "checkedAt": "2026-10-04T22:44:37Z",
+   "checkedAt": "2026-10-05T03:56:12Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -17,7 +17,7 @@
   {
    "id": "stranded",
    "item": "п.2",
-   "checkedAt": "2026-10-04T22:45:03Z",
+   "checkedAt": "2026-10-05T03:56:13Z",
    "status": "warn",
    "count": 1,
    "items": [
@@ -34,7 +34,7 @@
   {
    "id": "listingStatus",
    "item": "п.3",
-   "checkedAt": "2026-10-04T22:45:04Z",
+   "checkedAt": "2026-10-05T03:56:14Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -48,9 +48,9 @@
   {
    "id": "accountHealth",
    "item": "п.4",
-   "checkedAt": "2026-10-04T22:45:05Z",
+   "checkedAt": "2026-10-05T03:56:15Z",
    "status": "error",
-   "count": 10,
+   "count": 1,
    "items": [
     {
      "name": "lateShipmentRate",
@@ -82,7 +82,7 @@
     },
     {
      "name": "orderDefectRate (AFN)",
-     "value": 0.0,
+     "value": 1.934984520123839e-05,
      "target": 0.01,
      "condition": "LESS_THAN",
      "status": "GOOD"
@@ -201,31 +201,44 @@
     }
    ],
    "extra": {
-    "ahrScore": 820.0,
+    "ahrScore": 1000.0,
     "ahrStatus": "GREAT",
     "accountStatus": "AT_RISK",
     "warnings": [],
     "problemMetrics": []
    },
-   "message": "Аккаунт под ограничениями: AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK."
+   "message": "Аккаунт под ограничениями: AT_RISK."
   },
   {
    "id": "feedback",
    "item": "п.5",
-   "checkedAt": "2026-10-04T22:45:30Z",
-   "status": "ok",
-   "count": 0,
-   "items": [],
+   "checkedAt": "2026-10-05T03:56:15Z",
+   "status": "warn",
+   "count": 2,
+   "items": [
+    {
+     "date": "29/09/2026",
+     "rating": 1,
+     "comment": "Terrible idea, item not delivered next day but over 48hrs after without any consideration for the inconvenience caused for the customer.",
+     "orderId": ""
+    },
+    {
+     "date": "28/09/2026",
+     "rating": 1,
+     "comment": "Items in more used condition than indicated and seller doesn’t seem to be able to provide a free return label. Waiting for resolution but not optimistic",
+     "orderId": ""
+    }
+   ],
    "extra": {
-    "negative": 0,
+    "negative": 2,
     "days": 30
    },
-   "message": "Новых отзывов за 30 дней нет."
+   "message": "За 30 дней 2 отзывов, из них негативных 2."
   },
   {
    "id": "performanceNotifications",
    "item": "п.6",
-   "checkedAt": "2026-10-04T22:45:30Z",
+   "checkedAt": "2026-10-05T03:56:15Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -237,7 +250,7 @@
   {
    "id": "pricingHealth",
    "item": "п.7",
-   "checkedAt": "2026-10-04T22:45:30Z",
+   "checkedAt": "2026-10-05T03:56:15Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -249,7 +262,7 @@
   {
    "id": "messages",
    "item": "п.8",
-   "checkedAt": "2026-10-04T22:45:30Z",
+   "checkedAt": "2026-10-05T03:56:15Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -261,7 +274,7 @@
   {
    "id": "customerReviews",
    "item": "п.9",
-   "checkedAt": "2026-10-04T22:45:30Z",
+   "checkedAt": "2026-10-05T03:56:15Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -273,7 +286,7 @@
   {
    "id": "fbaPerformance",
    "item": "п.10",
-   "checkedAt": "2026-10-04T22:45:31Z",
+   "checkedAt": "2026-10-05T03:56:16Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -282,7 +295,7 @@
   {
    "id": "cases",
    "item": "п.11",
-   "checkedAt": "2026-10-04T22:45:31Z",
+   "checkedAt": "2026-10-05T03:56:16Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
