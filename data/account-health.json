@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-05T03:56:16Z",
+ "generatedAt": "2026-10-06T04:46:35Z",
  "marketplace": "A1PA6795UKMFR9",
  "checks": [
   {
    "id": "actions",
    "item": "п.1",
-   "checkedAt": "2026-10-05T03:56:12Z",
+   "checkedAt": "2026-10-06T04:46:30Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -17,7 +17,7 @@
   {
    "id": "stranded",
    "item": "п.2",
-   "checkedAt": "2026-10-05T03:56:13Z",
+   "checkedAt": "2026-10-06T04:46:32Z",
    "status": "warn",
    "count": 1,
    "items": [
@@ -34,23 +34,120 @@
   {
    "id": "listingStatus",
    "item": "п.3",
-   "checkedAt": "2026-10-05T03:56:14Z",
-   "status": "ok",
-   "count": 0,
-   "items": [],
+   "checkedAt": "2026-10-06T04:46:33Z",
+   "status": "warn",
+   "count": 12,
+   "items": [
+    {
+     "asin": "B0FVG9MZR8",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "09-6H6Q-NYOA",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0F79C4Y9C",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "4Q-CIIG-VD9B",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0DJ1DGY6J",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "60-O7CT-8I0F",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0GGJ6VRCQ",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "JZ-7QN5-JBQ4",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0GQVR12BX",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "LZ-OBDX-1IFP",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0DNT4FNZ9",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "MC-DZIG-W9QU",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0FVGB9FHJ",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "NL-4NNP-5092",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0854MW97N",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "SH-G0PF-CSW1",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0GT1C3GYC",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "TD-6DJM-RO0O",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0DNTPCLRN",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "UK-P7TQ-VS08",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0GGJ4RNBC",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "VX-PB4F-4IMK",
+     "previousStatus": "active"
+    },
+    {
+     "asin": "B0FNX21TZF",
+     "title": "",
+     "status": "inactive",
+     "quantity": "",
+     "sku": "ZV-XWYM-FRWL",
+     "previousStatus": "active"
+    }
+   ],
    "extra": {
-    "total": 58,
-    "inactive": 34,
+    "total": 60,
+    "inactive": 48,
     "firstRun": false
    },
-   "message": "Ни один активный товар не сменил статус."
+   "message": "12 товаров перестали быть активными с прошлой проверки."
   },
   {
    "id": "accountHealth",
    "item": "п.4",
-   "checkedAt": "2026-10-05T03:56:15Z",
+   "checkedAt": "2026-10-06T04:46:34Z",
    "status": "error",
-   "count": 1,
+   "count": 10,
    "items": [
     {
      "name": "lateShipmentRate",
@@ -82,7 +179,7 @@
     },
     {
      "name": "orderDefectRate (AFN)",
-     "value": 1.934984520123839e-05,
+     "value": 0.0,
      "target": 0.01,
      "condition": "LESS_THAN",
      "status": "GOOD"
@@ -201,44 +298,38 @@
     }
    ],
    "extra": {
-    "ahrScore": 1000.0,
+    "ahrScore": 824.0,
     "ahrStatus": "GREAT",
     "accountStatus": "AT_RISK",
     "warnings": [],
     "problemMetrics": []
    },
-   "message": "Аккаунт под ограничениями: AT_RISK."
+   "message": "Аккаунт под ограничениями: AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK."
   },
   {
    "id": "feedback",
    "item": "п.5",
-   "checkedAt": "2026-10-05T03:56:15Z",
+   "checkedAt": "2026-10-06T04:46:35Z",
    "status": "warn",
-   "count": 2,
+   "count": 1,
    "items": [
     {
      "date": "29/09/2026",
      "rating": 1,
      "comment": "Terrible idea, item not delivered next day but over 48hrs after without any consideration for the inconvenience caused for the customer.",
      "orderId": ""
-    },
-    {
-     "date": "28/09/2026",
-     "rating": 1,
-     "comment": "Items in more used condition than indicated and seller doesn’t seem to be able to provide a free return label. Waiting for resolution but not optimistic",
-     "orderId": ""
     }
    ],
    "extra": {
-    "negative": 2,
+    "negative": 1,
     "days": 30
    },
-   "message": "За 30 дней 2 отзывов, из них негативных 2."
+   "message": "За 30 дней 1 отзывов, из них негативных 1."
   },
   {
    "id": "performanceNotifications",
    "item": "п.6",
-   "checkedAt": "2026-10-05T03:56:15Z",
+   "checkedAt": "2026-10-06T04:46:35Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -250,7 +341,7 @@
   {
    "id": "pricingHealth",
    "item": "п.7",
-   "checkedAt": "2026-10-05T03:56:15Z",
+   "checkedAt": "2026-10-06T04:46:35Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -262,7 +353,7 @@
   {
    "id": "messages",
    "item": "п.8",
-   "checkedAt": "2026-10-05T03:56:15Z",
+   "checkedAt": "2026-10-06T04:46:35Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -274,7 +365,7 @@
   {
    "id": "customerReviews",
    "item": "п.9",
-   "checkedAt": "2026-10-05T03:56:15Z",
+   "checkedAt": "2026-10-06T04:46:35Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -286,7 +377,7 @@
   {
    "id": "fbaPerformance",
    "item": "п.10",
-   "checkedAt": "2026-10-05T03:56:16Z",
+   "checkedAt": "2026-10-06T04:46:35Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -295,7 +386,7 @@
   {
    "id": "cases",
    "item": "п.11",
-   "checkedAt": "2026-10-05T03:56:16Z",
+   "checkedAt": "2026-10-06T04:46:35Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
