@@ -1,6 +1,6 @@
 {
  "source": "spapi-promotions",
- "generatedAt": "2026-10-10T15:15:28Z",
+ "generatedAt": "2026-10-10T20:11:00Z",
  "periodStart": "2026-07-06",
  "periodEnd": "2026-10-11",
  "searchFrom": "2026-05-27",
@@ -20,11 +20,8 @@
   "PL",
   "SE"
  ],
- "cancelledSkipped": 3,
- "failures": [
-  "DE/дилы: HTTP 0 на GET_PROMOTION_PERFORMANCE_REPORT / A1PA6795UKMFR9: статус IN_PROGRESS",
-  "FR/дилы: HTTP 0 на GET_PROMOTION_PERFORMANCE_REPORT / A13V1IB3VIYZZH: статус IN_PROGRESS"
- ],
+ "cancelledSkipped": 9,
+ "failures": [],
  "campaigns": [
   {
    "id": "A1V5ZCN9N9KU40",
@@ -673,6 +670,22 @@
    "currency": "GBP"
   },
   {
+   "id": "1bf287a5",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Eckenschutz Kantenschutz Baby - Kindersicherung für Tisch selbstklebend – Stoßschutz für Baby und Kind",
+   "m": "DE",
+   "start": "2026-07-08",
+   "end": "2026-07-12",
+   "asins": [
+    "B0D7QMS49B",
+    "B0D7QMZZDG"
+   ],
+   "units": 26,
+   "sales": 344.21,
+   "currency": "EUR"
+  },
+  {
    "id": "f54b3ac1",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -891,6 +904,23 @@
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
+   "id": "6bfd2da4",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Protection en Mousse pour Bords & Coins – Bande Sécurité 6,2m pour Table &12x Coussins d’Angle –Meubles & Lit Bébé – Adhésifs Antichoc",
+   "m": "FR",
+   "start": "2026-07-09",
+   "end": "2026-07-12",
+   "asins": [
+    "B07PPXKJPQ",
+    "B0F63Q4BLX",
+    "B0F79C4Y9C"
+   ],
+   "units": 33,
+   "sales": 689.9,
+   "currency": "EUR"
+  },
+  {
    "id": "f0468b41",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -905,6 +935,72 @@
    ],
    "units": 16,
    "sales": 298.65,
+   "currency": "EUR"
+  },
+  {
+   "id": "c37d2dfb",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Kantenschutz Baby aus Schaumstoff – 6,2m Tischkantenschutz & 12x Eckenschutz – Tischecken Kindersicherung – Selbstklebender Schutz für Kinder, Bett, Fensterbank & Schreibtisch",
+   "m": "DE",
+   "start": "2026-07-15",
+   "end": "2026-07-19",
+   "asins": [
+    "B07PPXKJPQ",
+    "B0F63Q4BLX",
+    "B0F79C4Y9C"
+   ],
+   "units": 342,
+   "sales": 6166.46,
+   "currency": "EUR"
+  },
+  {
+   "id": "c3f7c5ba",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Protection pour Bébé – Coussin de Sécurité en Mousse Adhésive pour Angles de Table, Meubles, Bureau et Étagères – Protège-Tête pour Enfant",
+   "m": "FR",
+   "start": "2026-07-15",
+   "end": "2026-07-19",
+   "asins": [
+    "B0D7QMS49B",
+    "B0D7QMZZDG"
+   ],
+   "units": 23,
+   "sales": 308.88,
+   "currency": "EUR"
+  },
+  {
+   "id": "99b1aca6",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "WunderHippo Magnetische Kindersicherung",
+   "m": "DE",
+   "start": "2026-07-15",
+   "end": "2026-07-19",
+   "asins": [
+    "B0DNT4FNZ9",
+    "B0FNX21TZF"
+   ],
+   "units": 200,
+   "sales": 3616.13,
+   "currency": "EUR"
+  },
+  {
+   "id": "d1481662",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "WunderHippo Serrure Magnétique Invisible pour Sécurité Enfant",
+   "m": "FR",
+   "start": "2026-07-15",
+   "end": "2026-07-19",
+   "asins": [
+    "B0DNT4FNZ9",
+    "B0FNX21TZF",
+    "B0GQVR12BX"
+   ],
+   "units": 77,
+   "sales": 1545.41,
    "currency": "EUR"
   },
   {
@@ -1760,6 +1856,24 @@
    "currency": "EUR"
   },
   {
+   "id": "2ef43486",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Magnetische Kindersicherung 12 Schlösser + 3 Schlüssel – Schranksicherung & Schubladensicherung ohne Bohren – Unsichtbarer Magnetverschluss – Weiß",
+   "m": "DE",
+   "start": "2026-07-17",
+   "end": "2026-07-19",
+   "asins": [
+    "B072PPT9V3",
+    "B07JZCWJMW",
+    "B0DMTJXH9W",
+    "B0DMTMHVK4"
+   ],
+   "units": 658,
+   "sales": 12375.13,
+   "currency": "EUR"
+  },
+  {
    "id": "cc3750a0",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -1794,6 +1908,25 @@
    "units": 24,
    "sales": 5412.48,
    "currency": "SEK"
+  },
+  {
+   "id": "21ff9353",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Eckenschutz Kantenschutz Baby - Kindersicherung für Tisch selbstklebend – Stoßschutz für Baby und Kind",
+   "m": "DE",
+   "start": "2026-07-19",
+   "end": "2026-07-26",
+   "asins": [
+    "B0933B1NKB",
+    "B0933DBFMS",
+    "B0933F6ZWD",
+    "B0D7QMS49B",
+    "B0D7QMZZDG"
+   ],
+   "units": 477,
+   "sales": 4501.0,
+   "currency": "EUR"
   },
   {
    "id": "14d67413",
@@ -1954,6 +2087,21 @@
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
+   "id": "3553e3e0",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach 30x Steckdosen Kindersicherung – Steckdosensicherung mit Drehmechanik – Schutz für Babys & Kinder – Steckdosenschutz verhindert Unfälle & Stromschläge – Steckdose Kinderschutz",
+   "m": "DE",
+   "start": "2026-07-22",
+   "end": "2026-07-26",
+   "asins": [
+    "B0DJ1DGY6J"
+   ],
+   "units": 236,
+   "sales": 2005.46,
+   "currency": "EUR"
+  },
+  {
    "id": "153f3ebd",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -1982,6 +2130,21 @@
    ],
    "units": 8,
    "sales": 68.74,
+   "currency": "EUR"
+  },
+  {
+   "id": "a3eddf6c",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "WunderHippo – 4X Patins de Protection Murale – Protection Murale sans Perçage – Grille et Barrière de Sécurité pour Escalier & Porte – Fixation à Pression pour Bébé & Enfants",
+   "m": "FR",
+   "start": "2026-07-22",
+   "end": "2026-07-25",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 12,
+   "sales": 102.48,
    "currency": "EUR"
   },
   {
@@ -2484,6 +2647,22 @@
    "currency": "SEK"
   },
   {
+   "id": "f6b45f8b",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Kantenschutz Baby aus Schaumstoff – 6,2m Tischkantenschutz & 12x Eckenschutz – Tischecken Kindersicherung – Selbstklebender Schutz für Kinder, Bett, Fensterbank & Schreibtisch",
+   "m": "DE",
+   "start": "2026-07-29",
+   "end": "2026-08-02",
+   "asins": [
+    "B07PPXKJPQ",
+    "B0F79C4Y9C"
+   ],
+   "units": 192,
+   "sales": 3507.3,
+   "currency": "EUR"
+  },
+  {
    "id": "82179789",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -2504,6 +2683,22 @@
    "currency": "SEK"
   },
   {
+   "id": "8a966a86",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Protection en Mousse pour Bords & Coins – Bande Sécurité 6,2m pour Table &12x Coussins d’Angle –Meubles & Lit Bébé – Adhésifs Antichoc",
+   "m": "FR",
+   "start": "2026-07-29",
+   "end": "2026-08-02",
+   "asins": [
+    "B07PPXKJPQ",
+    "B0F79C4Y9C"
+   ],
+   "units": 79,
+   "sales": 1568.96,
+   "currency": "EUR"
+  },
+  {
    "id": "15ca381c",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -2516,6 +2711,23 @@
    ],
    "units": 6,
    "sales": 69.6,
+   "currency": "EUR"
+  },
+  {
+   "id": "9cc1d94c",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "WunderHippo Serrure Magnétique Invisible pour Sécurité Enfant",
+   "m": "FR",
+   "start": "2026-07-29",
+   "end": "2026-08-02",
+   "asins": [
+    "B0DNT4FNZ9",
+    "B0FNX21TZF",
+    "B0GQVR12BX"
+   ],
+   "units": 102,
+   "sales": 1884.31,
    "currency": "EUR"
   },
   {
@@ -3113,6 +3325,21 @@
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
+   "id": "466c5af7",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach 4X Patins de Protection Murale – Grille et Barrière de Sécurité pour Escalier & Porte – Protection Murale sans Perçage – Fixation à Pression pour Bébé & Enfants",
+   "m": "FR",
+   "start": "2026-07-30",
+   "end": "2026-08-02",
+   "asins": [
+    "B08NCRRM6M"
+   ],
+   "units": 90,
+   "sales": 854.26,
+   "currency": "EUR"
+  },
+  {
    "id": "36104717",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -3164,6 +3391,24 @@
    "currency": "EUR"
   },
   {
+   "id": "3b30a75d",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Eckenschutz Kantenschutz Baby - Kindersicherung für Tisch selbstklebend – Stoßschutz für Baby und Kind",
+   "m": "DE",
+   "start": "2026-08-06",
+   "end": "2026-08-10",
+   "asins": [
+    "B0933B1NKB",
+    "B0933DBFMS",
+    "B0933F6ZWD",
+    "B0D7QMZZDG"
+   ],
+   "units": 300,
+   "sales": 2615.14,
+   "currency": "EUR"
+  },
+  {
    "id": "67c33951",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -3178,6 +3423,53 @@
    "units": 24,
    "sales": 2341.51,
    "currency": "SEK"
+  },
+  {
+   "id": "4ec25320",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Magnetische Kindersicherung 12 Schlösser + 3 Schlüssel – Schranksicherung & Schubladensicherung ohne Bohren – Unsichtbarer Magnetverschluss – Weiß",
+   "m": "DE",
+   "start": "2026-08-06",
+   "end": "2026-08-10",
+   "asins": [
+    "B07JZCWJMW",
+    "B0DMTMHVK4"
+   ],
+   "units": 335,
+   "sales": 8547.25,
+   "currency": "EUR"
+  },
+  {
+   "id": "73494fbc",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Protection pour Bébé – Coussin de Sécurité en Mousse Adhésive pour Angles de Table, Meubles, Bureau et Étagères – Protège-Tête pour Enfant",
+   "m": "FR",
+   "start": "2026-08-06",
+   "end": "2026-08-10",
+   "asins": [
+    "B0D7QMZZDG"
+   ],
+   "units": 14,
+   "sales": 178.5,
+   "currency": "EUR"
+  },
+  {
+   "id": "780e4652",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach serrure de sécurité enfant magnétique de sécurité enfant",
+   "m": "FR",
+   "start": "2026-08-06",
+   "end": "2026-08-10",
+   "asins": [
+    "B07JZCWJMW",
+    "B0DMTMHVK4"
+   ],
+   "units": 65,
+   "sales": 1950.1,
+   "currency": "EUR"
   },
   {
    "id": "a05ce7dd",
@@ -3212,6 +3504,37 @@
    "currency": "SEK"
   },
   {
+   "id": "6f251205",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "SаfeMate Parent EckenKanten",
+   "m": "DE",
+   "start": "2026-08-06",
+   "end": "2026-08-10",
+   "asins": [
+    "B0GGJ4RNBC",
+    "B0GGJ6VRCQ"
+   ],
+   "units": 216,
+   "sales": 3307.98,
+   "currency": "EUR"
+  },
+  {
+   "id": "d84df111",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "WunderHippo 4X Wandschutz Pads für Treppengitter & Türschutzgitter – Rechteckige Schutzpads für Baby Klemmgitter – Für Türgitter, Treppenschutzgitter – Wand- & Türschutz ohne Bohren",
+   "m": "DE",
+   "start": "2026-08-06",
+   "end": "2026-08-10",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 67,
+   "sales": 484.13,
+   "currency": "EUR"
+  },
+  {
    "id": "15b8e28a",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -3239,6 +3562,37 @@
    ],
    "units": 45,
    "sales": 854.24,
+   "currency": "EUR"
+  },
+  {
+   "id": "84a6fb60",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "WunderHippo Magnetische Kindersicherung",
+   "m": "DE",
+   "start": "2026-08-06",
+   "end": "2026-08-10",
+   "asins": [
+    "B0DNT4FNZ9",
+    "B0FNX21TZF"
+   ],
+   "units": 280,
+   "sales": 4998.87,
+   "currency": "EUR"
+  },
+  {
+   "id": "834f4331",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "WunderHippo – 4X Patins de Protection Murale – Protection Murale sans Perçage – Grille et Barrière de Sécurité pour Escalier & Porte – Fixation à Pression pour Bébé & Enfants",
+   "m": "FR",
+   "start": "2026-08-06",
+   "end": "2026-08-10",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 28,
+   "sales": 225.73,
    "currency": "EUR"
   },
   {
@@ -3905,6 +4259,45 @@
    "currency": "GBP"
   },
   {
+   "id": "62553a01",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Eckenschutz Kantenschutz Baby - Kindersicherung für Tisch selbstklebend – Stoßschutz für Baby und Kind",
+   "m": "DE",
+   "start": "2026-08-18",
+   "end": "2026-08-22",
+   "asins": [
+    "B0933B1NKB",
+    "B0933DBFMS",
+    "B0933F6ZWD",
+    "B0D7QMS49B",
+    "B0D7QMZZDG"
+   ],
+   "units": 282,
+   "sales": 2535.88,
+   "currency": "EUR"
+  },
+  {
+   "id": "c394eff3",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Magnetische Kindersicherung 12 Schlösser + 3 Schlüssel – Schranksicherung & Schubladensicherung ohne Bohren – Unsichtbarer Magnetverschluss – Weiß",
+   "m": "DE",
+   "start": "2026-08-18",
+   "end": "2026-08-22",
+   "asins": [
+    "B072PPT9V3",
+    "B07JZCWJMW",
+    "B0DMTJXH9W",
+    "B0DMTMHVK4",
+    "B0FVG9MZR8",
+    "B0FVGB9FHJ"
+   ],
+   "units": 1403,
+   "sales": 27419.15,
+   "currency": "EUR"
+  },
+  {
    "id": "bddaa247",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -3924,6 +4317,25 @@
    "currency": "EUR"
   },
   {
+   "id": "5fb41903",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Protection pour Bébé – Coussin de Sécurité en Mousse Adhésive pour Angles de Table, Meubles, Bureau et Étagères – Protège-Tête pour Enfant",
+   "m": "FR",
+   "start": "2026-08-18",
+   "end": "2026-08-23",
+   "asins": [
+    "B0933B1NKB",
+    "B0933DBFMS",
+    "B0933F6ZWD",
+    "B0D7QMS49B",
+    "B0D7QMZZDG"
+   ],
+   "units": 291,
+   "sales": 2851.37,
+   "currency": "EUR"
+  },
+  {
    "id": "9081d2d6",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -3937,6 +4349,22 @@
    ],
    "units": 18,
    "sales": 145.15,
+   "currency": "EUR"
+  },
+  {
+   "id": "8821523d",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "SаfeMate Parent EckenKanten",
+   "m": "DE",
+   "start": "2026-08-18",
+   "end": "2026-08-22",
+   "asins": [
+    "B0GGJ4RNBC",
+    "B0GGJ6VRCQ"
+   ],
+   "units": 270,
+   "sales": 4132.16,
    "currency": "EUR"
   },
   {
@@ -3969,6 +4397,39 @@
    ],
    "units": 130,
    "sales": 2302.73,
+   "currency": "EUR"
+  },
+  {
+   "id": "07b40343",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "WunderHippo Magnetische Kindersicherung",
+   "m": "DE",
+   "start": "2026-08-18",
+   "end": "2026-08-23",
+   "asins": [
+    "B0DNT4FNZ9",
+    "B0FNX21TZF"
+   ],
+   "units": 353,
+   "sales": 6304.69,
+   "currency": "EUR"
+  },
+  {
+   "id": "e60798e5",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "WunderHippo Serrure Magnétique Invisible pour Sécurité Enfant",
+   "m": "FR",
+   "start": "2026-08-18",
+   "end": "2026-08-22",
+   "asins": [
+    "B0DNT4FNZ9",
+    "B0FNX21TZF",
+    "B0GQVR12BX"
+   ],
+   "units": 122,
+   "sales": 2086.64,
    "currency": "EUR"
   },
   {
@@ -4824,6 +5285,21 @@
    "currency": "EUR"
   },
   {
+   "id": "007b3457",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "WunderHippo – 4X Patins de Protection Murale – Protection Murale sans Perçage – Grille et Barrière de Sécurité pour Escalier & Porte – Fixation à Pression pour Bébé & Enfants",
+   "m": "FR",
+   "start": "2026-08-28",
+   "end": "2026-09-01",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 55,
+   "sales": 423.31,
+   "currency": "EUR"
+  },
+  {
    "id": "A13YJ9QQHBSWN3",
    "kind": "coupon",
    "name": "Bespaar 10% op Magnetic Child Lock",
@@ -5104,6 +5580,22 @@
    "currency": "PLN"
   },
   {
+   "id": "df2cc438",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "SаfeMate Parent EckenKanten",
+   "m": "DE",
+   "start": "2026-09-03",
+   "end": "2026-09-07",
+   "asins": [
+    "B0GGJ4RNBC",
+    "B0GGJ6VRCQ"
+   ],
+   "units": 188,
+   "sales": 2880.85,
+   "currency": "EUR"
+  },
+  {
    "id": "00d95dc4",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -5133,6 +5625,23 @@
    ],
    "units": 137,
    "sales": 2491.43,
+   "currency": "EUR"
+  },
+  {
+   "id": "c673b0ee",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "WunderHippo Magnetische Kindersicherung",
+   "m": "DE",
+   "start": "2026-09-03",
+   "end": "2026-09-07",
+   "asins": [
+    "B0DNT4FNZ9",
+    "B0FNX21TZF",
+    "B0GT1C3GYC"
+   ],
+   "units": 547,
+   "sales": 9556.87,
    "currency": "EUR"
   },
   {
@@ -5563,6 +6072,21 @@
    "currency": "EUR"
   },
   {
+   "id": "70bc6fdd",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach 30x Steckdosen Kindersicherung – Steckdosensicherung mit Drehmechanik – Schutz für Babys & Kinder – Steckdosenschutz verhindert Unfälle & Stromschläge – Steckdose Kinderschutz",
+   "m": "DE",
+   "start": "2026-09-17",
+   "end": "2026-09-21",
+   "asins": [
+    "B0DJ1DGY6J"
+   ],
+   "units": 770,
+   "sales": 6543.84,
+   "currency": "EUR"
+  },
+  {
    "id": "97255d9a",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -5633,6 +6157,25 @@
    "units": 562,
    "sales": 9090.64,
    "currency": "GBP"
+  },
+  {
+   "id": "fe5e5342",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Magnetische Kindersicherung 12 Schlösser + 3 Schlüssel – Schranksicherung & Schubladensicherung ohne Bohren – Unsichtbarer Magnetverschluss – Weiß",
+   "m": "DE",
+   "start": "2026-09-17",
+   "end": "2026-09-21",
+   "asins": [
+    "B072PPT9V3",
+    "B07JZCWJMW",
+    "B0DMTJXH9W",
+    "B0DMTMHVK4",
+    "B0FVG9MZR8"
+   ],
+   "units": 1500,
+   "sales": 28859.31,
+   "currency": "EUR"
   },
   {
    "id": "c12bbaa2",
@@ -5985,6 +6528,22 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "f6c210f7",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "SаfeMate Parent EckenKanten",
+   "m": "DE",
+   "start": "2026-09-29",
+   "end": "2026-10-05",
+   "asins": [
+    "B0GGJ4RNBC",
+    "B0GGJ6VRCQ"
+   ],
+   "units": 361,
+   "sales": 5529.01,
+   "currency": "EUR"
+  },
+  {
    "id": "A2SBX7LLCKROPY",
    "kind": "coupon",
    "name": "Sparen Sie 18 % auf Kantenschutz Baby aus Schaumstoff",
@@ -6015,6 +6574,21 @@
    "units": 149,
    "sales": 2658.16,
    "currency": "GBP"
+  },
+  {
+   "id": "efbde880",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach 20x Steckdosen Kindersicherung – Steckdosensicherung mit Drehmechanik – Schutz für Babys & Kinder – Steckdosenschutz verhindert Unfälle & Stromschläge – Steckdose Kinderschutz",
+   "m": "DE",
+   "start": "2026-10-01",
+   "end": "2026-10-05",
+   "asins": [
+    "B0854MW97N"
+   ],
+   "units": 929,
+   "sales": 6713.33,
+   "currency": "EUR"
   },
   {
    "id": "d8c9be86",
@@ -6106,6 +6680,25 @@
    "currency": "GBP"
   },
   {
+   "id": "d1b36c2b",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Magnetische Kindersicherung 12 Schlösser + 3 Schlüssel – Schranksicherung & Schubladensicherung ohne Bohren – Unsichtbarer Magnetverschluss – Weiß",
+   "m": "DE",
+   "start": "2026-10-01",
+   "end": "2026-10-05",
+   "asins": [
+    "B072PPT9V3",
+    "B07JZCWJMW",
+    "B0DMTJXH9W",
+    "B0DMTMHVK4",
+    "B0FVG9MZR8"
+   ],
+   "units": 1520,
+   "sales": 29348.09,
+   "currency": "EUR"
+  },
+  {
    "id": "38532b7a",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -6160,6 +6753,25 @@
    "currency": "EUR"
   },
   {
+   "id": "c4b052cc",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach Protection pour Bébé – Coussin de Sécurité en Mousse Adhésive pour Angles de Table, Meubles, Bureau et Étagères – Protège-Tête pour Enfant",
+   "m": "FR",
+   "start": "2026-10-01",
+   "end": "2026-10-05",
+   "asins": [
+    "B0933B1NKB",
+    "B0933DBFMS",
+    "B0933F6ZWD",
+    "B0D7QMS49B",
+    "B0D7QMZZDG"
+   ],
+   "units": 225,
+   "sales": 2234.51,
+   "currency": "EUR"
+  },
+  {
    "id": "b3f6bf4b",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -6198,6 +6810,25 @@
    "currency": "EUR"
   },
   {
+   "id": "c59acad8",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Hoffenbach serrure de sécurité enfant magnétique de sécurité enfant",
+   "m": "FR",
+   "start": "2026-10-01",
+   "end": "2026-10-05",
+   "asins": [
+    "B072PPT9V3",
+    "B07JZCWJMW",
+    "B0DMTJXH9W",
+    "B0DMTMHVK4",
+    "B0FVG9MZR8"
+   ],
+   "units": 650,
+   "sales": 13463.35,
+   "currency": "EUR"
+  },
+  {
    "id": "d64e63d3",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -6226,6 +6857,22 @@
    ],
    "units": 102,
    "sales": 1740.1,
+   "currency": "EUR"
+  },
+  {
+   "id": "f5c33216",
+   "kind": "best_deal",
+   "type": "BEST_DEAL",
+   "name": "Safemate Parent by Color",
+   "m": "FR",
+   "start": "2026-10-01",
+   "end": "2026-10-05",
+   "asins": [
+    "B0GGJ4RNBC",
+    "B0GGJ6VRCQ"
+   ],
+   "units": 36,
+   "sales": 647.58,
    "currency": "EUR"
   },
   {
