@@ -1,6 +1,6 @@
 {
  "source": "spapi-promotions",
- "generatedAt": "2026-10-13T02:26:59Z",
+ "generatedAt": "2026-10-13T19:15:10Z",
  "periodStart": "2026-07-13",
  "periodEnd": "2026-10-18",
  "searchFrom": "2026-06-03",
@@ -317,22 +317,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A1L9W6VXS181PQ",
-   "kind": "coupon",
-   "name": "Économisez 5 % sur Patins de Protection Murale",
-   "m": "BE",
-   "start": "2026-06-30",
-   "end": "2026-07-23",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 6,
-   "sales": 45.1,
-   "currency": "EUR",
-   "discount": "5%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A393GXO7MT71M5",
    "kind": "coupon",
    "name": "Économisez 5 % sur Patins de Protection Murale",
@@ -344,6 +328,22 @@
    ],
    "units": 21,
    "sales": 149.4,
+   "currency": "EUR",
+   "discount": "5%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A1L9W6VXS181PQ",
+   "kind": "coupon",
+   "name": "Économisez 5 % sur Patins de Protection Murale",
+   "m": "BE",
+   "start": "2026-06-30",
+   "end": "2026-07-23",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 6,
+   "sales": 45.1,
    "currency": "EUR",
    "discount": "5%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -1358,22 +1358,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A1O70RC1ZHH9FC",
-   "kind": "coupon",
-   "name": "Save 10% on Magnetic Cupboard Locks",
-   "m": "IE",
-   "start": "2026-07-16",
-   "end": "2026-08-07",
-   "asins": [
-    "B0FNX21TZF"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A2BQ2OG8NA3GCO",
    "kind": "coupon",
    "name": "Save 10% on Magnetic Cupboard Locks",
@@ -1385,6 +1369,22 @@
    ],
    "units": 4,
    "sales": 93.64,
+   "currency": "USD",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A1O70RC1ZHH9FC",
+   "kind": "coupon",
+   "name": "Save 10% on Magnetic Cupboard Locks",
+   "m": "IE",
+   "start": "2026-07-16",
+   "end": "2026-08-07",
+   "asins": [
+    "B0FNX21TZF"
+   ],
+   "units": 0,
+   "sales": 0.0,
    "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -2901,23 +2901,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A1EX1BQ5OXKCG9",
-   "kind": "coupon",
-   "name": "Zaoszczędź 10% na Piankowe Osłony na Narożniki dla Niemowląt",
-   "m": "PL",
-   "start": "2026-07-29",
-   "end": "2026-08-07",
-   "asins": [
-    "B0GGJ4RNBC",
-    "B0GGJ6VRCQ"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "PLN",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A1ZH7VQK1P7ZF8",
    "kind": "coupon",
    "name": "Zaoszczędź 10% na Piankowe Osłony na Narożniki dla Niemowląt",
@@ -2928,6 +2911,23 @@
     "B07PPXKJPQ",
     "B0F63Q4BLX",
     "B0F79C4Y9C"
+   ],
+   "units": 0,
+   "sales": 0.0,
+   "currency": "PLN",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A1EX1BQ5OXKCG9",
+   "kind": "coupon",
+   "name": "Zaoszczędź 10% na Piankowe Osłony na Narożniki dla Niemowląt",
+   "m": "PL",
+   "start": "2026-07-29",
+   "end": "2026-08-07",
+   "asins": [
+    "B0GGJ4RNBC",
+    "B0GGJ6VRCQ"
    ],
    "units": 0,
    "sales": 0.0,
@@ -3802,13 +3802,14 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A15Y0AMQQX3O22",
+   "id": "A2MON7MTYTFKEY",
    "kind": "coupon",
    "name": "Économisez €5 sur Protection en Mousse pour Bords et Coins",
    "m": "BE",
    "start": "2026-08-07",
    "end": "2026-08-07",
    "asins": [
+    "B0GGJ4RNBC",
     "B0GGJ6VRCQ"
    ],
    "units": 0,
@@ -3818,14 +3819,13 @@
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
-   "id": "A2MON7MTYTFKEY",
+   "id": "A15Y0AMQQX3O22",
    "kind": "coupon",
    "name": "Économisez €5 sur Protection en Mousse pour Bords et Coins",
    "m": "BE",
    "start": "2026-08-07",
    "end": "2026-08-07",
    "asins": [
-    "B0GGJ4RNBC",
     "B0GGJ6VRCQ"
    ],
    "units": 0,
@@ -5742,25 +5742,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A13XLBCVGAY7LY",
-   "kind": "coupon",
-   "name": "Économisez 10 % sur Serrure magnetique pour enfants",
-   "m": "BE",
-   "start": "2026-09-03",
-   "end": "2026-09-17",
-   "asins": [
-    "B0DNT4FNZ9",
-    "B0FNX21TZF",
-    "B0GT1BWV7W",
-    "B0GT1C3GYC"
-   ],
-   "units": 21,
-   "sales": 319.97,
-   "currency": "EUR",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A72FCISDTL1MR",
    "kind": "coupon",
    "name": "Économisez 10 % sur Serrure magnetique pour enfants",
@@ -5775,6 +5756,25 @@
    ],
    "units": 39,
    "sales": 705.35,
+   "currency": "EUR",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A13XLBCVGAY7LY",
+   "kind": "coupon",
+   "name": "Économisez 10 % sur Serrure magnetique pour enfants",
+   "m": "BE",
+   "start": "2026-09-03",
+   "end": "2026-09-17",
+   "asins": [
+    "B0DNT4FNZ9",
+    "B0FNX21TZF",
+    "B0GT1BWV7W",
+    "B0GT1C3GYC"
+   ],
+   "units": 21,
+   "sales": 319.97,
    "currency": "EUR",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6647,8 +6647,8 @@
     "B0GGJ4RNBC",
     "B0GGJ6VRCQ"
    ],
-   "units": 102,
-   "sales": 1740.1,
+   "units": 101,
+   "sales": 1723.01,
    "currency": "EUR"
   },
   {
@@ -6814,22 +6814,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A3QI8N3SLB4BLG",
-   "kind": "coupon",
-   "name": "Bespaar 5% op Stopcontactbeveiliging met Draaimechanisme",
-   "m": "NL",
-   "start": "2026-10-01",
-   "end": "2026-10-07",
-   "asins": [
-    "B0854MW97N"
-   ],
-   "units": 6,
-   "sales": 44.7,
-   "currency": "EUR",
-   "discount": "5%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A2K6DSI014OIM3",
    "kind": "coupon",
    "name": "Bespaar 5% op Stopcontactbeveiliging met Draaimechanisme",
@@ -6841,6 +6825,22 @@
    ],
    "units": 20,
    "sales": 148.95,
+   "currency": "EUR",
+   "discount": "5%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A3QI8N3SLB4BLG",
+   "kind": "coupon",
+   "name": "Bespaar 5% op Stopcontactbeveiliging met Draaimechanisme",
+   "m": "NL",
+   "start": "2026-10-01",
+   "end": "2026-10-07",
+   "asins": [
+    "B0854MW97N"
+   ],
+   "units": 6,
+   "sales": 44.7,
    "currency": "EUR",
    "discount": "5%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -7109,22 +7109,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A7L77T7QQSU91",
-   "kind": "coupon",
-   "name": "Ahorra 15 % en nuestros productos",
-   "m": "ES",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B072PPT9V3"
-   ],
-   "units": 26,
-   "sales": 454.76,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A5MRG7P2SFB8T",
    "kind": "coupon",
    "name": "Ahorra 15 % en nuestros productos",
@@ -7141,6 +7125,22 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "A7L77T7QQSU91",
+   "kind": "coupon",
+   "name": "Ahorra 15 % en nuestros productos",
+   "m": "ES",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B072PPT9V3"
+   ],
+   "units": 26,
+   "sales": 454.76,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
    "id": "A3A4ZO3UKUI304",
    "kind": "coupon",
    "name": "Bespaar 15% op onze producten",
@@ -7149,22 +7149,6 @@
    "end": "2026-10-07",
    "asins": [
     "B0854MW97N"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A2U5MZYLGCQO0K",
-   "kind": "coupon",
-   "name": "Bespaar 15% op onze producten",
-   "m": "NL",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B0DNTPCLRN"
    ],
    "units": 0,
    "sales": 0.0,
@@ -7193,6 +7177,22 @@
    ],
    "units": 14,
    "sales": 198.65,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A2U5MZYLGCQO0K",
+   "kind": "coupon",
+   "name": "Bespaar 15% op onze producten",
+   "m": "NL",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 0,
+   "sales": 0.0,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -7271,33 +7271,24 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A1O7KSGT34WEB4",
+   "id": "A1FQVJ489YS0S1",
    "kind": "coupon",
    "name": "Sparen Sie 15 % auf unsere Produkte",
    "m": "DE",
    "start": "2026-10-06",
    "end": "2026-10-07",
    "asins": [
-    "B0D7QMZZDG"
+    "B07JZCWJMW",
+    "B0854MW97N",
+    "B0DJ1DGY6J",
+    "B0DMTJXH9W",
+    "B0DMTMHVK4",
+    "B0FNX21TZF",
+    "B0FVG9MZR8",
+    "B0GGJ4RNBC"
    ],
-   "units": 2,
-   "sales": 24.26,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A2GQ0YSZ5EDKDD",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B0DNT4FNZ9"
-   ],
-   "units": 52,
-   "sales": 728.82,
+   "units": 516,
+   "sales": 6039.5,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -7319,6 +7310,22 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "A2GQ0YSZ5EDKDD",
+   "kind": "coupon",
+   "name": "Sparen Sie 15 % auf unsere Produkte",
+   "m": "DE",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B0DNT4FNZ9"
+   ],
+   "units": 52,
+   "sales": 728.82,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
    "id": "A14O24LHO99UMM",
    "kind": "coupon",
    "name": "Sparen Sie 15 % auf unsere Produkte",
@@ -7335,24 +7342,17 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A1FQVJ489YS0S1",
+   "id": "A1O7KSGT34WEB4",
    "kind": "coupon",
    "name": "Sparen Sie 15 % auf unsere Produkte",
    "m": "DE",
    "start": "2026-10-06",
    "end": "2026-10-07",
    "asins": [
-    "B07JZCWJMW",
-    "B0854MW97N",
-    "B0DJ1DGY6J",
-    "B0DMTJXH9W",
-    "B0DMTMHVK4",
-    "B0FNX21TZF",
-    "B0FVG9MZR8",
-    "B0GGJ4RNBC"
+    "B0D7QMZZDG"
    ],
-   "units": 516,
-   "sales": 6039.5,
+   "units": 2,
+   "sales": 24.26,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -7525,8 +7525,8 @@
    "asins": [
     "B0DJ1DGY6J"
    ],
-   "units": 176,
-   "sales": 1495.71,
+   "units": 725,
+   "sales": 6160.76,
    "currency": "EUR"
   },
   {
@@ -7544,8 +7544,8 @@
     "B0D7QMS49B",
     "B0D7QMZZDG"
    ],
-   "units": 59,
-   "sales": 456.71,
+   "units": 194,
+   "sales": 1501.62,
    "currency": "GBP"
   },
   {
@@ -7563,8 +7563,8 @@
     "B0D7QMS49B",
     "B0D7QMZZDG"
    ],
-   "units": 77,
-   "sales": 673.44,
+   "units": 267,
+   "sales": 2360.51,
    "currency": "EUR"
   },
   {
@@ -7578,8 +7578,8 @@
    "asins": [
     "B07PPXKJPQ"
    ],
-   "units": 39,
-   "sales": 761.57,
+   "units": 178,
+   "sales": 3475.93,
    "currency": "EUR"
   },
   {
@@ -7597,8 +7597,8 @@
     "B0DMTMHVK4",
     "B0FVG9MZR8"
    ],
-   "units": 13,
-   "sales": 259.97,
+   "units": 50,
+   "sales": 1009.3,
    "currency": "EUR"
   },
   {
@@ -7612,8 +7612,8 @@
    "asins": [
     "B07PPXKJPQ"
    ],
-   "units": 1,
-   "sales": 17.99,
+   "units": 5,
+   "sales": 87.08,
    "currency": "EUR"
   },
   {
@@ -7628,8 +7628,8 @@
     "B0854MW97N",
     "B0DJ1DGY6J"
    ],
-   "units": 6,
-   "sales": 51.26,
+   "units": 13,
+   "sales": 110.59,
    "currency": "EUR"
   },
   {
@@ -7643,8 +7643,8 @@
    "asins": [
     "B0GGJ6VRCQ"
    ],
-   "units": 1,
-   "sales": 15.29,
+   "units": 5,
+   "sales": 76.45,
    "currency": "EUR"
   },
   {
@@ -7658,8 +7658,8 @@
    "asins": [
     "B0DNTPCLRN"
    ],
-   "units": 5,
-   "sales": 38.5,
+   "units": 14,
+   "sales": 106.41,
    "currency": "EUR"
   },
   {
@@ -7673,8 +7673,8 @@
    "asins": [
     "B0DNTPCLRN"
    ],
-   "units": 0,
-   "sales": 0.0,
+   "units": 3,
+   "sales": 254.49,
    "currency": "SEK"
   },
   {
@@ -7689,8 +7689,8 @@
     "B0DNT4FNZ9",
     "B0FNX21TZF"
    ],
-   "units": 15,
-   "sales": 300.55,
+   "units": 55,
+   "sales": 1116.36,
    "currency": "EUR"
   },
   {
@@ -7706,8 +7706,8 @@
     "B0FNX21TZF",
     "B0GQVR12BX"
    ],
-   "units": 98,
-   "sales": 1883.83,
+   "units": 420,
+   "sales": 8033.73,
    "currency": "EUR"
   },
   {
@@ -7723,8 +7723,8 @@
     "B0FNX21TZF",
     "B0GQVR12BX"
    ],
-   "units": 5,
-   "sales": 94.95,
+   "units": 19,
+   "sales": 394.31,
    "currency": "EUR"
   },
   {
@@ -7738,8 +7738,8 @@
    "asins": [
     "B0DNTPCLRN"
    ],
-   "units": 1,
-   "sales": 9.49,
+   "units": 8,
+   "sales": 75.54,
    "currency": "EUR"
   },
   {
@@ -7753,8 +7753,8 @@
    "asins": [
     "B0DNTPCLRN"
    ],
-   "units": 1,
-   "sales": 9.02,
+   "units": 8,
+   "sales": 72.16,
    "currency": "EUR"
   },
   {
@@ -7842,22 +7842,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "ABY6TVSZNTU88",
-   "kind": "coupon",
-   "name": "Save 15% on wall protection gliders",
-   "m": "IE",
-   "start": "2026-10-09",
-   "end": "2026-10-20",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 1,
-   "sales": 6.21,
-   "currency": "USD",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "AUXCNRHWU0PEL",
    "kind": "coupon",
    "name": "Save 15% on wall protection gliders",
@@ -7869,6 +7853,22 @@
    ],
    "units": 0,
    "sales": 0.0,
+   "currency": "USD",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "ABY6TVSZNTU88",
+   "kind": "coupon",
+   "name": "Save 15% on wall protection gliders",
+   "m": "IE",
+   "start": "2026-10-09",
+   "end": "2026-10-20",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 1,
+   "sales": 6.21,
    "currency": "USD",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"

@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-10-13T01:52:49Z",
+ "generatedAt": "2026-10-13T18:54:11Z",
  "marketplace": "A1PA6795UKMFR9",
  "checks": [
   {
    "id": "actions",
    "item": "п.1",
-   "checkedAt": "2026-10-13T01:51:54Z",
+   "checkedAt": "2026-10-13T18:53:18Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -17,7 +17,7 @@
   {
    "id": "stranded",
    "item": "п.2",
-   "checkedAt": "2026-10-13T01:52:20Z",
+   "checkedAt": "2026-10-13T18:53:43Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -26,7 +26,7 @@
   {
    "id": "listingStatus",
    "item": "п.3",
-   "checkedAt": "2026-10-13T01:52:21Z",
+   "checkedAt": "2026-10-13T18:53:44Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -40,9 +40,9 @@
   {
    "id": "accountHealth",
    "item": "п.4",
-   "checkedAt": "2026-10-13T01:52:22Z",
-   "status": "error",
-   "count": 10,
+   "checkedAt": "2026-10-13T18:53:45Z",
+   "status": "ok",
+   "count": 0,
    "items": [
     {
      "name": "lateShipmentRate",
@@ -195,16 +195,16 @@
    "extra": {
     "ahrScore": 840.0,
     "ahrStatus": "GREAT",
-    "accountStatus": "AT_RISK",
+    "accountStatus": "NORMAL",
     "warnings": [],
     "problemMetrics": []
    },
-   "message": "Аккаунт под ограничениями: AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK, AT_RISK."
+   "message": "Все 21 показателей в норме, рейтинг 840.0 (GREAT)."
   },
   {
    "id": "feedback",
    "item": "п.5",
-   "checkedAt": "2026-10-13T01:52:48Z",
+   "checkedAt": "2026-10-13T18:54:10Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -217,7 +217,7 @@
   {
    "id": "performanceNotifications",
    "item": "п.6",
-   "checkedAt": "2026-10-13T01:52:48Z",
+   "checkedAt": "2026-10-13T18:54:10Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -229,7 +229,7 @@
   {
    "id": "pricingHealth",
    "item": "п.7",
-   "checkedAt": "2026-10-13T01:52:48Z",
+   "checkedAt": "2026-10-13T18:54:10Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -241,7 +241,7 @@
   {
    "id": "messages",
    "item": "п.8",
-   "checkedAt": "2026-10-13T01:52:48Z",
+   "checkedAt": "2026-10-13T18:54:10Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -253,7 +253,7 @@
   {
    "id": "customerReviews",
    "item": "п.9",
-   "checkedAt": "2026-10-13T01:52:48Z",
+   "checkedAt": "2026-10-13T18:54:10Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
@@ -265,7 +265,7 @@
   {
    "id": "fbaPerformance",
    "item": "п.10",
-   "checkedAt": "2026-10-13T01:52:49Z",
+   "checkedAt": "2026-10-13T18:54:11Z",
    "status": "ok",
    "count": 0,
    "items": [],
@@ -274,7 +274,7 @@
   {
    "id": "cases",
    "item": "п.11",
-   "checkedAt": "2026-10-13T01:52:49Z",
+   "checkedAt": "2026-10-13T18:54:11Z",
    "status": "unavailable",
    "count": 0,
    "items": [],
