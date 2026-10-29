@@ -1,6 +1,6 @@
 {
  "source": "spapi-promotions",
- "generatedAt": "2026-10-29T00:19:16Z",
+ "generatedAt": "2026-10-29T04:49:15Z",
  "periodStart": "2026-07-27",
  "periodEnd": "2026-11-01",
  "searchFrom": "2026-06-17",
@@ -1426,26 +1426,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A10TCG6TTVYMNC",
-   "kind": "coupon",
-   "name": "Spara kr50 på Kantskydd för baby",
-   "m": "SE",
-   "start": "2026-07-29",
-   "end": "2026-08-06",
-   "asins": [
-    "B0C4JRWP6L",
-    "B0CJRQHP3Z",
-    "B0CJRQHTC4",
-    "B0GGJ4RNBC",
-    "B0GGJ6VRCQ"
-   ],
-   "units": 5,
-   "sales": 552.0,
-   "currency": "SEK",
-   "discount": "50",
-   "discountKind": "AMOUNT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A2GOE1B1TN2BSA",
    "kind": "coupon",
    "name": "Spara kr50 på Kantskydd för baby",
@@ -1461,6 +1441,26 @@
    ],
    "units": 0,
    "sales": 0.0,
+   "currency": "SEK",
+   "discount": "50",
+   "discountKind": "AMOUNT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A10TCG6TTVYMNC",
+   "kind": "coupon",
+   "name": "Spara kr50 på Kantskydd för baby",
+   "m": "SE",
+   "start": "2026-07-29",
+   "end": "2026-08-06",
+   "asins": [
+    "B0C4JRWP6L",
+    "B0CJRQHP3Z",
+    "B0CJRQHTC4",
+    "B0GGJ4RNBC",
+    "B0GGJ6VRCQ"
+   ],
+   "units": 5,
+   "sales": 552.0,
    "currency": "SEK",
    "discount": "50",
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
