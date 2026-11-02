@@ -2,110 +2,6 @@
  "version": 1,
  "entries": [
   {
-   "id": "37883743629-amazon-spapi-2026-10-09T04:24:46Z",
-   "source": "amazon-spapi",
-   "status": "ok",
-   "mode": "incremental",
-   "startedAt": "2026-10-09T04:24:46Z",
-   "finishedAt": "2026-10-09T04:29:45Z",
-   "message": "Получено 8155 проводок за 99 дн. (2026-01-01 — 2026-10-09).",
-   "stats": {
-    "pages": 77,
-    "events": 7654,
-    "rows": 8155,
-    "days": 99,
-    "periodStart": "2026-01-01",
-    "periodEnd": "2026-10-09",
-    "historyComplete": true,
-    "unknownTypes": [
-     "CustomerReturnHRRUnitFee"
-    ]
-   },
-   "error": null,
-   "runId": "37883743629",
-   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/37883743629",
-   "trigger": "schedule",
-   "durationSec": 299
-  },
-  {
-   "id": "37883743629-amazon-account-2026-10-09T04:29:45Z",
-   "source": "amazon-account",
-   "status": "partial",
-   "mode": "account-health",
-   "startedAt": "2026-10-09T04:29:45Z",
-   "finishedAt": "2026-10-09T04:30:55Z",
-   "message": "Проверок выполнено 5, не удалось 1.",
-   "stats": {
-    "checks": 5,
-    "warnings": 1,
-    "unavailable": 6
-   },
-   "error": null,
-   "runId": "37883743629",
-   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/37883743629",
-   "trigger": "schedule",
-   "durationSec": 70
-  },
-  {
-   "id": "37883743629-amazon-weekly-sales-2026-10-09T04:30:56Z",
-   "source": "amazon-weekly-sales",
-   "status": "ok",
-   "mode": "14w",
-   "startedAt": "2026-10-09T04:30:56Z",
-   "finishedAt": "2026-10-09T04:44:17Z",
-   "message": "Недельные продажи за 14 недель: 188760 шт. по 11 площадкам.",
-   "stats": {
-    "weeks": 14,
-    "rows": 2717,
-    "units": 188760,
-    "asins": 28,
-    "marketplaces": 11
-   },
-   "error": null,
-   "runId": "37883743629",
-   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/37883743629",
-   "trigger": "schedule",
-   "durationSec": 801
-  },
-  {
-   "id": "37883743629-amazon-promotions-2026-10-09T04:44:17Z",
-   "source": "amazon-promotions",
-   "status": "ok",
-   "mode": "10mp",
-   "startedAt": "2026-10-09T04:44:17Z",
-   "finishedAt": "2026-10-09T04:54:32Z",
-   "message": "Кампаний в окне: 450 (купонов 429, дилов 191).",
-   "stats": {
-    "campaigns": 450,
-    "coupons": 429,
-    "deals": 191,
-    "marketplaces": 10
-   },
-   "error": null,
-   "runId": "37883743629",
-   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/37883743629",
-   "trigger": "schedule",
-   "durationSec": 615
-  },
-  {
-   "id": "37883743629-amazon-fx-2026-10-09T04:54:32Z",
-   "source": "amazon-fx",
-   "status": "ok",
-   "mode": "ecb",
-   "startedAt": "2026-10-09T04:54:32Z",
-   "finishedAt": "2026-10-09T04:54:34Z",
-   "message": "Курсы ЕЦБ за 64 дней, валют 11.",
-   "stats": {
-    "rates": 64,
-    "days": 64
-   },
-   "error": null,
-   "runId": "37883743629",
-   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/37883743629",
-   "trigger": "schedule",
-   "durationSec": 2
-  },
-  {
    "id": "37947878050-amazon-spapi-2026-10-09T14:56:04Z",
    "source": "amazon-spapi",
    "status": "ok",
@@ -8347,7 +8243,112 @@
    "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/41345145431",
    "trigger": "schedule",
    "durationSec": 2
+  },
+  {
+   "id": "41387159051-amazon-spapi-2026-11-02T04:12:30Z",
+   "source": "amazon-spapi",
+   "status": "ok",
+   "mode": "incremental",
+   "startedAt": "2026-11-02T04:12:30Z",
+   "finishedAt": "2026-11-02T04:16:00Z",
+   "message": "Получено 9955 проводок за 123 дн. (2026-01-01 — 2026-11-02).",
+   "stats": {
+    "pages": 56,
+    "events": 5591,
+    "rows": 9955,
+    "days": 123,
+    "periodStart": "2026-01-01",
+    "periodEnd": "2026-11-02",
+    "historyComplete": true,
+    "unknownTypes": [
+     "AmazonUpstreamProcessingFee",
+     "AmazonUpstreamStorageTransportationFee"
+    ]
+   },
+   "error": null,
+   "runId": "41387159051",
+   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/41387159051",
+   "trigger": "schedule",
+   "durationSec": 210
+  },
+  {
+   "id": "41387159051-amazon-account-2026-11-02T04:16:00Z",
+   "source": "amazon-account",
+   "status": "ok",
+   "mode": "account-health",
+   "startedAt": "2026-11-02T04:16:00Z",
+   "finishedAt": "2026-11-02T04:17:11Z",
+   "message": "Проверок выполнено 5, с замечаниями 1.",
+   "stats": {
+    "checks": 5,
+    "warnings": 1,
+    "unavailable": 6
+   },
+   "error": null,
+   "runId": "41387159051",
+   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/41387159051",
+   "trigger": "schedule",
+   "durationSec": 71
+  },
+  {
+   "id": "41387159051-amazon-weekly-sales-2026-11-02T04:17:11Z",
+   "source": "amazon-weekly-sales",
+   "status": "ok",
+   "mode": "14w",
+   "startedAt": "2026-11-02T04:17:11Z",
+   "finishedAt": "2026-11-02T04:27:57Z",
+   "message": "Недельные продажи за 14 недель: 183472 шт. по 11 площадкам.",
+   "stats": {
+    "weeks": 14,
+    "rows": 2581,
+    "units": 183472,
+    "asins": 26,
+    "marketplaces": 11
+   },
+   "error": null,
+   "runId": "41387159051",
+   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/41387159051",
+   "trigger": "schedule",
+   "durationSec": 646
+  },
+  {
+   "id": "41387159051-amazon-promotions-2026-11-02T04:27:57Z",
+   "source": "amazon-promotions",
+   "status": "ok",
+   "mode": "10mp",
+   "startedAt": "2026-11-02T04:27:57Z",
+   "finishedAt": "2026-11-02T04:36:24Z",
+   "message": "Кампаний в окне: 413 (купонов 375, дилов 207).",
+   "stats": {
+    "campaigns": 413,
+    "coupons": 375,
+    "deals": 207,
+    "marketplaces": 10
+   },
+   "error": null,
+   "runId": "41387159051",
+   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/41387159051",
+   "trigger": "schedule",
+   "durationSec": 507
+  },
+  {
+   "id": "41387159051-amazon-fx-2026-11-02T04:36:24Z",
+   "source": "amazon-fx",
+   "status": "ok",
+   "mode": "ecb",
+   "startedAt": "2026-11-02T04:36:24Z",
+   "finishedAt": "2026-11-02T04:36:25Z",
+   "message": "Курсы ЕЦБ за 65 дней, валют 11.",
+   "stats": {
+    "rates": 65,
+    "days": 65
+   },
+   "error": null,
+   "runId": "41387159051",
+   "runUrl": "https://github.com/Oleh-hoff/Oleh-hoff.github.io/actions/runs/41387159051",
+   "trigger": "schedule",
+   "durationSec": 1
   }
  ],
- "updatedAt": "2026-11-01T20:34:03Z"
+ "updatedAt": "2026-11-02T04:36:25Z"
 }
