@@ -1,6 +1,6 @@
 {
  "source": "spapi-promotions",
- "generatedAt": "2026-11-02T18:08:36Z",
+ "generatedAt": "2026-11-03T03:13:58Z",
  "periodStart": "2026-08-03",
  "periodEnd": "2026-11-08",
  "searchFrom": "2026-06-24",
@@ -10,7 +10,6 @@
  ],
  "marketplaces": [
   "BE",
-  "DE",
   "ES",
   "FR",
   "GB",
@@ -20,8 +19,11 @@
   "PL",
   "SE"
  ],
- "cancelledSkipped": 7,
- "failures": [],
+ "cancelledSkipped": 4,
+ "failures": [
+  "DE/купоны: HTTP 0 на GET_COUPON_PERFORMANCE_REPORT / A1PA6795UKMFR9: статус IN_QUEUE",
+  "DE/дилы: HTTP 0 на GET_PROMOTION_PERFORMANCE_REPORT / A1PA6795UKMFR9: статус IN_PROGRESS"
+ ],
  "campaigns": [
   {
    "id": "A2Q0ZZNDQGRMRM",
@@ -204,22 +206,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A2BQ2OG8NA3GCO",
-   "kind": "coupon",
-   "name": "Save 10% on Magnetic Cupboard Locks",
-   "m": "IE",
-   "start": "2026-07-16",
-   "end": "2026-08-07",
-   "asins": [
-    "B0FNX21TZF"
-   ],
-   "units": 4,
-   "sales": 93.64,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A1O70RC1ZHH9FC",
    "kind": "coupon",
    "name": "Save 10% on Magnetic Cupboard Locks",
@@ -231,6 +217,22 @@
    ],
    "units": 0,
    "sales": 0.0,
+   "currency": "USD",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A2BQ2OG8NA3GCO",
+   "kind": "coupon",
+   "name": "Save 10% on Magnetic Cupboard Locks",
+   "m": "IE",
+   "start": "2026-07-16",
+   "end": "2026-08-07",
+   "asins": [
+    "B0FNX21TZF"
+   ],
+   "units": 4,
+   "sales": 93.64,
    "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -350,23 +352,6 @@
    "units": 0,
    "sales": 0.0,
    "currency": "SEK",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1VLM7YPFUBMX6",
-   "kind": "coupon",
-   "name": "Sparen Sie 10 % auf Kantenschutz Baby aus Schaumstoff",
-   "m": "DE",
-   "start": "2026-07-21",
-   "end": "2026-08-06",
-   "asins": [
-    "B0GGJ4RNBC",
-    "B0GGJ6VRCQ"
-   ],
-   "units": 233,
-   "sales": 3359.98,
-   "currency": "EUR",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
@@ -706,26 +691,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A10TCG6TTVYMNC",
-   "kind": "coupon",
-   "name": "Spara kr50 på Kantskydd för baby",
-   "m": "SE",
-   "start": "2026-07-29",
-   "end": "2026-08-06",
-   "asins": [
-    "B0C4JRWP6L",
-    "B0CJRQHP3Z",
-    "B0CJRQHTC4",
-    "B0GGJ4RNBC",
-    "B0GGJ6VRCQ"
-   ],
-   "units": 5,
-   "sales": 552.0,
-   "currency": "SEK",
-   "discount": "50",
-   "discountKind": "AMOUNT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A2GOE1B1TN2BSA",
    "kind": "coupon",
    "name": "Spara kr50 på Kantskydd för baby",
@@ -746,52 +711,24 @@
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
-   "id": "A1STE5X16UTCW1",
+   "id": "A10TCG6TTVYMNC",
    "kind": "coupon",
-   "name": "Sparen Sie 10 % auf Magnetische Kindersicherung",
-   "m": "DE",
+   "name": "Spara kr50 på Kantskydd för baby",
+   "m": "SE",
    "start": "2026-07-29",
    "end": "2026-08-06",
    "asins": [
-    "B0FNX21TZF"
+    "B0C4JRWP6L",
+    "B0CJRQHP3Z",
+    "B0CJRQHTC4",
+    "B0GGJ4RNBC",
+    "B0GGJ6VRCQ"
    ],
-   "units": 27,
-   "sales": 571.15,
-   "currency": "EUR",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A2X3YDS036PEUY",
-   "kind": "coupon",
-   "name": "Sparen Sie 10 % auf Magnetische Kindersicherung",
-   "m": "DE",
-   "start": "2026-07-29",
-   "end": "2026-08-06",
-   "asins": [
-    "B0DMTMHVK4"
-   ],
-   "units": 37,
-   "sales": 897.87,
-   "currency": "EUR",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A338BJCR07NAOV",
-   "kind": "coupon",
-   "name": "Sparen Sie 11 % auf Steckdosen Kindersicherung",
-   "m": "DE",
-   "start": "2026-07-29",
-   "end": "2026-08-09",
-   "asins": [
-    "B0854MW97N"
-   ],
-   "units": 1011,
-   "sales": 6399.59,
-   "currency": "EUR",
-   "discount": "11%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
+   "units": 5,
+   "sales": 552.0,
+   "currency": "SEK",
+   "discount": "50",
+   "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
    "id": "AI6CDP7HDOGWI",
@@ -1065,24 +1002,6 @@
    "currency": "EUR"
   },
   {
-   "id": "3b30a75d",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach Eckenschutz Kantenschutz Baby - Kindersicherung für Tisch selbstklebend – Stoßschutz für Baby und Kind",
-   "m": "DE",
-   "start": "2026-08-06",
-   "end": "2026-08-10",
-   "asins": [
-    "B0933B1NKB",
-    "B0933DBFMS",
-    "B0933F6ZWD",
-    "B0D7QMZZDG"
-   ],
-   "units": 300,
-   "sales": 2615.14,
-   "currency": "EUR"
-  },
-  {
    "id": "67c33951",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -1097,22 +1016,6 @@
    "units": 24,
    "sales": 2341.51,
    "currency": "SEK"
-  },
-  {
-   "id": "4ec25320",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach Magnetische Kindersicherung 12 Schlösser + 3 Schlüssel – Schranksicherung & Schubladensicherung ohne Bohren – Unsichtbarer Magnetverschluss – Weiß",
-   "m": "DE",
-   "start": "2026-08-06",
-   "end": "2026-08-10",
-   "asins": [
-    "B07JZCWJMW",
-    "B0DMTMHVK4"
-   ],
-   "units": 335,
-   "sales": 8547.25,
-   "currency": "EUR"
   },
   {
    "id": "73494fbc",
@@ -1178,37 +1081,6 @@
    "currency": "SEK"
   },
   {
-   "id": "6f251205",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "SаfeMate Parent EckenKanten",
-   "m": "DE",
-   "start": "2026-08-06",
-   "end": "2026-08-10",
-   "asins": [
-    "B0GGJ4RNBC",
-    "B0GGJ6VRCQ"
-   ],
-   "units": 216,
-   "sales": 3307.98,
-   "currency": "EUR"
-  },
-  {
-   "id": "d84df111",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "WunderHippo 4X Wandschutz Pads für Treppengitter & Türschutzgitter – Rechteckige Schutzpads für Baby Klemmgitter – Für Türgitter, Treppenschutzgitter – Wand- & Türschutz ohne Bohren",
-   "m": "DE",
-   "start": "2026-08-06",
-   "end": "2026-08-10",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 67,
-   "sales": 484.13,
-   "currency": "EUR"
-  },
-  {
    "id": "15b8e28a",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -1236,22 +1108,6 @@
    ],
    "units": 45,
    "sales": 854.24,
-   "currency": "EUR"
-  },
-  {
-   "id": "84a6fb60",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "WunderHippo Magnetische Kindersicherung",
-   "m": "DE",
-   "start": "2026-08-06",
-   "end": "2026-08-10",
-   "asins": [
-    "B0DNT4FNZ9",
-    "B0FNX21TZF"
-   ],
-   "units": 280,
-   "sales": 4998.87,
    "currency": "EUR"
   },
   {
@@ -1362,6 +1218,23 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "A1DOSCWVS5SKPI",
+   "kind": "coupon",
+   "name": "Save 10% on Baby Corner Protectors",
+   "m": "GB",
+   "start": "2026-08-06",
+   "end": "2026-08-12",
+   "asins": [
+    "B0933B1NKB",
+    "B0933DBFMS"
+   ],
+   "units": 75,
+   "sales": 500.26,
+   "currency": "GBP",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
    "id": "A38W6U0XWSE6X",
    "kind": "coupon",
    "name": "Save 10% on Baby Corner Protectors",
@@ -1376,23 +1249,6 @@
    ],
    "units": 0,
    "sales": 0.0,
-   "currency": "GBP",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1DOSCWVS5SKPI",
-   "kind": "coupon",
-   "name": "Save 10% on Baby Corner Protectors",
-   "m": "GB",
-   "start": "2026-08-06",
-   "end": "2026-08-12",
-   "asins": [
-    "B0933B1NKB",
-    "B0933DBFMS"
-   ],
-   "units": 75,
-   "sales": 500.26,
    "currency": "GBP",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -1413,40 +1269,6 @@
    "sales": 561.57,
    "currency": "SEK",
    "discount": "12%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A3HYV40YVD4Y0D",
-   "kind": "coupon",
-   "name": "Sparen Sie 10 % auf Kantenschutz Baby aus Schaumstoff",
-   "m": "DE",
-   "start": "2026-08-06",
-   "end": "2026-08-18",
-   "asins": [
-    "B07PPXKJPQ",
-    "B0F79C4Y9C"
-   ],
-   "units": 131,
-   "sales": 2245.95,
-   "currency": "EUR",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A3L1FR1XP8WWQF",
-   "kind": "coupon",
-   "name": "Sparen Sie 10 % auf Kantenschutz Baby aus Schaumstoff",
-   "m": "DE",
-   "start": "2026-08-06",
-   "end": "2026-08-06",
-   "asins": [
-    "B07PPXKJPQ",
-    "B0F79C4Y9C"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "EUR",
-   "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
@@ -1878,27 +1700,6 @@
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
-   "id": "A2XIEI09RUGXOF",
-   "kind": "coupon",
-   "name": "Sparen Sie 5 % auf Magnetische Kindersicherung",
-   "m": "DE",
-   "start": "2026-08-12",
-   "end": "2026-08-18",
-   "asins": [
-    "B072PPT9V3",
-    "B07JZCWJMW",
-    "B0DMTJXH9W",
-    "B0DMTMHVK4",
-    "B0FVG9MZR8",
-    "B0FVGB9FHJ"
-   ],
-   "units": 694,
-   "sales": 12637.21,
-   "currency": "EUR",
-   "discount": "5%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "e4ab089c",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -1931,45 +1732,6 @@
    "units": 331,
    "sales": 2565.81,
    "currency": "GBP"
-  },
-  {
-   "id": "62553a01",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach Eckenschutz Kantenschutz Baby - Kindersicherung für Tisch selbstklebend – Stoßschutz für Baby und Kind",
-   "m": "DE",
-   "start": "2026-08-18",
-   "end": "2026-08-22",
-   "asins": [
-    "B0933B1NKB",
-    "B0933DBFMS",
-    "B0933F6ZWD",
-    "B0D7QMS49B",
-    "B0D7QMZZDG"
-   ],
-   "units": 282,
-   "sales": 2535.88,
-   "currency": "EUR"
-  },
-  {
-   "id": "c394eff3",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach Magnetische Kindersicherung 12 Schlösser + 3 Schlüssel – Schranksicherung & Schubladensicherung ohne Bohren – Unsichtbarer Magnetverschluss – Weiß",
-   "m": "DE",
-   "start": "2026-08-18",
-   "end": "2026-08-22",
-   "asins": [
-    "B072PPT9V3",
-    "B07JZCWJMW",
-    "B0DMTJXH9W",
-    "B0DMTMHVK4",
-    "B0FVG9MZR8",
-    "B0FVGB9FHJ"
-   ],
-   "units": 1403,
-   "sales": 27419.15,
-   "currency": "EUR"
   },
   {
    "id": "bddaa247",
@@ -2026,22 +1788,6 @@
    "currency": "EUR"
   },
   {
-   "id": "8821523d",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "SаfeMate Parent EckenKanten",
-   "m": "DE",
-   "start": "2026-08-18",
-   "end": "2026-08-22",
-   "asins": [
-    "B0GGJ4RNBC",
-    "B0GGJ6VRCQ"
-   ],
-   "units": 270,
-   "sales": 4132.16,
-   "currency": "EUR"
-  },
-  {
    "id": "5e519087",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -2071,22 +1817,6 @@
    ],
    "units": 130,
    "sales": 2302.73,
-   "currency": "EUR"
-  },
-  {
-   "id": "07b40343",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "WunderHippo Magnetische Kindersicherung",
-   "m": "DE",
-   "start": "2026-08-18",
-   "end": "2026-08-23",
-   "asins": [
-    "B0DNT4FNZ9",
-    "B0FNX21TZF"
-   ],
-   "units": 353,
-   "sales": 6304.69,
    "currency": "EUR"
   },
   {
@@ -2282,54 +2012,6 @@
    "currency": "GBP",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "AE34FEU41FMGB",
-   "kind": "coupon",
-   "name": "Sparen Sie 11 % auf Steckdosen Kindersicherung",
-   "m": "DE",
-   "start": "2026-08-18",
-   "end": "2026-08-21",
-   "asins": [
-    "B0854MW97N"
-   ],
-   "units": 384,
-   "sales": 2394.39,
-   "currency": "EUR",
-   "discount": "11%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1XPGGHTMOZHZH",
-   "kind": "coupon",
-   "name": "Sparen Sie 5 % auf 4X Wandschutz Pads für Treppengitter und Türschutzgitter",
-   "m": "DE",
-   "start": "2026-08-18",
-   "end": "2026-08-26",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 38,
-   "sales": 258.87,
-   "currency": "EUR",
-   "discount": "5%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A3EMP0887Z8M2S",
-   "kind": "coupon",
-   "name": "Sparen Sie €1 bei Wandschutz Pads",
-   "m": "DE",
-   "start": "2026-08-18",
-   "end": "2026-08-26",
-   "asins": [
-    "B08NCRRM6M"
-   ],
-   "units": 331,
-   "sales": 3062.78,
-   "currency": "EUR",
-   "discount": "1",
-   "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
    "id": "A2OS5AJ00ZM1BO",
@@ -3027,22 +2709,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A1V8AT5DBINRDM",
-   "kind": "coupon",
-   "name": "Risparmia €1 su Protezioni Antiscivolo per Porte",
-   "m": "IT",
-   "start": "2026-08-28",
-   "end": "2026-08-28",
-   "asins": [
-    "B08NCRRM6M"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "EUR",
-   "discount": "1",
-   "discountKind": "AMOUNT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A1DA6OYHQAWBCE",
    "kind": "coupon",
    "name": "Risparmia €1 su Protezioni Antiscivolo per Porte",
@@ -3054,6 +2720,22 @@
    ],
    "units": 146,
    "sales": 1232.96,
+   "currency": "EUR",
+   "discount": "1",
+   "discountKind": "AMOUNT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A1V8AT5DBINRDM",
+   "kind": "coupon",
+   "name": "Risparmia €1 su Protezioni Antiscivolo per Porte",
+   "m": "IT",
+   "start": "2026-08-28",
+   "end": "2026-08-28",
+   "asins": [
+    "B08NCRRM6M"
+   ],
+   "units": 0,
+   "sales": 0.0,
    "currency": "EUR",
    "discount": "1",
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
@@ -3254,22 +2936,6 @@
    "currency": "PLN"
   },
   {
-   "id": "df2cc438",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "SаfeMate Parent EckenKanten",
-   "m": "DE",
-   "start": "2026-09-03",
-   "end": "2026-09-07",
-   "asins": [
-    "B0GGJ4RNBC",
-    "B0GGJ6VRCQ"
-   ],
-   "units": 188,
-   "sales": 2880.85,
-   "currency": "EUR"
-  },
-  {
    "id": "00d95dc4",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -3299,23 +2965,6 @@
    ],
    "units": 137,
    "sales": 2491.43,
-   "currency": "EUR"
-  },
-  {
-   "id": "c673b0ee",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "WunderHippo Magnetische Kindersicherung",
-   "m": "DE",
-   "start": "2026-09-03",
-   "end": "2026-09-07",
-   "asins": [
-    "B0DNT4FNZ9",
-    "B0FNX21TZF",
-    "B0GT1C3GYC"
-   ],
-   "units": 547,
-   "sales": 9556.87,
    "currency": "EUR"
   },
   {
@@ -3508,105 +3157,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A1G1IRT8N3H0T8",
-   "kind": "coupon",
-   "name": "Sparen Sie 5 % auf 30x Steckdosen Kindersicherung",
-   "m": "DE",
-   "start": "2026-09-03",
-   "end": "2026-09-04",
-   "asins": [
-    "B0DJ1DGY6J"
-   ],
-   "units": 63,
-   "sales": 486.44,
-   "currency": "EUR",
-   "discount": "5%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1Y2EB8M0A01GS",
-   "kind": "coupon",
-   "name": "Sparen Sie 5 % auf Steckdosen Kindersicherung",
-   "m": "DE",
-   "start": "2026-09-03",
-   "end": "2026-09-17",
-   "asins": [
-    "B0854MW97N"
-   ],
-   "units": 103,
-   "sales": 696.07,
-   "currency": "EUR",
-   "discount": "5%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A20QI48MV55ZUY",
-   "kind": "coupon",
-   "name": "Sparen Sie 9 % auf 4X Wandschutz Pads für Treppengitter und Türschutzgitter",
-   "m": "DE",
-   "start": "2026-09-03",
-   "end": "2026-09-17",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 52,
-   "sales": 345.42,
-   "currency": "EUR",
-   "discount": "9%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A3EDZ2F308ASCK",
-   "kind": "coupon",
-   "name": "Sparen Sie €1 bei Eckenschutz Kantenschutz Baby",
-   "m": "DE",
-   "start": "2026-09-03",
-   "end": "2026-09-17",
-   "asins": [
-    "B0933B1NKB",
-    "B0933DBFMS"
-   ],
-   "units": 234,
-   "sales": 1801.04,
-   "currency": "EUR",
-   "discount": "1",
-   "discountKind": "AMOUNT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "AXBKBTBD2XM0V",
-   "kind": "coupon",
-   "name": "Sparen Sie €1 bei Magnetische Kindersicherung",
-   "m": "DE",
-   "start": "2026-09-03",
-   "end": "2026-09-13",
-   "asins": [
-    "B072PPT9V3",
-    "B0DMTJXH9W"
-   ],
-   "units": 927,
-   "sales": 14968.91,
-   "currency": "EUR",
-   "discount": "1",
-   "discountKind": "AMOUNT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1789MGD8SORK4",
-   "kind": "coupon",
-   "name": "Sparen Sie €2 bei Magnetische Kindersicherung",
-   "m": "DE",
-   "start": "2026-09-03",
-   "end": "2026-09-17",
-   "asins": [
-    "B07JZCWJMW",
-    "B0DMTMHVK4"
-   ],
-   "units": 233,
-   "sales": 6069.18,
-   "currency": "EUR",
-   "discount": "2",
-   "discountKind": "AMOUNT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A1JIKATQKPQJZM",
    "kind": "coupon",
    "name": "Zaoszczędź 25% na Piankowe Osłony na Narożniki dla Niemowląt",
@@ -3746,21 +3296,6 @@
    "currency": "EUR"
   },
   {
-   "id": "70bc6fdd",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach 30x Steckdosen Kindersicherung – Steckdosensicherung mit Drehmechanik – Schutz für Babys & Kinder – Steckdosenschutz verhindert Unfälle & Stromschläge – Steckdose Kinderschutz",
-   "m": "DE",
-   "start": "2026-09-17",
-   "end": "2026-09-21",
-   "asins": [
-    "B0DJ1DGY6J"
-   ],
-   "units": 769,
-   "sales": 6535.28,
-   "currency": "EUR"
-  },
-  {
    "id": "97255d9a",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -3831,25 +3366,6 @@
    "units": 562,
    "sales": 9090.64,
    "currency": "GBP"
-  },
-  {
-   "id": "fe5e5342",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach Magnetische Kindersicherung 12 Schlösser + 3 Schlüssel – Schranksicherung & Schubladensicherung ohne Bohren – Unsichtbarer Magnetverschluss – Weiß",
-   "m": "DE",
-   "start": "2026-09-17",
-   "end": "2026-09-21",
-   "asins": [
-    "B072PPT9V3",
-    "B07JZCWJMW",
-    "B0DMTJXH9W",
-    "B0DMTMHVK4",
-    "B0FVG9MZR8"
-   ],
-   "units": 1500,
-   "sales": 28859.31,
-   "currency": "EUR"
   },
   {
    "id": "c12bbaa2",
@@ -4017,6 +3533,22 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "AT1CWIHW0YZI",
+   "kind": "coupon",
+   "name": "Save 10% on Baby Corner Protectors",
+   "m": "IE",
+   "start": "2026-09-17",
+   "end": "2026-09-22",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 0,
+   "sales": 0.0,
+   "currency": "USD",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
    "id": "A3JQM0GCD34NEE",
    "kind": "coupon",
    "name": "Save 10% on Baby Corner Protectors",
@@ -4029,22 +3561,6 @@
    ],
    "units": 2,
    "sales": 14.62,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "AT1CWIHW0YZI",
-   "kind": "coupon",
-   "name": "Save 10% on Baby Corner Protectors",
-   "m": "IE",
-   "start": "2026-09-17",
-   "end": "2026-09-22",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 0,
-   "sales": 0.0,
    "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -4082,70 +3598,6 @@
    "units": 46,
    "sales": 873.91,
    "currency": "USD",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A2KLPA9DJ8DHH1",
-   "kind": "coupon",
-   "name": "Sparen Sie 10 % auf Kantenschutz Baby aus Schaumstoff",
-   "m": "DE",
-   "start": "2026-09-17",
-   "end": "2026-09-22",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 58,
-   "sales": 993.6,
-   "currency": "EUR",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A12VENIDO8EFQA",
-   "kind": "coupon",
-   "name": "Sparen Sie 11 % auf Eckenschutz Kantenschutz Baby",
-   "m": "DE",
-   "start": "2026-09-17",
-   "end": "2026-09-22",
-   "asins": [
-    "B0D7QMZZDG"
-   ],
-   "units": 4,
-   "sales": 50.84,
-   "currency": "EUR",
-   "discount": "11%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1FMLN9JUHZVOX",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf 4X Wandschutz Pads für Treppengitter und Türschutzgitter",
-   "m": "DE",
-   "start": "2026-09-17",
-   "end": "2026-09-21",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 25,
-   "sales": 158.65,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1OHM1IHS09CTU",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf Steckdosen Kindersicherung",
-   "m": "DE",
-   "start": "2026-09-17",
-   "end": "2026-09-22",
-   "asins": [
-    "B0854MW97N"
-   ],
-   "units": 502,
-   "sales": 3134.58,
-   "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
@@ -4202,39 +3654,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "f6c210f7",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "SаfeMate Parent EckenKanten",
-   "m": "DE",
-   "start": "2026-09-29",
-   "end": "2026-10-05",
-   "asins": [
-    "B0GGJ4RNBC",
-    "B0GGJ6VRCQ"
-   ],
-   "units": 360,
-   "sales": 5513.72,
-   "currency": "EUR"
-  },
-  {
-   "id": "A2SBX7LLCKROPY",
-   "kind": "coupon",
-   "name": "Sparen Sie 18 % auf Kantenschutz Baby aus Schaumstoff",
-   "m": "DE",
-   "start": "2026-09-29",
-   "end": "2026-09-30",
-   "asins": [
-    "B0GGJ4RNBC",
-    "B0GGJ6VRCQ"
-   ],
-   "units": 8,
-   "sales": 105.52,
-   "currency": "EUR",
-   "discount": "18%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "67aa1c5f",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -4248,21 +3667,6 @@
    "units": 149,
    "sales": 2658.16,
    "currency": "GBP"
-  },
-  {
-   "id": "efbde880",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach 20x Steckdosen Kindersicherung – Steckdosensicherung mit Drehmechanik – Schutz für Babys & Kinder – Steckdosenschutz verhindert Unfälle & Stromschläge – Steckdose Kinderschutz",
-   "m": "DE",
-   "start": "2026-10-01",
-   "end": "2026-10-05",
-   "asins": [
-    "B0854MW97N"
-   ],
-   "units": 926,
-   "sales": 6691.55,
-   "currency": "EUR"
   },
   {
    "id": "d8c9be86",
@@ -4352,25 +3756,6 @@
    "units": 596,
    "sales": 9552.29,
    "currency": "GBP"
-  },
-  {
-   "id": "d1b36c2b",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach Magnetische Kindersicherung 12 Schlösser + 3 Schlüssel – Schranksicherung & Schubladensicherung ohne Bohren – Unsichtbarer Magnetverschluss – Weiß",
-   "m": "DE",
-   "start": "2026-10-01",
-   "end": "2026-10-05",
-   "asins": [
-    "B072PPT9V3",
-    "B07JZCWJMW",
-    "B0DMTJXH9W",
-    "B0DMTMHVK4",
-    "B0FVG9MZR8"
-   ],
-   "units": 1518,
-   "sales": 29305.61,
-   "currency": "EUR"
   },
   {
    "id": "38532b7a",
@@ -4728,6 +4113,22 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "A16I7LI7B2L9Z7",
+   "kind": "coupon",
+   "name": "Save 10% on Baby Corner Protectors",
+   "m": "IE",
+   "start": "2026-10-01",
+   "end": "2026-10-09",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 3,
+   "sales": 50.46,
+   "currency": "USD",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
    "id": "A20PCNIIK46NMK",
    "kind": "coupon",
    "name": "Save 10% on Baby Corner Protectors",
@@ -4743,22 +4144,6 @@
    ],
    "units": 4,
    "sales": 32.9,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A16I7LI7B2L9Z7",
-   "kind": "coupon",
-   "name": "Save 10% on Baby Corner Protectors",
-   "m": "IE",
-   "start": "2026-10-01",
-   "end": "2026-10-09",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 3,
-   "sales": 50.46,
    "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -4809,23 +4194,7 @@
    "units": 12,
    "sales": 175.55,
    "currency": "USD",
-   "discount": "100%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A2OM7PJZM4KO79",
-   "kind": "coupon",
-   "name": "Sparen Sie €1 bei 4X Wandschutz Pads für Treppengitter und Türschutzgitter",
-   "m": "DE",
-   "start": "2026-10-01",
-   "end": "2026-10-07",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 16,
-   "sales": 105.68,
-   "currency": "EUR",
-   "discount": "1",
+   "discount": "3",
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
@@ -4972,25 +4341,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A2SW6YMJX4GJPF",
-   "kind": "coupon",
-   "name": "Ahorra 15 % en nuestros productos",
-   "m": "ES",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B0D7QMZZDG",
-    "B0DNT4FNZ9",
-    "B0DNTPCLRN",
-    "B0FNX21TZF"
-   ],
-   "units": 33,
-   "sales": 486.41,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A7L77T7QQSU91",
    "kind": "coupon",
    "name": "Ahorra 15 % en nuestros productos",
@@ -5023,33 +4373,20 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A3A4ZO3UKUI304",
+   "id": "A2SW6YMJX4GJPF",
    "kind": "coupon",
-   "name": "Bespaar 15% op onze producten",
-   "m": "NL",
+   "name": "Ahorra 15 % en nuestros productos",
+   "m": "ES",
    "start": "2026-10-06",
    "end": "2026-10-07",
    "asins": [
-    "B0854MW97N"
+    "B0D7QMZZDG",
+    "B0DNT4FNZ9",
+    "B0DNTPCLRN",
+    "B0FNX21TZF"
    ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A2U5MZYLGCQO0K",
-   "kind": "coupon",
-   "name": "Bespaar 15% op onze producten",
-   "m": "NL",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 0,
-   "sales": 0.0,
+   "units": 33,
+   "sales": 486.41,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -5075,6 +4412,38 @@
    ],
    "units": 14,
    "sales": 198.65,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A2U5MZYLGCQO0K",
+   "kind": "coupon",
+   "name": "Bespaar 15% op onze producten",
+   "m": "NL",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 0,
+   "sales": 0.0,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A3A4ZO3UKUI304",
+   "kind": "coupon",
+   "name": "Bespaar 15% op onze producten",
+   "m": "NL",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B0854MW97N"
+   ],
+   "units": 0,
+   "sales": 0.0,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -5114,26 +4483,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A3OJC7OKAUHFX6",
-   "kind": "coupon",
-   "name": "Spara 15 % på våra produkter",
-   "m": "SE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B0933B1NKB",
-    "B0933DBFMS",
-    "B0933F6ZWD",
-    "B0DNT4FNZ9",
-    "B0DNTPCLRN"
-   ],
-   "units": 2,
-   "sales": 142.78,
-   "currency": "SEK",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A2OCJTR80IGO4D",
    "kind": "coupon",
    "name": "Spara 15 % på våra produkter",
@@ -5153,105 +4502,22 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "AABRDH54D17QB",
+   "id": "A3OJC7OKAUHFX6",
    "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
+   "name": "Spara 15 % på våra produkter",
+   "m": "SE",
    "start": "2026-10-06",
    "end": "2026-10-07",
    "asins": [
+    "B0933B1NKB",
+    "B0933DBFMS",
+    "B0933F6ZWD",
+    "B0DNT4FNZ9",
     "B0DNTPCLRN"
    ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1O7KSGT34WEB4",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B0D7QMZZDG"
-   ],
    "units": 2,
-   "sales": 24.26,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A3TBM20DMK6JJB",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 31,
-   "sales": 534.09,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A14O24LHO99UMM",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B072PPT9V3"
-   ],
-   "units": 193,
-   "sales": 2757.29,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1FQVJ489YS0S1",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B07JZCWJMW",
-    "B0854MW97N",
-    "B0DJ1DGY6J",
-    "B0DMTJXH9W",
-    "B0DMTMHVK4",
-    "B0FNX21TZF",
-    "B0FVG9MZR8",
-    "B0GGJ4RNBC"
-   ],
-   "units": 516,
-   "sales": 6015.94,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A2GQ0YSZ5EDKDD",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B0DNT4FNZ9"
-   ],
-   "units": 52,
-   "sales": 714.54,
-   "currency": "EUR",
+   "sales": 142.78,
+   "currency": "SEK",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
@@ -5276,6 +4542,22 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "A3ANNHL14040LV",
+   "kind": "coupon",
+   "name": "Économisez 15 % sur nos produits",
+   "m": "FR",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 2,
+   "sales": 14.14,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
    "id": "A1J9GEJK25K2MZ",
    "kind": "coupon",
    "name": "Économisez 15 % sur nos produits",
@@ -5292,17 +4574,17 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A3ANNHL14040LV",
+   "id": "A245T1USHGTB7",
    "kind": "coupon",
    "name": "Économisez 15 % sur nos produits",
-   "m": "FR",
+   "m": "BE",
    "start": "2026-10-06",
    "end": "2026-10-07",
    "asins": [
     "B0DNTPCLRN"
    ],
-   "units": 2,
-   "sales": 14.14,
+   "units": 0,
+   "sales": 0.0,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -5333,85 +4615,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A245T1USHGTB7",
-   "kind": "coupon",
-   "name": "Économisez 15 % sur nos produits",
-   "m": "BE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "ALGZFGGB2GYF6",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-07",
-   "end": "2026-10-08",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 9,
-   "sales": 57.07,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A17XYX575OS2HS",
-   "kind": "coupon",
-   "name": "Sparen Sie 16 % auf Eckenschutz Kantenschutz Baby",
-   "m": "DE",
-   "start": "2026-10-07",
-   "end": "2026-10-08",
-   "asins": [
-    "B0D7QMS49B"
-   ],
-   "units": 2,
-   "sales": 25.4,
-   "currency": "EUR",
-   "discount": "16%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A18DUFLFL3X7KK",
-   "kind": "coupon",
-   "name": "Sparen Sie 18 % auf Kantenschutz Baby aus Schaumstoff",
-   "m": "DE",
-   "start": "2026-10-07",
-   "end": "2026-10-08",
-   "asins": [
-    "B0GGJ6VRCQ"
-   ],
-   "units": 14,
-   "sales": 221.76,
-   "currency": "EUR",
-   "discount": "18%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "c74d5dc1",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach 30x Steckdosen Kindersicherung – Steckdosensicherung mit Drehmechanik – Schutz für Babys & Kinder – Steckdosenschutz verhindert Unfälle & Stromschläge – Steckdose Kinderschutz",
-   "m": "DE",
-   "start": "2026-10-09",
-   "end": "2026-10-12",
-   "asins": [
-    "B0DJ1DGY6J"
-   ],
-   "units": 721,
-   "sales": 6125.3,
-   "currency": "EUR"
-  },
-  {
    "id": "22b5a5b8",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -5429,40 +4632,6 @@
    "units": 192,
    "sales": 1486.34,
    "currency": "GBP"
-  },
-  {
-   "id": "7817b8a3",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach Eckenschutz Kantenschutz Baby - Kindersicherung für Tisch selbstklebend – Stoßschutz für Baby und Kind",
-   "m": "DE",
-   "start": "2026-10-09",
-   "end": "2026-10-12",
-   "asins": [
-    "B0933B1NKB",
-    "B0933DBFMS",
-    "B0933F6ZWD",
-    "B0D7QMS49B",
-    "B0D7QMZZDG"
-   ],
-   "units": 263,
-   "sales": 2326.55,
-   "currency": "EUR"
-  },
-  {
-   "id": "46da1d62",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach Kantenschutz Baby aus Schaumstoff – 6,2m Tischkantenschutz & 12x Eckenschutz – Tischecken Kindersicherung – Selbstklebender Schutz für Kinder, Bett, Fensterbank & Schreibtisch",
-   "m": "DE",
-   "start": "2026-10-09",
-   "end": "2026-10-12",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 177,
-   "sales": 3453.27,
-   "currency": "EUR"
   },
   {
    "id": "56fa9707",
@@ -5573,23 +4742,6 @@
    ],
    "units": 55,
    "sales": 1116.36,
-   "currency": "EUR"
-  },
-  {
-   "id": "0d23f6c8",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "WunderHippo Magnetische Kindersicherung",
-   "m": "DE",
-   "start": "2026-10-09",
-   "end": "2026-10-12",
-   "asins": [
-    "B0DNT4FNZ9",
-    "B0FNX21TZF",
-    "B0GQVR12BX"
-   ],
-   "units": 418,
-   "sales": 7991.25,
    "currency": "EUR"
   },
   {
@@ -5753,25 +4905,6 @@
    "sales": 0.0,
    "currency": "USD",
    "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "AOIBTJQY1ZEG4",
-   "kind": "coupon",
-   "name": "Sparen Sie 10 % auf Magnetische Kindersicherung",
-   "m": "DE",
-   "start": "2026-10-09",
-   "end": "2026-10-13",
-   "asins": [
-    "B072PPT9V3",
-    "B07JZCWJMW",
-    "B0DMTMHVK4",
-    "B0FVG9MZR8"
-   ],
-   "units": 409,
-   "sales": 7098.45,
-   "currency": "EUR",
-   "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
@@ -5971,21 +5104,6 @@
    ],
    "units": 192,
    "sales": 1807.36,
-   "currency": "EUR"
-  },
-  {
-   "id": "0a3a11e0",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "SаfeMate Parent EckenKanten",
-   "m": "DE",
-   "start": "2026-10-16",
-   "end": "2026-10-19",
-   "asins": [
-    "B0GGJ6VRCQ"
-   ],
-   "units": 136,
-   "sales": 2074.47,
    "currency": "EUR"
   },
   {
@@ -6197,25 +5315,6 @@
    "currency": "SEK"
   },
   {
-   "id": "d38b8459",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "Hoffenbach Magnetische Kindersicherung 12 Schlösser + 3 Schlüssel – Schranksicherung & Schubladensicherung ohne Bohren – Unsichtbarer Magnetverschluss – Weiß",
-   "m": "DE",
-   "start": "2026-10-21",
-   "end": "2026-10-25",
-   "asins": [
-    "B072PPT9V3",
-    "B07JZCWJMW",
-    "B0DMTJXH9W",
-    "B0DMTMHVK4",
-    "B0FVG9MZR8"
-   ],
-   "units": 1616,
-   "sales": 31315.63,
-   "currency": "EUR"
-  },
-  {
    "id": "0e7ca291",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -6382,22 +5481,6 @@
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
-   "id": "A2Z4MOVMZELR4L",
-   "kind": "coupon",
-   "name": "Save 10% on Baby Corner Protectors",
-   "m": "IE",
-   "start": "2026-10-21",
-   "end": "2026-10-28",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 1,
-   "sales": 16.82,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A2UDTYS2HV0DC1",
    "kind": "coupon",
    "name": "Save 10% on Baby Corner Protectors",
@@ -6412,6 +5495,22 @@
    ],
    "units": 6,
    "sales": 43.86,
+   "currency": "USD",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A2Z4MOVMZELR4L",
+   "kind": "coupon",
+   "name": "Save 10% on Baby Corner Protectors",
+   "m": "IE",
+   "start": "2026-10-21",
+   "end": "2026-10-28",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 1,
+   "sales": 16.82,
    "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6496,38 +5595,6 @@
    "units": 0,
    "sales": 0.0,
    "currency": "SEK",
-   "discount": "8%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A2QGLAR24ITP3X",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf 4X Wandschutz Pads für Treppengitter und Türschutzgitter",
-   "m": "DE",
-   "start": "2026-10-21",
-   "end": "2026-10-28",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 36,
-   "sales": 235.23,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A3EY4EXMUT1BDF",
-   "kind": "coupon",
-   "name": "Sparen Sie 8 % auf Steckdosen Kindersicherung",
-   "m": "DE",
-   "start": "2026-10-21",
-   "end": "2026-10-28",
-   "asins": [
-    "B0854MW97N"
-   ],
-   "units": 631,
-   "sales": 4383.31,
-   "currency": "EUR",
    "discount": "8%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
@@ -6692,23 +5759,6 @@
    "currency": "EUR"
   },
   {
-   "id": "7a9d4240",
-   "kind": "best_deal",
-   "type": "BEST_DEAL",
-   "name": "WunderHippo Magnetische Kindersicherung",
-   "m": "DE",
-   "start": "2026-10-30",
-   "end": "2026-11-03",
-   "asins": [
-    "B0DNT4FNZ9",
-    "B0FNX21TZF",
-    "B0GQVR12BX"
-   ],
-   "units": 215,
-   "sales": 4087.73,
-   "currency": "EUR"
-  },
-  {
    "id": "df580d26",
    "kind": "best_deal",
    "type": "BEST_DEAL",
@@ -6801,8 +5851,8 @@
     "B0DNT4FNZ9",
     "B0FNX21TZF"
    ],
-   "units": 2,
-   "sales": 37.92,
+   "units": 11,
+   "sales": 185.12,
    "currency": "EUR",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6819,8 +5869,8 @@
     "B0933DBFMS",
     "B0D7QMS49B"
    ],
-   "units": 9,
-   "sales": 60.58,
+   "units": 12,
+   "sales": 80.65,
    "currency": "EUR",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6835,9 +5885,25 @@
    "asins": [
     "B07PPXKJPQ"
    ],
+   "units": 1,
+   "sales": 19.34,
+   "currency": "EUR",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "AL91QOPMX9W1S",
+   "kind": "coupon",
+   "name": "Save 10% on Baby Corner Protectors",
+   "m": "IE",
+   "start": "2026-10-30",
+   "end": "2026-11-10",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
    "units": 0,
    "sales": 0.0,
-   "currency": "EUR",
+   "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
@@ -6860,22 +5926,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "AL91QOPMX9W1S",
-   "kind": "coupon",
-   "name": "Save 10% on Baby Corner Protectors",
-   "m": "IE",
-   "start": "2026-10-30",
-   "end": "2026-11-10",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A3C61ZJRMNB3IM",
    "kind": "coupon",
    "name": "Save 10% on Non Slip Protectors for Baby Gate",
@@ -6887,8 +5937,8 @@
     "B08NCRRM6M",
     "B0DMTJXH9W"
    ],
-   "units": 31,
-   "sales": 350.86,
+   "units": 87,
+   "sales": 984.91,
    "currency": "GBP",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6939,42 +5989,10 @@
     "B0DMTMHVK4",
     "B0FVG9MZR8"
    ],
-   "units": 2,
-   "sales": 595.18,
+   "units": 4,
+   "sales": 1011.8,
    "currency": "SEK",
    "discount": "7%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1DNSP8DWEO31",
-   "kind": "coupon",
-   "name": "Sparen Sie 10 % auf Kantenschutz Baby aus Schaumstoff",
-   "m": "DE",
-   "start": "2026-10-30",
-   "end": "2026-11-09",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 13,
-   "sales": 235.82,
-   "currency": "EUR",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1T5WGXGYHC0KG",
-   "kind": "coupon",
-   "name": "Sparen Sie 14 % auf Kantenschutz Baby aus Schaumstoff",
-   "m": "DE",
-   "start": "2026-10-30",
-   "end": "2026-11-10",
-   "asins": [
-    "B0GGJ6VRCQ"
-   ],
-   "units": 13,
-   "sales": 216.93,
-   "currency": "EUR",
-   "discount": "14%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
@@ -7007,8 +6025,8 @@
     "B0DMTMHVK4",
     "B0FVG9MZR8"
    ],
-   "units": 53,
-   "sales": 843.98,
+   "units": 123,
+   "sales": 1963.05,
    "currency": "EUR",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -7023,8 +6041,8 @@
    "asins": [
     "B0DNTPCLRN"
    ],
-   "units": 2,
-   "sales": 14.64,
+   "units": 3,
+   "sales": 21.96,
    "currency": "EUR",
    "discount": "12%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
