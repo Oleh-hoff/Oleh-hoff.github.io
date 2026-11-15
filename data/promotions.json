@@ -1,6 +1,6 @@
 {
  "source": "spapi-promotions",
- "generatedAt": "2026-11-15T00:05:10Z",
+ "generatedAt": "2026-11-15T05:09:07Z",
  "periodStart": "2026-08-10",
  "periodEnd": "2026-11-15",
  "searchFrom": "2026-07-01",
@@ -3289,6 +3289,22 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "AT1CWIHW0YZI",
+   "kind": "coupon",
+   "name": "Save 10% on Baby Corner Protectors",
+   "m": "IE",
+   "start": "2026-09-17",
+   "end": "2026-09-22",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 0,
+   "sales": 0.0,
+   "currency": "USD",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
    "id": "A3JQM0GCD34NEE",
    "kind": "coupon",
    "name": "Save 10% on Baby Corner Protectors",
@@ -3301,22 +3317,6 @@
    ],
    "units": 2,
    "sales": 14.62,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "AT1CWIHW0YZI",
-   "kind": "coupon",
-   "name": "Save 10% on Baby Corner Protectors",
-   "m": "IE",
-   "start": "2026-09-17",
-   "end": "2026-09-22",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 0,
-   "sales": 0.0,
    "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -4000,22 +4000,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A16I7LI7B2L9Z7",
-   "kind": "coupon",
-   "name": "Save 10% on Baby Corner Protectors",
-   "m": "IE",
-   "start": "2026-10-01",
-   "end": "2026-10-09",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 3,
-   "sales": 50.46,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A20PCNIIK46NMK",
    "kind": "coupon",
    "name": "Save 10% on Baby Corner Protectors",
@@ -4031,6 +4015,22 @@
    ],
    "units": 4,
    "sales": 32.9,
+   "currency": "USD",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A16I7LI7B2L9Z7",
+   "kind": "coupon",
+   "name": "Save 10% on Baby Corner Protectors",
+   "m": "IE",
+   "start": "2026-10-01",
+   "end": "2026-10-09",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 3,
+   "sales": 50.46,
    "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -4081,8 +4081,8 @@
    "units": 12,
    "sales": 175.55,
    "currency": "USD",
-   "discount": "100%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
+   "discount": "3",
+   "discountKind": "AMOUNT_OFF_LIST_PRICE"
   },
   {
    "id": "A2OM7PJZM4KO79",
@@ -4386,25 +4386,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A2OCJTR80IGO4D",
-   "kind": "coupon",
-   "name": "Spara 15 % på våra produkter",
-   "m": "SE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B072PPT9V3",
-    "B0D7QMS49B",
-    "B0DMTMHVK4",
-    "B0FVG9MZR8"
-   ],
-   "units": 4,
-   "sales": 911.16,
-   "currency": "SEK",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A3OJC7OKAUHFX6",
    "kind": "coupon",
    "name": "Spara 15 % på våra produkter",
@@ -4425,6 +4406,25 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "A2OCJTR80IGO4D",
+   "kind": "coupon",
+   "name": "Spara 15 % på våra produkter",
+   "m": "SE",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B072PPT9V3",
+    "B0D7QMS49B",
+    "B0DMTMHVK4",
+    "B0FVG9MZR8"
+   ],
+   "units": 4,
+   "sales": 911.16,
+   "currency": "SEK",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
    "id": "A2GQ0YSZ5EDKDD",
    "kind": "coupon",
    "name": "Sparen Sie 15 % auf unsere Produkte",
@@ -4436,6 +4436,54 @@
    ],
    "units": 52,
    "sales": 714.54,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A1O7KSGT34WEB4",
+   "kind": "coupon",
+   "name": "Sparen Sie 15 % auf unsere Produkte",
+   "m": "DE",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B0D7QMZZDG"
+   ],
+   "units": 2,
+   "sales": 24.26,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A3TBM20DMK6JJB",
+   "kind": "coupon",
+   "name": "Sparen Sie 15 % auf unsere Produkte",
+   "m": "DE",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 31,
+   "sales": 534.09,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A14O24LHO99UMM",
+   "kind": "coupon",
+   "name": "Sparen Sie 15 % auf unsere Produkte",
+   "m": "DE",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B072PPT9V3"
+   ],
+   "units": 193,
+   "sales": 2757.29,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -4464,22 +4512,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A3TBM20DMK6JJB",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 31,
-   "sales": 534.09,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "AABRDH54D17QB",
    "kind": "coupon",
    "name": "Sparen Sie 15 % auf unsere Produkte",
@@ -4491,38 +4523,6 @@
    ],
    "units": 0,
    "sales": 0.0,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A1O7KSGT34WEB4",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B0D7QMZZDG"
-   ],
-   "units": 2,
-   "sales": 24.26,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A14O24LHO99UMM",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B072PPT9V3"
-   ],
-   "units": 193,
-   "sales": 2757.29,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6268,8 +6268,8 @@
     "B0DMTMHVK4",
     "B0FVG9MZR8"
    ],
-   "units": 1250,
-   "sales": 22179.95,
+   "units": 1379,
+   "sales": 24408.25,
    "currency": "EUR",
    "discount": "5%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6370,8 +6370,8 @@
    "asins": [
     "B0854MW97N"
    ],
-   "units": 15,
-   "sales": 98.25,
+   "units": 18,
+   "sales": 117.9,
    "currency": "EUR",
    "discount": "20%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6529,8 +6529,8 @@
     "B0FNX21TZF",
     "B0GQVR12BX"
    ],
-   "units": 9,
-   "sales": 233.62,
+   "units": 18,
+   "sales": 457.22,
    "currency": "EUR",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6545,8 +6545,8 @@
    "asins": [
     "B0DNTPCLRN"
    ],
-   "units": 6,
-   "sales": 43.92,
+   "units": 7,
+   "sales": 51.24,
    "currency": "EUR",
    "discount": "12%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6561,8 +6561,8 @@
    "asins": [
     "B0GGJ6VRCQ"
    ],
-   "units": 6,
-   "sales": 101.02,
+   "units": 9,
+   "sales": 150.49,
    "currency": "EUR",
    "discount": "14%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6615,8 +6615,8 @@
     "B0D7QMS49B",
     "B0D7QMZZDG"
    ],
-   "units": 28,
-   "sales": 166.06,
+   "units": 50,
+   "sales": 292.77,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6632,8 +6632,8 @@
     "B0FNX21TZF",
     "B0GQVR12BX"
    ],
-   "units": 2,
-   "sales": 41.98,
+   "units": 5,
+   "sales": 104.95,
    "currency": "EUR",
    "discount": "16%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6664,8 +6664,8 @@
    "asins": [
     "B0GGJ6VRCQ"
    ],
-   "units": 3,
-   "sales": 44.0,
+   "units": 4,
+   "sales": 58.78,
    "currency": "EUR",
    "discount": "18%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6716,8 +6716,8 @@
    "asins": [
     "B0854MW97N"
    ],
-   "units": 2,
-   "sales": 151.98,
+   "units": 3,
+   "sales": 227.97,
    "currency": "SEK",
    "discount": "5%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6774,8 +6774,8 @@
     "B0DMTMHVK4",
     "B0FVG9MZR8"
    ],
-   "units": 3,
-   "sales": 55.59,
+   "units": 5,
+   "sales": 92.65,
    "currency": "USD",
    "discount": "5%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6794,8 +6794,8 @@
     "B0DMTMHVK4",
     "B0FVG9MZR8"
    ],
-   "units": 7,
-   "sales": 1641.53,
+   "units": 9,
+   "sales": 2143.11,
    "currency": "SEK",
    "discount": "5%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
