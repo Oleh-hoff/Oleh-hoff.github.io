@@ -1,6 +1,6 @@
 {
  "source": "spapi-promotions",
- "generatedAt": "2026-11-27T03:14:14Z",
+ "generatedAt": "2026-11-28T00:45:48Z",
  "periodStart": "2026-08-24",
  "periodEnd": "2026-11-29",
  "searchFrom": "2026-07-15",
@@ -73,7 +73,7 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A299YXPCVGWNEA",
+   "id": "A15PKI69LT8XL0",
    "kind": "coupon",
    "name": "Save 15% on 4x Wall Protection Pads",
    "m": "IE",
@@ -89,7 +89,7 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A15PKI69LT8XL0",
+   "id": "A299YXPCVGWNEA",
    "kind": "coupon",
    "name": "Save 15% on 4x Wall Protection Pads",
    "m": "IE",
@@ -2024,22 +2024,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "AT1CWIHW0YZI",
-   "kind": "coupon",
-   "name": "Save 10% on Baby Corner Protectors",
-   "m": "IE",
-   "start": "2026-09-17",
-   "end": "2026-09-22",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A3JQM0GCD34NEE",
    "kind": "coupon",
    "name": "Save 10% on Baby Corner Protectors",
@@ -2052,6 +2036,22 @@
    ],
    "units": 2,
    "sales": 14.62,
+   "currency": "USD",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "AT1CWIHW0YZI",
+   "kind": "coupon",
+   "name": "Save 10% on Baby Corner Protectors",
+   "m": "IE",
+   "start": "2026-09-17",
+   "end": "2026-09-22",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 0,
+   "sales": 0.0,
    "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -2735,6 +2735,22 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "A16I7LI7B2L9Z7",
+   "kind": "coupon",
+   "name": "Save 10% on Baby Corner Protectors",
+   "m": "IE",
+   "start": "2026-10-01",
+   "end": "2026-10-09",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 3,
+   "sales": 50.46,
+   "currency": "USD",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
    "id": "A20PCNIIK46NMK",
    "kind": "coupon",
    "name": "Save 10% on Baby Corner Protectors",
@@ -2750,22 +2766,6 @@
    ],
    "units": 4,
    "sales": 32.9,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A16I7LI7B2L9Z7",
-   "kind": "coupon",
-   "name": "Save 10% on Baby Corner Protectors",
-   "m": "IE",
-   "start": "2026-10-01",
-   "end": "2026-10-09",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 3,
-   "sales": 50.46,
    "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -2816,8 +2816,8 @@
    "units": 12,
    "sales": 175.55,
    "currency": "USD",
-   "discount": "3",
-   "discountKind": "AMOUNT_OFF_LIST_PRICE"
+   "discount": "100%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
    "id": "A2OM7PJZM4KO79",
@@ -3121,25 +3121,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A2OCJTR80IGO4D",
-   "kind": "coupon",
-   "name": "Spara 15 % på våra produkter",
-   "m": "SE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B072PPT9V3",
-    "B0D7QMS49B",
-    "B0DMTMHVK4",
-    "B0FVG9MZR8"
-   ],
-   "units": 4,
-   "sales": 911.16,
-   "currency": "SEK",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A3OJC7OKAUHFX6",
    "kind": "coupon",
    "name": "Spara 15 % på våra produkter",
@@ -3160,6 +3141,41 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
+   "id": "A2OCJTR80IGO4D",
+   "kind": "coupon",
+   "name": "Spara 15 % på våra produkter",
+   "m": "SE",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B072PPT9V3",
+    "B0D7QMS49B",
+    "B0DMTMHVK4",
+    "B0FVG9MZR8"
+   ],
+   "units": 4,
+   "sales": 911.16,
+   "currency": "SEK",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A2GQ0YSZ5EDKDD",
+   "kind": "coupon",
+   "name": "Sparen Sie 15 % auf unsere Produkte",
+   "m": "DE",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B0DNT4FNZ9"
+   ],
+   "units": 52,
+   "sales": 714.54,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
    "id": "A14O24LHO99UMM",
    "kind": "coupon",
    "name": "Sparen Sie 15 % auf unsere Produkte",
@@ -3171,22 +3187,6 @@
    ],
    "units": 193,
    "sales": 2757.29,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
-   "id": "A3TBM20DMK6JJB",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 31,
-   "sales": 534.09,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -3231,22 +3231,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A2GQ0YSZ5EDKDD",
-   "kind": "coupon",
-   "name": "Sparen Sie 15 % auf unsere Produkte",
-   "m": "DE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B0DNT4FNZ9"
-   ],
-   "units": 52,
-   "sales": 714.54,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A1O7KSGT34WEB4",
    "kind": "coupon",
    "name": "Sparen Sie 15 % auf unsere Produkte",
@@ -3258,6 +3242,22 @@
    ],
    "units": 2,
    "sales": 24.26,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A3TBM20DMK6JJB",
+   "kind": "coupon",
+   "name": "Sparen Sie 15 % auf unsere Produkte",
+   "m": "DE",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 31,
+   "sales": 534.09,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -3315,22 +3315,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A245T1USHGTB7",
-   "kind": "coupon",
-   "name": "Économisez 15 % sur nos produits",
-   "m": "BE",
-   "start": "2026-10-06",
-   "end": "2026-10-07",
-   "asins": [
-    "B0DNTPCLRN"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "EUR",
-   "discount": "15%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A4Y9DW76P5OFX",
    "kind": "coupon",
    "name": "Économisez 15 % sur nos produits",
@@ -3351,6 +3335,22 @@
    ],
    "units": 10,
    "sales": 197.15,
+   "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A245T1USHGTB7",
+   "kind": "coupon",
+   "name": "Économisez 15 % sur nos produits",
+   "m": "BE",
+   "start": "2026-10-06",
+   "end": "2026-10-07",
+   "asins": [
+    "B0DNTPCLRN"
+   ],
+   "units": 0,
+   "sales": 0.0,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -4751,22 +4751,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "AL91QOPMX9W1S",
-   "kind": "coupon",
-   "name": "Save 10% on Baby Corner Protectors",
-   "m": "IE",
-   "start": "2026-10-30",
-   "end": "2026-11-03",
-   "asins": [
-    "B07PPXKJPQ"
-   ],
-   "units": 0,
-   "sales": 0.0,
-   "currency": "USD",
-   "discount": "10%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A1XZM1LK319F9B",
    "kind": "coupon",
    "name": "Save 10% on Baby Corner Protectors",
@@ -4780,6 +4764,22 @@
    ],
    "units": 5,
    "sales": 40.21,
+   "currency": "USD",
+   "discount": "10%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "AL91QOPMX9W1S",
+   "kind": "coupon",
+   "name": "Save 10% on Baby Corner Protectors",
+   "m": "IE",
+   "start": "2026-10-30",
+   "end": "2026-11-03",
+   "asins": [
+    "B07PPXKJPQ"
+   ],
+   "units": 0,
+   "sales": 0.0,
    "currency": "USD",
    "discount": "10%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -5202,22 +5202,6 @@
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   },
   {
-   "id": "A31VU0EYOBCCEF",
-   "kind": "coupon",
-   "name": "Save 7% on Serrure magnetique pour enfants",
-   "m": "BE",
-   "start": "2026-11-05",
-   "end": "2026-11-11",
-   "asins": [
-    "B0FNX21TZF"
-   ],
-   "units": 2,
-   "sales": 46.1,
-   "currency": "EUR",
-   "discount": "7%",
-   "discountKind": "PERCENT_OFF_LIST_PRICE"
-  },
-  {
    "id": "A11ICNYJ8FWIVM",
    "kind": "coupon",
    "name": "Save 7% on Serrure magnetique pour enfants",
@@ -5233,6 +5217,22 @@
    ],
    "units": 21,
    "sales": 469.46,
+   "currency": "EUR",
+   "discount": "7%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A31VU0EYOBCCEF",
+   "kind": "coupon",
+   "name": "Save 7% on Serrure magnetique pour enfants",
+   "m": "BE",
+   "start": "2026-11-05",
+   "end": "2026-11-11",
+   "asins": [
+    "B0FNX21TZF"
+   ],
+   "units": 2,
+   "sales": 46.1,
    "currency": "EUR",
    "discount": "7%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -5752,8 +5752,8 @@
     "B0FVGB9FHJ",
     "B0GQVR12BX"
    ],
-   "units": 223,
-   "sales": 2738.82,
+   "units": 225,
+   "sales": 2751.44,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -5937,7 +5937,7 @@
     "B0GQVR12BX"
    ],
    "units": 806,
-   "sales": 14076.83,
+   "sales": 14064.69,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -5986,7 +5986,7 @@
     "B0933DBFMS"
    ],
    "units": 1,
-   "sales": 8.49,
+   "sales": 7.02,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6033,8 +6033,8 @@
    "asins": [
     "B0GGJ6VRCQ"
    ],
-   "units": 2,
-   "sales": 29.74,
+   "units": 4,
+   "sales": 59.48,
    "currency": "EUR",
    "discount": "5",
    "discountKind": "AMOUNT_OFF_LIST_PRICE"
@@ -6051,8 +6051,8 @@
     "B0933DBFMS",
     "B0D7QMZZDG"
    ],
-   "units": 16,
-   "sales": 91.9,
+   "units": 22,
+   "sales": 127.68,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6067,8 +6067,8 @@
    "asins": [
     "B0DNTPCLRN"
    ],
-   "units": 2,
-   "sales": 12.52,
+   "units": 4,
+   "sales": 25.04,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6096,8 +6096,8 @@
     "B0GGJ5PCGC",
     "B0GT1C3GYC"
    ],
-   "units": 8,
-   "sales": 106.37,
+   "units": 11,
+   "sales": 136.41,
    "currency": "USD",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6160,8 +6160,8 @@
    "asins": [
     "B0GGJ4RNBC"
    ],
-   "units": 0,
-   "sales": 0.0,
+   "units": 1,
+   "sales": 54.69,
    "currency": "PLN",
    "discount": "25%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6172,7 +6172,7 @@
    "name": "24% d'économie sur Protection en Mousse pour Bords et Coins",
    "m": "BE",
    "start": "2026-11-25",
-   "end": "2026-11-30",
+   "end": "2026-11-26",
    "asins": [
     "B0GGJ6VRCQ"
    ],
@@ -6225,8 +6225,8 @@
     "B072PPT9V3",
     "B0DMTJXH9W"
    ],
-   "units": 28,
-   "sales": 399.86,
+   "units": 65,
+   "sales": 929.0,
    "currency": "GBP",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6241,8 +6241,8 @@
    "asins": [
     "B0DNTPCLRN"
    ],
-   "units": 3,
-   "sales": 19.82,
+   "units": 8,
+   "sales": 53.05,
    "currency": "EUR",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
@@ -6258,9 +6258,26 @@
     "B0GGJ5PCGC",
     "B0GGJ6VRCQ"
    ],
-   "units": 1,
-   "sales": 16.42,
+   "units": 4,
+   "sales": 65.68,
    "currency": "EUR",
+   "discount": "15%",
+   "discountKind": "PERCENT_OFF_LIST_PRICE"
+  },
+  {
+   "id": "A14D81RL0ECSDR",
+   "kind": "coupon",
+   "name": "Save 15% on Baby Safety Products",
+   "m": "IE",
+   "start": "2026-11-26",
+   "end": "2026-11-30",
+   "asins": [
+    "B072PPT9V3",
+    "B0F79C4Y9C"
+   ],
+   "units": 3,
+   "sales": 49.74,
+   "currency": "USD",
    "discount": "15%",
    "discountKind": "PERCENT_OFF_LIST_PRICE"
   }
